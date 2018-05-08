@@ -59,6 +59,7 @@ public class EntityStep implements WizardStep {
 
   private TextField expName;
   private ComboBox species;
+  private ComboBox matrices;
   private TextField specialSpecies;
   private ConditionsPanel c;
 
@@ -86,7 +87,7 @@ public class EntityStep implements WizardStep {
    * @param speciesMap A map of available species (codes and labels)
    * @param people
    */
-  public EntityStep(Map<String, String> speciesMap, Set<String> people) {
+  public EntityStep(Map<String, String> speciesMap, Set<String> people , Map<String, String> matrixMap) {
     main = new VerticalLayout();
     main.setMargin(true);
     main.setSpacing(true);
@@ -112,10 +113,21 @@ public class EntityStep implements WizardStep {
         (TextField) speciesNum.getInnerComponent());
     expName = new TextField("Experimental Step Name");
     expName.setStyleName(Styles.fieldTheme);
+    
+    ArrayList<String> openbisMatrices = new ArrayList<String>();
+    openbisMatrices.addAll(matrixMap.keySet());
+    Collections.sort(openbisMatrices);
+    matrices = new ComboBox("Matrix", openbisMatrices);
+    matrices.setStyleName(Styles.boxTheme);
+    matrices.setRequired(true);
+    matrices.setFilteringMode(FilteringMode.CONTAINS);
+    
+    
     main.addComponent(expName);
     main.addComponent(c);
     main.addComponent(speciesNum.getInnerComponent());
     main.addComponent(species);
+    main.addComponent(matrices);
 
     species.addValueChangeListener(new ValueChangeListener() {
 
@@ -174,7 +186,8 @@ public class EntityStep implements WizardStep {
 
   @Override
   public boolean onAdvance() {
-    if (skip || speciesReady() && replicatesReady() && c.isValid())
+    if (skip || replicatesReady() && c.isValid())
+    		//speciesReady() &&
       return true;
     else {
       Styles.notification("Missing information", "Please fill in the required fields.",
@@ -215,6 +228,13 @@ public class EntityStep implements WizardStep {
 
   public int getBioRepAmount() {
     return Integer.parseInt(bioReps.getValue());
+  }
+  
+  public String getMatrices() {
+	if (matrices.getValue() == null)
+	  return null;
+	else
+	  return matrices.getValue().toString();
   }
 
   public String getSpecies() {

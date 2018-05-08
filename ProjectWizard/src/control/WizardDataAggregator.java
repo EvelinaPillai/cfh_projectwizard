@@ -83,6 +83,7 @@ public class WizardDataAggregator {
   private IOpenBisClient openbis;
   private XMLParser xmlParser = new XMLParser();
   private Map<String, String> taxMap;
+  private Map<String, String> matrixMap;
   private Map<String, String> tissueMap;
   private Map<String, Property> factorMap;
   private Map<String, Integer> personMap;
@@ -99,6 +100,7 @@ public class WizardDataAggregator {
   private String projectCode;
   private List<OpenbisExperiment> experiments;
   private String species;
+  private String matrices;
   private String speciesInfo;
   private String tissue;
   private String specialTissue;
@@ -139,7 +141,7 @@ public class WizardDataAggregator {
    * @param tissueMap mapping of tissue names and labels
    */
   public WizardDataAggregator(Map<Steps, WizardStep> steps, IOpenBisClient openbis,
-      Map<String, String> taxMap, Map<String, String> tissueMap, Map<String, Integer> personMap) {
+      Map<String, String> taxMap, Map<String, String> tissueMap, Map<String, Integer> personMap,Map<String, String> matrixMap) {
     s1 = (ProjectContextStep) steps.get(Steps.Project_Context);
     s2 = (EntityStep) steps.get(Steps.Entities);
     s3 = (ConditionInstanceStep) steps.get(Steps.Entity_Conditions);
@@ -149,6 +151,7 @@ public class WizardDataAggregator {
 
     this.openbis = openbis;
     this.taxMap = taxMap;
+    this.matrixMap = matrixMap;
     this.personMap = personMap;
     this.tissueMap = tissueMap;
   }
@@ -223,6 +226,7 @@ public class WizardDataAggregator {
     species = s2.getSpecies();
     speciesInfo = s2.getSpecialSpecies();
     bioReps = s2.getBioRepAmount();
+    matrices = s2.getMatrices();
 
     // entities are not created new, but parsed from registered ones
     if (inheritEntities) {
@@ -593,9 +597,10 @@ public class WizardDataAggregator {
           }
         }
         String taxID = taxMap.get(species);
+                
         entities.add(new OpenbisBiologicalEntity(projectCode + "ENTITY-" + entityNum, spaceCode,
             experiments.get(0).getOpenbisName(), secondaryName, "", factors, taxID, speciesInfo,
-            ""));
+            "",matrices));
         entityNum++;
       }
     }
@@ -832,7 +837,7 @@ public class WizardDataAggregator {
       }
       res.add(new OpenbisBiologicalEntity(code, spaceCode, exp, p.get("Q_SECONDARY_NAME"),
           p.get("Q_ADDITIONAL_INFO"), factors, p.get("Q_NCBI_ORGANISM"),
-          p.get("Q_ORGANISM_DETAILED"), p.get("Q_EXTERNALDB_ID")));
+          p.get("Q_ORGANISM_DETAILED"), p.get("Q_EXTERNALDB_ID"), p.get("Q_MATRIX")));
     }
     return res;
   }

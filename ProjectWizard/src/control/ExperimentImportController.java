@@ -88,6 +88,7 @@ public class ExperimentImportController implements IRegistrationController {
 
   private Map<String, String> reverseTaxMap;
   private Map<String, String> taxMap;
+  private Map<String, String> matrixMap;
   private Map<String, String> reverseTissueMap;
   private Map<String, String> tissueMap;
   private List<String> analytesVocabulary;
@@ -111,6 +112,7 @@ public class ExperimentImportController implements IRegistrationController {
     this.vocabs = vocabularies;
     this.openbis = openbis;
     this.taxMap = vocabularies.getTaxMap();
+    this.matrixMap = vocabularies.getMatrixMap();
     this.tissueMap = vocabularies.getTissueMap();
     this.analytesVocabulary = vocabularies.getAnalyteTypes();
     this.reverseTaxMap = new HashMap<String, String>();
@@ -199,12 +201,16 @@ public class ExperimentImportController implements IRegistrationController {
                   case Standard:
                     Map<String, List<String>> catToVocabulary = new HashMap<String, List<String>>();
                     catToVocabulary.put("Species", new ArrayList<String>(taxMap.keySet()));
+                    catToVocabulary.put("Matrix", new ArrayList<String>(matrixMap.keySet()));
                     catToVocabulary.put("Tissues", new ArrayList<String>(tissueMap.keySet()));
                     catToVocabulary.put("Analytes", new ArrayList<String>(analytesVocabulary));
                     Map<String, List<String>> missingCategoryToValues =
                         new HashMap<String, List<String>>();
                     missingCategoryToValues.put("Species",
                         new ArrayList<String>(prep.getSpeciesSet()));
+                        new HashMap<String, List<String>>();
+                    missingCategoryToValues.put("Matrices",
+                        new ArrayList<String>(prep.getTissueSet()));
                     missingCategoryToValues.put("Tissues",
                         new ArrayList<String>(prep.getTissueSet()));
                     missingCategoryToValues.put("Analytes",
@@ -215,6 +221,7 @@ public class ExperimentImportController implements IRegistrationController {
                   case MHC_Ligands_Finished:
                     catToVocabulary = new HashMap<String, List<String>>();
                     catToVocabulary.put("Species", new ArrayList<String>(taxMap.keySet()));
+                    catToVocabulary.put("Matrix", new ArrayList<String>(matrixMap.keySet()));
                     catToVocabulary.put("Tissues", new ArrayList<String>(tissueMap.keySet()));
                     catToVocabulary.put("Analytes", new ArrayList<String>(analytesVocabulary));
                     missingCategoryToValues = new HashMap<String, List<String>>();
@@ -444,6 +451,9 @@ public class ExperimentImportController implements IRegistrationController {
                     String newVal = questionaire.getVocabularyLabelForValue("Species",
                         props.get("Q_NCBI_ORGANISM"));
                     props.put("Q_NCBI_ORGANISM", taxMap.get(newVal));
+                    String newVal2 = questionaire.getVocabularyLabelForValue("Matrix",
+                            props.get("Q_MATRIX"));
+                    props.put("Q_MATRIX", matrixMap.get(newVal2));
                     entityNum++;
                     break;
                   case "Q_BIOLOGICAL_SAMPLE":

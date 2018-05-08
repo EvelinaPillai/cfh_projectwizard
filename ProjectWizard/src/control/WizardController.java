@@ -295,7 +295,7 @@ public class WizardController implements IRegistrationController {
         vocabularies.getSpaces(), vocabularies.getPeople().keySet());
     final ProjectContextStep contextStep = new ProjectContextStep(projSelection);
     final EntityStep entStep =
-        new EntityStep(vocabularies.getTaxMap(), vocabularies.getPeople().keySet());
+        new EntityStep(vocabularies.getTaxMap(), vocabularies.getPeople().keySet(),vocabularies.getMatrixMap());
     final ConditionInstanceStep entCondInstStep =
         new ConditionInstanceStep(vocabularies.getTaxMap().keySet(), "Species", "Biol. Variables");
     final TailoringStep tailoringStep1 = new TailoringStep("Sample Sources", false);
@@ -335,7 +335,7 @@ public class WizardController implements IRegistrationController {
     steps.put(Steps.Finish, finishStep);
 
     this.dataAggregator = new WizardDataAggregator(steps, openbis, vocabularies.getTaxMap(),
-        vocabularies.getTissueMap(), vocabularies.getPeople());
+        vocabularies.getTissueMap(), vocabularies.getPeople(), vocabularies.getMatrixMap());
     // w.addStep(finishStep);
     w.addStep(contextStep);
 

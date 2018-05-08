@@ -155,6 +155,7 @@ public class ProjectwizardUI extends UI {
     }
     if (success) {
       // stuff from openbis
+      Map<String, String> matrixMap = openbis.getVocabCodesAndLabelsForVocab("Q_CFH_MATRIX");
       Map<String, String> taxMap = openbis.getVocabCodesAndLabelsForVocab("Q_NCBI_TAXONOMY");
       Map<String, String> tissueMap = openbis.getVocabCodesAndLabelsForVocab("Q_PRIMARY_TISSUES");
       Map<String, String> deviceMap = openbis.getVocabCodesAndLabelsForVocab("Q_MS_DEVICES");
@@ -180,7 +181,7 @@ public class ProjectwizardUI extends UI {
           config.getMysqlDB(), config.getMysqlUser(), config.getMysqlPass());
       DBManager dbm = new DBManager(mysqlConfig);
       Map<String, Integer> peopleMap = dbm.fetchPeople();
-      DBVocabularies vocabs = new DBVocabularies(taxMap, tissueMap, cellLinesMap, sampleTypes,
+      DBVocabularies vocabs = new DBVocabularies(matrixMap,taxMap, tissueMap, cellLinesMap, sampleTypes,
           spaces, peopleMap, expTypes, enzymeMap, antibodiesWithLabels, deviceMap, msProtocols,
           lcmsMethods, chromTypes, fractionationTypes, enrichmentTypes, purificationMethods);
       // initialize the View with sample types, spaces and the dictionaries of tissues and species
