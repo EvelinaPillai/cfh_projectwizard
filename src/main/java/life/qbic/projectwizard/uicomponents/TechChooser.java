@@ -186,6 +186,14 @@ public class TechChooser extends VerticalLayout {
   public void removeNminListener(ValueChangeListener nminListener) {
 	    this.chooser.removeValueChangeListener(nminListener);
   }
+  
+  public void addElementListener(ValueChangeListener elementListener) {
+	    this.chooser.addValueChangeListener(elementListener);
+  }
+  
+  public void removeElementListener(ValueChangeListener nminListener) {	
+	    this.chooser.removeValueChangeListener(nminListener);
+  }
 
   public void setValue(String analyte) {
     chooser.setValue(analyte);

@@ -36,6 +36,7 @@ import life.qbic.projectwizard.io.DBVocabularies;
 import life.qbic.projectwizard.model.MHCLigandExtractionProtocol;
 import life.qbic.projectwizard.model.RegisteredAnalyteInformation;
 import life.qbic.projectwizard.model.TestSampleInformation;
+import life.qbic.projectwizard.uicomponents.ElementPanel;
 import life.qbic.projectwizard.uicomponents.LigandExtractPanel;
 import life.qbic.projectwizard.uicomponents.MSOptionComponent;
 import life.qbic.projectwizard.uicomponents.NminOptions;
@@ -61,11 +62,13 @@ public class TestStep implements WizardStep {
 	private TechnologiesPanel techPanel;
 	private MSOptionComponent msPanel;
 	private LigandExtractPanel mhcLigandPanel;
+	private ElementPanel elementPanel;
 	private CheckBox noMeasure;
 	private DBVocabularies vocabs;
 	private boolean containsProteins = false;
 	private boolean containsMHCLigands = false;
 	private boolean containsMatrix = false;
+	private boolean containsElement = false;
 
 	private Wizard wizard;
 
@@ -231,10 +234,32 @@ public class TestStep implements WizardStep {
 				}
 			}
 		};
+		
+		ValueChangeListener elementListener = new ValueChangeListener() {
+
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = -2881234670741817840L;
+			@Override
+			public void valueChange(ValueChangeEvent event) {
+				containsElement = false;
+				for (TestSampleInformation i : getAnalyteInformation()) {
+					String tech = i.getTechnology();
+					containsElement |= tech.equals("ELEMENT");
+				}
+				if (containsElement) {
+					elementPanel.setVisible(containsElement);
+					
+				}
+			}
+		};
+		
+		
 		techPanel = new TechnologiesPanel(vocabs.getAnalyteTypes(), vocabs.getPeople().keySet(), new OptionGroup(""),
 				testPoolListener,
 				new ArrayList<ValueChangeListener>(Arrays.asList(outerProteinListener, proteinListener)),
-				mhcLigandListener, refreshPeopleListener, matrixListener);
+				mhcLigandListener, refreshPeopleListener, matrixListener , elementListener);
 		main.addComponent(techPanel);
 		main.addComponent(new Label("<hr />", Label.CONTENT_XHTML));
 		msPanel = new MSOptionComponent(vocabs);
@@ -255,6 +280,11 @@ public class TestStep implements WizardStep {
 		mhcLigandPanel.setVisible(false);
 
 		main.addComponent(mhcLigandPanel);
+		
+		elementPanel = new ElementPanel(vocabs);
+		elementPanel.setVisible(false);
+
+		main.addComponent(elementPanel);
 
 	}
 

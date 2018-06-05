@@ -41,6 +41,7 @@ import com.vaadin.ui.VerticalLayout;
 
 import life.qbic.portal.portlet.ProjectWizardUI;
 import life.qbic.projectwizard.uicomponents.ConditionsPanel;
+import life.qbic.projectwizard.uicomponents.TechnologiesPanel;
 import life.qbic.portal.Styles;
 import life.qbic.portal.Styles.NotificationType;
 import life.qbic.portal.components.OpenbisInfoTextField;
@@ -64,6 +65,9 @@ public class MatrixStep implements WizardStep {
 	private VerticalLayout aaAnalysisPanel;
 	private StandardTextField aaAnalysis;
 	private Button btnAAAnalysis;
+	
+	
+	
 	private static final Logger logger = LogManager.getLogger(MSAnalyteStep.class);
 	
 	public MatrixStep(Map<String, String> matrixMap, Set<String> keySet) {
