@@ -183,11 +183,27 @@ public class TechChooser extends VerticalLayout {
   public void addMatrixListener(ValueChangeListener matrixListener) {
 	this.chooser.addValueChangeListener(matrixListener);
   }
+    
   
   public void removeMatrixlistener(ValueChangeListener matrixListener) {
 	this.chooser.removeValueChangeListener(matrixListener);
 		
   }
+  
+  public void addNminListener(ValueChangeListener nminListener) {
+	    this.chooser.addValueChangeListener(nminListener);
+}
+public void removeNminListener(ValueChangeListener nminListener) {
+	    this.chooser.removeValueChangeListener(nminListener);
+}
+
+public void addElementListener(ValueChangeListener elementListener) {
+    this.chooser.addValueChangeListener(elementListener);
+}
+
+public void removeElementListener(ValueChangeListener nminListener) {	
+    this.chooser.removeValueChangeListener(nminListener);
+}
 
   public void setValue(String analyte) {
     chooser.setValue(analyte);
@@ -200,6 +216,4 @@ public class TechChooser extends VerticalLayout {
   public void removeRefreshPeopleListener(ClickListener refreshPeopleListener) {
     this.reloadPeople.removeClickListener(refreshPeopleListener);
   }
-
-
 }

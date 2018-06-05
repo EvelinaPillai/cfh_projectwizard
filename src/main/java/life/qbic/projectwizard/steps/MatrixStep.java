@@ -41,6 +41,7 @@ import com.vaadin.ui.VerticalLayout;
 
 import life.qbic.portal.portlet.ProjectWizardUI;
 import life.qbic.projectwizard.uicomponents.ConditionsPanel;
+import life.qbic.projectwizard.uicomponents.TechnologiesPanel;
 import life.qbic.projectwizard.uicomponents.EAComponent;
 import life.qbic.portal.Styles;
 import life.qbic.portal.Styles.NotificationType;
@@ -59,8 +60,9 @@ public class MatrixStep implements WizardStep {
 	private HorizontalLayout matrixPanel;
 	private ComboBox matrix;
 	private StandardTextField noOfSamples;
-	private EAComponent elementAnalysisPanel;
-
+	private VerticalLayout elementAnalysisPanel;
+	private StandardTextField elementAnalysis;
+	private Button btnElementAnalysis; 
 	private VerticalLayout aaAnalysisPanel;
 	private StandardTextField aaAnalysis;
 	private Button btnAAAnalysis;
