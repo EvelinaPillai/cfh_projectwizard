@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="projectwizard-portlet">
+        <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
+        <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/target/generated-resources/gwt"/>
+        <dependent-module archiveName="experimental-design-lib-0.9.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/experimental-design-lib/experimental-design-lib">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="xml-manager-lib-1.0.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/xml-manager-lib/xml-manager-lib">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="openbis-client-lib-1.1.4-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/openbis-client-lib/openbis-client-lib">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="data-model-lib-0.2.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/data-model-lib/data-model-lib">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="portal-utils-lib-1.0.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/portal-utils-lib/portal-utils-lib">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <property name="context-root" value="projectwizard-portlet"/>
+        <property name="java-output-path" value="/projectwizard-portlet/target/classes"/>
+    </wb-module>
+</project-modules>

@@ -1,0 +1,1924 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.2" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="life.qbic.portal.portlet.ProjectWizardUI" project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/portal/portlet/ProjectWizardUI.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="9820" y="1316"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="life.qbic.projectwizard.adminviews.MCCView" project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/adminviews/MCCView.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="566" y="539"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="life.qbic.projectwizard.adminviews.PrototypeView" project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/adminviews/PrototypeView.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="5610" y="-190"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="life.qbic.projectwizard.control.WizardDataAggregator" 
+    project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/control/WizardDataAggregator.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1084" y="2430"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="life.qbic.projectwizard.control.WizardController" project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/control/WizardController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2400" y="682"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="life.qbic.projectwizard.control.Functions" project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/control/Functions.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="149" y="-81"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="life.qbic.projectwizard.control.ExperimentImportController" 
+    project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/control/ExperimentImportController.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3450" y="464"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="life.qbic.projectwizard.control.ProjectNameValidator" 
+    project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/control/ProjectNameValidator.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="433" y="-90"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="life.qbic.projectwizard.control.SampleCounter" project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/control/SampleCounter.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="257" y="1653"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="life.qbic.projectwizard.control.Uploader" project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/control/Uploader.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3493" y="-137"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="11" language="java" name="life.qbic.projectwizard.control.IRegistrationController" 
+    project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/control/IRegistrationController.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2582" y="-229"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <enumeration id="12" language="java" name="life.qbic.projectwizard.control.WizardController.Steps" 
+    project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/control/WizardController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="231" y="2361"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </enumeration>  
+  <class id="13" language="java" name="life.qbic.projectwizard.io.DBConfig" project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/io/DBConfig.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="6474" y="237"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" name="life.qbic.projectwizard.io.ConfigurationManagerFactory" 
+    project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/io/ConfigurationManagerFactory.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="5384" y="5614"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="life.qbic.projectwizard.io.TaxonomySearcher" project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/io/TaxonomySearcher.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="5342" y="-186"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <enumeration id="16" language="java" name="life.qbic.projectwizard.io.TissueClass" project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/io/TissueClass.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="5048" y="-214"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </enumeration>  
+  <class id="17" language="java" name="life.qbic.projectwizard.io.QuantificationMethodVocabularyParser" 
+    project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/io/QuantificationMethodVocabularyParser.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4883" y="5630"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <enumeration id="18" language="java" name="life.qbic.projectwizard.io.LiferayConfigurationManager" 
+    project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/io/LiferayConfigurationManager.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="9236" y="392"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </enumeration>  
+  <class id="19" language="java" name="life.qbic.projectwizard.io.OBOParser.Term" project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/io/OBOParser.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="8869" y="297"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="20" language="java" name="life.qbic.projectwizard.io.DBManager" project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/io/DBManager.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4580" y="1401"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="21" language="java" name="life.qbic.projectwizard.io.DBVocabularies" project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/io/DBVocabularies.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="735" width="619" x="1957" y="1675"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="22" language="java" name="life.qbic.projectwizard.io.NCBITerm" project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/io/NCBITerm.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="8159" y="-154"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="23" language="java" name="life.qbic.projectwizard.io.ConfigurationManager" 
+    project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/io/ConfigurationManager.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="9438" y="1337"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="24" language="java" name="life.qbic.projectwizard.io.OntologyParser" project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/io/OntologyParser.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="5994" y="-183"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <enumeration id="25" language="java" name="life.qbic.projectwizard.io.LiferayIndependentConfigurationManager" 
+    project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/io/LiferayIndependentConfigurationManager.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="9575" y="384"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </enumeration>  
+  <class id="26" language="java" name="life.qbic.projectwizard.io.OBOParser" project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/io/OBOParser.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="8862" y="2"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="27" language="java" name="life.qbic.projectwizard.io.OntologyEntry" project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/io/OntologyEntry.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="8384" y="-199"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="28" language="java" name="life.qbic.projectwizard.io.OntologyRelation" project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/io/OntologyRelation.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="8624" y="-190"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="29" language="java" name="life.qbic.projectwizard.model.RegisteredAnalyteInformation" 
+    project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/model/RegisteredAnalyteInformation.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="221" width="346" x="3571" y="2115"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="30" language="java" name="life.qbic.projectwizard.model.OntologyTerm" project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/model/OntologyTerm.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="257" width="217" x="3957" y="2115"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="31" language="java" name="life.qbic.projectwizard.model.MHCTyping" project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/model/MHCTyping.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3903" y="639"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="32" language="java" name="life.qbic.projectwizard.model.MSExperimentModel" project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/model/MSExperimentModel.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4130" y="2853"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="33" language="java" name="life.qbic.projectwizard.model.TestSampleInformation" 
+    project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/model/TestSampleInformation.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4428" y="2849"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="34" language="java" name="life.qbic.projectwizard.model.TissueInfo" project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/model/TissueInfo.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4568" y="2566"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="35" language="java" name="life.qbic.projectwizard.model.AttachmentInformation" 
+    project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/model/AttachmentInformation.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="9147" y="2508"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="36" language="java" name="life.qbic.projectwizard.model.MCCSample" project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/model/MCCSample.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="5914" y="5368"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="37" language="java" name="life.qbic.projectwizard.model.MHCLigandExtractionProtocol" 
+    project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/model/MHCLigandExtractionProtocol.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="6224" y="5386"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="38" language="java" name="life.qbic.projectwizard.model.NewSampleModelBean" project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/model/NewSampleModelBean.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="6559" y="5341"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="39" language="java" name="life.qbic.projectwizard.model.MCCPatient" project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/model/MCCPatient.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="6808" y="5368"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="40" language="java" name="life.qbic.projectwizard.processes.TSVReadyRunnable" 
+    project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/processes/TSVReadyRunnable.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4296" y="4117"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="41" language="java" name="life.qbic.projectwizard.processes.StreamBoozer" project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/processes/ProcessBuilderWrapper.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4830" y="5027"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="42" language="java" name="life.qbic.projectwizard.processes.MoveUploadsReadyRunnable" 
+    project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/processes/MoveUploadsReadyRunnable.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="8750" y="2081"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="43" language="java" name="life.qbic.projectwizard.processes.ProcessBuilderWrapper" 
+    project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/processes/ProcessBuilderWrapper.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4846" y="5244"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="44" language="java" name="life.qbic.projectwizard.processes.RegisteredSamplesReadyRunnable" 
+    project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/processes/RegisteredSamplesReadyRunnable.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1656" y="355"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <enumeration id="45" language="java" name="life.qbic.projectwizard.processes.RegistrationMode" 
+    project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/processes/RegistrationMode.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1639" y="4147"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </enumeration>  
+  <class id="46" language="java" name="life.qbic.projectwizard.processes.AttachmentMover" 
+    project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/processes/AttachmentMover.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="5381" y="5298"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="47" language="java" name="life.qbic.projectwizard.registration.OpenbisCreationController" 
+    project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/registration/OpenbisCreationController.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3309" y="1391"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="48" language="java" name="life.qbic.projectwizard.registration.RegisterableExperiment" 
+    project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/registration/RegisterableExperiment.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="6407" y="6152"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="49" language="java" name="life.qbic.projectwizard.registration.UpdateProgressBar" 
+    project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/registration/UpdateProgressBar.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="6794" y="5622"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="50" language="java" name="life.qbic.projectwizard.registration.RegisterableProject" 
+    project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/registration/RegisterableProject.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="6400" y="5676"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="51" language="java" name="life.qbic.projectwizard.steps.PoolingStep" project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/steps/PoolingStep.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="340" y="3146"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="52" language="java" name="life.qbic.projectwizard.steps.TailoringStep" project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/steps/TailoringStep.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="9709" y="4369"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <enumeration id="53" language="java" name="life.qbic.projectwizard.steps.MSAnalyteStep.AnalyteMultiplicationType" 
+    project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/steps/MSAnalyteStep.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2708" y="4840"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </enumeration>  
+  <class id="54" language="java" name="life.qbic.projectwizard.steps.ProjectContextStep" project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/steps/ProjectContextStep.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3024" y="2451"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="55" language="java" name="life.qbic.projectwizard.steps.MSAnalyteStep" project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/steps/MSAnalyteStep.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3787" y="5630"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="56" language="java" name="life.qbic.projectwizard.steps.SummaryRegisterStep" 
+    project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/steps/SummaryRegisterStep.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1284" y="4161"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="57" language="java" name="life.qbic.projectwizard.steps.EntityStep" project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/steps/EntityStep.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2147" y="3547"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="58" language="java" name="life.qbic.projectwizard.steps.ExtractionStep" project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/steps/ExtractionStep.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2509" y="4157"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="59" language="java" name="life.qbic.projectwizard.steps.TestStep" project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/steps/TestStep.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3017" y="3255"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="60" language="java" name="life.qbic.projectwizard.steps.ConditionInstanceStep" 
+    project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/steps/ConditionInstanceStep.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3500" y="3263"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="61" language="java" name="life.qbic.projectwizard.steps.FinishStep" project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/steps/FinishStep.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3959" y="3254"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="62" language="java" name="life.qbic.projectwizard.uicomponents.EnzymePanel" project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/uicomponents/EnzymePanel.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4808" y="4747"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="63" language="java" name="life.qbic.projectwizard.uicomponents.LigandExtractPanel" 
+    project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/uicomponents/LigandExtractPanel.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3588" y="4725"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="64" language="java" name="life.qbic.projectwizard.uicomponents.MissingInfoComponent" 
+    project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/uicomponents/MissingInfoComponent.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4579" y="2015"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="65" language="java" name="life.qbic.projectwizard.uicomponents.MSOptionComponent" 
+    project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/uicomponents/MSOptionComponent.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3025" y="3853"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="66" language="java" name="life.qbic.projectwizard.uicomponents.ConditionPropertyPanel" 
+    project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/uicomponents/ConditionPropertyPanel.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="347" width="254" x="6791" y="3591"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="67" language="java" name="life.qbic.projectwizard.uicomponents.MSSampleMultiplicationTable" 
+    project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/uicomponents/MSSampleMultiplicationTable.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="7108" y="1664"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="68" language="java" name="life.qbic.projectwizard.uicomponents.TechnologiesPanel" 
+    project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/uicomponents/TechnologiesPanel.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="455" width="745" x="7572" y="3591"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="69" language="java" name="life.qbic.projectwizard.uicomponents.PoolingTable" 
+    project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/uicomponents/PoolingTable.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="7588" y="3305"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="70" language="java" name="life.qbic.projectwizard.uicomponents.ConditionChooser" 
+    project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/uicomponents/ConditionChooser.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="8042" y="3156"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="71" language="java" name="life.qbic.projectwizard.uicomponents.EnzymeChooser" 
+    project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/uicomponents/EnzymeChooser.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="5061" y="4747"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="72" language="java" name="life.qbic.projectwizard.uicomponents.ExperimentSummaryTable" 
+    project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/uicomponents/ExperimentSummaryTable.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="793" y="4193"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="73" language="java" name="life.qbic.projectwizard.uicomponents.ProjectInformationComponent" 
+    project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/uicomponents/ProjectInformationComponent.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4968" y="3124"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="74" language="java" name="life.qbic.projectwizard.uicomponents.ConditionsPanel" 
+    project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/uicomponents/ConditionsPanel.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="7584" y="2806"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="75" language="java" name="life.qbic.projectwizard.uicomponents.SummaryTable" 
+    project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/uicomponents/SummaryTable.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="9627" y="3743"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="76" language="java" name="life.qbic.projectwizard.uicomponents.WizardUploadsPanel" 
+    project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/uicomponents/WizardUploadsPanel.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="9202" y="3076"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="77" language="java" name="life.qbic.projectwizard.uicomponents.LabelingMethod" 
+    project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/uicomponents/LabelingMethod.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="8639" y="4041"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="78" language="java" name="life.qbic.projectwizard.uicomponents.UploadComponent" 
+    project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/uicomponents/UploadComponent.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="8737" y="3152"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="79" language="java" name="life.qbic.projectwizard.uicomponents.UploadsPanel" 
+    project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/uicomponents/UploadsPanel.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="8611" y="2581"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="80" language="java" name="life.qbic.projectwizard.uicomponents.TechChooser" project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/uicomponents/TechChooser.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="7933" y="4445"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="81" language="java" 
+    name="life.qbic.projectwizard.uicomponents.ConditionPropertyPanel.PropertyValuesValidator" 
+    project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/uicomponents/ConditionPropertyPanel.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="6926" y="4097"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="82" language="java" name="life.qbic.projectwizard.uicomponents.FactorOptionBox" 
+    project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/uicomponents/FactorOptionBox.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3502" y="3730"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="83" language="java" name="life.qbic.projectwizard.uicomponents.DragDropPoolComponent" 
+    project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/uicomponents/DragDropPoolComponent.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="7174" y="3293"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="84" language="java" name="life.qbic.projectwizard.uicomponents.SampleSelectComponent" 
+    project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/uicomponents/SampleSelectComponent.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="5462" y="4858"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="85" language="java" name="life.qbic.projectwizard.views.MetadataUploadView" project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/views/MetadataUploadView.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="8989" y="3898"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="86" language="java" name="life.qbic.projectwizard.views.IRegistrationView" 
+    project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/views/IRegistrationView.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="332" y="3696"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="87" language="java" name="life.qbic.projectwizard.views.AdminView" project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/views/AdminView.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="756" y="1155"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="88" language="java" name="life.qbic.projectwizard.views.StandaloneTSVImport" 
+    project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/views/StandaloneTSVImport.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="613" width="402" x="156" y="4345"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="89" language="java" name="life.qbic.projectwizard.uicomponents.GeneralMSInfoPanel" 
+    project="projectwizard-portlet" 
+    file="/projectwizard-portlet/src/main/java/life/qbic/projectwizard/uicomponents/GeneralMSInfoPanel.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="6312" y="1717"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <association id="90">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="91" name="ontoParser">        
+        <position height="0" width="0" x="-1780" y="-388"/>      
+      </attribute>      
+      <multiplicity id="92" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-1780" y="-388"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="24" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="93">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="94" name="dbm">        
+        <position height="0" width="0" x="-3175" y="-181"/>      
+      </attribute>      
+      <multiplicity id="95" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-3175" y="-181"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="20" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="96">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="97" name="vocabs">        
+        <position height="0" width="0" x="-3419" y="1580"/>      
+      </attribute>      
+      <multiplicity id="98" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-3419" y="1580"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="21" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="99">    
+    <end type="SOURCE" refId="26" navigable="false">      
+      <attribute id="100" name="id2term">        
+        <position height="0" width="0" x="814" y="-1150"/>      
+      </attribute>      
+      <multiplicity id="101" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="814" y="-1150"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="19" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="102">    
+    <end type="SOURCE" refId="79" navigable="false">      
+      <attribute id="103" name="openbisCreator">        
+        <position height="0" width="0" x="-1807" y="-1389"/>      
+      </attribute>      
+      <multiplicity id="104" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-1807" y="-1389"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="47" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="105">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="106" name="s6">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="107" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="60" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="108">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="109" name="questionaire">        
+        <position height="0" width="0" x="-1888" y="-1749"/>      
+      </attribute>      
+      <multiplicity id="110" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-1888" y="-1749"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="64" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="111">    
+    <end type="SOURCE" refId="79" navigable="false">      
+      <attribute id="112" name="attachments">        
+        <position height="0" width="0" x="966" y="-465"/>      
+      </attribute>      
+      <multiplicity id="113" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="966" y="-465"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="35" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="114">    
+    <end type="SOURCE" refId="25"/>    
+    <end type="TARGET" refId="23"/>  
+  </realization>  
+  <association id="115">    
+    <end type="SOURCE" refId="30" navigable="false">      
+      <attribute id="116" name="subterms">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="117" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="30" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="118">    
+    <end type="SOURCE" refId="40" navigable="false">      
+      <attribute id="119" name="layout">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="120" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="61" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="121">    
+    <end type="SOURCE" refId="54" navigable="false">      
+      <attribute id="122" name="projectInfoComponent">        
+        <position height="0" width="0" x="-1362" y="-1432"/>      
+      </attribute>      
+      <multiplicity id="123" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-1362" y="-1432"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="73" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="124">    
+    <end type="SOURCE" refId="74" navigable="false">      
+      <attribute id="125" name="choosers">        
+        <position height="0" width="0" x="-455" y="-1211"/>      
+      </attribute>      
+      <multiplicity id="126" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="-455" y="-1211"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="70" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="127">    
+    <end type="SOURCE" refId="68" navigable="false">      
+      <attribute id="128" name="choosers">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="129" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="80" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="130">    
+    <end type="SOURCE" refId="56" navigable="false">      
+      <attribute id="131" name="summary">        
+        <position height="0" width="0" x="-4488" y="528"/>      
+      </attribute>      
+      <multiplicity id="132" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-4488" y="528"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="72" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="133">    
+    <end type="SOURCE" refId="56"/>    
+    <end type="TARGET" refId="86"/>  
+  </realization>  
+  <association id="134">    
+    <end type="SOURCE" refId="60" navigable="false">      
+      <attribute id="135" name="factorInstances">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="136" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="66" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="137">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="138" name="s5">        
+        <position height="0" width="0" x="-32" y="777"/>      
+      </attribute>      
+      <multiplicity id="139" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-32" y="777"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="58" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="140">    
+    <end type="SOURCE" refId="59" navigable="false">      
+      <attribute id="141" name="techPanel">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="142" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="68" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="143">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="86"/>  
+  </realization>  
+  <association id="144">    
+    <end type="SOURCE" refId="59" navigable="false">      
+      <attribute id="145" name="vocabs">        
+        <position height="0" width="0" x="-3419" y="1580"/>      
+      </attribute>      
+      <multiplicity id="146" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-3419" y="1580"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="21" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="147">    
+    <end type="SOURCE" refId="55" navigable="false">      
+      <attribute id="148" name="vocabs">        
+        <position height="0" width="0" x="-3419" y="1580"/>      
+      </attribute>      
+      <multiplicity id="149" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-3419" y="1580"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="21" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="150">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="151" name="s1">        
+        <position height="0" width="0" x="1940" y="-708"/>      
+      </attribute>      
+      <multiplicity id="152" minimum="0" maximum="1">        
+        <position height="0" width="0" x="1940" y="-708"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="54" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <nesting id="153">    
+    <end type="SOURCE" refId="66"/>    
+    <end type="TARGET" refId="81"/>  
+  </nesting>  
+  <association id="154">    
+    <end type="SOURCE" refId="87" navigable="false">      
+      <attribute id="155" name="addMultiScale">        
+        <position height="0" width="0" x="282" y="-336"/>      
+      </attribute>      
+      <multiplicity id="156" minimum="0" maximum="1">        
+        <position height="0" width="0" x="282" y="-336"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="157">    
+    <end type="SOURCE" refId="20" navigable="false">      
+      <attribute id="158" name="config">        
+        <position height="0" width="0" x="-1200" y="-1750"/>      
+      </attribute>      
+      <multiplicity id="159" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-1200" y="-1750"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="13" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="160">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="161" name="view">        
+        <position height="0" width="0" x="-469" y="-126"/>      
+      </attribute>      
+      <multiplicity id="162" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-469" y="-126"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="88" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="163">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="164" name="config">        
+        <position height="0" width="0" x="800" y="-492"/>      
+      </attribute>      
+      <multiplicity id="165" minimum="0" maximum="1">        
+        <position height="0" width="0" x="800" y="-492"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="23" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="166">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="167" name="dnaSampleCodeToMHCType">        
+        <position height="0" width="0" x="-425" y="-1550"/>      
+      </attribute>      
+      <multiplicity id="168" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="-425" y="-1550"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="31" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="169">    
+    <end type="SOURCE" refId="88" navigable="false">      
+      <attribute id="170" name="summary">        
+        <position height="0" width="0" x="-4488" y="528"/>      
+      </attribute>      
+      <multiplicity id="171" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-4488" y="528"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="72" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="172">    
+    <end type="SOURCE" refId="88"/>    
+    <end type="TARGET" refId="86"/>  
+  </realization>  
+  <association id="173">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="174" name="s8">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="175" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="59" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="176">    
+    <end type="SOURCE" refId="83" navigable="false">      
+      <attribute id="177" name="tables">        
+        <position height="0" width="0" x="-2534" y="-1098"/>      
+      </attribute>      
+      <multiplicity id="178" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="-2534" y="-1098"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="69" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="179">    
+    <end type="SOURCE" refId="55" navigable="false">      
+      <attribute id="180" name="results">        
+        <position height="0" width="0" x="-495" y="565"/>      
+      </attribute>      
+      <multiplicity id="181" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-495" y="565"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="32" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="182">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="183" name="fractionationProperties">        
+        <position height="0" width="0" x="-495" y="565"/>      
+      </attribute>      
+      <multiplicity id="184" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-495" y="565"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="32" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="185">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="186" name="counter">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="187" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="188">    
+    <end type="SOURCE" refId="24" navigable="false">      
+      <attribute id="189" name="dbm">        
+        <position height="0" width="0" x="-3175" y="-181"/>      
+      </attribute>      
+      <multiplicity id="190" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-3175" y="-181"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="20" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="191">    
+    <end type="SOURCE" refId="44" navigable="false">      
+      <attribute id="192" name="view">        
+        <position height="0" width="0" x="-200" y="0"/>      
+      </attribute>      
+      <multiplicity id="193" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-200" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="86" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="194">    
+    <end type="SOURCE" refId="59" navigable="false">      
+      <attribute id="195" name="msPanel">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="196" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="65" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <nesting id="197">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="12"/>  
+  </nesting>  
+  <association id="198">    
+    <end type="SOURCE" refId="62" navigable="false">      
+      <attribute id="199" name="choosers">        
+        <position height="0" width="0" x="25" y="394"/>      
+      </attribute>      
+      <multiplicity id="200" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="25" y="394"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="71" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="201">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="202" name="vocabularies">        
+        <position height="0" width="0" x="-3419" y="1580"/>      
+      </attribute>      
+      <multiplicity id="203" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-3419" y="1580"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="21" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="204">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="11"/>  
+  </realization>  
+  <association id="205">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="206" name="dbm">        
+        <position height="0" width="0" x="-3175" y="-181"/>      
+      </attribute>      
+      <multiplicity id="207" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-3175" y="-181"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="20" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="208">    
+    <end type="SOURCE" refId="50" navigable="false">      
+      <attribute id="209" name="experiments">        
+        <position height="0" width="0" x="615" y="3030"/>      
+      </attribute>      
+      <multiplicity id="210" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="615" y="3030"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="48" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="211">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="11"/>  
+  </realization>  
+  <association id="212">    
+    <end type="SOURCE" refId="60" navigable="false">      
+      <attribute id="213" name="specialTissueInfos">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="214" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="34" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="215">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="216" name="s3">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="217" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="60" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="218">    
+    <end type="SOURCE" refId="15" navigable="false">      
+      <attribute id="219" name="kingdomToCategory">        
+        <position height="0" width="0" x="807" y="-1652"/>      
+      </attribute>      
+      <multiplicity id="220" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="807" y="-1652"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="16" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="221">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="222" name="openbisCreator">        
+        <position height="0" width="0" x="-1807" y="-1389"/>      
+      </attribute>      
+      <multiplicity id="223" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-1807" y="-1389"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="47" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="224">    
+    <end type="SOURCE" refId="76" navigable="false">      
+      <attribute id="225" name="upload">        
+        <position height="0" width="0" x="-724" y="-1296"/>      
+      </attribute>      
+      <multiplicity id="226" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-724" y="-1296"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="78" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="227">    
+    <end type="SOURCE" refId="56" navigable="false">      
+      <attribute id="228" name="registrationMode">        
+        <position height="0" width="0" x="-2076" y="1420"/>      
+      </attribute>      
+      <multiplicity id="229" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-2076" y="1420"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="45" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="230">    
+    <end type="SOURCE" refId="59" navigable="false">      
+      <attribute id="231" name="mhcLigandPanel">        
+        <position height="0" width="0" x="-768" y="988"/>      
+      </attribute>      
+      <multiplicity id="232" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-768" y="988"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="63" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="233">    
+    <end type="SOURCE" refId="51" navigable="false">      
+      <attribute id="234" name="poolings">        
+        <position height="0" width="0" x="-2937" y="-173"/>      
+      </attribute>      
+      <multiplicity id="235" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="-2937" y="-173"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="83" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="236">    
+    <end type="SOURCE" refId="42" navigable="false">      
+      <attribute id="237" name="view">        
+        <position height="0" width="0" x="-1107" y="-1273"/>      
+      </attribute>      
+      <multiplicity id="238" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-1107" y="-1273"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="79" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="239">    
+    <end type="SOURCE" refId="60" navigable="false">      
+      <attribute id="240" name="optionInstances">        
+        <position height="0" width="0" x="-2138" y="20"/>      
+      </attribute>      
+      <multiplicity id="241" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="-2138" y="20"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="82" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="242">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="243" name="openbisCreator">        
+        <position height="0" width="0" x="-1807" y="-1389"/>      
+      </attribute>      
+      <multiplicity id="244" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-1807" y="-1389"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="47" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="245">    
+    <end type="SOURCE" refId="51" navigable="false">      
+      <attribute id="246" name="type">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="247" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="248">    
+    <end type="SOURCE" refId="88" navigable="false">      
+      <attribute id="249" name="questionaire">        
+        <position height="0" width="0" x="-1888" y="-1749"/>      
+      </attribute>      
+      <multiplicity id="250" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-1888" y="-1749"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="64" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="251">    
+    <end type="SOURCE" refId="44" navigable="false">      
+      <attribute id="252" name="control">        
+        <position height="0" width="0" x="1467" y="-1247"/>      
+      </attribute>      
+      <multiplicity id="253" minimum="0" maximum="1">        
+        <position height="0" width="0" x="1467" y="-1247"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="254">    
+    <end type="SOURCE" refId="87" navigable="false">      
+      <attribute id="255" name="registrator">        
+        <position height="0" width="0" x="-1807" y="-1389"/>      
+      </attribute>      
+      <multiplicity id="256" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-1807" y="-1389"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="47" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="257">    
+    <end type="SOURCE" refId="85" navigable="false">      
+      <attribute id="258" name="upload">        
+        <position height="0" width="0" x="-724" y="-1296"/>      
+      </attribute>      
+      <multiplicity id="259" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-724" y="-1296"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="78" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="260">    
+    <end type="SOURCE" refId="89" navigable="false">      
+      <attribute id="261" name="vocabs">        
+        <position height="0" width="0" x="-3419" y="1580"/>      
+      </attribute>      
+      <multiplicity id="262" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-3419" y="1580"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="21" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="263">    
+    <end type="SOURCE" refId="58" navigable="false">      
+      <attribute id="264" name="c">        
+        <position height="0" width="0" x="-994" y="-1003"/>      
+      </attribute>      
+      <multiplicity id="265" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-994" y="-1003"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="74" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="266">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="267" name="dataAggregator">        
+        <position height="0" width="0" x="-1585" y="1770"/>      
+      </attribute>      
+      <multiplicity id="268" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-1585" y="1770"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="269">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="270" name="creator">        
+        <position height="0" width="0" x="-1807" y="-1389"/>      
+      </attribute>      
+      <multiplicity id="271" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-1807" y="-1389"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="47" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="272">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="273" name="techTypeInfo">        
+        <position height="0" width="0" x="-520" y="615"/>      
+      </attribute>      
+      <multiplicity id="274" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="-520" y="615"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="33" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <nesting id="275">    
+    <end type="SOURCE" refId="26"/>    
+    <end type="TARGET" refId="19"/>  
+  </nesting>  
+  <association id="276">    
+    <end type="SOURCE" refId="51" navigable="false">      
+      <attribute id="277" name="model">        
+        <position height="0" width="0" x="-495" y="565"/>      
+      </attribute>      
+      <multiplicity id="278" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-495" y="565"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="32" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="279">    
+    <end type="SOURCE" refId="75" navigable="false">      
+      <attribute id="280" name="labelingMethod">        
+        <position height="0" width="0" x="-281" y="-116"/>      
+      </attribute>      
+      <multiplicity id="281" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-281" y="-116"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="77" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="282">    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="23"/>  
+  </realization>  
+  <association id="283">    
+    <end type="SOURCE" refId="55" navigable="false">      
+      <attribute id="284" name="msExperimentModel">        
+        <position height="0" width="0" x="-495" y="565"/>      
+      </attribute>      
+      <multiplicity id="285" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-495" y="565"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="32" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <nesting id="286">    
+    <end type="SOURCE" refId="55"/>    
+    <end type="TARGET" refId="53"/>  
+  </nesting>  
+  <association id="287">    
+    <end type="SOURCE" refId="55" navigable="false">      
+      <attribute id="288" name="msFractionationTable">        
+        <position height="0" width="0" x="-200" y="-2208"/>      
+      </attribute>      
+      <multiplicity id="289" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-200" y="-2208"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="67" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="290">    
+    <end type="SOURCE" refId="55" navigable="false">      
+      <attribute id="291" name="msEnrichmentTable">        
+        <position height="0" width="0" x="-200" y="-2208"/>      
+      </attribute>      
+      <multiplicity id="292" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-200" y="-2208"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="67" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="293">    
+    <end type="SOURCE" refId="61" navigable="false">      
+      <attribute id="294" name="uploads">        
+        <position height="0" width="0" x="-1107" y="-1273"/>      
+      </attribute>      
+      <multiplicity id="295" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-1107" y="-1273"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="79" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="296">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="11"/>  
+  </realization>  
+  <association id="297">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="298" name="s2">        
+        <position height="0" width="0" x="-14" y="203"/>      
+      </attribute>      
+      <multiplicity id="299" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-14" y="203"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="57" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="300">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="301" name="uploader">        
+        <position height="0" width="0" x="1755" y="-249"/>      
+      </attribute>      
+      <multiplicity id="302" minimum="0" maximum="1">        
+        <position height="0" width="0" x="1755" y="-249"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="303">    
+    <end type="SOURCE" refId="79" navigable="false">      
+      <attribute id="304" name="upload">        
+        <position height="0" width="0" x="-724" y="-1296"/>      
+      </attribute>      
+      <multiplicity id="305" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-724" y="-1296"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="78" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="306">    
+    <end type="SOURCE" refId="58" navigable="false">      
+      <attribute id="307" name="labelingMethods">        
+        <position height="0" width="0" x="-281" y="-116"/>      
+      </attribute>      
+      <multiplicity id="308" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="-281" y="-116"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="77" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="309">    
+    <end type="SOURCE" refId="76" navigable="false">      
+      <attribute id="310" name="attachments">        
+        <position height="0" width="0" x="966" y="-465"/>      
+      </attribute>      
+      <multiplicity id="311" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="966" y="-465"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="35" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="312">    
+    <end type="SOURCE" refId="67" navigable="false">      
+      <attribute id="313" name="type">        
+        <position height="0" width="0" x="1404" y="596"/>      
+      </attribute>      
+      <multiplicity id="314" minimum="0" maximum="1">        
+        <position height="0" width="0" x="1404" y="596"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="53" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="315">    
+    <end type="SOURCE" refId="67" navigable="false">      
+      <attribute id="316" name="generalFractionMSInfo">        
+        <position height="0" width="0" x="-1095" y="-749"/>      
+      </attribute>      
+      <multiplicity id="317" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-1095" y="-749"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="89" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="318">    
+    <end type="SOURCE" refId="51" navigable="false">      
+      <attribute id="319" name="pooling">        
+        <position height="0" width="0" x="-2937" y="-173"/>      
+      </attribute>      
+      <multiplicity id="320" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-2937" y="-173"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="83" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="321">    
+    <end type="SOURCE" refId="52" navigable="false">      
+      <attribute id="322" name="table">        
+        <position height="0" width="0" x="644" y="-12"/>      
+      </attribute>      
+      <multiplicity id="323" minimum="0" maximum="1">        
+        <position height="0" width="0" x="644" y="-12"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="75" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="324">    
+    <end type="SOURCE" refId="64" navigable="false">      
+      <attribute id="325" name="projectInfoComponent">        
+        <position height="0" width="0" x="-1362" y="-1432"/>      
+      </attribute>      
+      <multiplicity id="326" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-1362" y="-1432"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="73" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="327">    
+    <end type="SOURCE" refId="57" navigable="false">      
+      <attribute id="328" name="c">        
+        <position height="0" width="0" x="-994" y="-1003"/>      
+      </attribute>      
+      <multiplicity id="329" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-994" y="-1003"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="74" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="330">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="331" name="taxSearcher">        
+        <position height="0" width="0" x="1060" y="-409"/>      
+      </attribute>      
+      <multiplicity id="332" minimum="0" maximum="1">        
+        <position height="0" width="0" x="1060" y="-409"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
