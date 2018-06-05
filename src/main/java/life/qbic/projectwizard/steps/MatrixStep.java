@@ -58,6 +58,7 @@ public class MatrixStep implements WizardStep {
 	private VerticalLayout main;
 	private HorizontalLayout matrixPanel;
 	private ComboBox matrix;
+	private ComboBox cfhMethods;
 	private StandardTextField noOfSamples;
 	private VerticalLayout elementAnalysisPanel;
 	private StandardTextField elementAnalysis;
@@ -67,8 +68,7 @@ public class MatrixStep implements WizardStep {
 	private Button btnAAAnalysis;
 	
 	
-	
-	private static final Logger logger = LogManager.getLogger(MSAnalyteStep.class);
+
 	
 	public MatrixStep(Map<String, String> matrixMap, Set<String> keySet) {
 		main = new VerticalLayout();
@@ -89,6 +89,8 @@ public class MatrixStep implements WizardStep {
 	    matrixPanel = new HorizontalLayout(matrix,noOfSamples);
 	    matrixPanel.setSpacing(true);
 	    
+	    
+	    cfhMethods = new ComboBox("CFH Methods");
 	    //TODO set visible to false and add new Techpanel
 	    //ElementAnalysis Panel
 	    elementAnalysis = new StandardTextField("Element Analysis");
