@@ -145,4 +145,14 @@
     text-align: right;
     padding-top: 50px;
   }
+
+.v-select-optiongroup-multicol .v-select-option {
+    float: left;
+    width: 10px;
+}
+
+.v-select-optiongroup-multicol {
+    width: 200px; /* Multiple of the width of individual items, specified the amount of columns */
+    /* You can leave it undefined: then there will be as many columns as there is space in the layout */
+}
 }

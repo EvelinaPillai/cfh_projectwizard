@@ -13088,3 +13088,12 @@ div.v-layout.v-horizontal.v-widget {
 	text-align: right;
 	padding-top: 50px;
 }
+
+.mytheme .v-select-optiongroup-multicol .v-select-option {
+	float: left;
+	width: 10px;
+}
+
+.mytheme .v-select-optiongroup-multicol {
+	width: 200px;
+}
