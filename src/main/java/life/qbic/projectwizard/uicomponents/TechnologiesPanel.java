@@ -48,6 +48,7 @@ public class TechnologiesPanel extends HorizontalLayout {
   ValueChangeListener poolListener;
   List<ValueChangeListener> proteinListeners;
   ValueChangeListener mhcLigandListener;
+  ValueChangeListener matrixListener;
   Button.ClickListener refreshPeopleListener;
   GridLayout buttonGrid;
   Button add;
@@ -65,7 +66,7 @@ public class TechnologiesPanel extends HorizontalLayout {
    */
   public TechnologiesPanel(List<String> techOptions, Set<String> persons, OptionGroup conditionsSet,
       ValueChangeListener poolListener, ArrayList<ValueChangeListener> proteinListeners,
-      ValueChangeListener mhcLigandListener, ClickListener refreshPeopleListener, ValueChangeListener nminListener) {
+      ValueChangeListener mhcLigandListener, ClickListener refreshPeopleListener, ValueChangeListener matrixListener) {
     this.options = techOptions;
     this.persons = persons;
 
@@ -80,6 +81,7 @@ public class TechnologiesPanel extends HorizontalLayout {
     this.proteinListeners = proteinListeners;
     this.mhcLigandListener = mhcLigandListener;
     this.refreshPeopleListener = refreshPeopleListener;
+    this.matrixListener = matrixListener;
    
 
     choosers = new ArrayList<TechChooser>();
@@ -90,7 +92,7 @@ public class TechnologiesPanel extends HorizontalLayout {
     for (ValueChangeListener l : proteinListeners)
       c.addProteinListener(l);
     c.addMHCListener(mhcLigandListener);
-    c.addNminListener(nminListener);
+    c.addMatrixListener(matrixListener);
     choosers.add(c);
     addComponent(c);
     c.showHelpers();
@@ -145,6 +147,7 @@ public class TechnologiesPanel extends HorizontalLayout {
       c.addProteinListener(l);
     c.addMHCListener(mhcLigandListener);
     c.addRefreshPeopleListener(refreshPeopleListener);
+    c.addMatrixListener(matrixListener);
     choosers.add(c);
 
     c.showHelpers();
@@ -165,6 +168,7 @@ public class TechnologiesPanel extends HorizontalLayout {
         last.removeProteinListener(l);
       last.removeMHCListener(mhcLigandListener);
       last.removeRefreshPeopleListener(refreshPeopleListener);
+      last.removeMatrixlistener(matrixListener);
       choosers.get(size - 2).showHelpers();
     }
   }

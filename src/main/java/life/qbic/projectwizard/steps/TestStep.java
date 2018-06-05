@@ -188,7 +188,7 @@ public class TestStep implements WizardStep {
 					resetNextSteps(hasPools());
 					wizard.addStep(steps.get(Steps.Registration));
 				} else {
-					replaceWizardSteps(msPanel.getNextMSSteps(steps));
+					replaceWizardSteps(msPanel.getNextMSSteps(steps,1));
 				}
 			}
 		};
@@ -223,8 +223,11 @@ public class TestStep implements WizardStep {
 					String tech = i.getTechnology();
 					containsMatrix |= tech.equals("MATRIX");
 				}
-				if (containsMatrix) {
-					ArrayList<WizardStep> list = new ArrayList<>();
+				List<WizardStep> list = new ArrayList<WizardStep>();
+				if (containsMatrix)  {
+					if(containsProteins) {
+						list.addAll(msPanel.getNextMSSteps(steps,0));
+					}
 					list.add(steps.get(Steps.Matrix));
 					list.add(steps.get(Steps.Registration));
 					replaceWizardSteps(list);
@@ -243,7 +246,7 @@ public class TestStep implements WizardStep {
 
 			@Override
 			public void valueChange(ValueChangeEvent event) {
-				replaceWizardSteps(msPanel.getNextMSSteps(steps));
+				replaceWizardSteps(msPanel.getNextMSSteps(steps,1));
 			}
 		};
 

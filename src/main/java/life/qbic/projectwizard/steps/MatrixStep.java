@@ -41,6 +41,7 @@ import com.vaadin.ui.VerticalLayout;
 
 import life.qbic.portal.portlet.ProjectWizardUI;
 import life.qbic.projectwizard.uicomponents.ConditionsPanel;
+import life.qbic.projectwizard.uicomponents.EAComponent;
 import life.qbic.portal.Styles;
 import life.qbic.portal.Styles.NotificationType;
 import life.qbic.portal.components.OpenbisInfoTextField;
@@ -58,9 +59,8 @@ public class MatrixStep implements WizardStep {
 	private HorizontalLayout matrixPanel;
 	private ComboBox matrix;
 	private StandardTextField noOfSamples;
-	private VerticalLayout elementAnalysisPanel;
-	private StandardTextField elementAnalysis;
-	private Button btnElementAnalysis; 
+	private EAComponent elementAnalysisPanel;
+
 	private VerticalLayout aaAnalysisPanel;
 	private StandardTextField aaAnalysis;
 	private Button btnAAAnalysis;
@@ -87,11 +87,10 @@ public class MatrixStep implements WizardStep {
 	    
 	    //TODO set visible to false and add new Techpanel
 	    //ElementAnalysis Panel
-	    elementAnalysis = new StandardTextField("Element Analysis");
-	    btnElementAnalysis = new Button("Select");
-	    elementAnalysisPanel = new VerticalLayout(Styles.questionize(elementAnalysis, "Type in elements that will be analyzed in this experiment. Use element symbols and separate them by \";\". Or click the select button to show the Periodic Table of the Elements and make a selection there.","Element Analysis"), 
-	    		btnElementAnalysis);
-	    elementAnalysisPanel.setSpacing(true);
+	    if(matrix.isVisible()) {
+	    	elementAnalysisPanel = new EAComponent();
+	    	elementAnalysisPanel.setVisible(true);
+	    }
 	    
 	    //Amino Acid Panel
 	    aaAnalysis = new StandardTextField("Amino Acids Analysis");

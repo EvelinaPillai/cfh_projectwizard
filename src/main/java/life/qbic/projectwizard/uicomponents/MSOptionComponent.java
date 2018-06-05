@@ -33,6 +33,7 @@ import com.vaadin.ui.VerticalLayout;
 import life.qbic.projectwizard.control.WizardController.Steps;
 import life.qbic.projectwizard.io.DBVocabularies;
 import life.qbic.projectwizard.steps.MSAnalyteStep;
+import life.qbic.projectwizard.steps.TestStep;
 import life.qbic.portal.Styles;
 
 public class MSOptionComponent extends VerticalLayout {
@@ -81,7 +82,7 @@ public class MSOptionComponent extends VerticalLayout {
     addComponent(measurePeptides);
   }
 
-  public List<WizardStep> getNextMSSteps(Map<life.qbic.projectwizard.control.WizardController.Steps, WizardStep> steps) {
+  public List<WizardStep> getNextMSSteps(Map<life.qbic.projectwizard.control.WizardController.Steps, WizardStep> steps , int register ) {
     boolean poolProteins = proteinPooling.getValue();
     boolean peps = measurePeptides.getValue();
     List<WizardStep> res = new ArrayList<WizardStep>();
@@ -97,7 +98,8 @@ public class MSOptionComponent extends VerticalLayout {
     } else {
       f1.setNeedsDigestion(false);
     }
-    res.add(steps.get(Steps.Registration));
+    if(register==1)
+    	res.add(steps.get(Steps.Registration));
     return res;
   }
 
