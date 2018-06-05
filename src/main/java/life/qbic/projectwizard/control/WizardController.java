@@ -268,7 +268,7 @@ public class WizardController implements IRegistrationController {
   }
 
   public static enum Steps {
-    Project_Context, Entities, Entity_Conditions, Entity_Tailoring, Extraction, Extract_Conditions, Extract_Tailoring, Extract_Pooling, Test_Samples, Test_Sample_Pooling, Registration, Finish, Protein_Fractionation, Protein_Fractionation_Pooling, Peptide_Fractionation, Peptide_Fractionation_Pooling;
+    Project_Context, Entities, Entity_Conditions, Entity_Tailoring, Extraction, Extract_Conditions, Extract_Tailoring, Extract_Pooling, Test_Samples, Test_Sample_Pooling, Registration, Finish, Protein_Fractionation, Protein_Fractionation_Pooling, Peptide_Fractionation, Peptide_Fractionation_Pooling, Matrix;
   }
 
   /**
@@ -305,7 +305,8 @@ public class WizardController implements IRegistrationController {
     // PoolingStep(Steps.Protein_Fractionation_Pooling);
     final MSAnalyteStep pepFracStep = new MSAnalyteStep(vocabularies, "PEPTIDES");
     // final PoolingStep afterPepFracPooling = new PoolingStep(Steps.Peptide_Fractionation_Pooling);
-
+    final MatrixStep matrixStep = new MatrixStep(vocabularies.getMatrixMap(),vocabularies.getPeople().keySet());
+    
     steps = new HashMap<Steps, WizardStep>();
     steps.put(Steps.Project_Context, contextStep);
     steps.put(Steps.Entities, entStep);
@@ -321,6 +322,7 @@ public class WizardController implements IRegistrationController {
     steps.put(Steps.Peptide_Fractionation, pepFracStep);
     // steps.put(Steps.Protein_Fractionation_Pooling, afterProtFracPooling);
     // steps.put(Steps.Peptide_Fractionation_Pooling, afterPepFracPooling);
+    steps.put(Steps.Matrix, matrixStep);
     steps.put(Steps.Registration, regStep);
     steps.put(Steps.Finish, finishStep);
 
@@ -983,6 +985,9 @@ public class WizardController implements IRegistrationController {
               dataAggregator
                   .setFractionationExperimentsProperties(getFractionationPropertiesFromLastStep());
               dataAggregator.createFractionationSamplesAndExperiments();
+            }
+            if(techStep.hasMatrix()) {
+            	dataAggregator.prepareMatrix();
             }
             createTSV();
             try {

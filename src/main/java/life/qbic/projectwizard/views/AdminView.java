@@ -108,8 +108,8 @@ public class AdminView extends VerticalLayout {
     addMultiScale.setMargin(true);
 
     tabs.addTab(addMultiScale, "Add Multiscale Samples");
-
-    // tabs.addTab(new PrototypeView(), "Prototypes");
+    
+    //tabs.addTab(new PrototypeView(null), "Prototypes");
 
     addComponent(tabs);
 

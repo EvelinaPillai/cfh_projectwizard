@@ -91,6 +91,7 @@ public class ExperimentImportController implements IRegistrationController {
 
   private Map<String, String> reverseTaxMap;
   private Map<String, String> taxMap;
+  //private Map<String, String> matrixMap;
   private Map<String, String> reverseTissueMap;
   private Map<String, String> tissueMap;
   private List<String> analytesVocabulary;
@@ -114,6 +115,7 @@ public class ExperimentImportController implements IRegistrationController {
     this.vocabs = vocabularies;
     this.openbis = openbis;
     this.taxMap = vocabularies.getTaxMap();
+    //this.matrixMap = vocabularies.getMatrixMap();
     this.tissueMap = vocabularies.getTissueMap();
     this.analytesVocabulary = vocabularies.getAnalyteTypes();
     this.reverseTaxMap = new HashMap<String, String>();
@@ -202,23 +204,28 @@ public class ExperimentImportController implements IRegistrationController {
                   case Standard:
                     Map<String, List<String>> catToVocabulary = new HashMap<String, List<String>>();
                     catToVocabulary.put("Species", new ArrayList<String>(taxMap.keySet()));
+                    //catToVocabulary.put("Matrix", new ArrayList<String>(matrixMap.keySet()));
                     catToVocabulary.put("Tissues", new ArrayList<String>(tissueMap.keySet()));
                     catToVocabulary.put("Analytes", new ArrayList<String>(analytesVocabulary));
                     Map<String, List<String>> missingCategoryToValues =
                         new HashMap<String, List<String>>();
                     missingCategoryToValues.put("Species",
                         new ArrayList<String>(prep.getSpeciesSet()));
+                        new HashMap<String, List<String>>();
+                   // missingCategoryToValues.put("Matrices",
+                     //   new ArrayList<String>(prep.getTissueSet()));
                     missingCategoryToValues.put("Tissues",
                         new ArrayList<String>(prep.getTissueSet()));
                     missingCategoryToValues.put("Analytes",
                         new ArrayList<String>(prep.getAnalyteSet()));
                     initMissingInfoListener(prep, missingCategoryToValues, catToVocabulary);
-//                    view.initGraphPreview(prep.getSampleGraph());
+                    view.initGraphPreview(prep.getSampleGraph(), prep.getIDsToSamples());
                     break;
                   // MHC Ligands that have already been measured (Filenames exist)
                   case MHC_Ligands_Finished:
                     catToVocabulary = new HashMap<String, List<String>>();
                     catToVocabulary.put("Species", new ArrayList<String>(taxMap.keySet()));
+                    //catToVocabulary.put("Matrix", new ArrayList<String>(matrixMap.keySet()));
                     catToVocabulary.put("Tissues", new ArrayList<String>(tissueMap.keySet()));
                     catToVocabulary.put("Analytes", new ArrayList<String>(analytesVocabulary));
                     missingCategoryToValues = new HashMap<String, List<String>>();
@@ -232,7 +239,6 @@ public class ExperimentImportController implements IRegistrationController {
                     break;
                   default:
                     logger.error("Error parsing tsv: " + prep.getError());
-                    // view.showError(prep.getError());
                     Styles.notification("Failed to read file.", prep.getError(),
                         NotificationType.ERROR);
                     break;
@@ -448,6 +454,9 @@ public class ExperimentImportController implements IRegistrationController {
                     String newVal = questionaire.getVocabularyLabelForValue("Species",
                         props.get("Q_NCBI_ORGANISM"));
                     props.put("Q_NCBI_ORGANISM", taxMap.get(newVal));
+                    //String newVal2 = questionaire.getVocabularyLabelForValue("Matrix",
+                      //      props.get("Q_MATRIX"));
+                    //props.put("Q_MATRIX", matrixMap.get(newVal2));
                     entityNum++;
                     break;
                   case "Q_BIOLOGICAL_SAMPLE":
@@ -690,13 +699,13 @@ public class ExperimentImportController implements IRegistrationController {
     }
     for (Sample s : samples) {
       String code = s.getCode();
-      // collect existing samples by their secondary name
-      String secondaryName = s.getProperties().get("Q_SECONDARY_NAME");
-      if (extIDToSample.containsKey(secondaryName))
-        logger.warn(secondaryName
+      // collect existing samples by their external id
+      String extID = s.getProperties().get("Q_EXTERNALDB_ID");
+      if (extIDToSample.containsKey(extID))
+        logger.warn(extID
             + " was found as a secondary name for multiple samples. This might"
             + " lead to inconsistencies if new samples are to be attached to this secondary name.");
-      extIDToSample.put(secondaryName, s);
+      extIDToSample.put(extID, s);
       if (SampleCodeFunctions.isQbicBarcode(code)) {
         if (SampleCodeFunctions.compareSampleCodes(firstFreeBarcode, code) <= 0) {
           firstFreeBarcode = SampleCodeFunctions.incrementSampleCode(code);

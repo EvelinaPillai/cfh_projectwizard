@@ -120,15 +120,21 @@ public class MetadataUploadView extends VerticalLayout {
     sampleTables = new ArrayList<Table>();
 
     Map<String, String> taxMap = vocabularies.getTaxMap();
+    Map<String, String> matrixMap = vocabularies.getMatrixMap();
     Map<String, String> tissueMap = vocabularies.getTissueMap();
 
     propToVocabulary = new HashMap<String, Map<String, String>>();
     propToVocabulary.put("Q_NCBI_ORGANISM", taxMap);
+    propToVocabulary.put("Q_MATRIX", matrixMap);
     propToVocabulary.put("Q_PRIMARY_TISSUE", tissueMap);
 
     Map<String, String> reverseTaxMap = new HashMap<String, String>();
     for (Map.Entry<String, String> entry : taxMap.entrySet()) {
       reverseTaxMap.put(entry.getValue(), entry.getKey());
+    }
+    Map<String, String> reverseMatrixMap = new HashMap<String, String>();
+    for (Map.Entry<String, String> entry : matrixMap.entrySet()) {
+      reverseMatrixMap.put(entry.getValue(), entry.getKey());
     }
     Map<String, String> reverseTissueMap = new HashMap<String, String>();
     for (Map.Entry<String, String> entry : tissueMap.entrySet()) {
@@ -136,6 +142,7 @@ public class MetadataUploadView extends VerticalLayout {
     }
     propToReverseVocabulary = new HashMap<String, Map<String, String>>();
     propToReverseVocabulary.put("Q_NCBI_ORGANISM", reverseTaxMap);
+    propToReverseVocabulary.put("Q_MATRIX", reverseMatrixMap);
     propToReverseVocabulary.put("Q_PRIMARY_TISSUE", reverseTissueMap);
 
     this.openbis = openbis;

@@ -85,8 +85,8 @@ public class EntityStep implements WizardStep {
    * @param speciesMap A map of available species (codes and labels)
    * @param people
    */
-  public EntityStep(Map<String, String> speciesMap, Set<String> people) {
-    main = new VerticalLayout();
+  public EntityStep(Map<String, String> speciesMap, Set<String> people) { 
+	main = new VerticalLayout();
     main.setMargin(true);
     main.setSpacing(true);
     Label header = new Label("Sample Sources");
@@ -111,11 +111,11 @@ public class EntityStep implements WizardStep {
         (TextField) speciesNum.getInnerComponent());
     expName = new TextField("Experimental Step Name");
     expName.setStyleName(Styles.fieldTheme);
+        
     main.addComponent(expName);
     main.addComponent(c);
     main.addComponent(speciesNum.getInnerComponent());
     main.addComponent(species);
-
     species.addValueChangeListener(new ValueChangeListener() {
 
       /**

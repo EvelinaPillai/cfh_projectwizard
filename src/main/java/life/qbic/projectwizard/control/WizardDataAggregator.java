@@ -84,6 +84,7 @@ public class WizardDataAggregator {
   private IOpenBisClient openbis;
   private XMLParser xmlParser = new XMLParser();
   private Map<String, String> taxMap;
+  //private Map<String, String> matrixMap;
   private Map<String, String> tissueMap;
   private Map<String, Property> factorMap;
   private Map<String, Integer> personMap;
@@ -101,6 +102,7 @@ public class WizardDataAggregator {
   private List<OpenbisExperiment> experiments;
   private String species;
   private String speciesInfo;
+  //private String matrix;
   private String tissue;
   private String specialTissue;
   private List<TestSampleInformation> techTypeInfo = new ArrayList<TestSampleInformation>();
@@ -122,10 +124,12 @@ public class WizardDataAggregator {
   private List<AOpenbisSample> testPools;
   private List<AOpenbisSample> msSamples;
   private List<AOpenbisSample> mhcExtracts;
+  private List<AOpenbisSample> matrix;
   private Map<String, Character> classChars;
   private static final Logger logger = LogManager.getLogger(WizardDataAggregator.class);
   private ArrayList<Sample> samples;
 
+  private Map<String, Object> matrixProtocol;
   private Map<String, Map<String, Object>> mhcExperimentProtocols;
   private MSExperimentModel fractionationProperties;
   private List<ExperimentType> informativeExpTypes = new ArrayList<ExperimentType>(
@@ -150,6 +154,7 @@ public class WizardDataAggregator {
 
     this.openbis = openbis;
     this.taxMap = taxMap;
+   // this.matrixMap = matrixMap;
     this.personMap = personMap;
     this.tissueMap = tissueMap;
   }
@@ -224,6 +229,7 @@ public class WizardDataAggregator {
     species = s2.getSpecies();
     speciesInfo = s2.getSpecialSpecies();
     bioReps = s2.getBioRepAmount();
+    //matrix = s2.getMatrices();
 
     // entities are not created new, but parsed from registered ones
     if (inheritEntities) {
@@ -395,6 +401,17 @@ public class WizardDataAggregator {
     return techSortedTests;
   }
 
+  /**
+   *  Creates Samples for Matrix 
+   */
+  public List<AOpenbisSample> prepareMatrix(){
+	  techTypeInfo = s8.getAnalyteInformation();
+	 // matrixProtocol = s8.getNminProperties();
+	  matrix = new ArrayList<AOpenbisSample>(); 
+	  
+	  return matrix;
+  }
+  
   /**
    * Creates the list of MHC ligand extract samples prepared for ms from the input information
    * collected in the aggregator fields and wizard steps and fetches or creates the associated
@@ -833,7 +850,7 @@ public class WizardDataAggregator {
       }
       res.add(new OpenbisBiologicalEntity(code, spaceCode, exp, p.get("Q_SECONDARY_NAME"),
           p.get("Q_ADDITIONAL_INFO"), factors, p.get("Q_NCBI_ORGANISM"),
-          p.get("Q_ORGANISM_DETAILED"), p.get("Q_EXTERNALDB_ID")));
+          p.get("Q_ORGANISM_DETAILED"), p.get("Q_EXTERNALDB_ID")));//, p.get("Q_MATRIX")));
     }
     return res;
   }

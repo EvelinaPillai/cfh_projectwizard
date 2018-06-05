@@ -65,14 +65,14 @@ public class ProjectInformationComponent extends VerticalLayout {
     setSizeUndefined();
 
     Collections.sort(spaces);
-    spaceBox = new ComboBox("Project", spaces);
+    spaceBox = new ComboBox("Project [UVB]", spaces);
     spaceBox.setStyleName(Styles.boxTheme);
     spaceBox.setNullSelectionAllowed(false);
     spaceBox.setImmediate(true);
     spaceBox.setFilteringMode(FilteringMode.CONTAINS);
     addComponent(Styles.questionize(spaceBox, "Name of the project", "Project Name"));
 
-    ComboBox prBox = new ComboBox("Sub-Project");
+    ComboBox prBox = new ComboBox("Sub-Project [Auftragsnummer]");
     prBox.setStyleName(Styles.boxTheme);
     projectBox = new CustomVisibilityComponent(prBox);
     projectBox.setStyleName(Styles.boxTheme);

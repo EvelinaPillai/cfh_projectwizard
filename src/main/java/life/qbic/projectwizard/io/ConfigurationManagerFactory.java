@@ -20,8 +20,8 @@ package life.qbic.projectwizard.io;
 import life.qbic.portal.utils.PortalUtils;
 
 /**
- * The ConfigurationManager Factory has only the getInstance mehtod. Dependigng on whether the
- * portlet runs on its own or in a Portal environemnt different implementation of the
+ * The ConfigurationManager Factory has only the getInstance method. Dependigng on whether the
+ * portlet runs on its own or in a Portal environment different implementation of the
  * ConfigurationManager are returned.
  * 
  * @author wojnar

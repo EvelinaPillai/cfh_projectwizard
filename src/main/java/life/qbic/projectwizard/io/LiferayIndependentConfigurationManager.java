@@ -107,7 +107,7 @@ public enum LiferayIndependentConfigurationManager implements ConfigurationManag
     try {
       List<String> configs =
           new ArrayList<String>(Arrays.asList(
-              "/Users/frieda/Desktop/dev software/liferay-portal-6.2-ce-ga4/qbic-ext.properties"));
+              "/home/openbis/portal/liferay-portal-6.2-ce-ga4/qbic-ext.properties"));
       for (String s : configs) {
         File f = new File(s);
         if (f.exists()) {

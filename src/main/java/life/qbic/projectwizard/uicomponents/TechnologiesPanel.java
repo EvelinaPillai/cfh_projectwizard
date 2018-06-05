@@ -65,7 +65,7 @@ public class TechnologiesPanel extends HorizontalLayout {
    */
   public TechnologiesPanel(List<String> techOptions, Set<String> persons, OptionGroup conditionsSet,
       ValueChangeListener poolListener, ArrayList<ValueChangeListener> proteinListeners,
-      ValueChangeListener mhcLigandListener, ClickListener refreshPeopleListener) {
+      ValueChangeListener mhcLigandListener, ClickListener refreshPeopleListener, ValueChangeListener nminListener) {
     this.options = techOptions;
     this.persons = persons;
 
@@ -80,6 +80,7 @@ public class TechnologiesPanel extends HorizontalLayout {
     this.proteinListeners = proteinListeners;
     this.mhcLigandListener = mhcLigandListener;
     this.refreshPeopleListener = refreshPeopleListener;
+   
 
     choosers = new ArrayList<TechChooser>();
     TechChooser c = new TechChooser(techOptions, persons);
@@ -89,6 +90,7 @@ public class TechnologiesPanel extends HorizontalLayout {
     for (ValueChangeListener l : proteinListeners)
       c.addProteinListener(l);
     c.addMHCListener(mhcLigandListener);
+    c.addNminListener(nminListener);
     choosers.add(c);
     addComponent(c);
     c.showHelpers();

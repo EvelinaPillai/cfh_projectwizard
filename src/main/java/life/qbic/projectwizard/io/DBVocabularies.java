@@ -22,6 +22,7 @@ import java.util.Map;
 
 public class DBVocabularies {
 
+  private Map<String, String> matrixMap;
   private Map<String, String> taxMap;
   private Map<String, String> tissueMap;
   private Map<String, String> deviceMap;
@@ -39,12 +40,13 @@ public class DBVocabularies {
   private List<String> fractionationTypes;
   private List<String> enrichmentTypes;
 
-  public DBVocabularies(Map<String, String> taxMap, Map<String, String> tissueMap,
+  public DBVocabularies(Map<String, String> matrixMap, Map<String, String> taxMap, Map<String, String> tissueMap,
       Map<String, String> cellLinesMap, List<String> measureTypes, List<String> spaces,
       Map<String, Integer> piMap, List<String> experimentTypes, Map<String, String> enzymeMap,
       Map<String, String> antibodiesWithDescriptions, Map<String, String> deviceMap,
       List<String> msProtocols, List<String> lcmsMethods, Map<String, String> chromTypes2,
       List<String> fractionationTypes, List<String> enrichmentTypes, Map<String, String> purificationMethods) {
+	this.matrixMap = matrixMap;  
     this.taxMap = taxMap;
     this.tissueMap = tissueMap;
     this.cellLinesMap = cellLinesMap;
@@ -80,6 +82,10 @@ public class DBVocabularies {
     return cellLinesMap;
   }
 
+  public Map<String, String> getMatrixMap() {
+	    return matrixMap;
+  }
+  
   public Map<String, String> getTaxMap() {
     return taxMap;
   }
