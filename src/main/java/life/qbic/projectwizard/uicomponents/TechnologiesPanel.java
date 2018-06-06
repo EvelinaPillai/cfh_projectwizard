@@ -95,7 +95,7 @@ public class TechnologiesPanel extends HorizontalLayout {
       c.addProteinListener(l);
     c.addMHCListener(mhcLigandListener);
     c.addNminListener(nminListener);
-    c.addNminListener(nminListener);
+    c.addMatrixListener(matrixListener);
     c.addElementListener(elementListener);
     choosers.add(c);
     addComponent(c);

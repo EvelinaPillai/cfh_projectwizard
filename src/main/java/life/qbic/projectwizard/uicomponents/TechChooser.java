@@ -201,7 +201,7 @@ public void addElementListener(ValueChangeListener elementListener) {
     this.chooser.addValueChangeListener(elementListener);
 }
 
-public void removeElementListener(ValueChangeListener nminListener) {	
+public void removeElementListener(ValueChangeListener elementListener) {	
     this.chooser.removeValueChangeListener(nminListener);
 }
 

@@ -42,7 +42,6 @@ import com.vaadin.ui.VerticalLayout;
 import life.qbic.portal.portlet.ProjectWizardUI;
 import life.qbic.projectwizard.uicomponents.ConditionsPanel;
 import life.qbic.projectwizard.uicomponents.TechnologiesPanel;
-import life.qbic.projectwizard.uicomponents.EAComponent;
 import life.qbic.portal.Styles;
 import life.qbic.portal.Styles.NotificationType;
 import life.qbic.portal.components.OpenbisInfoTextField;
@@ -59,6 +58,7 @@ public class MatrixStep implements WizardStep {
 	private VerticalLayout main;
 	private HorizontalLayout matrixPanel;
 	private ComboBox matrix;
+	private ComboBox cfhMethods;
 	private StandardTextField noOfSamples;
 	private VerticalLayout elementAnalysisPanel;
 	private StandardTextField elementAnalysis;
@@ -66,7 +66,6 @@ public class MatrixStep implements WizardStep {
 	private VerticalLayout aaAnalysisPanel;
 	private StandardTextField aaAnalysis;
 	private Button btnAAAnalysis;
-	private static final Logger logger = LogManager.getLogger(MSAnalyteStep.class);
 	
 	public MatrixStep(Map<String, String> matrixMap, Set<String> keySet) {
 		main = new VerticalLayout();
@@ -87,12 +86,15 @@ public class MatrixStep implements WizardStep {
 	    matrixPanel = new HorizontalLayout(matrix,noOfSamples);
 	    matrixPanel.setSpacing(true);
 	    
+	    
+	    cfhMethods = new ComboBox("CFH Methods");
 	    //TODO set visible to false and add new Techpanel
 	    //ElementAnalysis Panel
-	    if(matrix.isVisible()) {
-	    	elementAnalysisPanel = new EAComponent();
-	    	elementAnalysisPanel.setVisible(true);
-	    }
+	    elementAnalysis = new StandardTextField("Element Analysis");
+	    btnElementAnalysis = new Button("Select");
+	    elementAnalysisPanel = new VerticalLayout(Styles.questionize(elementAnalysis, "Type in elements that will be analyzed in this experiment. Use element symbols and separate them by \";\". Or click the select button to show the Periodic Table of the Elements and make a selection there.","Element Analysis"), 
+	    		btnElementAnalysis);
+	    elementAnalysisPanel.setSpacing(true);
 	    
 	    //Amino Acid Panel
 	    aaAnalysis = new StandardTextField("Amino Acids Analysis");

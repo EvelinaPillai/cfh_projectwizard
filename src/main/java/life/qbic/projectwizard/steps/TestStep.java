@@ -262,7 +262,11 @@ public class TestStep implements WizardStep {
 		techPanel = new TechnologiesPanel(vocabs.getAnalyteTypes(), vocabs.getPeople().keySet(), new OptionGroup(""),
 				testPoolListener,
 				new ArrayList<ValueChangeListener>(Arrays.asList(outerProteinListener, proteinListener)),
+<<<<<<< HEAD
 				mhcLigandListener, refreshPeopleListener, matrixListener, elementListener);
+=======
+				mhcLigandListener, refreshPeopleListener, matrixListener , elementListener);
+>>>>>>> refs/remotes/origin/cfh
 		main.addComponent(techPanel);
 		main.addComponent(new Label("<hr />", Label.CONTENT_XHTML));
 		msPanel = new MSOptionComponent(vocabs);
