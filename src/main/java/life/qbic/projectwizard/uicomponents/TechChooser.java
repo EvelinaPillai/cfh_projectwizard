@@ -202,7 +202,7 @@ public void addElementListener(ValueChangeListener elementListener) {
 }
 
 public void removeElementListener(ValueChangeListener elementListener) {	
-    this.chooser.removeValueChangeListener(nminListener);
+    this.chooser.removeValueChangeListener(elementListener);
 }
 
   public void setValue(String analyte) {

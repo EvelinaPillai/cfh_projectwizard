@@ -49,7 +49,6 @@ public class TechnologiesPanel extends HorizontalLayout {
   List<ValueChangeListener> proteinListeners;
   ValueChangeListener mhcLigandListener;
   ValueChangeListener matrixListener;
-  ValueChangeListener elementListener;
   Button.ClickListener refreshPeopleListener;
   GridLayout buttonGrid;
   Button add;
@@ -67,7 +66,7 @@ public class TechnologiesPanel extends HorizontalLayout {
    */
   public TechnologiesPanel(List<String> techOptions, Set<String> persons, OptionGroup conditionsSet,
       ValueChangeListener poolListener, ArrayList<ValueChangeListener> proteinListeners,
-      ValueChangeListener mhcLigandListener, ClickListener refreshPeopleListener, ValueChangeListener matrixListener, ValueChangeListener nminListener , ValueChangeListener elementListener) {
+      ValueChangeListener mhcLigandListener, ClickListener refreshPeopleListener, ValueChangeListener matrixListener) {
     this.options = techOptions;
     this.persons = persons;
 
@@ -81,7 +80,6 @@ public class TechnologiesPanel extends HorizontalLayout {
     this.poolListener = poolListener;
     this.proteinListeners = proteinListeners;
     this.mhcLigandListener = mhcLigandListener;
-    this.elementListener = elementListener;
     this.refreshPeopleListener = refreshPeopleListener;
     this.matrixListener = matrixListener;
    
@@ -94,9 +92,7 @@ public class TechnologiesPanel extends HorizontalLayout {
     for (ValueChangeListener l : proteinListeners)
       c.addProteinListener(l);
     c.addMHCListener(mhcLigandListener);
-    c.addNminListener(nminListener);
     c.addMatrixListener(matrixListener);
-    c.addElementListener(elementListener);
     choosers.add(c);
     addComponent(c);
     c.showHelpers();
@@ -150,7 +146,6 @@ public class TechnologiesPanel extends HorizontalLayout {
     for (ValueChangeListener l : proteinListeners)
       c.addProteinListener(l);
     c.addMHCListener(mhcLigandListener);
-    c.addElementListener(elementListener);
     c.addRefreshPeopleListener(refreshPeopleListener);
     c.addMatrixListener(matrixListener);
     choosers.add(c);
@@ -172,7 +167,7 @@ public class TechnologiesPanel extends HorizontalLayout {
       for (ValueChangeListener l : proteinListeners)
         last.removeProteinListener(l);
       last.removeMHCListener(mhcLigandListener);
-      last.removeElementListener(elementListener);
+
       last.removeRefreshPeopleListener(refreshPeopleListener);
       last.removeMatrixlistener(matrixListener);
       choosers.get(size - 2).showHelpers();
