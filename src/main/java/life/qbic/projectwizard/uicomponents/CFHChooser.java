@@ -161,7 +161,7 @@ public class CFHChooser extends VerticalLayout {
  
   public TestSampleInformation getChosenCfhInfo() {
 	    return new TestSampleInformation(chooser.getValue().toString(), pool.getValue(),
-	        Integer.parseInt(sampleNo.getValue()), getPerson() , chooser.getValue().toString());
+	        Integer.parseInt(sampleNo.getValue()), getPerson(), chooser.getValue().toString());
 	  }
 
   public void showHelpers() {

@@ -5,6 +5,7 @@ import java.util.List;
 import com.vaadin.annotations.JavaScript;
 import com.vaadin.ui.AbstractJavaScriptComponent;
 
+import life.qbic.projectwizard.uicomponents.AminoAcidPanel;
 import life.qbic.projectwizard.uicomponents.ElementPanel;
 
 @JavaScript({"vaadin://js/d3.v4.min.js", "periodic_connector.js"})
@@ -31,4 +32,15 @@ public class PeriodicTable extends AbstractJavaScriptComponent {
     });
   }
 
+  public PeriodicTable(final AminoAcidPanel layout) {
+//    getState().setElements(elements);
+
+    registerRpc(new ElementClickRpc() {
+
+      public void onElementClick(ChemElement element) {
+        layout.useSelectedElement(element);
+      }
+
+    });
+  }
 }

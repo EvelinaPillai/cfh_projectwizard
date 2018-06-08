@@ -15,58 +15,80 @@
  *******************************************************************************/
 package life.qbic.projectwizard.uicomponents;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import com.vaadin.data.Item;
-import com.vaadin.ui.themes.ValoTheme;
-import com.vaadin.ui.ComboBox;
-import com.vaadin.ui.DateField;
-import com.vaadin.ui.Notification;
-import com.vaadin.ui.Table;
 import com.vaadin.ui.TextField;
-import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
-import life.qbic.datamodel.samples.AOpenbisSample;
 import life.qbic.projectwizard.io.DBVocabularies;
-import life.qbic.projectwizard.model.MHCLigandExtractionProtocol;
-import life.qbic.portal.Styles;
-import life.qbic.portal.components.StandardTextField;
+import matrix.ChemElement;
+import matrix.PeriodicTable;
 
 public class AminoAcidPanel extends VerticalLayout {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -9105358366778311786L;
 
-  /**
-   * 
-   */
-  private static final long serialVersionUID = -5539202326542301786L;
+	private ExtractionPanel extractionPanel;
 
-  private Map<String, String> antiBodies;
+	public AminoAcidPanel(DBVocabularies vocabs) {
 
-  
+		setSpacing(true);
+		setMargin(true);
+		this.setCaption("Elements to analyze");
 
+		// TODO different devices and maybe different extractions
+		extractionPanel = new ExtractionPanel(vocabs.getExtractions(), vocabs.getDevices());
 
+		List<ChemElement> elements = new ArrayList<ChemElement>();
+		elements.add(new ChemElement("GLY", "Glycine", 1, 1, 1));
+		elements.add(new ChemElement("ASP", "Aspartic Acid", 1, 7, 2));
+		elements.add(new ChemElement("ALA", "Alanine", 2, 1, 3));
+		elements.add(new ChemElement("GLU", "Glutamic Acid", 2, 7, 4));
+		elements.add(new ChemElement("LEU", "Leucine", 3, 1, 5));
+		elements.add(new ChemElement("HIS", "Histidine", 3, 7, 6));
+		elements.add(new ChemElement("VAL", "Valine", 4, 1, 7));
+		elements.add(new ChemElement("PHE", "Phenylalanine", 4, 2, 8));
+		elements.add(new ChemElement("TYR", "Tyrosine", 4, 3, 9));
+		elements.add(new ChemElement("MET", "Methionine", 4, 4, 10));
+		elements.add(new ChemElement("THR", "Threonine", 4, 5, 11));
+		elements.add(new ChemElement("ASN", "Asparagine", 4, 6, 12));
+		elements.add(new ChemElement("LYS", "Lysine", 4, 7, 13));
+		elements.add(new ChemElement("ILE", "Isoleucine", 5, 1, 7));
+		elements.add(new ChemElement("TRP", "Tryptophan", 5, 2, 8));
+		elements.add(new ChemElement("PRO", "Proline", 5, 3, 9));
+		elements.add(new ChemElement("CYS", "Cysteine", 5, 4, 10));
+		elements.add(new ChemElement("SER", "Serine", 5, 5, 11));
+		elements.add(new ChemElement("GLN", "Glutamine", 5, 6, 12));
+		elements.add(new ChemElement("ARG", "Arginine", 5, 7, 13));
 
-  private static final Logger logger = LogManager.getLogger(LigandExtractPanel.class);
+		PeriodicTable table = new PeriodicTable(this);
+		table.setElements(elements);
 
-  public AminoAcidPanel(DBVocabularies vocabs) {
-    this.setCaption("AminoAcid for Analyze");
-  
-    setSpacing(true);
+		addComponent(extractionPanel);
 
-    //elementChooser = new Table();
-   
+		addComponent(table);
 
-    //addComponent(elementChooser);
-  }
+	}
 
+	public void useSelectedElement(ChemElement element) {
+		List<TextField> list = extractionPanel.getElements();
+
+		for (int i = 0; i < list.size(); i++) {
+			TextField t = list.get(i);
+			// t.focus();
+			if (extractionPanel.status.get(i)) {
+
+				String currentElement = t.getValue();
+				String newElemntlist = currentElement + ", " + element.getAbbreviation();
+				// remove first comma
+				newElemntlist = newElemntlist.startsWith(",") ? newElemntlist.substring(1) : newElemntlist;
+				t.setValue(newElemntlist);
+			}
+
+		}
+	}
 
 }

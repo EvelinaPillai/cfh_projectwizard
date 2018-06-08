@@ -15,24 +15,16 @@
  *******************************************************************************/
 package life.qbic.projectwizard.uicomponents;
 
-import java.awt.Button;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
-import com.google.gwt.user.client.ui.ClickListener;
-import com.google.gwt.user.client.ui.Widget;
-import com.liferay.portal.model.SystemEventModel;
-import com.vaadin.event.LayoutEvents.LayoutClickEvent;
-import com.vaadin.event.LayoutEvents.LayoutClickListener;
-import com.vaadin.ui.Component;
+import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.TextField;
-import com.vaadin.ui.VerticalLayout;
 import matrix.ChemElement;
 import matrix.PeriodicTable;
 import life.qbic.projectwizard.io.DBVocabularies;
 
-public class ElementPanel extends VerticalLayout {
+public class ElementPanel extends HorizontalLayout {
 
 	/**
 	 * 
