@@ -130,10 +130,15 @@ public class TechChooser extends VerticalLayout {
 
   public TestSampleInformation getChosenTechInfo() {
     return new TestSampleInformation(chooser.getValue().toString(), pool.getValue(),
-        Integer.parseInt(replicates.getValue()), getPerson());
+        Integer.parseInt(replicates.getValue()), getPerson() ,getCfhInfo());
   }
 
-  public void showHelpers() {
+  private String getCfhInfo() { //hengam
+	// TODO Auto-generated method stub
+	return null;
+}
+
+public void showHelpers() {
     for (HorizontalLayout h : helpers)
       for (Component c : h)
         if (c instanceof PopupView)
@@ -190,20 +195,6 @@ public class TechChooser extends VerticalLayout {
 		
   }
   
-  public void addNminListener(ValueChangeListener nminListener) {
-	    this.chooser.addValueChangeListener(nminListener);
-}
-public void removeNminListener(ValueChangeListener nminListener) {
-	    this.chooser.removeValueChangeListener(nminListener);
-}
-
-public void addElementListener(ValueChangeListener elementListener) {
-    this.chooser.addValueChangeListener(elementListener);
-}
-
-public void removeElementListener(ValueChangeListener elementListener) {	
-    this.chooser.removeValueChangeListener(elementListener);
-}
 
   public void setValue(String analyte) {
     chooser.setValue(analyte);

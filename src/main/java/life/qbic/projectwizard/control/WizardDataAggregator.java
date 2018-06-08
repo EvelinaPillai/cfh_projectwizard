@@ -59,6 +59,7 @@ import ch.systemsx.cisd.openbis.plugin.query.shared.api.v1.dto.QueryTableModel;
 import life.qbic.projectwizard.steps.ConditionInstanceStep;
 import life.qbic.projectwizard.steps.EntityStep;
 import life.qbic.projectwizard.steps.ExtractionStep;
+import life.qbic.projectwizard.steps.MatrixStep;
 import life.qbic.projectwizard.steps.ProjectContextStep;
 import life.qbic.projectwizard.steps.TestStep;
 import life.qbic.xml.manager.XMLParser;
@@ -78,6 +79,7 @@ public class WizardDataAggregator {
   private ExtractionStep s5;
   private ConditionInstanceStep s6;
   private TestStep s8;
+  private MatrixStep s9;
 
   private String tsvContent;
 
@@ -106,7 +108,7 @@ public class WizardDataAggregator {
   private String tissue;
   private String specialTissue;
   private List<TestSampleInformation> techTypeInfo = new ArrayList<TestSampleInformation>();
-
+  private List<TestSampleInformation> cfhTypeInfo = new ArrayList<TestSampleInformation>();
   // info needed to create samples
   private int bioReps;
   private int extractReps;
@@ -151,7 +153,7 @@ public class WizardDataAggregator {
     s5 = (ExtractionStep) steps.get(Steps.Extraction);
     s6 = (ConditionInstanceStep) steps.get(Steps.Extract_Conditions);
     s8 = (TestStep) steps.get(Steps.Test_Samples);
-
+    s9 = (MatrixStep) steps.get(Steps.Matrix);
     this.openbis = openbis;
     this.taxMap = taxMap;
    // this.matrixMap = matrixMap;
@@ -401,6 +403,33 @@ public class WizardDataAggregator {
     return techSortedTests;
   }
 
+  
+  
+  public List<List<AOpenbisSample>> prepareMatrixSamples() {
+	    cfhTypeInfo = s9.getCFHInformation();
+	    if (inheritExtracts) {
+	      prepareBasics();
+	      classChars = new HashMap<String, Character>();
+	      experiments = new ArrayList<OpenbisExperiment>();
+	    }
+	    for (TestSampleInformation x : cfhTypeInfo) {
+	      int personID = -1;
+	      String person = x.getPerson();
+	      if (person != null && !person.isEmpty())
+	        personID = personMap.get(person);
+	      OpenbisExperiment exp = new OpenbisExperiment(buildExperimentName(),
+	          ExperimentType.Q_SAMPLE_PREPARATION, personID, null);// TODO add secondary name here
+	      experiments.add(exp);
+	    }
+	    List<List<AOpenbisSample>> cfhSortedTests = buildMatrixSamples(extracts, classChars);
+	    tests = new ArrayList<AOpenbisSample>();
+	    for (List<AOpenbisSample> group : cfhSortedTests)
+	      tests.addAll(group);
+	    
+	    return cfhSortedTests;
+	  }
+  
+  
   /**
    *  Creates Samples for Matrix 
    */
@@ -790,6 +819,40 @@ public class WizardDataAggregator {
     return tests;
   }
 
+  
+  private List<List<AOpenbisSample>> buildMatrixSamples(List<AOpenbisSample> extracts,
+	      Map<String, Character> classChars) {
+	    List<List<AOpenbisSample>> tests = new ArrayList<List<AOpenbisSample>>();
+	    for (int j = 0; j < cfhTypeInfo.size(); j++) {// different technologies
+	      List<AOpenbisSample> cfhTests = new ArrayList<AOpenbisSample>();
+	      int techReps = cfhTypeInfo.get(j).getReplicates();
+	      String sampleType = cfhTypeInfo.get(j).getTechnology();
+	      int expNum = experiments.size() - cfhTypeInfo.size() + j;
+	      for (AOpenbisSample s : extracts) {
+	        for (int i = techReps; i > 0; i--) {
+	          String secondaryName = s.getQ_SECONDARY_NAME();
+	          if (classChars.containsKey(secondaryName)) { // TODO see above
+	            classChar = classChars.get(secondaryName);
+	          } else {
+	            classChar = SampleCodeFunctions.incrementUppercase(classChar);
+	            classChars.put(secondaryName, classChar);
+	          }
+	          incrementOrCreateBarcode();
+	          cfhTests.add(new OpenbisTestSample(nextBarcode, spaceCode,
+	              experiments.get(expNum).getOpenbisName(), secondaryName, "", s.getFactors(),
+	              sampleType, s.getCode(), s.getQ_EXTERNALDB_ID()));// TODO
+	          // ext
+	          // db
+	          // id
+	        }
+	      }
+	      tests.add(cfhTests);
+	    }
+	    return tests;
+	  }
+
+  
+  
   /**
    * parse secondary name from a list of condition permutations
    * 
@@ -1449,7 +1512,7 @@ public class WizardDataAggregator {
       }
     }
     RegisteredAnalyteInformation res = new RegisteredAnalyteInformation(infos.keySet(),
-        measurePeptides, shortGel, purificationMethod);
+        measurePeptides, shortGel, purificationMethod ,infos.keySet()); //todo hengam
     return res;
   }
 }
