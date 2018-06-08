@@ -13,7 +13,7 @@ public class TestSampleInformation {
     this.pool = pool;
     this.person = person;
     this.technology = tech;
-    //this.cfh = cfh;
+    this.cfh = cfh;
   }
 
   public String getTechnology() {

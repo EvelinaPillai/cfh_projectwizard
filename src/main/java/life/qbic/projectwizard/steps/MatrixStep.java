@@ -199,10 +199,10 @@ public class MatrixStep implements WizardStep {
 					String cfh = i.getCfhInfo();
 					containsElement |= cfh.equals("ELEMENT");
 				}
-				if (containsElement) {
+				//if (containsElement) {
 					elementPanel.setVisible(containsElement);
 					
-				}
+				//}
 			}
 		};
 		
@@ -226,7 +226,7 @@ public class MatrixStep implements WizardStep {
 					containsAA |= cfh.equals("AminoAcid");
 				}
 				if (containsAA) {
-					elementPanel.setVisible(containsAA);
+					AminoAcidPanel.setVisible(containsAA);
 					
 				}
 			}
@@ -252,7 +252,7 @@ public class MatrixStep implements WizardStep {
 					containsFat |= cfh.equals("fat");
 				}
 				if (containsFat) {
-					elementPanel.setVisible(containsFat);
+					FatPanel.setVisible(containsFat);
 					
 				}
 			}
@@ -278,7 +278,7 @@ public class MatrixStep implements WizardStep {
 					containsNmin |= cfh.equals("Nmin");
 				}
 				if (containsNmin) {
-					elementPanel.setVisible(containsNmin);
+					NminPanel.setVisible(containsNmin);
 					
 				}
 			}
