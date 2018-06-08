@@ -40,7 +40,9 @@ import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 
 import life.qbic.portal.portlet.ProjectWizardUI;
+import life.qbic.projectwizard.io.DBVocabularies;
 import life.qbic.projectwizard.uicomponents.ConditionsPanel;
+import life.qbic.projectwizard.uicomponents.ElementPanel;
 import life.qbic.projectwizard.uicomponents.TechnologiesPanel;
 import life.qbic.portal.Styles;
 import life.qbic.portal.Styles.NotificationType;
@@ -67,7 +69,7 @@ public class MatrixStep implements WizardStep {
 	private StandardTextField aaAnalysis;
 	private Button btnAAAnalysis;
 	
-	public MatrixStep(Map<String, String> matrixMap, Set<String> keySet) {
+	public MatrixStep(DBVocabularies vocabs, Set<String> keySet) {
 		main = new VerticalLayout();
 		main.setSpacing(true);
 		main.setMargin(true);
@@ -79,7 +81,7 @@ public class MatrixStep implements WizardStep {
 	    matrix.setVisible(true);
 	    
 	    List<String> methods =
-	        new ArrayList<String>(matrixMap.keySet());
+	        new ArrayList<String>(vocabs.getMatrixMap().keySet());
 	    Collections.sort(methods);
 	    matrix.addItems(methods);
 	    noOfSamples = new StandardTextField("Number of Samples");
@@ -92,10 +94,10 @@ public class MatrixStep implements WizardStep {
 	    //ElementAnalysis Panel
 	    elementAnalysis = new StandardTextField("Element Analysis");
 	    btnElementAnalysis = new Button("Select");
-	    elementAnalysisPanel = new VerticalLayout(Styles.questionize(elementAnalysis, "Type in elements that will be analyzed in this experiment. Use element symbols and separate them by \";\". Or click the select button to show the Periodic Table of the Elements and make a selection there.","Element Analysis"), 
-	    		btnElementAnalysis);
-	    elementAnalysisPanel.setSpacing(true);
-	    
+	    //elementAnalysisPanel = new VerticalLayout(Styles.questionize(elementAnalysis, "Type in elements that will be analyzed in this experiment. Use element symbols and separate them by \";\". Or click the select button to show the Periodic Table of the Elements and make a selection there.","Element Analysis"), 
+	    	//	btnElementAnalysis);
+	    //elementAnalysisPanel.setSpacing(true);
+	    elementAnalysisPanel = new ElementPanel(vocabs);
 	    //Amino Acid Panel
 	    aaAnalysis = new StandardTextField("Amino Acids Analysis");
 	    btnAAAnalysis = new Button("Select");

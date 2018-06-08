@@ -285,11 +285,6 @@ public class TestStep implements WizardStep {
 
 		main.addComponent(mhcLigandPanel);
 		
-		elementPanel = new ElementPanel(vocabs);
-		elementPanel.setVisible(false);
-
-		main.addComponent(elementPanel);
-
 	}
 
 	public void setTissueExtracts(List<AOpenbisSample> extracts) {
