@@ -305,7 +305,7 @@ public class WizardController implements IRegistrationController {
     // PoolingStep(Steps.Protein_Fractionation_Pooling);
     final MSAnalyteStep pepFracStep = new MSAnalyteStep(vocabularies, "PEPTIDES");
     // final PoolingStep afterPepFracPooling = new PoolingStep(Steps.Peptide_Fractionation_Pooling);
-    final MatrixStep matrixStep = new MatrixStep(vocabularies.getMatrixMap(),vocabularies.getPeople().keySet());
+    final MatrixStep matrixStep = new MatrixStep(vocabularies,vocabularies.getPeople().keySet());
     
     steps = new HashMap<Steps, WizardStep>();
     steps.put(Steps.Project_Context, contextStep);
