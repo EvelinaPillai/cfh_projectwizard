@@ -305,7 +305,7 @@ public class WizardController implements IRegistrationController {
     // PoolingStep(Steps.Protein_Fractionation_Pooling);
     final MSAnalyteStep pepFracStep = new MSAnalyteStep(vocabularies, "PEPTIDES");
     // final PoolingStep afterPepFracPooling = new PoolingStep(Steps.Peptide_Fractionation_Pooling);
-    final MatrixStep matrixStep = new MatrixStep(vocabularies,vocabularies.getPeople().keySet());
+    final MatrixStep matrixStep = new MatrixStep(w,vocabularies);
     
     steps = new HashMap<Steps, WizardStep>();
     steps.put(Steps.Project_Context, contextStep);
@@ -383,6 +383,7 @@ public class WizardController implements IRegistrationController {
         entStep.updatePeople(people);
         extrStep.updatePeople(people);
         techStep.updatePeople(people);
+        matrixStep.updatePeople(people);
       }
     };
     projSelection.getPeopleReloadButton().addClickListener(peopleCL);
@@ -752,6 +753,7 @@ public class WizardController implements IRegistrationController {
     };
 
     techStep.initTestStep(testPoolListener, proteinListener, peopleCL, steps);
+ //   matrixStep.initTestStep(peopleCL, steps);
 
     ValueChangeListener noMeasureListener = new ValueChangeListener() {
 
@@ -804,10 +806,14 @@ public class WizardController implements IRegistrationController {
         } else {
           setInheritExtracts();
         }
-      }
+      }     
+      
     };
     extrStep.conditionsSet().addValueChangeListener(extractConditionSetListener);
-
+    
+    
+    
+    matrixStep.initTestStep(peopleCL, steps);
     TextField f = contextStep.getProjectCodeField();
     CompositeValidator vd = new CompositeValidator();
     RegexpValidator p = new RegexpValidator("Q[A-Xa-x0-9]{4}",
@@ -828,6 +834,9 @@ public class WizardController implements IRegistrationController {
       @Override
       public void stepSetChanged(WizardStepSetChangedEvent event) {}
 
+      
+      
+      
       /**
        * Reactions to step changes in the wizard
        */
@@ -924,6 +933,23 @@ public class WizardController implements IRegistrationController {
           if (copyMode)
             techStep.setAnalyteInputs(dataAggregator.getBaseAnalyteInformation());
         }
+        
+     // Test CFH Step
+       // matrixStep.initTestStep(peopleCL, steps);
+        if (event.getActivatedStep().equals(matrixStep)) {
+        	 dataAggregator.prepareMatrixSamples();
+          // dataAggregator.setHasFractionationExperiment(false);
+//          testPoolsSet = false;// we have to reset this in the case someone goes back from pooling
+//          List<AOpenbisSample> extracts = tailoringStep2.getSamples();
+          //matrixStep.setTissueExtracts(extracts);
+          //List<AOpenbisSample> all = new ArrayList<AOpenbisSample>();
+          //all.addAll(extracts);
+          //all.addAll(dataAggregator.createPoolingSamples(poolStep1.getPools()));
+          //dataAggregator.setExtracts(all);
+          //if (copyMode)
+        	//  matrixStep.setAnalyteInputs(dataAggregator.getBaseAnalyteInformation());
+        }
+        
         // Test Pool Step
         if (event.getActivatedStep().equals(poolStep2)) {
           if (!testPoolsSet) {// if we come from the analyte step the pools are reset, if we come
