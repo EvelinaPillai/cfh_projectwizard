@@ -101,7 +101,7 @@ public class CFHChooser extends VerticalLayout {
     HorizontalLayout matrixBoxH = new HorizontalLayout();
     matrixBoxH.setCaption("Matrix");
     matrix = new ComboBox();
-    matrix.addItems(persons);
+    matrix.addItems(matrix);
     matrix.setFilteringMode(FilteringMode.CONTAINS);
     matrix.setStyleName(Styles.boxTheme);
     

@@ -1223,7 +1223,8 @@ public class WizardDataAggregator {
     }
     for (AOpenbisSample s : samples) {
       String code = s.getCode();
-      if (isEntity(code) || SampleCodeFunctions.isQbicBarcode(code)
+      //if (isEntity(code) || SampleCodeFunctions.isQbicBarcode(code)
+      if (isEntity(code) || SampleCodeFunctions.isCFHcode(code)
           || SampleCodeFunctions.isMeasurementOfBarcode(code, s.getValueMap().get("SAMPLE TYPE"))) {
         Map<String, String> data = s.getValueMap();
         String row = s.getCode();

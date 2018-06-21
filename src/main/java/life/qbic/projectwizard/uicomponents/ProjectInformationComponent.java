@@ -81,8 +81,8 @@ public class ProjectInformationComponent extends VerticalLayout {
 
     project = new StandardTextField();
     project.setStyleName(Styles.fieldTheme);
-    project.setMaxLength(5);
-    project.setWidth("90px");
+   // project.setMaxLength(5);
+   // project.setWidth("90px");
     project.setEnabled(false);
     project.setValidationVisible(true);
 

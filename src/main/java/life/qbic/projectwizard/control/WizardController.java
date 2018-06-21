@@ -266,6 +266,57 @@ public class WizardController implements IRegistrationController {
     }
     return res;
   }
+  
+
+  private String generateCFHProjectCode(String space) {
+    String res = "";
+    res = space + "-";
+  //TODO needed?  while (res.length() < 5 || openbis.getProjectByCode(res) != null) {
+    //get latest experiment from openbis 
+    //if no project existst jet then -001
+    List<Project> projects = openbis.getProjectsOfSpace(space);
+    if(projects.isEmpty()) {
+    	res= res + "001";
+    	logger.info("hengam0:  "+ res);
+    } 
+    else {
+    	
+    	int max=0;
+    	boolean flag = false;
+    	Project lastProject=projects.get(projects.size()-1);
+    	for(Project p:projects)
+    	{
+    		int len = p.getCode().length();
+    		int lastDigit = p.getCode().charAt(len-1);
+    		if (Character.isDigit(lastDigit)&&(lastDigit>max)){
+    			{
+    				max =lastDigit;
+    				lastProject = p;
+    				flag =true;
+    				logger.info("hengam0:  "+ lastDigit);
+    			}
+    		}
+    		
+    	}
+    	
+    	// = ;
+    	if(flag)
+    	{
+    		logger.info("hengam1:  "+ lastProject.getCode().substring(1, 4));
+    		int increment = Integer.parseInt(lastProject.getCode().substring(12, 15))+1;
+    		String formatted = String.format("%03d", increment); //leading zeros, length of 3 digits eg. 001, 010...
+    		logger.info("hengam2:  "+ increment + "__"+formatted);
+    		res = res + formatted;
+    	}   
+    	else
+    	{
+    		res= res + "001";
+        	logger.info("hengam3:  "+ res);
+    	}
+    	
+    }
+    return res;
+  }
 
   public static enum Steps {
     Project_Context, Entities, Entity_Conditions, Entity_Tailoring, Extraction, Extract_Conditions, Extract_Tailoring, Extract_Pooling, Test_Samples, Test_Sample_Pooling, Registration, Finish, Protein_Fractionation, Protein_Fractionation_Pooling, Peptide_Fractionation, Peptide_Fractionation_Pooling, Matrix;
@@ -334,12 +385,13 @@ public class WizardController implements IRegistrationController {
     FocusListener fListener = new FocusListener() {
       private static final long serialVersionUID = 8721337946386845992L;
 
+      //TODO
       @Override
       public void focus(FocusEvent event) {
         // new project selected...keep generating codes until one is valid
         TextField pr = projSelection.getProjectField();
         if (!pr.isValid() || pr.isEmpty()) {
-          projSelection.tryEnableCustomProject(generateProjectCode());
+          projSelection.tryEnableCustomProject(generateCFHProjectCode(contextStep.getSpaceCode()));
           contextStep.enableEmptyProjectContextOption(true);
           contextStep.enableNewContextOption(true);
           contextStep.makeContextVisible();
@@ -354,15 +406,17 @@ public class WizardController implements IRegistrationController {
        * 
        */
       private static final long serialVersionUID = -6646294420820222646L;
-
+      //TODO
       @Override
       public void buttonClick(ClickEvent event) {
         String existingProject = (String) projSelection.getProjectBox().getValue();
         if (existingProject == null || existingProject.isEmpty()) {
-          projSelection.tryEnableCustomProject(generateProjectCode());
-          contextStep.enableEmptyProjectContextOption(true);
-          contextStep.enableNewContextOption(true);
-          contextStep.makeContextVisible();
+        	if(contextStep.getSpaceCode() != null) {
+        		projSelection.tryEnableCustomProject(generateCFHProjectCode(contextStep.getSpaceCode()));
+        		contextStep.enableEmptyProjectContextOption(true);
+        		contextStep.enableNewContextOption(true);
+        		contextStep.makeContextVisible();
+        	}
         }
       }
     };
@@ -816,8 +870,11 @@ public class WizardController implements IRegistrationController {
     matrixStep.initTestStep(peopleCL, steps);
     TextField f = contextStep.getProjectCodeField();
     CompositeValidator vd = new CompositeValidator();
-    RegexpValidator p = new RegexpValidator("Q[A-Xa-x0-9]{4}",
-        "Project must have length of 5, start with Q and not contain Y or Z");
+    //TODO change to CFH Code
+    //RegexpValidator p = new RegexpValidator("Q[A-Xa-x0-9]{4}",
+      //  "Project must have length of 5, start with Q and not contain Y or Z");
+    RegexpValidator p = new RegexpValidator("20[0-9][0-9]-[1-3]-[0-9]{4}-[0-9]{3}",
+    		"Project must start with current year, followed by module number and contract number and finish with batch number. Eg. 2018-3-0001-001");
     vd.addValidator(p);
     vd.addValidator(new ProjectNameValidator(openbis));
     f.addValidator(vd);
@@ -1017,7 +1074,7 @@ public class WizardController implements IRegistrationController {
             }
             createTSV();
             try {
-              prep.processTSV(dataAggregator.getTSV(), ExperimentalDesignType.QBIC);
+              prep.processTSV(dataAggregator.getTSV(), ExperimentalDesignType.QBIC,true);//hengam
             } catch (IOException | JAXBException e) {
               e.printStackTrace();
             }
@@ -1050,7 +1107,7 @@ public class WizardController implements IRegistrationController {
             }
             createTSV();
             try {
-              prep.processTSV(dataAggregator.getTSV(), ExperimentalDesignType.QBIC);
+              prep.processTSV(dataAggregator.getTSV(), ExperimentalDesignType.QBIC,true);//hengam
             } catch (IOException | JAXBException e) {
               e.printStackTrace();
             }

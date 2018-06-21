@@ -18,14 +18,14 @@ package life.qbic.projectwizard.uicomponents;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.TextField;
-import com.vaadin.ui.VerticalLayout;
 
 import life.qbic.projectwizard.io.DBVocabularies;
 import matrix.ChemElement;
 import matrix.PeriodicTable;
 
-public class AminoAcidPanel extends VerticalLayout {
+public class AminoAcidPanel extends HorizontalLayout {
 	/**
 	 * 
 	 */

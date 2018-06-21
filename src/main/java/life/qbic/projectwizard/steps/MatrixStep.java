@@ -223,7 +223,7 @@ public class MatrixStep implements WizardStep {
 				containsAA = false;
 				for (TestSampleInformation i : getCFHInformation()) {
 					String cfh = i.getCfhInfo();
-					containsAA |= cfh.equals("AminoAcid");
+					containsAA |= cfh.equals("AMINOACID");
 				}
 				if (containsAA) {
 					AminoAcidPanel.setVisible(containsAA);
@@ -309,9 +309,11 @@ public class MatrixStep implements WizardStep {
 		
 		elementPanel = new ElementPanel(vocabs);
 		elementPanel.setVisible(false);
-
+		AminoAcidPanel = new AminoAcidPanel(vocabs);
+		AminoAcidPanel.setVisible(false);
+		
 		main.addComponent(elementPanel);
-
+		main.addComponent(AminoAcidPanel);
 	}
 
 	
