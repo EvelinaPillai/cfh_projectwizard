@@ -16,6 +16,8 @@
 package life.qbic.projectwizard.steps;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -31,6 +33,7 @@ import life.qbic.datamodel.samples.AOpenbisSample;
 import life.qbic.portal.Styles;
 import life.qbic.projectwizard.control.WizardController.Steps;
 import life.qbic.projectwizard.io.DBVocabularies;
+import life.qbic.projectwizard.model.MHCLigandExtractionProtocol;
 import life.qbic.projectwizard.model.RegisteredAnalyteInformation;
 import life.qbic.projectwizard.model.TestSampleInformation;
 import life.qbic.projectwizard.uicomponents.ElementPanel;
@@ -38,6 +41,12 @@ import life.qbic.projectwizard.uicomponents.AminoAcidPanel;
 import life.qbic.projectwizard.uicomponents.CFHPanel;
 import life.qbic.projectwizard.uicomponents.NminPanel;
 import life.qbic.projectwizard.uicomponents.FatPanel;
+import life.qbic.projectwizard.uicomponents.LigandExtractPanel;
+import life.qbic.projectwizard.uicomponents.MSOptionComponent;
+import life.qbic.projectwizard.uicomponents.NminOptions;
+import life.qbic.projectwizard.uicomponents.TechnologiesPanel;
+import life.qbic.portal.Styles.NotificationType;
+
 import com.vaadin.ui.CheckBox;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.Label;
@@ -275,7 +284,8 @@ public class MatrixStep implements WizardStep {
 			}
 		};
 		
-		cfhPanel = new CFHPanel(vocabs.getCfhMethodTypes(), vocabs.getPeople().keySet(), vocabs.getMatrixMap().keySet(), new OptionGroup(""),elementListener,aaListener, fatListener, nminListener);
+		//cfhPanel = new CFHPanel(vocabs.getCfhMethodTypes(), vocabs.getPeople().keySet(), vocabs.getMatrixMap().keySet(), new OptionGroup(""),elementListener,aaListener, fatListener, nminListener);
+		cfhPanel = new CFHPanel(vocabs.getCfhMethodTypes(), vocabs.getPeople().keySet(), new OptionGroup(""),elementListener,aaListener, fatListener, nminListener , vocabs.getMatrixMap());
 
 		main.addComponent(cfhPanel);
 		main.addComponent(new Label("<hr />", Label.CONTENT_XHTML));

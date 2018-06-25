@@ -17,6 +17,7 @@ package life.qbic.projectwizard.uicomponents;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import com.vaadin.data.Property.ValueChangeListener;
@@ -43,7 +44,7 @@ public class CFHPanel extends HorizontalLayout {
   private static final long serialVersionUID = -1578503116738309380L;
   List<String> options;
   Set<String> persons;
-  Set<String> matrices;
+  Map<String, String> matrixMap;
   List<CFHChooser> choosers;
   Button.ClickListener buttonListener;
   ValueChangeListener poolListener;
@@ -66,11 +67,12 @@ public class CFHPanel extends HorizontalLayout {
    *        inside this component from the outside
    * @param proteinListeners
    */
-  public CFHPanel(List<String> techOptions, Set<String> persons, Set<String> matrices, OptionGroup conditionsSet,
+  public CFHPanel(List<String> techOptions, Set<String> persons, OptionGroup conditionsSet,
        ValueChangeListener elementListeners, ValueChangeListener aaListener,
-      ValueChangeListener fatListener, ValueChangeListener nminListener) {
+      ValueChangeListener fatListener, ValueChangeListener nminListener ,Map<String, String> matrixMap) {
     this.options = techOptions;
     this.persons = persons;
+    this.matrixMap = matrixMap;
 
     this.conditionsSet = conditionsSet;
     this.conditionsSet.addItem("set");
@@ -84,12 +86,12 @@ public class CFHPanel extends HorizontalLayout {
     this.fatListener = fatListener;
     this.aaListener = aaListener;
     this.nminListener = nminListener;
-    this.refreshPeopleListener = refreshPeopleListener;
+   // this.refreshPeopleListener = refreshPeopleListener;
     
    
 
     choosers = new ArrayList<CFHChooser>();
-    CFHChooser c = new CFHChooser(techOptions, persons, matrices);
+    CFHChooser c = new CFHChooser(techOptions, persons, matrixMap);
     c.setImmediate(true);
     //c.addPoolListener(poolListener);
     //c.addRefreshPeopleListener(refreshPeopleListener);
@@ -147,7 +149,7 @@ public class CFHPanel extends HorizontalLayout {
 
   private void add() {
     choosers.get(choosers.size() - 1).hideHelpers();
-    CFHChooser c = new CFHChooser(options, persons, matrices);
+    CFHChooser c = new CFHChooser(options, persons ,matrixMap);
     //c.addPoolListener(poolListener);
     c.addElementListener(elementListeners);
     c.addFatListener(fatListener);

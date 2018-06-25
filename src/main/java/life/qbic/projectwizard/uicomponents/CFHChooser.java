@@ -17,6 +17,7 @@ package life.qbic.projectwizard.uicomponents;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import com.vaadin.data.Property.ValueChangeEvent;
@@ -57,12 +58,13 @@ public class CFHChooser extends VerticalLayout {
    *        selected will disable the normal species input because there is more than one instance
    * @param nullSelectionAllowed true, if the conditions may be empty
    */
-  public CFHChooser(List<String> options, Set<String> persons, Set<String> matrices) {
+ // public CFHChooser(List<String> options, Set<String> persons, Set<String> matrices) {
+  public CFHChooser(List<String> options, Set<String> persons ,Map<String, String> matrixMap) {
     chooser = new ComboBox("Cfh Method", options);
     chooser.setStyleName(Styles.boxTheme);
 
     sampleNo = new OpenbisInfoTextField("Number of Samples", "", "50px", "1");
-    sampleName = new OpenbisInfoTextField("Sample Name", "", "50px", "1");
+    sampleName = new OpenbisInfoTextField("Sample Name", "", "250px", "P_");
     pool = new CheckBox("Pool/Multiplex Samples");
     setSpacing(true);
     helpers = new ArrayList<HorizontalLayout>();
@@ -101,7 +103,8 @@ public class CFHChooser extends VerticalLayout {
     HorizontalLayout matrixBoxH = new HorizontalLayout();
     matrixBoxH.setCaption("Matrix");
     matrix = new ComboBox();
-    matrix.addItems(matrices);
+   // matrix.addItems(matrices);
+    matrix.addItems(matrixMap.values());
     matrix.setFilteringMode(FilteringMode.CONTAINS);
     matrix.setStyleName(Styles.boxTheme);
     
@@ -161,7 +164,7 @@ public class CFHChooser extends VerticalLayout {
  
   public TestSampleInformation getChosenCfhInfo() {
 	    return new TestSampleInformation(chooser.getValue().toString(), pool.getValue(),
-	        Integer.parseInt(sampleNo.getValue()), getPerson(), chooser.getValue().toString());
+	        Integer.parseInt(sampleNo.getValue()), getPerson() , chooser.getValue().toString());
 	  }
 
   public void showHelpers() {

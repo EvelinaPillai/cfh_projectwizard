@@ -1,0 +1,476 @@
+#PROJECT_DESCRIPTION=New experiment for element analysis of apples
+#ALTERNATIVE_NAME=
+#INVESTIGATOR=
+#CONTACT=
+#MANAGER=
+#EXP QVGVNE1:Q_EXPERIMENTAL_DESIGN:{Q_SECONDARY_NAME=2018-05-15_UVB134679}
+#EXP QVGVNE2:Q_SAMPLE_EXTRACTION:{Q_SECONDARY_NAME=2018-05-15-258852}
+Identifier	SAMPLE TYPE	SPACE	EXPERIMENT	Q_SECONDARY_NAME	PARENT	Q_PRIMARY_TISSUE	Q_TISSUE_DETAILED	Q_ADDITIONAL_INFO	Q_NCBI_ORGANISM	Q_SAMPLE_TYPE	Q_EXTERNALDB_ID	Condition: genotype	Condition: phenotype	Condition: species	Condition: extraction_time	Condition: growth_medium
+QVGVNENTITY-1	Q_BIOLOGICAL_ENTITY	2018-3-0001	QVGVNE1	gen1 ; colour ; Cavia aperea					37548			gen1	colour	Cavia aperea		
+QVGVNENTITY-2	Q_BIOLOGICAL_ENTITY	2018-3-0001	QVGVNE1	gen1 ; colour ; Rosa wichurana					74648			gen1	colour	Rosa wichurana		
+QVGVNENTITY-3	Q_BIOLOGICAL_ENTITY	2018-3-0001	QVGVNE1	gen1 ; colour ; Escherichia coli					562			gen1	colour	Escherichia coli		
+QVGVNENTITY-4	Q_BIOLOGICAL_ENTITY	2018-3-0001	QVGVNE1	gen1 ; colour ; Brassica oleracea var. viridis					3713			gen1	colour	Brassica oleracea var. viridis		
+QVGVNENTITY-5	Q_BIOLOGICAL_ENTITY	2018-3-0001	QVGVNE1	gen1 ; volume ; Cavia aperea					37548			gen1	volume	Cavia aperea		
+QVGVNENTITY-6	Q_BIOLOGICAL_ENTITY	2018-3-0001	QVGVNE1	gen1 ; volume ; Rosa wichurana					74648			gen1	volume	Rosa wichurana		
+QVGVNENTITY-7	Q_BIOLOGICAL_ENTITY	2018-3-0001	QVGVNE1	gen1 ; volume ; Escherichia coli					562			gen1	volume	Escherichia coli		
+QVGVNENTITY-8	Q_BIOLOGICAL_ENTITY	2018-3-0001	QVGVNE1	gen1 ; volume ; Brassica oleracea var. viridis					3713			gen1	volume	Brassica oleracea var. viridis		
+QVGVNENTITY-9	Q_BIOLOGICAL_ENTITY	2018-3-0001	QVGVNE1	gen1 ; weigh ; Cavia aperea					37548			gen1	weigh	Cavia aperea		
+QVGVNENTITY-10	Q_BIOLOGICAL_ENTITY	2018-3-0001	QVGVNE1	gen1 ; weigh ; Rosa wichurana					74648			gen1	weigh	Rosa wichurana		
+QVGVNENTITY-11	Q_BIOLOGICAL_ENTITY	2018-3-0001	QVGVNE1	gen1 ; weigh ; Escherichia coli					562			gen1	weigh	Escherichia coli		
+QVGVNENTITY-12	Q_BIOLOGICAL_ENTITY	2018-3-0001	QVGVNE1	gen1 ; weigh ; Brassica oleracea var. viridis					3713			gen1	weigh	Brassica oleracea var. viridis		
+QVGVNENTITY-13	Q_BIOLOGICAL_ENTITY	2018-3-0001	QVGVNE1	gen2 ; colour ; Cavia aperea					37548			gen2	colour	Cavia aperea		
+QVGVNENTITY-14	Q_BIOLOGICAL_ENTITY	2018-3-0001	QVGVNE1	gen2 ; colour ; Rosa wichurana					74648			gen2	colour	Rosa wichurana		
+QVGVNENTITY-15	Q_BIOLOGICAL_ENTITY	2018-3-0001	QVGVNE1	gen2 ; colour ; Escherichia coli					562			gen2	colour	Escherichia coli		
+QVGVNENTITY-16	Q_BIOLOGICAL_ENTITY	2018-3-0001	QVGVNE1	gen2 ; colour ; Brassica oleracea var. viridis					3713			gen2	colour	Brassica oleracea var. viridis		
+QVGVNENTITY-17	Q_BIOLOGICAL_ENTITY	2018-3-0001	QVGVNE1	gen2 ; volume ; Cavia aperea					37548			gen2	volume	Cavia aperea		
+QVGVNENTITY-18	Q_BIOLOGICAL_ENTITY	2018-3-0001	QVGVNE1	gen2 ; volume ; Rosa wichurana					74648			gen2	volume	Rosa wichurana		
+QVGVNENTITY-19	Q_BIOLOGICAL_ENTITY	2018-3-0001	QVGVNE1	gen2 ; volume ; Escherichia coli					562			gen2	volume	Escherichia coli		
+QVGVNENTITY-20	Q_BIOLOGICAL_ENTITY	2018-3-0001	QVGVNE1	gen2 ; volume ; Brassica oleracea var. viridis					3713			gen2	volume	Brassica oleracea var. viridis		
+QVGVNENTITY-21	Q_BIOLOGICAL_ENTITY	2018-3-0001	QVGVNE1	gen2 ; weigh ; Cavia aperea					37548			gen2	weigh	Cavia aperea		
+QVGVNENTITY-22	Q_BIOLOGICAL_ENTITY	2018-3-0001	QVGVNE1	gen2 ; weigh ; Rosa wichurana					74648			gen2	weigh	Rosa wichurana		
+QVGVNENTITY-23	Q_BIOLOGICAL_ENTITY	2018-3-0001	QVGVNE1	gen2 ; weigh ; Escherichia coli					562			gen2	weigh	Escherichia coli		
+QVGVNENTITY-24	Q_BIOLOGICAL_ENTITY	2018-3-0001	QVGVNE1	gen2 ; weigh ; Brassica oleracea var. viridis					3713			gen2	weigh	Brassica oleracea var. viridis		
+QVGVNENTITY-25	Q_BIOLOGICAL_ENTITY	2018-3-0001	QVGVNE1	gen3 ; colour ; Cavia aperea					37548			gen3	colour	Cavia aperea		
+QVGVNENTITY-26	Q_BIOLOGICAL_ENTITY	2018-3-0001	QVGVNE1	gen3 ; colour ; Rosa wichurana					74648			gen3	colour	Rosa wichurana		
+QVGVNENTITY-27	Q_BIOLOGICAL_ENTITY	2018-3-0001	QVGVNE1	gen3 ; colour ; Escherichia coli					562			gen3	colour	Escherichia coli		
+QVGVNENTITY-28	Q_BIOLOGICAL_ENTITY	2018-3-0001	QVGVNE1	gen3 ; colour ; Brassica oleracea var. viridis					3713			gen3	colour	Brassica oleracea var. viridis		
+QVGVNENTITY-29	Q_BIOLOGICAL_ENTITY	2018-3-0001	QVGVNE1	gen3 ; volume ; Cavia aperea					37548			gen3	volume	Cavia aperea		
+QVGVNENTITY-30	Q_BIOLOGICAL_ENTITY	2018-3-0001	QVGVNE1	gen3 ; volume ; Rosa wichurana					74648			gen3	volume	Rosa wichurana		
+QVGVNENTITY-31	Q_BIOLOGICAL_ENTITY	2018-3-0001	QVGVNE1	gen3 ; volume ; Escherichia coli					562			gen3	volume	Escherichia coli		
+QVGVNENTITY-32	Q_BIOLOGICAL_ENTITY	2018-3-0001	QVGVNE1	gen3 ; volume ; Brassica oleracea var. viridis					3713			gen3	volume	Brassica oleracea var. viridis		
+QVGVNENTITY-33	Q_BIOLOGICAL_ENTITY	2018-3-0001	QVGVNE1	gen3 ; weigh ; Cavia aperea					37548			gen3	weigh	Cavia aperea		
+QVGVNENTITY-34	Q_BIOLOGICAL_ENTITY	2018-3-0001	QVGVNE1	gen3 ; weigh ; Rosa wichurana					74648			gen3	weigh	Rosa wichurana		
+QVGVNENTITY-35	Q_BIOLOGICAL_ENTITY	2018-3-0001	QVGVNE1	gen3 ; weigh ; Escherichia coli					562			gen3	weigh	Escherichia coli		
+QVGVNENTITY-36	Q_BIOLOGICAL_ENTITY	2018-3-0001	QVGVNE1	gen3 ; weigh ; Brassica oleracea var. viridis					3713			gen3	weigh	Brassica oleracea var. viridis		
+QVGVN001AD	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen1 ; colour ; Cavia aperea ; extract1 ; medium1	QVGVNENTITY-1	AUXILLARY_BUD						gen1	colour	Cavia aperea	extract1	medium1
+QVGVN002AL	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen1 ; colour ; Cavia aperea ; extract1 ; medium2	QVGVNENTITY-1	AUXILLARY_BUD						gen1	colour	Cavia aperea	extract1	medium2
+QVGVN003AT	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen1 ; colour ; Cavia aperea ; extract1 ; medium3	QVGVNENTITY-1	AUXILLARY_BUD						gen1	colour	Cavia aperea	extract1	medium3
+QVGVN004A3	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen1 ; colour ; Cavia aperea ; extract2 ; medium1	QVGVNENTITY-1	AUXILLARY_BUD						gen1	colour	Cavia aperea	extract2	medium1
+QVGVN005AB	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen1 ; colour ; Cavia aperea ; extract2 ; medium2	QVGVNENTITY-1	AUXILLARY_BUD						gen1	colour	Cavia aperea	extract2	medium2
+QVGVN006AJ	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen1 ; colour ; Cavia aperea ; extract2 ; medium3	QVGVNENTITY-1	AUXILLARY_BUD						gen1	colour	Cavia aperea	extract2	medium3
+QVGVN007AR	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen1 ; colour ; Rosa wichurana ; extract1 ; medium1	QVGVNENTITY-2	AUXILLARY_BUD						gen1	colour	Rosa wichurana	extract1	medium1
+QVGVN008A1	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen1 ; colour ; Rosa wichurana ; extract1 ; medium2	QVGVNENTITY-2	AUXILLARY_BUD						gen1	colour	Rosa wichurana	extract1	medium2
+QVGVN009A9	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen1 ; colour ; Rosa wichurana ; extract1 ; medium3	QVGVNENTITY-2	AUXILLARY_BUD						gen1	colour	Rosa wichurana	extract1	medium3
+QVGVN010AC	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen1 ; colour ; Rosa wichurana ; extract2 ; medium1	QVGVNENTITY-2	AUXILLARY_BUD						gen1	colour	Rosa wichurana	extract2	medium1
+QVGVN011AK	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen1 ; colour ; Rosa wichurana ; extract2 ; medium2	QVGVNENTITY-2	AUXILLARY_BUD						gen1	colour	Rosa wichurana	extract2	medium2
+QVGVN012AS	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen1 ; colour ; Rosa wichurana ; extract2 ; medium3	QVGVNENTITY-2	AUXILLARY_BUD						gen1	colour	Rosa wichurana	extract2	medium3
+QVGVN013A2	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen1 ; colour ; Escherichia coli ; extract1 ; medium1	QVGVNENTITY-3	AUXILLARY_BUD						gen1	colour	Escherichia coli	extract1	medium1
+QVGVN014AA	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen1 ; colour ; Escherichia coli ; extract1 ; medium2	QVGVNENTITY-3	AUXILLARY_BUD						gen1	colour	Escherichia coli	extract1	medium2
+QVGVN015AI	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen1 ; colour ; Escherichia coli ; extract1 ; medium3	QVGVNENTITY-3	AUXILLARY_BUD						gen1	colour	Escherichia coli	extract1	medium3
+QVGVN016AQ	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen1 ; colour ; Escherichia coli ; extract2 ; medium1	QVGVNENTITY-3	AUXILLARY_BUD						gen1	colour	Escherichia coli	extract2	medium1
+QVGVN017A0	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen1 ; colour ; Escherichia coli ; extract2 ; medium2	QVGVNENTITY-3	AUXILLARY_BUD						gen1	colour	Escherichia coli	extract2	medium2
+QVGVN018A8	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen1 ; colour ; Escherichia coli ; extract2 ; medium3	QVGVNENTITY-3	AUXILLARY_BUD						gen1	colour	Escherichia coli	extract2	medium3
+QVGVN019AG	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen1 ; colour ; Brassica oleracea var. viridis ; extract1 ; medium1	QVGVNENTITY-4	AUXILLARY_BUD						gen1	colour	Brassica oleracea var. viridis	extract1	medium1
+QVGVN020AJ	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen1 ; colour ; Brassica oleracea var. viridis ; extract1 ; medium2	QVGVNENTITY-4	AUXILLARY_BUD						gen1	colour	Brassica oleracea var. viridis	extract1	medium2
+QVGVN021AR	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen1 ; colour ; Brassica oleracea var. viridis ; extract1 ; medium3	QVGVNENTITY-4	AUXILLARY_BUD						gen1	colour	Brassica oleracea var. viridis	extract1	medium3
+QVGVN022A1	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen1 ; colour ; Brassica oleracea var. viridis ; extract2 ; medium1	QVGVNENTITY-4	AUXILLARY_BUD						gen1	colour	Brassica oleracea var. viridis	extract2	medium1
+QVGVN023A9	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen1 ; colour ; Brassica oleracea var. viridis ; extract2 ; medium2	QVGVNENTITY-4	AUXILLARY_BUD						gen1	colour	Brassica oleracea var. viridis	extract2	medium2
+QVGVN024AH	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen1 ; colour ; Brassica oleracea var. viridis ; extract2 ; medium3	QVGVNENTITY-4	AUXILLARY_BUD						gen1	colour	Brassica oleracea var. viridis	extract2	medium3
+QVGVN025AP	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen1 ; volume ; Cavia aperea ; extract1 ; medium1	QVGVNENTITY-5	AUXILLARY_BUD						gen1	volume	Cavia aperea	extract1	medium1
+QVGVN026AX	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen1 ; volume ; Cavia aperea ; extract1 ; medium2	QVGVNENTITY-5	AUXILLARY_BUD						gen1	volume	Cavia aperea	extract1	medium2
+QVGVN027A7	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen1 ; volume ; Cavia aperea ; extract1 ; medium3	QVGVNENTITY-5	AUXILLARY_BUD						gen1	volume	Cavia aperea	extract1	medium3
+QVGVN028AF	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen1 ; volume ; Cavia aperea ; extract2 ; medium1	QVGVNENTITY-5	AUXILLARY_BUD						gen1	volume	Cavia aperea	extract2	medium1
+QVGVN029AN	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen1 ; volume ; Cavia aperea ; extract2 ; medium2	QVGVNENTITY-5	AUXILLARY_BUD						gen1	volume	Cavia aperea	extract2	medium2
+QVGVN030AQ	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen1 ; volume ; Cavia aperea ; extract2 ; medium3	QVGVNENTITY-5	AUXILLARY_BUD						gen1	volume	Cavia aperea	extract2	medium3
+QVGVN031A0	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen1 ; volume ; Rosa wichurana ; extract1 ; medium1	QVGVNENTITY-6	AUXILLARY_BUD						gen1	volume	Rosa wichurana	extract1	medium1
+QVGVN032A8	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen1 ; volume ; Rosa wichurana ; extract1 ; medium2	QVGVNENTITY-6	AUXILLARY_BUD						gen1	volume	Rosa wichurana	extract1	medium2
+QVGVN033AG	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen1 ; volume ; Rosa wichurana ; extract1 ; medium3	QVGVNENTITY-6	AUXILLARY_BUD						gen1	volume	Rosa wichurana	extract1	medium3
+QVGVN034AO	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen1 ; volume ; Rosa wichurana ; extract2 ; medium1	QVGVNENTITY-6	AUXILLARY_BUD						gen1	volume	Rosa wichurana	extract2	medium1
+QVGVN035AW	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen1 ; volume ; Rosa wichurana ; extract2 ; medium2	QVGVNENTITY-6	AUXILLARY_BUD						gen1	volume	Rosa wichurana	extract2	medium2
+QVGVN036A6	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen1 ; volume ; Rosa wichurana ; extract2 ; medium3	QVGVNENTITY-6	AUXILLARY_BUD						gen1	volume	Rosa wichurana	extract2	medium3
+QVGVN037AE	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen1 ; volume ; Escherichia coli ; extract1 ; medium1	QVGVNENTITY-7	AUXILLARY_BUD						gen1	volume	Escherichia coli	extract1	medium1
+QVGVN038AM	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen1 ; volume ; Escherichia coli ; extract1 ; medium2	QVGVNENTITY-7	AUXILLARY_BUD						gen1	volume	Escherichia coli	extract1	medium2
+QVGVN039AU	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen1 ; volume ; Escherichia coli ; extract1 ; medium3	QVGVNENTITY-7	AUXILLARY_BUD						gen1	volume	Escherichia coli	extract1	medium3
+QVGVN040AX	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen1 ; volume ; Escherichia coli ; extract2 ; medium1	QVGVNENTITY-7	AUXILLARY_BUD						gen1	volume	Escherichia coli	extract2	medium1
+QVGVN041A7	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen1 ; volume ; Escherichia coli ; extract2 ; medium2	QVGVNENTITY-7	AUXILLARY_BUD						gen1	volume	Escherichia coli	extract2	medium2
+QVGVN042AF	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen1 ; volume ; Escherichia coli ; extract2 ; medium3	QVGVNENTITY-7	AUXILLARY_BUD						gen1	volume	Escherichia coli	extract2	medium3
+QVGVN043AN	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen1 ; volume ; Brassica oleracea var. viridis ; extract1 ; medium1	QVGVNENTITY-8	AUXILLARY_BUD						gen1	volume	Brassica oleracea var. viridis	extract1	medium1
+QVGVN044AV	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen1 ; volume ; Brassica oleracea var. viridis ; extract1 ; medium2	QVGVNENTITY-8	AUXILLARY_BUD						gen1	volume	Brassica oleracea var. viridis	extract1	medium2
+QVGVN045A5	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen1 ; volume ; Brassica oleracea var. viridis ; extract1 ; medium3	QVGVNENTITY-8	AUXILLARY_BUD						gen1	volume	Brassica oleracea var. viridis	extract1	medium3
+QVGVN046AD	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen1 ; volume ; Brassica oleracea var. viridis ; extract2 ; medium1	QVGVNENTITY-8	AUXILLARY_BUD						gen1	volume	Brassica oleracea var. viridis	extract2	medium1
+QVGVN047AL	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen1 ; volume ; Brassica oleracea var. viridis ; extract2 ; medium2	QVGVNENTITY-8	AUXILLARY_BUD						gen1	volume	Brassica oleracea var. viridis	extract2	medium2
+QVGVN048AT	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen1 ; volume ; Brassica oleracea var. viridis ; extract2 ; medium3	QVGVNENTITY-8	AUXILLARY_BUD						gen1	volume	Brassica oleracea var. viridis	extract2	medium3
+QVGVN049A3	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen1 ; weigh ; Cavia aperea ; extract1 ; medium1	QVGVNENTITY-9	AUXILLARY_BUD						gen1	weigh	Cavia aperea	extract1	medium1
+QVGVN050A6	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen1 ; weigh ; Cavia aperea ; extract1 ; medium2	QVGVNENTITY-9	AUXILLARY_BUD						gen1	weigh	Cavia aperea	extract1	medium2
+QVGVN051AE	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen1 ; weigh ; Cavia aperea ; extract1 ; medium3	QVGVNENTITY-9	AUXILLARY_BUD						gen1	weigh	Cavia aperea	extract1	medium3
+QVGVN052AM	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen1 ; weigh ; Cavia aperea ; extract2 ; medium1	QVGVNENTITY-9	AUXILLARY_BUD						gen1	weigh	Cavia aperea	extract2	medium1
+QVGVN053AU	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen1 ; weigh ; Cavia aperea ; extract2 ; medium2	QVGVNENTITY-9	AUXILLARY_BUD						gen1	weigh	Cavia aperea	extract2	medium2
+QVGVN054A4	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen1 ; weigh ; Cavia aperea ; extract2 ; medium3	QVGVNENTITY-9	AUXILLARY_BUD						gen1	weigh	Cavia aperea	extract2	medium3
+QVGVN055AC	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen1 ; weigh ; Rosa wichurana ; extract1 ; medium1	QVGVNENTITY-10	AUXILLARY_BUD						gen1	weigh	Rosa wichurana	extract1	medium1
+QVGVN056AK	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen1 ; weigh ; Rosa wichurana ; extract1 ; medium2	QVGVNENTITY-10	AUXILLARY_BUD						gen1	weigh	Rosa wichurana	extract1	medium2
+QVGVN057AS	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen1 ; weigh ; Rosa wichurana ; extract1 ; medium3	QVGVNENTITY-10	AUXILLARY_BUD						gen1	weigh	Rosa wichurana	extract1	medium3
+QVGVN058A2	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen1 ; weigh ; Rosa wichurana ; extract2 ; medium1	QVGVNENTITY-10	AUXILLARY_BUD						gen1	weigh	Rosa wichurana	extract2	medium1
+QVGVN059AA	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen1 ; weigh ; Rosa wichurana ; extract2 ; medium2	QVGVNENTITY-10	AUXILLARY_BUD						gen1	weigh	Rosa wichurana	extract2	medium2
+QVGVN060AD	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen1 ; weigh ; Rosa wichurana ; extract2 ; medium3	QVGVNENTITY-10	AUXILLARY_BUD						gen1	weigh	Rosa wichurana	extract2	medium3
+QVGVN061AL	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen1 ; weigh ; Escherichia coli ; extract1 ; medium1	QVGVNENTITY-11	AUXILLARY_BUD						gen1	weigh	Escherichia coli	extract1	medium1
+QVGVN062AT	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen1 ; weigh ; Escherichia coli ; extract1 ; medium2	QVGVNENTITY-11	AUXILLARY_BUD						gen1	weigh	Escherichia coli	extract1	medium2
+QVGVN063A3	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen1 ; weigh ; Escherichia coli ; extract1 ; medium3	QVGVNENTITY-11	AUXILLARY_BUD						gen1	weigh	Escherichia coli	extract1	medium3
+QVGVN064AB	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen1 ; weigh ; Escherichia coli ; extract2 ; medium1	QVGVNENTITY-11	AUXILLARY_BUD						gen1	weigh	Escherichia coli	extract2	medium1
+QVGVN065AJ	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen1 ; weigh ; Escherichia coli ; extract2 ; medium2	QVGVNENTITY-11	AUXILLARY_BUD						gen1	weigh	Escherichia coli	extract2	medium2
+QVGVN066AR	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen1 ; weigh ; Escherichia coli ; extract2 ; medium3	QVGVNENTITY-11	AUXILLARY_BUD						gen1	weigh	Escherichia coli	extract2	medium3
+QVGVN067A1	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen1 ; weigh ; Brassica oleracea var. viridis ; extract1 ; medium1	QVGVNENTITY-12	AUXILLARY_BUD						gen1	weigh	Brassica oleracea var. viridis	extract1	medium1
+QVGVN068A9	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen1 ; weigh ; Brassica oleracea var. viridis ; extract1 ; medium2	QVGVNENTITY-12	AUXILLARY_BUD						gen1	weigh	Brassica oleracea var. viridis	extract1	medium2
+QVGVN069AH	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen1 ; weigh ; Brassica oleracea var. viridis ; extract1 ; medium3	QVGVNENTITY-12	AUXILLARY_BUD						gen1	weigh	Brassica oleracea var. viridis	extract1	medium3
+QVGVN070AK	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen1 ; weigh ; Brassica oleracea var. viridis ; extract2 ; medium1	QVGVNENTITY-12	AUXILLARY_BUD						gen1	weigh	Brassica oleracea var. viridis	extract2	medium1
+QVGVN071AS	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen1 ; weigh ; Brassica oleracea var. viridis ; extract2 ; medium2	QVGVNENTITY-12	AUXILLARY_BUD						gen1	weigh	Brassica oleracea var. viridis	extract2	medium2
+QVGVN072A2	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen1 ; weigh ; Brassica oleracea var. viridis ; extract2 ; medium3	QVGVNENTITY-12	AUXILLARY_BUD						gen1	weigh	Brassica oleracea var. viridis	extract2	medium3
+QVGVN073AA	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen2 ; colour ; Cavia aperea ; extract1 ; medium1	QVGVNENTITY-13	AUXILLARY_BUD						gen2	colour	Cavia aperea	extract1	medium1
+QVGVN074AI	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen2 ; colour ; Cavia aperea ; extract1 ; medium2	QVGVNENTITY-13	AUXILLARY_BUD						gen2	colour	Cavia aperea	extract1	medium2
+QVGVN075AQ	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen2 ; colour ; Cavia aperea ; extract1 ; medium3	QVGVNENTITY-13	AUXILLARY_BUD						gen2	colour	Cavia aperea	extract1	medium3
+QVGVN076A0	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen2 ; colour ; Cavia aperea ; extract2 ; medium1	QVGVNENTITY-13	AUXILLARY_BUD						gen2	colour	Cavia aperea	extract2	medium1
+QVGVN077A8	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen2 ; colour ; Cavia aperea ; extract2 ; medium2	QVGVNENTITY-13	AUXILLARY_BUD						gen2	colour	Cavia aperea	extract2	medium2
+QVGVN078AG	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen2 ; colour ; Cavia aperea ; extract2 ; medium3	QVGVNENTITY-13	AUXILLARY_BUD						gen2	colour	Cavia aperea	extract2	medium3
+QVGVN079AO	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen2 ; colour ; Rosa wichurana ; extract1 ; medium1	QVGVNENTITY-14	AUXILLARY_BUD						gen2	colour	Rosa wichurana	extract1	medium1
+QVGVN080AR	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen2 ; colour ; Rosa wichurana ; extract1 ; medium2	QVGVNENTITY-14	AUXILLARY_BUD						gen2	colour	Rosa wichurana	extract1	medium2
+QVGVN081A1	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen2 ; colour ; Rosa wichurana ; extract1 ; medium3	QVGVNENTITY-14	AUXILLARY_BUD						gen2	colour	Rosa wichurana	extract1	medium3
+QVGVN082A9	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen2 ; colour ; Rosa wichurana ; extract2 ; medium1	QVGVNENTITY-14	AUXILLARY_BUD						gen2	colour	Rosa wichurana	extract2	medium1
+QVGVN083AH	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen2 ; colour ; Rosa wichurana ; extract2 ; medium2	QVGVNENTITY-14	AUXILLARY_BUD						gen2	colour	Rosa wichurana	extract2	medium2
+QVGVN084AP	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen2 ; colour ; Rosa wichurana ; extract2 ; medium3	QVGVNENTITY-14	AUXILLARY_BUD						gen2	colour	Rosa wichurana	extract2	medium3
+QVGVN085AX	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen2 ; colour ; Escherichia coli ; extract1 ; medium1	QVGVNENTITY-15	AUXILLARY_BUD						gen2	colour	Escherichia coli	extract1	medium1
+QVGVN086A7	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen2 ; colour ; Escherichia coli ; extract1 ; medium2	QVGVNENTITY-15	AUXILLARY_BUD						gen2	colour	Escherichia coli	extract1	medium2
+QVGVN087AF	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen2 ; colour ; Escherichia coli ; extract1 ; medium3	QVGVNENTITY-15	AUXILLARY_BUD						gen2	colour	Escherichia coli	extract1	medium3
+QVGVN088AN	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen2 ; colour ; Escherichia coli ; extract2 ; medium1	QVGVNENTITY-15	AUXILLARY_BUD						gen2	colour	Escherichia coli	extract2	medium1
+QVGVN089AV	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen2 ; colour ; Escherichia coli ; extract2 ; medium2	QVGVNENTITY-15	AUXILLARY_BUD						gen2	colour	Escherichia coli	extract2	medium2
+QVGVN090A0	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen2 ; colour ; Escherichia coli ; extract2 ; medium3	QVGVNENTITY-15	AUXILLARY_BUD						gen2	colour	Escherichia coli	extract2	medium3
+QVGVN091A8	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen2 ; colour ; Brassica oleracea var. viridis ; extract1 ; medium1	QVGVNENTITY-16	AUXILLARY_BUD						gen2	colour	Brassica oleracea var. viridis	extract1	medium1
+QVGVN092AG	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen2 ; colour ; Brassica oleracea var. viridis ; extract1 ; medium2	QVGVNENTITY-16	AUXILLARY_BUD						gen2	colour	Brassica oleracea var. viridis	extract1	medium2
+QVGVN093AO	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen2 ; colour ; Brassica oleracea var. viridis ; extract1 ; medium3	QVGVNENTITY-16	AUXILLARY_BUD						gen2	colour	Brassica oleracea var. viridis	extract1	medium3
+QVGVN094AW	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen2 ; colour ; Brassica oleracea var. viridis ; extract2 ; medium1	QVGVNENTITY-16	AUXILLARY_BUD						gen2	colour	Brassica oleracea var. viridis	extract2	medium1
+QVGVN095A6	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen2 ; colour ; Brassica oleracea var. viridis ; extract2 ; medium2	QVGVNENTITY-16	AUXILLARY_BUD						gen2	colour	Brassica oleracea var. viridis	extract2	medium2
+QVGVN096AE	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen2 ; colour ; Brassica oleracea var. viridis ; extract2 ; medium3	QVGVNENTITY-16	AUXILLARY_BUD						gen2	colour	Brassica oleracea var. viridis	extract2	medium3
+QVGVN097AM	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen2 ; volume ; Cavia aperea ; extract1 ; medium1	QVGVNENTITY-17	AUXILLARY_BUD						gen2	volume	Cavia aperea	extract1	medium1
+QVGVN098AU	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen2 ; volume ; Cavia aperea ; extract1 ; medium2	QVGVNENTITY-17	AUXILLARY_BUD						gen2	volume	Cavia aperea	extract1	medium2
+QVGVN099A4	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen2 ; volume ; Cavia aperea ; extract1 ; medium3	QVGVNENTITY-17	AUXILLARY_BUD						gen2	volume	Cavia aperea	extract1	medium3
+QVGVN100AB	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen2 ; volume ; Cavia aperea ; extract2 ; medium1	QVGVNENTITY-17	AUXILLARY_BUD						gen2	volume	Cavia aperea	extract2	medium1
+QVGVN101AJ	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen2 ; volume ; Cavia aperea ; extract2 ; medium2	QVGVNENTITY-17	AUXILLARY_BUD						gen2	volume	Cavia aperea	extract2	medium2
+QVGVN102AR	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen2 ; volume ; Cavia aperea ; extract2 ; medium3	QVGVNENTITY-17	AUXILLARY_BUD						gen2	volume	Cavia aperea	extract2	medium3
+QVGVN103A1	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen2 ; volume ; Rosa wichurana ; extract1 ; medium1	QVGVNENTITY-18	AUXILLARY_BUD						gen2	volume	Rosa wichurana	extract1	medium1
+QVGVN104A9	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen2 ; volume ; Rosa wichurana ; extract1 ; medium2	QVGVNENTITY-18	AUXILLARY_BUD						gen2	volume	Rosa wichurana	extract1	medium2
+QVGVN105AH	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen2 ; volume ; Rosa wichurana ; extract1 ; medium3	QVGVNENTITY-18	AUXILLARY_BUD						gen2	volume	Rosa wichurana	extract1	medium3
+QVGVN106AP	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen2 ; volume ; Rosa wichurana ; extract2 ; medium1	QVGVNENTITY-18	AUXILLARY_BUD						gen2	volume	Rosa wichurana	extract2	medium1
+QVGVN107AX	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen2 ; volume ; Rosa wichurana ; extract2 ; medium2	QVGVNENTITY-18	AUXILLARY_BUD						gen2	volume	Rosa wichurana	extract2	medium2
+QVGVN108A7	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen2 ; volume ; Rosa wichurana ; extract2 ; medium3	QVGVNENTITY-18	AUXILLARY_BUD						gen2	volume	Rosa wichurana	extract2	medium3
+QVGVN109AF	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen2 ; volume ; Escherichia coli ; extract1 ; medium1	QVGVNENTITY-19	AUXILLARY_BUD						gen2	volume	Escherichia coli	extract1	medium1
+QVGVN110AI	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen2 ; volume ; Escherichia coli ; extract1 ; medium2	QVGVNENTITY-19	AUXILLARY_BUD						gen2	volume	Escherichia coli	extract1	medium2
+QVGVN111AQ	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen2 ; volume ; Escherichia coli ; extract1 ; medium3	QVGVNENTITY-19	AUXILLARY_BUD						gen2	volume	Escherichia coli	extract1	medium3
+QVGVN112A0	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen2 ; volume ; Escherichia coli ; extract2 ; medium1	QVGVNENTITY-19	AUXILLARY_BUD						gen2	volume	Escherichia coli	extract2	medium1
+QVGVN113A8	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen2 ; volume ; Escherichia coli ; extract2 ; medium2	QVGVNENTITY-19	AUXILLARY_BUD						gen2	volume	Escherichia coli	extract2	medium2
+QVGVN114AG	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen2 ; volume ; Escherichia coli ; extract2 ; medium3	QVGVNENTITY-19	AUXILLARY_BUD						gen2	volume	Escherichia coli	extract2	medium3
+QVGVN115AO	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen2 ; volume ; Brassica oleracea var. viridis ; extract1 ; medium1	QVGVNENTITY-20	AUXILLARY_BUD						gen2	volume	Brassica oleracea var. viridis	extract1	medium1
+QVGVN116AW	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen2 ; volume ; Brassica oleracea var. viridis ; extract1 ; medium2	QVGVNENTITY-20	AUXILLARY_BUD						gen2	volume	Brassica oleracea var. viridis	extract1	medium2
+QVGVN117A6	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen2 ; volume ; Brassica oleracea var. viridis ; extract1 ; medium3	QVGVNENTITY-20	AUXILLARY_BUD						gen2	volume	Brassica oleracea var. viridis	extract1	medium3
+QVGVN118AE	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen2 ; volume ; Brassica oleracea var. viridis ; extract2 ; medium1	QVGVNENTITY-20	AUXILLARY_BUD						gen2	volume	Brassica oleracea var. viridis	extract2	medium1
+QVGVN119AM	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen2 ; volume ; Brassica oleracea var. viridis ; extract2 ; medium2	QVGVNENTITY-20	AUXILLARY_BUD						gen2	volume	Brassica oleracea var. viridis	extract2	medium2
+QVGVN120AP	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen2 ; volume ; Brassica oleracea var. viridis ; extract2 ; medium3	QVGVNENTITY-20	AUXILLARY_BUD						gen2	volume	Brassica oleracea var. viridis	extract2	medium3
+QVGVN121AX	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen2 ; weigh ; Cavia aperea ; extract1 ; medium1	QVGVNENTITY-21	AUXILLARY_BUD						gen2	weigh	Cavia aperea	extract1	medium1
+QVGVN122A7	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen2 ; weigh ; Cavia aperea ; extract1 ; medium2	QVGVNENTITY-21	AUXILLARY_BUD						gen2	weigh	Cavia aperea	extract1	medium2
+QVGVN123AF	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen2 ; weigh ; Cavia aperea ; extract1 ; medium3	QVGVNENTITY-21	AUXILLARY_BUD						gen2	weigh	Cavia aperea	extract1	medium3
+QVGVN124AN	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen2 ; weigh ; Cavia aperea ; extract2 ; medium1	QVGVNENTITY-21	AUXILLARY_BUD						gen2	weigh	Cavia aperea	extract2	medium1
+QVGVN125AV	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen2 ; weigh ; Cavia aperea ; extract2 ; medium2	QVGVNENTITY-21	AUXILLARY_BUD						gen2	weigh	Cavia aperea	extract2	medium2
+QVGVN126A5	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen2 ; weigh ; Cavia aperea ; extract2 ; medium3	QVGVNENTITY-21	AUXILLARY_BUD						gen2	weigh	Cavia aperea	extract2	medium3
+QVGVN127AD	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen2 ; weigh ; Rosa wichurana ; extract1 ; medium1	QVGVNENTITY-22	AUXILLARY_BUD						gen2	weigh	Rosa wichurana	extract1	medium1
+QVGVN128AL	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen2 ; weigh ; Rosa wichurana ; extract1 ; medium2	QVGVNENTITY-22	AUXILLARY_BUD						gen2	weigh	Rosa wichurana	extract1	medium2
+QVGVN129AT	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen2 ; weigh ; Rosa wichurana ; extract1 ; medium3	QVGVNENTITY-22	AUXILLARY_BUD						gen2	weigh	Rosa wichurana	extract1	medium3
+QVGVN130AW	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen2 ; weigh ; Rosa wichurana ; extract2 ; medium1	QVGVNENTITY-22	AUXILLARY_BUD						gen2	weigh	Rosa wichurana	extract2	medium1
+QVGVN131A6	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen2 ; weigh ; Rosa wichurana ; extract2 ; medium2	QVGVNENTITY-22	AUXILLARY_BUD						gen2	weigh	Rosa wichurana	extract2	medium2
+QVGVN132AE	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen2 ; weigh ; Rosa wichurana ; extract2 ; medium3	QVGVNENTITY-22	AUXILLARY_BUD						gen2	weigh	Rosa wichurana	extract2	medium3
+QVGVN133AM	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen2 ; weigh ; Escherichia coli ; extract1 ; medium1	QVGVNENTITY-23	AUXILLARY_BUD						gen2	weigh	Escherichia coli	extract1	medium1
+QVGVN134AU	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen2 ; weigh ; Escherichia coli ; extract1 ; medium2	QVGVNENTITY-23	AUXILLARY_BUD						gen2	weigh	Escherichia coli	extract1	medium2
+QVGVN135A4	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen2 ; weigh ; Escherichia coli ; extract1 ; medium3	QVGVNENTITY-23	AUXILLARY_BUD						gen2	weigh	Escherichia coli	extract1	medium3
+QVGVN136AC	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen2 ; weigh ; Escherichia coli ; extract2 ; medium1	QVGVNENTITY-23	AUXILLARY_BUD						gen2	weigh	Escherichia coli	extract2	medium1
+QVGVN137AK	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen2 ; weigh ; Escherichia coli ; extract2 ; medium2	QVGVNENTITY-23	AUXILLARY_BUD						gen2	weigh	Escherichia coli	extract2	medium2
+QVGVN138AS	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen2 ; weigh ; Escherichia coli ; extract2 ; medium3	QVGVNENTITY-23	AUXILLARY_BUD						gen2	weigh	Escherichia coli	extract2	medium3
+QVGVN139A2	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen2 ; weigh ; Brassica oleracea var. viridis ; extract1 ; medium1	QVGVNENTITY-24	AUXILLARY_BUD						gen2	weigh	Brassica oleracea var. viridis	extract1	medium1
+QVGVN140A5	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen2 ; weigh ; Brassica oleracea var. viridis ; extract1 ; medium2	QVGVNENTITY-24	AUXILLARY_BUD						gen2	weigh	Brassica oleracea var. viridis	extract1	medium2
+QVGVN141AD	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen2 ; weigh ; Brassica oleracea var. viridis ; extract1 ; medium3	QVGVNENTITY-24	AUXILLARY_BUD						gen2	weigh	Brassica oleracea var. viridis	extract1	medium3
+QVGVN142AL	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen2 ; weigh ; Brassica oleracea var. viridis ; extract2 ; medium1	QVGVNENTITY-24	AUXILLARY_BUD						gen2	weigh	Brassica oleracea var. viridis	extract2	medium1
+QVGVN143AT	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen2 ; weigh ; Brassica oleracea var. viridis ; extract2 ; medium2	QVGVNENTITY-24	AUXILLARY_BUD						gen2	weigh	Brassica oleracea var. viridis	extract2	medium2
+QVGVN144A3	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen2 ; weigh ; Brassica oleracea var. viridis ; extract2 ; medium3	QVGVNENTITY-24	AUXILLARY_BUD						gen2	weigh	Brassica oleracea var. viridis	extract2	medium3
+QVGVN145AB	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen3 ; colour ; Cavia aperea ; extract1 ; medium1	QVGVNENTITY-25	AUXILLARY_BUD						gen3	colour	Cavia aperea	extract1	medium1
+QVGVN146AJ	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen3 ; colour ; Cavia aperea ; extract1 ; medium2	QVGVNENTITY-25	AUXILLARY_BUD						gen3	colour	Cavia aperea	extract1	medium2
+QVGVN147AR	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen3 ; colour ; Cavia aperea ; extract1 ; medium3	QVGVNENTITY-25	AUXILLARY_BUD						gen3	colour	Cavia aperea	extract1	medium3
+QVGVN148A1	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen3 ; colour ; Cavia aperea ; extract2 ; medium1	QVGVNENTITY-25	AUXILLARY_BUD						gen3	colour	Cavia aperea	extract2	medium1
+QVGVN149A9	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen3 ; colour ; Cavia aperea ; extract2 ; medium2	QVGVNENTITY-25	AUXILLARY_BUD						gen3	colour	Cavia aperea	extract2	medium2
+QVGVN150AC	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen3 ; colour ; Cavia aperea ; extract2 ; medium3	QVGVNENTITY-25	AUXILLARY_BUD						gen3	colour	Cavia aperea	extract2	medium3
+QVGVN151AK	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen3 ; colour ; Rosa wichurana ; extract1 ; medium1	QVGVNENTITY-26	AUXILLARY_BUD						gen3	colour	Rosa wichurana	extract1	medium1
+QVGVN152AS	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen3 ; colour ; Rosa wichurana ; extract1 ; medium2	QVGVNENTITY-26	AUXILLARY_BUD						gen3	colour	Rosa wichurana	extract1	medium2
+QVGVN153A2	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen3 ; colour ; Rosa wichurana ; extract1 ; medium3	QVGVNENTITY-26	AUXILLARY_BUD						gen3	colour	Rosa wichurana	extract1	medium3
+QVGVN154AA	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen3 ; colour ; Rosa wichurana ; extract2 ; medium1	QVGVNENTITY-26	AUXILLARY_BUD						gen3	colour	Rosa wichurana	extract2	medium1
+QVGVN155AI	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen3 ; colour ; Rosa wichurana ; extract2 ; medium2	QVGVNENTITY-26	AUXILLARY_BUD						gen3	colour	Rosa wichurana	extract2	medium2
+QVGVN156AQ	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen3 ; colour ; Rosa wichurana ; extract2 ; medium3	QVGVNENTITY-26	AUXILLARY_BUD						gen3	colour	Rosa wichurana	extract2	medium3
+QVGVN157A0	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen3 ; colour ; Escherichia coli ; extract1 ; medium1	QVGVNENTITY-27	AUXILLARY_BUD						gen3	colour	Escherichia coli	extract1	medium1
+QVGVN158A8	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen3 ; colour ; Escherichia coli ; extract1 ; medium2	QVGVNENTITY-27	AUXILLARY_BUD						gen3	colour	Escherichia coli	extract1	medium2
+QVGVN159AG	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen3 ; colour ; Escherichia coli ; extract1 ; medium3	QVGVNENTITY-27	AUXILLARY_BUD						gen3	colour	Escherichia coli	extract1	medium3
+QVGVN160AJ	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen3 ; colour ; Escherichia coli ; extract2 ; medium1	QVGVNENTITY-27	AUXILLARY_BUD						gen3	colour	Escherichia coli	extract2	medium1
+QVGVN161AR	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen3 ; colour ; Escherichia coli ; extract2 ; medium2	QVGVNENTITY-27	AUXILLARY_BUD						gen3	colour	Escherichia coli	extract2	medium2
+QVGVN162A1	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen3 ; colour ; Escherichia coli ; extract2 ; medium3	QVGVNENTITY-27	AUXILLARY_BUD						gen3	colour	Escherichia coli	extract2	medium3
+QVGVN163A9	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen3 ; colour ; Brassica oleracea var. viridis ; extract1 ; medium1	QVGVNENTITY-28	AUXILLARY_BUD						gen3	colour	Brassica oleracea var. viridis	extract1	medium1
+QVGVN164AH	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen3 ; colour ; Brassica oleracea var. viridis ; extract1 ; medium2	QVGVNENTITY-28	AUXILLARY_BUD						gen3	colour	Brassica oleracea var. viridis	extract1	medium2
+QVGVN165AP	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen3 ; colour ; Brassica oleracea var. viridis ; extract1 ; medium3	QVGVNENTITY-28	AUXILLARY_BUD						gen3	colour	Brassica oleracea var. viridis	extract1	medium3
+QVGVN166AX	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen3 ; colour ; Brassica oleracea var. viridis ; extract2 ; medium1	QVGVNENTITY-28	AUXILLARY_BUD						gen3	colour	Brassica oleracea var. viridis	extract2	medium1
+QVGVN167A7	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen3 ; colour ; Brassica oleracea var. viridis ; extract2 ; medium2	QVGVNENTITY-28	AUXILLARY_BUD						gen3	colour	Brassica oleracea var. viridis	extract2	medium2
+QVGVN168AF	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen3 ; colour ; Brassica oleracea var. viridis ; extract2 ; medium3	QVGVNENTITY-28	AUXILLARY_BUD						gen3	colour	Brassica oleracea var. viridis	extract2	medium3
+QVGVN169AN	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen3 ; volume ; Cavia aperea ; extract1 ; medium1	QVGVNENTITY-29	AUXILLARY_BUD						gen3	volume	Cavia aperea	extract1	medium1
+QVGVN170AQ	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen3 ; volume ; Cavia aperea ; extract1 ; medium2	QVGVNENTITY-29	AUXILLARY_BUD						gen3	volume	Cavia aperea	extract1	medium2
+QVGVN171A0	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen3 ; volume ; Cavia aperea ; extract1 ; medium3	QVGVNENTITY-29	AUXILLARY_BUD						gen3	volume	Cavia aperea	extract1	medium3
+QVGVN172A8	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen3 ; volume ; Cavia aperea ; extract2 ; medium1	QVGVNENTITY-29	AUXILLARY_BUD						gen3	volume	Cavia aperea	extract2	medium1
+QVGVN173AG	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen3 ; volume ; Cavia aperea ; extract2 ; medium2	QVGVNENTITY-29	AUXILLARY_BUD						gen3	volume	Cavia aperea	extract2	medium2
+QVGVN174AO	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen3 ; volume ; Cavia aperea ; extract2 ; medium3	QVGVNENTITY-29	AUXILLARY_BUD						gen3	volume	Cavia aperea	extract2	medium3
+QVGVN175AW	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen3 ; volume ; Rosa wichurana ; extract1 ; medium1	QVGVNENTITY-30	AUXILLARY_BUD						gen3	volume	Rosa wichurana	extract1	medium1
+QVGVN176A6	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen3 ; volume ; Rosa wichurana ; extract1 ; medium2	QVGVNENTITY-30	AUXILLARY_BUD						gen3	volume	Rosa wichurana	extract1	medium2
+QVGVN177AE	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen3 ; volume ; Rosa wichurana ; extract1 ; medium3	QVGVNENTITY-30	AUXILLARY_BUD						gen3	volume	Rosa wichurana	extract1	medium3
+QVGVN178AM	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen3 ; volume ; Rosa wichurana ; extract2 ; medium1	QVGVNENTITY-30	AUXILLARY_BUD						gen3	volume	Rosa wichurana	extract2	medium1
+QVGVN179AU	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen3 ; volume ; Rosa wichurana ; extract2 ; medium2	QVGVNENTITY-30	AUXILLARY_BUD						gen3	volume	Rosa wichurana	extract2	medium2
+QVGVN180AX	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen3 ; volume ; Rosa wichurana ; extract2 ; medium3	QVGVNENTITY-30	AUXILLARY_BUD						gen3	volume	Rosa wichurana	extract2	medium3
+QVGVN181A7	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen3 ; volume ; Escherichia coli ; extract1 ; medium1	QVGVNENTITY-31	AUXILLARY_BUD						gen3	volume	Escherichia coli	extract1	medium1
+QVGVN182AF	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen3 ; volume ; Escherichia coli ; extract1 ; medium2	QVGVNENTITY-31	AUXILLARY_BUD						gen3	volume	Escherichia coli	extract1	medium2
+QVGVN183AN	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen3 ; volume ; Escherichia coli ; extract1 ; medium3	QVGVNENTITY-31	AUXILLARY_BUD						gen3	volume	Escherichia coli	extract1	medium3
+QVGVN184AV	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen3 ; volume ; Escherichia coli ; extract2 ; medium1	QVGVNENTITY-31	AUXILLARY_BUD						gen3	volume	Escherichia coli	extract2	medium1
+QVGVN185A5	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen3 ; volume ; Escherichia coli ; extract2 ; medium2	QVGVNENTITY-31	AUXILLARY_BUD						gen3	volume	Escherichia coli	extract2	medium2
+QVGVN186AD	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen3 ; volume ; Escherichia coli ; extract2 ; medium3	QVGVNENTITY-31	AUXILLARY_BUD						gen3	volume	Escherichia coli	extract2	medium3
+QVGVN187AL	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen3 ; volume ; Brassica oleracea var. viridis ; extract1 ; medium1	QVGVNENTITY-32	AUXILLARY_BUD						gen3	volume	Brassica oleracea var. viridis	extract1	medium1
+QVGVN188AT	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen3 ; volume ; Brassica oleracea var. viridis ; extract1 ; medium2	QVGVNENTITY-32	AUXILLARY_BUD						gen3	volume	Brassica oleracea var. viridis	extract1	medium2
+QVGVN189A3	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen3 ; volume ; Brassica oleracea var. viridis ; extract1 ; medium3	QVGVNENTITY-32	AUXILLARY_BUD						gen3	volume	Brassica oleracea var. viridis	extract1	medium3
+QVGVN190A6	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen3 ; volume ; Brassica oleracea var. viridis ; extract2 ; medium1	QVGVNENTITY-32	AUXILLARY_BUD						gen3	volume	Brassica oleracea var. viridis	extract2	medium1
+QVGVN191AE	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen3 ; volume ; Brassica oleracea var. viridis ; extract2 ; medium2	QVGVNENTITY-32	AUXILLARY_BUD						gen3	volume	Brassica oleracea var. viridis	extract2	medium2
+QVGVN192AM	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen3 ; volume ; Brassica oleracea var. viridis ; extract2 ; medium3	QVGVNENTITY-32	AUXILLARY_BUD						gen3	volume	Brassica oleracea var. viridis	extract2	medium3
+QVGVN193AU	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen3 ; weigh ; Cavia aperea ; extract1 ; medium1	QVGVNENTITY-33	AUXILLARY_BUD						gen3	weigh	Cavia aperea	extract1	medium1
+QVGVN194A4	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen3 ; weigh ; Cavia aperea ; extract1 ; medium2	QVGVNENTITY-33	AUXILLARY_BUD						gen3	weigh	Cavia aperea	extract1	medium2
+QVGVN195AC	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen3 ; weigh ; Cavia aperea ; extract1 ; medium3	QVGVNENTITY-33	AUXILLARY_BUD						gen3	weigh	Cavia aperea	extract1	medium3
+QVGVN196AK	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen3 ; weigh ; Cavia aperea ; extract2 ; medium1	QVGVNENTITY-33	AUXILLARY_BUD						gen3	weigh	Cavia aperea	extract2	medium1
+QVGVN197AS	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen3 ; weigh ; Cavia aperea ; extract2 ; medium2	QVGVNENTITY-33	AUXILLARY_BUD						gen3	weigh	Cavia aperea	extract2	medium2
+QVGVN198A2	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen3 ; weigh ; Cavia aperea ; extract2 ; medium3	QVGVNENTITY-33	AUXILLARY_BUD						gen3	weigh	Cavia aperea	extract2	medium3
+QVGVN199AA	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen3 ; weigh ; Rosa wichurana ; extract1 ; medium1	QVGVNENTITY-34	AUXILLARY_BUD						gen3	weigh	Rosa wichurana	extract1	medium1
+QVGVN200AH	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen3 ; weigh ; Rosa wichurana ; extract1 ; medium2	QVGVNENTITY-34	AUXILLARY_BUD						gen3	weigh	Rosa wichurana	extract1	medium2
+QVGVN201AP	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen3 ; weigh ; Rosa wichurana ; extract1 ; medium3	QVGVNENTITY-34	AUXILLARY_BUD						gen3	weigh	Rosa wichurana	extract1	medium3
+QVGVN202AX	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen3 ; weigh ; Rosa wichurana ; extract2 ; medium1	QVGVNENTITY-34	AUXILLARY_BUD						gen3	weigh	Rosa wichurana	extract2	medium1
+QVGVN203A7	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen3 ; weigh ; Rosa wichurana ; extract2 ; medium2	QVGVNENTITY-34	AUXILLARY_BUD						gen3	weigh	Rosa wichurana	extract2	medium2
+QVGVN204AF	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen3 ; weigh ; Rosa wichurana ; extract2 ; medium3	QVGVNENTITY-34	AUXILLARY_BUD						gen3	weigh	Rosa wichurana	extract2	medium3
+QVGVN205AN	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen3 ; weigh ; Escherichia coli ; extract1 ; medium1	QVGVNENTITY-35	AUXILLARY_BUD						gen3	weigh	Escherichia coli	extract1	medium1
+QVGVN206AV	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen3 ; weigh ; Escherichia coli ; extract1 ; medium2	QVGVNENTITY-35	AUXILLARY_BUD						gen3	weigh	Escherichia coli	extract1	medium2
+QVGVN207A5	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen3 ; weigh ; Escherichia coli ; extract1 ; medium3	QVGVNENTITY-35	AUXILLARY_BUD						gen3	weigh	Escherichia coli	extract1	medium3
+QVGVN208AD	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen3 ; weigh ; Escherichia coli ; extract2 ; medium1	QVGVNENTITY-35	AUXILLARY_BUD						gen3	weigh	Escherichia coli	extract2	medium1
+QVGVN209AL	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen3 ; weigh ; Escherichia coli ; extract2 ; medium2	QVGVNENTITY-35	AUXILLARY_BUD						gen3	weigh	Escherichia coli	extract2	medium2
+QVGVN210AO	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen3 ; weigh ; Escherichia coli ; extract2 ; medium3	QVGVNENTITY-35	AUXILLARY_BUD						gen3	weigh	Escherichia coli	extract2	medium3
+QVGVN211AW	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen3 ; weigh ; Brassica oleracea var. viridis ; extract1 ; medium1	QVGVNENTITY-36	AUXILLARY_BUD						gen3	weigh	Brassica oleracea var. viridis	extract1	medium1
+QVGVN212A6	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen3 ; weigh ; Brassica oleracea var. viridis ; extract1 ; medium2	QVGVNENTITY-36	AUXILLARY_BUD						gen3	weigh	Brassica oleracea var. viridis	extract1	medium2
+QVGVN213AE	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen3 ; weigh ; Brassica oleracea var. viridis ; extract1 ; medium3	QVGVNENTITY-36	AUXILLARY_BUD						gen3	weigh	Brassica oleracea var. viridis	extract1	medium3
+QVGVN214AM	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen3 ; weigh ; Brassica oleracea var. viridis ; extract2 ; medium1	QVGVNENTITY-36	AUXILLARY_BUD						gen3	weigh	Brassica oleracea var. viridis	extract2	medium1
+QVGVN215AU	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen3 ; weigh ; Brassica oleracea var. viridis ; extract2 ; medium2	QVGVNENTITY-36	AUXILLARY_BUD						gen3	weigh	Brassica oleracea var. viridis	extract2	medium2
+QVGVN216A4	Q_BIOLOGICAL_SAMPLE	2018-3-0001	QVGVNE2	gen3 ; weigh ; Brassica oleracea var. viridis ; extract2 ; medium3	QVGVNENTITY-36	AUXILLARY_BUD						gen3	weigh	Brassica oleracea var. viridis	extract2	medium3
+QVGVN217AC	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen1 ; colour ; Cavia aperea ; extract1 ; medium1	QVGVN001AD					SMALLMOLECULES		gen1	colour	Cavia aperea	extract1	medium1
+QVGVN218AK	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen1 ; colour ; Cavia aperea ; extract1 ; medium2	QVGVN002AL					SMALLMOLECULES		gen1	colour	Cavia aperea	extract1	medium2
+QVGVN219AS	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen1 ; colour ; Cavia aperea ; extract1 ; medium3	QVGVN003AT					SMALLMOLECULES		gen1	colour	Cavia aperea	extract1	medium3
+QVGVN220AV	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen1 ; colour ; Cavia aperea ; extract2 ; medium1	QVGVN004A3					SMALLMOLECULES		gen1	colour	Cavia aperea	extract2	medium1
+QVGVN221A5	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen1 ; colour ; Cavia aperea ; extract2 ; medium2	QVGVN005AB					SMALLMOLECULES		gen1	colour	Cavia aperea	extract2	medium2
+QVGVN222AD	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen1 ; colour ; Cavia aperea ; extract2 ; medium3	QVGVN006AJ					SMALLMOLECULES		gen1	colour	Cavia aperea	extract2	medium3
+QVGVN223AL	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen1 ; colour ; Rosa wichurana ; extract1 ; medium1	QVGVN007AR					SMALLMOLECULES		gen1	colour	Rosa wichurana	extract1	medium1
+QVGVN224AT	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen1 ; colour ; Rosa wichurana ; extract1 ; medium2	QVGVN008A1					SMALLMOLECULES		gen1	colour	Rosa wichurana	extract1	medium2
+QVGVN225A3	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen1 ; colour ; Rosa wichurana ; extract1 ; medium3	QVGVN009A9					SMALLMOLECULES		gen1	colour	Rosa wichurana	extract1	medium3
+QVGVN226AB	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen1 ; colour ; Rosa wichurana ; extract2 ; medium1	QVGVN010AC					SMALLMOLECULES		gen1	colour	Rosa wichurana	extract2	medium1
+QVGVN227AJ	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen1 ; colour ; Rosa wichurana ; extract2 ; medium2	QVGVN011AK					SMALLMOLECULES		gen1	colour	Rosa wichurana	extract2	medium2
+QVGVN228AR	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen1 ; colour ; Rosa wichurana ; extract2 ; medium3	QVGVN012AS					SMALLMOLECULES		gen1	colour	Rosa wichurana	extract2	medium3
+QVGVN229A1	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen1 ; colour ; Escherichia coli ; extract1 ; medium1	QVGVN013A2					SMALLMOLECULES		gen1	colour	Escherichia coli	extract1	medium1
+QVGVN230A4	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen1 ; colour ; Escherichia coli ; extract1 ; medium2	QVGVN014AA					SMALLMOLECULES		gen1	colour	Escherichia coli	extract1	medium2
+QVGVN231AC	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen1 ; colour ; Escherichia coli ; extract1 ; medium3	QVGVN015AI					SMALLMOLECULES		gen1	colour	Escherichia coli	extract1	medium3
+QVGVN232AK	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen1 ; colour ; Escherichia coli ; extract2 ; medium1	QVGVN016AQ					SMALLMOLECULES		gen1	colour	Escherichia coli	extract2	medium1
+QVGVN233AS	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen1 ; colour ; Escherichia coli ; extract2 ; medium2	QVGVN017A0					SMALLMOLECULES		gen1	colour	Escherichia coli	extract2	medium2
+QVGVN234A2	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen1 ; colour ; Escherichia coli ; extract2 ; medium3	QVGVN018A8					SMALLMOLECULES		gen1	colour	Escherichia coli	extract2	medium3
+QVGVN235AA	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen1 ; colour ; Brassica oleracea var. viridis ; extract1 ; medium1	QVGVN019AG					SMALLMOLECULES		gen1	colour	Brassica oleracea var. viridis	extract1	medium1
+QVGVN236AI	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen1 ; colour ; Brassica oleracea var. viridis ; extract1 ; medium2	QVGVN020AJ					SMALLMOLECULES		gen1	colour	Brassica oleracea var. viridis	extract1	medium2
+QVGVN237AQ	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen1 ; colour ; Brassica oleracea var. viridis ; extract1 ; medium3	QVGVN021AR					SMALLMOLECULES		gen1	colour	Brassica oleracea var. viridis	extract1	medium3
+QVGVN238A0	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen1 ; colour ; Brassica oleracea var. viridis ; extract2 ; medium1	QVGVN022A1					SMALLMOLECULES		gen1	colour	Brassica oleracea var. viridis	extract2	medium1
+QVGVN239A8	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen1 ; colour ; Brassica oleracea var. viridis ; extract2 ; medium2	QVGVN023A9					SMALLMOLECULES		gen1	colour	Brassica oleracea var. viridis	extract2	medium2
+QVGVN240AB	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen1 ; colour ; Brassica oleracea var. viridis ; extract2 ; medium3	QVGVN024AH					SMALLMOLECULES		gen1	colour	Brassica oleracea var. viridis	extract2	medium3
+QVGVN241AJ	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen1 ; volume ; Cavia aperea ; extract1 ; medium1	QVGVN025AP					SMALLMOLECULES		gen1	volume	Cavia aperea	extract1	medium1
+QVGVN242AR	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen1 ; volume ; Cavia aperea ; extract1 ; medium2	QVGVN026AX					SMALLMOLECULES		gen1	volume	Cavia aperea	extract1	medium2
+QVGVN243A1	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen1 ; volume ; Cavia aperea ; extract1 ; medium3	QVGVN027A7					SMALLMOLECULES		gen1	volume	Cavia aperea	extract1	medium3
+QVGVN244A9	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen1 ; volume ; Cavia aperea ; extract2 ; medium1	QVGVN028AF					SMALLMOLECULES		gen1	volume	Cavia aperea	extract2	medium1
+QVGVN245AH	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen1 ; volume ; Cavia aperea ; extract2 ; medium2	QVGVN029AN					SMALLMOLECULES		gen1	volume	Cavia aperea	extract2	medium2
+QVGVN246AP	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen1 ; volume ; Cavia aperea ; extract2 ; medium3	QVGVN030AQ					SMALLMOLECULES		gen1	volume	Cavia aperea	extract2	medium3
+QVGVN247AX	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen1 ; volume ; Rosa wichurana ; extract1 ; medium1	QVGVN031A0					SMALLMOLECULES		gen1	volume	Rosa wichurana	extract1	medium1
+QVGVN248A7	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen1 ; volume ; Rosa wichurana ; extract1 ; medium2	QVGVN032A8					SMALLMOLECULES		gen1	volume	Rosa wichurana	extract1	medium2
+QVGVN249AF	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen1 ; volume ; Rosa wichurana ; extract1 ; medium3	QVGVN033AG					SMALLMOLECULES		gen1	volume	Rosa wichurana	extract1	medium3
+QVGVN250AI	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen1 ; volume ; Rosa wichurana ; extract2 ; medium1	QVGVN034AO					SMALLMOLECULES		gen1	volume	Rosa wichurana	extract2	medium1
+QVGVN251AQ	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen1 ; volume ; Rosa wichurana ; extract2 ; medium2	QVGVN035AW					SMALLMOLECULES		gen1	volume	Rosa wichurana	extract2	medium2
+QVGVN252A0	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen1 ; volume ; Rosa wichurana ; extract2 ; medium3	QVGVN036A6					SMALLMOLECULES		gen1	volume	Rosa wichurana	extract2	medium3
+QVGVN253A8	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen1 ; volume ; Escherichia coli ; extract1 ; medium1	QVGVN037AE					SMALLMOLECULES		gen1	volume	Escherichia coli	extract1	medium1
+QVGVN254AG	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen1 ; volume ; Escherichia coli ; extract1 ; medium2	QVGVN038AM					SMALLMOLECULES		gen1	volume	Escherichia coli	extract1	medium2
+QVGVN255AO	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen1 ; volume ; Escherichia coli ; extract1 ; medium3	QVGVN039AU					SMALLMOLECULES		gen1	volume	Escherichia coli	extract1	medium3
+QVGVN256AW	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen1 ; volume ; Escherichia coli ; extract2 ; medium1	QVGVN040AX					SMALLMOLECULES		gen1	volume	Escherichia coli	extract2	medium1
+QVGVN257A6	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen1 ; volume ; Escherichia coli ; extract2 ; medium2	QVGVN041A7					SMALLMOLECULES		gen1	volume	Escherichia coli	extract2	medium2
+QVGVN258AE	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen1 ; volume ; Escherichia coli ; extract2 ; medium3	QVGVN042AF					SMALLMOLECULES		gen1	volume	Escherichia coli	extract2	medium3
+QVGVN259AM	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen1 ; volume ; Brassica oleracea var. viridis ; extract1 ; medium1	QVGVN043AN					SMALLMOLECULES		gen1	volume	Brassica oleracea var. viridis	extract1	medium1
+QVGVN260AP	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen1 ; volume ; Brassica oleracea var. viridis ; extract1 ; medium2	QVGVN044AV					SMALLMOLECULES		gen1	volume	Brassica oleracea var. viridis	extract1	medium2
+QVGVN261AX	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen1 ; volume ; Brassica oleracea var. viridis ; extract1 ; medium3	QVGVN045A5					SMALLMOLECULES		gen1	volume	Brassica oleracea var. viridis	extract1	medium3
+QVGVN262A7	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen1 ; volume ; Brassica oleracea var. viridis ; extract2 ; medium1	QVGVN046AD					SMALLMOLECULES		gen1	volume	Brassica oleracea var. viridis	extract2	medium1
+QVGVN263AF	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen1 ; volume ; Brassica oleracea var. viridis ; extract2 ; medium2	QVGVN047AL					SMALLMOLECULES		gen1	volume	Brassica oleracea var. viridis	extract2	medium2
+QVGVN264AN	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen1 ; volume ; Brassica oleracea var. viridis ; extract2 ; medium3	QVGVN048AT					SMALLMOLECULES		gen1	volume	Brassica oleracea var. viridis	extract2	medium3
+QVGVN265AV	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen1 ; weigh ; Cavia aperea ; extract1 ; medium1	QVGVN049A3					SMALLMOLECULES		gen1	weigh	Cavia aperea	extract1	medium1
+QVGVN266A5	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen1 ; weigh ; Cavia aperea ; extract1 ; medium2	QVGVN050A6					SMALLMOLECULES		gen1	weigh	Cavia aperea	extract1	medium2
+QVGVN267AD	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen1 ; weigh ; Cavia aperea ; extract1 ; medium3	QVGVN051AE					SMALLMOLECULES		gen1	weigh	Cavia aperea	extract1	medium3
+QVGVN268AL	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen1 ; weigh ; Cavia aperea ; extract2 ; medium1	QVGVN052AM					SMALLMOLECULES		gen1	weigh	Cavia aperea	extract2	medium1
+QVGVN269AT	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen1 ; weigh ; Cavia aperea ; extract2 ; medium2	QVGVN053AU					SMALLMOLECULES		gen1	weigh	Cavia aperea	extract2	medium2
+QVGVN270AW	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen1 ; weigh ; Cavia aperea ; extract2 ; medium3	QVGVN054A4					SMALLMOLECULES		gen1	weigh	Cavia aperea	extract2	medium3
+QVGVN271A6	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen1 ; weigh ; Rosa wichurana ; extract1 ; medium1	QVGVN055AC					SMALLMOLECULES		gen1	weigh	Rosa wichurana	extract1	medium1
+QVGVN272AE	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen1 ; weigh ; Rosa wichurana ; extract1 ; medium2	QVGVN056AK					SMALLMOLECULES		gen1	weigh	Rosa wichurana	extract1	medium2
+QVGVN273AM	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen1 ; weigh ; Rosa wichurana ; extract1 ; medium3	QVGVN057AS					SMALLMOLECULES		gen1	weigh	Rosa wichurana	extract1	medium3
+QVGVN274AU	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen1 ; weigh ; Rosa wichurana ; extract2 ; medium1	QVGVN058A2					SMALLMOLECULES		gen1	weigh	Rosa wichurana	extract2	medium1
+QVGVN275A4	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen1 ; weigh ; Rosa wichurana ; extract2 ; medium2	QVGVN059AA					SMALLMOLECULES		gen1	weigh	Rosa wichurana	extract2	medium2
+QVGVN276AC	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen1 ; weigh ; Rosa wichurana ; extract2 ; medium3	QVGVN060AD					SMALLMOLECULES		gen1	weigh	Rosa wichurana	extract2	medium3
+QVGVN277AK	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen1 ; weigh ; Escherichia coli ; extract1 ; medium1	QVGVN061AL					SMALLMOLECULES		gen1	weigh	Escherichia coli	extract1	medium1
+QVGVN278AS	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen1 ; weigh ; Escherichia coli ; extract1 ; medium2	QVGVN062AT					SMALLMOLECULES		gen1	weigh	Escherichia coli	extract1	medium2
+QVGVN279A2	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen1 ; weigh ; Escherichia coli ; extract1 ; medium3	QVGVN063A3					SMALLMOLECULES		gen1	weigh	Escherichia coli	extract1	medium3
+QVGVN280A5	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen1 ; weigh ; Escherichia coli ; extract2 ; medium1	QVGVN064AB					SMALLMOLECULES		gen1	weigh	Escherichia coli	extract2	medium1
+QVGVN281AD	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen1 ; weigh ; Escherichia coli ; extract2 ; medium2	QVGVN065AJ					SMALLMOLECULES		gen1	weigh	Escherichia coli	extract2	medium2
+QVGVN282AL	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen1 ; weigh ; Escherichia coli ; extract2 ; medium3	QVGVN066AR					SMALLMOLECULES		gen1	weigh	Escherichia coli	extract2	medium3
+QVGVN283AT	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen1 ; weigh ; Brassica oleracea var. viridis ; extract1 ; medium1	QVGVN067A1					SMALLMOLECULES		gen1	weigh	Brassica oleracea var. viridis	extract1	medium1
+QVGVN284A3	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen1 ; weigh ; Brassica oleracea var. viridis ; extract1 ; medium2	QVGVN068A9					SMALLMOLECULES		gen1	weigh	Brassica oleracea var. viridis	extract1	medium2
+QVGVN285AB	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen1 ; weigh ; Brassica oleracea var. viridis ; extract1 ; medium3	QVGVN069AH					SMALLMOLECULES		gen1	weigh	Brassica oleracea var. viridis	extract1	medium3
+QVGVN286AJ	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen1 ; weigh ; Brassica oleracea var. viridis ; extract2 ; medium1	QVGVN070AK					SMALLMOLECULES		gen1	weigh	Brassica oleracea var. viridis	extract2	medium1
+QVGVN287AR	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen1 ; weigh ; Brassica oleracea var. viridis ; extract2 ; medium2	QVGVN071AS					SMALLMOLECULES		gen1	weigh	Brassica oleracea var. viridis	extract2	medium2
+QVGVN288A1	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen1 ; weigh ; Brassica oleracea var. viridis ; extract2 ; medium3	QVGVN072A2					SMALLMOLECULES		gen1	weigh	Brassica oleracea var. viridis	extract2	medium3
+QVGVN289A9	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen2 ; colour ; Cavia aperea ; extract1 ; medium1	QVGVN073AA					SMALLMOLECULES		gen2	colour	Cavia aperea	extract1	medium1
+QVGVN290AC	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen2 ; colour ; Cavia aperea ; extract1 ; medium2	QVGVN074AI					SMALLMOLECULES		gen2	colour	Cavia aperea	extract1	medium2
+QVGVN291AK	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen2 ; colour ; Cavia aperea ; extract1 ; medium3	QVGVN075AQ					SMALLMOLECULES		gen2	colour	Cavia aperea	extract1	medium3
+QVGVN292AS	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen2 ; colour ; Cavia aperea ; extract2 ; medium1	QVGVN076A0					SMALLMOLECULES		gen2	colour	Cavia aperea	extract2	medium1
+QVGVN293A2	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen2 ; colour ; Cavia aperea ; extract2 ; medium2	QVGVN077A8					SMALLMOLECULES		gen2	colour	Cavia aperea	extract2	medium2
+QVGVN294AA	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen2 ; colour ; Cavia aperea ; extract2 ; medium3	QVGVN078AG					SMALLMOLECULES		gen2	colour	Cavia aperea	extract2	medium3
+QVGVN295AI	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen2 ; colour ; Rosa wichurana ; extract1 ; medium1	QVGVN079AO					SMALLMOLECULES		gen2	colour	Rosa wichurana	extract1	medium1
+QVGVN296AQ	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen2 ; colour ; Rosa wichurana ; extract1 ; medium2	QVGVN080AR					SMALLMOLECULES		gen2	colour	Rosa wichurana	extract1	medium2
+QVGVN297A0	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen2 ; colour ; Rosa wichurana ; extract1 ; medium3	QVGVN081A1					SMALLMOLECULES		gen2	colour	Rosa wichurana	extract1	medium3
+QVGVN298A8	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen2 ; colour ; Rosa wichurana ; extract2 ; medium1	QVGVN082A9					SMALLMOLECULES		gen2	colour	Rosa wichurana	extract2	medium1
+QVGVN299AG	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen2 ; colour ; Rosa wichurana ; extract2 ; medium2	QVGVN083AH					SMALLMOLECULES		gen2	colour	Rosa wichurana	extract2	medium2
+QVGVN300AN	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen2 ; colour ; Rosa wichurana ; extract2 ; medium3	QVGVN084AP					SMALLMOLECULES		gen2	colour	Rosa wichurana	extract2	medium3
+QVGVN301AV	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen2 ; colour ; Escherichia coli ; extract1 ; medium1	QVGVN085AX					SMALLMOLECULES		gen2	colour	Escherichia coli	extract1	medium1
+QVGVN302A5	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen2 ; colour ; Escherichia coli ; extract1 ; medium2	QVGVN086A7					SMALLMOLECULES		gen2	colour	Escherichia coli	extract1	medium2
+QVGVN303AD	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen2 ; colour ; Escherichia coli ; extract1 ; medium3	QVGVN087AF					SMALLMOLECULES		gen2	colour	Escherichia coli	extract1	medium3
+QVGVN304AL	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen2 ; colour ; Escherichia coli ; extract2 ; medium1	QVGVN088AN					SMALLMOLECULES		gen2	colour	Escherichia coli	extract2	medium1
+QVGVN305AT	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen2 ; colour ; Escherichia coli ; extract2 ; medium2	QVGVN089AV					SMALLMOLECULES		gen2	colour	Escherichia coli	extract2	medium2
+QVGVN306A3	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen2 ; colour ; Escherichia coli ; extract2 ; medium3	QVGVN090A0					SMALLMOLECULES		gen2	colour	Escherichia coli	extract2	medium3
+QVGVN307AB	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen2 ; colour ; Brassica oleracea var. viridis ; extract1 ; medium1	QVGVN091A8					SMALLMOLECULES		gen2	colour	Brassica oleracea var. viridis	extract1	medium1
+QVGVN308AJ	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen2 ; colour ; Brassica oleracea var. viridis ; extract1 ; medium2	QVGVN092AG					SMALLMOLECULES		gen2	colour	Brassica oleracea var. viridis	extract1	medium2
+QVGVN309AR	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen2 ; colour ; Brassica oleracea var. viridis ; extract1 ; medium3	QVGVN093AO					SMALLMOLECULES		gen2	colour	Brassica oleracea var. viridis	extract1	medium3
+QVGVN310AU	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen2 ; colour ; Brassica oleracea var. viridis ; extract2 ; medium1	QVGVN094AW					SMALLMOLECULES		gen2	colour	Brassica oleracea var. viridis	extract2	medium1
+QVGVN311A4	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen2 ; colour ; Brassica oleracea var. viridis ; extract2 ; medium2	QVGVN095A6					SMALLMOLECULES		gen2	colour	Brassica oleracea var. viridis	extract2	medium2
+QVGVN312AC	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen2 ; colour ; Brassica oleracea var. viridis ; extract2 ; medium3	QVGVN096AE					SMALLMOLECULES		gen2	colour	Brassica oleracea var. viridis	extract2	medium3
+QVGVN313AK	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen2 ; volume ; Cavia aperea ; extract1 ; medium1	QVGVN097AM					SMALLMOLECULES		gen2	volume	Cavia aperea	extract1	medium1
+QVGVN314AS	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen2 ; volume ; Cavia aperea ; extract1 ; medium2	QVGVN098AU					SMALLMOLECULES		gen2	volume	Cavia aperea	extract1	medium2
+QVGVN315A2	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen2 ; volume ; Cavia aperea ; extract1 ; medium3	QVGVN099A4					SMALLMOLECULES		gen2	volume	Cavia aperea	extract1	medium3
+QVGVN316AA	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen2 ; volume ; Cavia aperea ; extract2 ; medium1	QVGVN100AB					SMALLMOLECULES		gen2	volume	Cavia aperea	extract2	medium1
+QVGVN317AI	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen2 ; volume ; Cavia aperea ; extract2 ; medium2	QVGVN101AJ					SMALLMOLECULES		gen2	volume	Cavia aperea	extract2	medium2
+QVGVN318AQ	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen2 ; volume ; Cavia aperea ; extract2 ; medium3	QVGVN102AR					SMALLMOLECULES		gen2	volume	Cavia aperea	extract2	medium3
+QVGVN319A0	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen2 ; volume ; Rosa wichurana ; extract1 ; medium1	QVGVN103A1					SMALLMOLECULES		gen2	volume	Rosa wichurana	extract1	medium1
+QVGVN320A3	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen2 ; volume ; Rosa wichurana ; extract1 ; medium2	QVGVN104A9					SMALLMOLECULES		gen2	volume	Rosa wichurana	extract1	medium2
+QVGVN321AB	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen2 ; volume ; Rosa wichurana ; extract1 ; medium3	QVGVN105AH					SMALLMOLECULES		gen2	volume	Rosa wichurana	extract1	medium3
+QVGVN322AJ	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen2 ; volume ; Rosa wichurana ; extract2 ; medium1	QVGVN106AP					SMALLMOLECULES		gen2	volume	Rosa wichurana	extract2	medium1
+QVGVN323AR	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen2 ; volume ; Rosa wichurana ; extract2 ; medium2	QVGVN107AX					SMALLMOLECULES		gen2	volume	Rosa wichurana	extract2	medium2
+QVGVN324A1	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen2 ; volume ; Rosa wichurana ; extract2 ; medium3	QVGVN108A7					SMALLMOLECULES		gen2	volume	Rosa wichurana	extract2	medium3
+QVGVN325A9	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen2 ; volume ; Escherichia coli ; extract1 ; medium1	QVGVN109AF					SMALLMOLECULES		gen2	volume	Escherichia coli	extract1	medium1
+QVGVN326AH	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen2 ; volume ; Escherichia coli ; extract1 ; medium2	QVGVN110AI					SMALLMOLECULES		gen2	volume	Escherichia coli	extract1	medium2
+QVGVN327AP	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen2 ; volume ; Escherichia coli ; extract1 ; medium3	QVGVN111AQ					SMALLMOLECULES		gen2	volume	Escherichia coli	extract1	medium3
+QVGVN328AX	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen2 ; volume ; Escherichia coli ; extract2 ; medium1	QVGVN112A0					SMALLMOLECULES		gen2	volume	Escherichia coli	extract2	medium1
+QVGVN329A7	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen2 ; volume ; Escherichia coli ; extract2 ; medium2	QVGVN113A8					SMALLMOLECULES		gen2	volume	Escherichia coli	extract2	medium2
+QVGVN330AA	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen2 ; volume ; Escherichia coli ; extract2 ; medium3	QVGVN114AG					SMALLMOLECULES		gen2	volume	Escherichia coli	extract2	medium3
+QVGVN331AI	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen2 ; volume ; Brassica oleracea var. viridis ; extract1 ; medium1	QVGVN115AO					SMALLMOLECULES		gen2	volume	Brassica oleracea var. viridis	extract1	medium1
+QVGVN332AQ	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen2 ; volume ; Brassica oleracea var. viridis ; extract1 ; medium2	QVGVN116AW					SMALLMOLECULES		gen2	volume	Brassica oleracea var. viridis	extract1	medium2
+QVGVN333A0	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen2 ; volume ; Brassica oleracea var. viridis ; extract1 ; medium3	QVGVN117A6					SMALLMOLECULES		gen2	volume	Brassica oleracea var. viridis	extract1	medium3
+QVGVN334A8	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen2 ; volume ; Brassica oleracea var. viridis ; extract2 ; medium1	QVGVN118AE					SMALLMOLECULES		gen2	volume	Brassica oleracea var. viridis	extract2	medium1
+QVGVN335AG	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen2 ; volume ; Brassica oleracea var. viridis ; extract2 ; medium2	QVGVN119AM					SMALLMOLECULES		gen2	volume	Brassica oleracea var. viridis	extract2	medium2
+QVGVN336AO	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen2 ; volume ; Brassica oleracea var. viridis ; extract2 ; medium3	QVGVN120AP					SMALLMOLECULES		gen2	volume	Brassica oleracea var. viridis	extract2	medium3
+QVGVN337AW	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen2 ; weigh ; Cavia aperea ; extract1 ; medium1	QVGVN121AX					SMALLMOLECULES		gen2	weigh	Cavia aperea	extract1	medium1
+QVGVN338A6	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen2 ; weigh ; Cavia aperea ; extract1 ; medium2	QVGVN122A7					SMALLMOLECULES		gen2	weigh	Cavia aperea	extract1	medium2
+QVGVN339AE	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen2 ; weigh ; Cavia aperea ; extract1 ; medium3	QVGVN123AF					SMALLMOLECULES		gen2	weigh	Cavia aperea	extract1	medium3
+QVGVN340AH	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen2 ; weigh ; Cavia aperea ; extract2 ; medium1	QVGVN124AN					SMALLMOLECULES		gen2	weigh	Cavia aperea	extract2	medium1
+QVGVN341AP	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen2 ; weigh ; Cavia aperea ; extract2 ; medium2	QVGVN125AV					SMALLMOLECULES		gen2	weigh	Cavia aperea	extract2	medium2
+QVGVN342AX	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen2 ; weigh ; Cavia aperea ; extract2 ; medium3	QVGVN126A5					SMALLMOLECULES		gen2	weigh	Cavia aperea	extract2	medium3
+QVGVN343A7	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen2 ; weigh ; Rosa wichurana ; extract1 ; medium1	QVGVN127AD					SMALLMOLECULES		gen2	weigh	Rosa wichurana	extract1	medium1
+QVGVN344AF	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen2 ; weigh ; Rosa wichurana ; extract1 ; medium2	QVGVN128AL					SMALLMOLECULES		gen2	weigh	Rosa wichurana	extract1	medium2
+QVGVN345AN	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen2 ; weigh ; Rosa wichurana ; extract1 ; medium3	QVGVN129AT					SMALLMOLECULES		gen2	weigh	Rosa wichurana	extract1	medium3
+QVGVN346AV	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen2 ; weigh ; Rosa wichurana ; extract2 ; medium1	QVGVN130AW					SMALLMOLECULES		gen2	weigh	Rosa wichurana	extract2	medium1
+QVGVN347A5	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen2 ; weigh ; Rosa wichurana ; extract2 ; medium2	QVGVN131A6					SMALLMOLECULES		gen2	weigh	Rosa wichurana	extract2	medium2
+QVGVN348AD	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen2 ; weigh ; Rosa wichurana ; extract2 ; medium3	QVGVN132AE					SMALLMOLECULES		gen2	weigh	Rosa wichurana	extract2	medium3
+QVGVN349AL	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen2 ; weigh ; Escherichia coli ; extract1 ; medium1	QVGVN133AM					SMALLMOLECULES		gen2	weigh	Escherichia coli	extract1	medium1
+QVGVN350AO	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen2 ; weigh ; Escherichia coli ; extract1 ; medium2	QVGVN134AU					SMALLMOLECULES		gen2	weigh	Escherichia coli	extract1	medium2
+QVGVN351AW	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen2 ; weigh ; Escherichia coli ; extract1 ; medium3	QVGVN135A4					SMALLMOLECULES		gen2	weigh	Escherichia coli	extract1	medium3
+QVGVN352A6	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen2 ; weigh ; Escherichia coli ; extract2 ; medium1	QVGVN136AC					SMALLMOLECULES		gen2	weigh	Escherichia coli	extract2	medium1
+QVGVN353AE	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen2 ; weigh ; Escherichia coli ; extract2 ; medium2	QVGVN137AK					SMALLMOLECULES		gen2	weigh	Escherichia coli	extract2	medium2
+QVGVN354AM	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen2 ; weigh ; Escherichia coli ; extract2 ; medium3	QVGVN138AS					SMALLMOLECULES		gen2	weigh	Escherichia coli	extract2	medium3
+QVGVN355AU	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen2 ; weigh ; Brassica oleracea var. viridis ; extract1 ; medium1	QVGVN139A2					SMALLMOLECULES		gen2	weigh	Brassica oleracea var. viridis	extract1	medium1
+QVGVN356A4	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen2 ; weigh ; Brassica oleracea var. viridis ; extract1 ; medium2	QVGVN140A5					SMALLMOLECULES		gen2	weigh	Brassica oleracea var. viridis	extract1	medium2
+QVGVN357AC	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen2 ; weigh ; Brassica oleracea var. viridis ; extract1 ; medium3	QVGVN141AD					SMALLMOLECULES		gen2	weigh	Brassica oleracea var. viridis	extract1	medium3
+QVGVN358AK	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen2 ; weigh ; Brassica oleracea var. viridis ; extract2 ; medium1	QVGVN142AL					SMALLMOLECULES		gen2	weigh	Brassica oleracea var. viridis	extract2	medium1
+QVGVN359AS	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen2 ; weigh ; Brassica oleracea var. viridis ; extract2 ; medium2	QVGVN143AT					SMALLMOLECULES		gen2	weigh	Brassica oleracea var. viridis	extract2	medium2
+QVGVN360AV	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen2 ; weigh ; Brassica oleracea var. viridis ; extract2 ; medium3	QVGVN144A3					SMALLMOLECULES		gen2	weigh	Brassica oleracea var. viridis	extract2	medium3
+QVGVN361A5	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen3 ; colour ; Cavia aperea ; extract1 ; medium1	QVGVN145AB					SMALLMOLECULES		gen3	colour	Cavia aperea	extract1	medium1
+QVGVN362AD	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen3 ; colour ; Cavia aperea ; extract1 ; medium2	QVGVN146AJ					SMALLMOLECULES		gen3	colour	Cavia aperea	extract1	medium2
+QVGVN363AL	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen3 ; colour ; Cavia aperea ; extract1 ; medium3	QVGVN147AR					SMALLMOLECULES		gen3	colour	Cavia aperea	extract1	medium3
+QVGVN364AT	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen3 ; colour ; Cavia aperea ; extract2 ; medium1	QVGVN148A1					SMALLMOLECULES		gen3	colour	Cavia aperea	extract2	medium1
+QVGVN365A3	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen3 ; colour ; Cavia aperea ; extract2 ; medium2	QVGVN149A9					SMALLMOLECULES		gen3	colour	Cavia aperea	extract2	medium2
+QVGVN366AB	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen3 ; colour ; Cavia aperea ; extract2 ; medium3	QVGVN150AC					SMALLMOLECULES		gen3	colour	Cavia aperea	extract2	medium3
+QVGVN367AJ	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen3 ; colour ; Rosa wichurana ; extract1 ; medium1	QVGVN151AK					SMALLMOLECULES		gen3	colour	Rosa wichurana	extract1	medium1
+QVGVN368AR	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen3 ; colour ; Rosa wichurana ; extract1 ; medium2	QVGVN152AS					SMALLMOLECULES		gen3	colour	Rosa wichurana	extract1	medium2
+QVGVN369A1	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen3 ; colour ; Rosa wichurana ; extract1 ; medium3	QVGVN153A2					SMALLMOLECULES		gen3	colour	Rosa wichurana	extract1	medium3
+QVGVN370A4	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen3 ; colour ; Rosa wichurana ; extract2 ; medium1	QVGVN154AA					SMALLMOLECULES		gen3	colour	Rosa wichurana	extract2	medium1
+QVGVN371AC	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen3 ; colour ; Rosa wichurana ; extract2 ; medium2	QVGVN155AI					SMALLMOLECULES		gen3	colour	Rosa wichurana	extract2	medium2
+QVGVN372AK	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen3 ; colour ; Rosa wichurana ; extract2 ; medium3	QVGVN156AQ					SMALLMOLECULES		gen3	colour	Rosa wichurana	extract2	medium3
+QVGVN373AS	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen3 ; colour ; Escherichia coli ; extract1 ; medium1	QVGVN157A0					SMALLMOLECULES		gen3	colour	Escherichia coli	extract1	medium1
+QVGVN374A2	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen3 ; colour ; Escherichia coli ; extract1 ; medium2	QVGVN158A8					SMALLMOLECULES		gen3	colour	Escherichia coli	extract1	medium2
+QVGVN375AA	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen3 ; colour ; Escherichia coli ; extract1 ; medium3	QVGVN159AG					SMALLMOLECULES		gen3	colour	Escherichia coli	extract1	medium3
+QVGVN376AI	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen3 ; colour ; Escherichia coli ; extract2 ; medium1	QVGVN160AJ					SMALLMOLECULES		gen3	colour	Escherichia coli	extract2	medium1
+QVGVN377AQ	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen3 ; colour ; Escherichia coli ; extract2 ; medium2	QVGVN161AR					SMALLMOLECULES		gen3	colour	Escherichia coli	extract2	medium2
+QVGVN378A0	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen3 ; colour ; Escherichia coli ; extract2 ; medium3	QVGVN162A1					SMALLMOLECULES		gen3	colour	Escherichia coli	extract2	medium3
+QVGVN379A8	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen3 ; colour ; Brassica oleracea var. viridis ; extract1 ; medium1	QVGVN163A9					SMALLMOLECULES		gen3	colour	Brassica oleracea var. viridis	extract1	medium1
+QVGVN380AB	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen3 ; colour ; Brassica oleracea var. viridis ; extract1 ; medium2	QVGVN164AH					SMALLMOLECULES		gen3	colour	Brassica oleracea var. viridis	extract1	medium2
+QVGVN381AJ	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen3 ; colour ; Brassica oleracea var. viridis ; extract1 ; medium3	QVGVN165AP					SMALLMOLECULES		gen3	colour	Brassica oleracea var. viridis	extract1	medium3
+QVGVN382AR	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen3 ; colour ; Brassica oleracea var. viridis ; extract2 ; medium1	QVGVN166AX					SMALLMOLECULES		gen3	colour	Brassica oleracea var. viridis	extract2	medium1
+QVGVN383A1	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen3 ; colour ; Brassica oleracea var. viridis ; extract2 ; medium2	QVGVN167A7					SMALLMOLECULES		gen3	colour	Brassica oleracea var. viridis	extract2	medium2
+QVGVN384A9	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen3 ; colour ; Brassica oleracea var. viridis ; extract2 ; medium3	QVGVN168AF					SMALLMOLECULES		gen3	colour	Brassica oleracea var. viridis	extract2	medium3
+QVGVN385AH	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen3 ; volume ; Cavia aperea ; extract1 ; medium1	QVGVN169AN					SMALLMOLECULES		gen3	volume	Cavia aperea	extract1	medium1
+QVGVN386AP	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen3 ; volume ; Cavia aperea ; extract1 ; medium2	QVGVN170AQ					SMALLMOLECULES		gen3	volume	Cavia aperea	extract1	medium2
+QVGVN387AX	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen3 ; volume ; Cavia aperea ; extract1 ; medium3	QVGVN171A0					SMALLMOLECULES		gen3	volume	Cavia aperea	extract1	medium3
+QVGVN388A7	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen3 ; volume ; Cavia aperea ; extract2 ; medium1	QVGVN172A8					SMALLMOLECULES		gen3	volume	Cavia aperea	extract2	medium1
+QVGVN389AF	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen3 ; volume ; Cavia aperea ; extract2 ; medium2	QVGVN173AG					SMALLMOLECULES		gen3	volume	Cavia aperea	extract2	medium2
+QVGVN390AI	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen3 ; volume ; Cavia aperea ; extract2 ; medium3	QVGVN174AO					SMALLMOLECULES		gen3	volume	Cavia aperea	extract2	medium3
+QVGVN391AQ	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen3 ; volume ; Rosa wichurana ; extract1 ; medium1	QVGVN175AW					SMALLMOLECULES		gen3	volume	Rosa wichurana	extract1	medium1
+QVGVN392A0	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen3 ; volume ; Rosa wichurana ; extract1 ; medium2	QVGVN176A6					SMALLMOLECULES		gen3	volume	Rosa wichurana	extract1	medium2
+QVGVN393A8	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen3 ; volume ; Rosa wichurana ; extract1 ; medium3	QVGVN177AE					SMALLMOLECULES		gen3	volume	Rosa wichurana	extract1	medium3
+QVGVN394AG	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen3 ; volume ; Rosa wichurana ; extract2 ; medium1	QVGVN178AM					SMALLMOLECULES		gen3	volume	Rosa wichurana	extract2	medium1
+QVGVN395AO	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen3 ; volume ; Rosa wichurana ; extract2 ; medium2	QVGVN179AU					SMALLMOLECULES		gen3	volume	Rosa wichurana	extract2	medium2
+QVGVN396AW	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen3 ; volume ; Rosa wichurana ; extract2 ; medium3	QVGVN180AX					SMALLMOLECULES		gen3	volume	Rosa wichurana	extract2	medium3
+QVGVN397A6	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen3 ; volume ; Escherichia coli ; extract1 ; medium1	QVGVN181A7					SMALLMOLECULES		gen3	volume	Escherichia coli	extract1	medium1
+QVGVN398AE	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen3 ; volume ; Escherichia coli ; extract1 ; medium2	QVGVN182AF					SMALLMOLECULES		gen3	volume	Escherichia coli	extract1	medium2
+QVGVN399AM	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen3 ; volume ; Escherichia coli ; extract1 ; medium3	QVGVN183AN					SMALLMOLECULES		gen3	volume	Escherichia coli	extract1	medium3
+QVGVN400AT	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen3 ; volume ; Escherichia coli ; extract2 ; medium1	QVGVN184AV					SMALLMOLECULES		gen3	volume	Escherichia coli	extract2	medium1
+QVGVN401A3	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen3 ; volume ; Escherichia coli ; extract2 ; medium2	QVGVN185A5					SMALLMOLECULES		gen3	volume	Escherichia coli	extract2	medium2
+QVGVN402AB	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen3 ; volume ; Escherichia coli ; extract2 ; medium3	QVGVN186AD					SMALLMOLECULES		gen3	volume	Escherichia coli	extract2	medium3
+QVGVN403AJ	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen3 ; volume ; Brassica oleracea var. viridis ; extract1 ; medium1	QVGVN187AL					SMALLMOLECULES		gen3	volume	Brassica oleracea var. viridis	extract1	medium1
+QVGVN404AR	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen3 ; volume ; Brassica oleracea var. viridis ; extract1 ; medium2	QVGVN188AT					SMALLMOLECULES		gen3	volume	Brassica oleracea var. viridis	extract1	medium2
+QVGVN405A1	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen3 ; volume ; Brassica oleracea var. viridis ; extract1 ; medium3	QVGVN189A3					SMALLMOLECULES		gen3	volume	Brassica oleracea var. viridis	extract1	medium3
+QVGVN406A9	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen3 ; volume ; Brassica oleracea var. viridis ; extract2 ; medium1	QVGVN190A6					SMALLMOLECULES		gen3	volume	Brassica oleracea var. viridis	extract2	medium1
+QVGVN407AH	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen3 ; volume ; Brassica oleracea var. viridis ; extract2 ; medium2	QVGVN191AE					SMALLMOLECULES		gen3	volume	Brassica oleracea var. viridis	extract2	medium2
+QVGVN408AP	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen3 ; volume ; Brassica oleracea var. viridis ; extract2 ; medium3	QVGVN192AM					SMALLMOLECULES		gen3	volume	Brassica oleracea var. viridis	extract2	medium3
+QVGVN409AX	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen3 ; weigh ; Cavia aperea ; extract1 ; medium1	QVGVN193AU					SMALLMOLECULES		gen3	weigh	Cavia aperea	extract1	medium1
+QVGVN410A2	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen3 ; weigh ; Cavia aperea ; extract1 ; medium2	QVGVN194A4					SMALLMOLECULES		gen3	weigh	Cavia aperea	extract1	medium2
+QVGVN411AA	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen3 ; weigh ; Cavia aperea ; extract1 ; medium3	QVGVN195AC					SMALLMOLECULES		gen3	weigh	Cavia aperea	extract1	medium3
+QVGVN412AI	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen3 ; weigh ; Cavia aperea ; extract2 ; medium1	QVGVN196AK					SMALLMOLECULES		gen3	weigh	Cavia aperea	extract2	medium1
+QVGVN413AQ	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen3 ; weigh ; Cavia aperea ; extract2 ; medium2	QVGVN197AS					SMALLMOLECULES		gen3	weigh	Cavia aperea	extract2	medium2
+QVGVN414A0	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen3 ; weigh ; Cavia aperea ; extract2 ; medium3	QVGVN198A2					SMALLMOLECULES		gen3	weigh	Cavia aperea	extract2	medium3
+QVGVN415A8	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen3 ; weigh ; Rosa wichurana ; extract1 ; medium1	QVGVN199AA					SMALLMOLECULES		gen3	weigh	Rosa wichurana	extract1	medium1
+QVGVN416AG	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen3 ; weigh ; Rosa wichurana ; extract1 ; medium2	QVGVN200AH					SMALLMOLECULES		gen3	weigh	Rosa wichurana	extract1	medium2
+QVGVN417AO	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen3 ; weigh ; Rosa wichurana ; extract1 ; medium3	QVGVN201AP					SMALLMOLECULES		gen3	weigh	Rosa wichurana	extract1	medium3
+QVGVN418AW	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen3 ; weigh ; Rosa wichurana ; extract2 ; medium1	QVGVN202AX					SMALLMOLECULES		gen3	weigh	Rosa wichurana	extract2	medium1
+QVGVN419A6	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen3 ; weigh ; Rosa wichurana ; extract2 ; medium2	QVGVN203A7					SMALLMOLECULES		gen3	weigh	Rosa wichurana	extract2	medium2
+QVGVN420A9	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen3 ; weigh ; Rosa wichurana ; extract2 ; medium3	QVGVN204AF					SMALLMOLECULES		gen3	weigh	Rosa wichurana	extract2	medium3
+QVGVN421AH	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen3 ; weigh ; Escherichia coli ; extract1 ; medium1	QVGVN205AN					SMALLMOLECULES		gen3	weigh	Escherichia coli	extract1	medium1
+QVGVN422AP	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen3 ; weigh ; Escherichia coli ; extract1 ; medium2	QVGVN206AV					SMALLMOLECULES		gen3	weigh	Escherichia coli	extract1	medium2
+QVGVN423AX	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen3 ; weigh ; Escherichia coli ; extract1 ; medium3	QVGVN207A5					SMALLMOLECULES		gen3	weigh	Escherichia coli	extract1	medium3
+QVGVN424A7	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen3 ; weigh ; Escherichia coli ; extract2 ; medium1	QVGVN208AD					SMALLMOLECULES		gen3	weigh	Escherichia coli	extract2	medium1
+QVGVN425AF	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen3 ; weigh ; Escherichia coli ; extract2 ; medium2	QVGVN209AL					SMALLMOLECULES		gen3	weigh	Escherichia coli	extract2	medium2
+QVGVN426AN	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen3 ; weigh ; Escherichia coli ; extract2 ; medium3	QVGVN210AO					SMALLMOLECULES		gen3	weigh	Escherichia coli	extract2	medium3
+QVGVN427AV	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen3 ; weigh ; Brassica oleracea var. viridis ; extract1 ; medium1	QVGVN211AW					SMALLMOLECULES		gen3	weigh	Brassica oleracea var. viridis	extract1	medium1
+QVGVN428A5	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen3 ; weigh ; Brassica oleracea var. viridis ; extract1 ; medium2	QVGVN212A6					SMALLMOLECULES		gen3	weigh	Brassica oleracea var. viridis	extract1	medium2
+QVGVN429AD	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen3 ; weigh ; Brassica oleracea var. viridis ; extract1 ; medium3	QVGVN213AE					SMALLMOLECULES		gen3	weigh	Brassica oleracea var. viridis	extract1	medium3
+QVGVN430AG	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen3 ; weigh ; Brassica oleracea var. viridis ; extract2 ; medium1	QVGVN214AM					SMALLMOLECULES		gen3	weigh	Brassica oleracea var. viridis	extract2	medium1
+QVGVN431AO	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen3 ; weigh ; Brassica oleracea var. viridis ; extract2 ; medium2	QVGVN215AU					SMALLMOLECULES		gen3	weigh	Brassica oleracea var. viridis	extract2	medium2
+QVGVN432AW	Q_TEST_SAMPLE	2018-3-0001	QVGVNE3	gen3 ; weigh ; Brassica oleracea var. viridis ; extract2 ; medium3	QVGVN216A4					SMALLMOLECULES		gen3	weigh	Brassica oleracea var. viridis	extract2	medium3
