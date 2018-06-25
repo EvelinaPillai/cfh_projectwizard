@@ -57,7 +57,7 @@ public class CFHChooser extends VerticalLayout {
    *        selected will disable the normal species input because there is more than one instance
    * @param nullSelectionAllowed true, if the conditions may be empty
    */
-  public CFHChooser(List<String> options, Set<String> persons) {
+  public CFHChooser(List<String> options, Set<String> persons, Set<String> matrices) {
     chooser = new ComboBox("Cfh Method", options);
     chooser.setStyleName(Styles.boxTheme);
 
@@ -101,7 +101,7 @@ public class CFHChooser extends VerticalLayout {
     HorizontalLayout matrixBoxH = new HorizontalLayout();
     matrixBoxH.setCaption("Matrix");
     matrix = new ComboBox();
-    matrix.addItems(persons);
+    matrix.addItems(matrices);
     matrix.setFilteringMode(FilteringMode.CONTAINS);
     matrix.setStyleName(Styles.boxTheme);
     
@@ -161,7 +161,7 @@ public class CFHChooser extends VerticalLayout {
  
   public TestSampleInformation getChosenCfhInfo() {
 	    return new TestSampleInformation(chooser.getValue().toString(), pool.getValue(),
-	        Integer.parseInt(sampleNo.getValue()), getPerson() , chooser.getValue().toString());
+	        Integer.parseInt(sampleNo.getValue()), getPerson(), chooser.getValue().toString());
 	  }
 
   public void showHelpers() {

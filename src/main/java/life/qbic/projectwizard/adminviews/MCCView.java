@@ -364,8 +364,7 @@ public class MCCView extends VerticalLayout implements IRegistrationView, IRegis
     if (!this.patients.contains(patientExtID)) {
       metadata.put("Q_EXTERNALDB_ID", patientExtID);
       metadata.put("Q_NCBI_ORGANISM", "9606");
-      patients.add(new TSVSampleBean(patientID, project + "E1", project, mccSpace,
-          "Q_BIOLOGICAL_ENTITY", "patient #" + patient, "", metadata));
+      patients.add(new TSVSampleBean(patientID, project + "E1", project, metadata));
     }
     String extIDBase = patientExtID + ":" + timepoint + ":";
 
@@ -376,14 +375,12 @@ public class MCCView extends VerticalLayout implements IRegistrationView, IRegis
     metadata.put("Q_PRIMARY_TISSUE", "URINE");
     metadata.put("Q_EXTERNALDB_ID", urineExtIDBase);
     String urineID = counter.getNewBarcode();// parent
-    urine.add(new TSVSampleBean(urineID, project + "E2", project, mccSpace, "Q_BIOLOGICAL_SAMPLE",
-        "urine sample", patientID, (HashMap<String, Object>) metadata.clone()));
+    urine.add(new TSVSampleBean(urineID, project + "E2", project, (HashMap<String, Object>) metadata.clone()));
     for (int i = 1; i < 6; i++) {
       char lower = (char) ('a' + i - 1);
       String ID = counter.getNewBarcode();
       metadata.put("Q_EXTERNALDB_ID", urineExtIDBase + lower);
-      uAliquots.add(new TSVSampleBean(ID, project + "E3", project, mccSpace, "Q_BIOLOGICAL_SAMPLE",
-          "aliquot #" + i, urineID, (HashMap<String, Object>) metadata.clone()));
+      uAliquots.add(new TSVSampleBean(ID, project + "E3", project, (HashMap<String, Object>) metadata.clone()));
     }
     for (int i = 1; i < 4; i++) {
       String plasmaExtID = extIDBase + "B:" + i;
@@ -391,16 +388,14 @@ public class MCCView extends VerticalLayout implements IRegistrationView, IRegis
       metadata.put("Q_EXTERNALDB_ID", plasmaExtID);
       metadata.put("Q_PRIMARY_TISSUE", "BLOOD_PLASMA");
       plasma
-          .add(new TSVSampleBean(plasmaID, project + "E4", project, mccSpace, "Q_BIOLOGICAL_SAMPLE",
-              "EDTA plasma #" + i, patientID, (HashMap<String, Object>) metadata.clone()));
+          .add(new TSVSampleBean(plasmaID, project + "E4", project, (HashMap<String, Object>) metadata.clone()));
       if (i == 1) {
         for (int j = 1; j < 3; j++) {
           char lower = (char) ('a' + j - 1);
           String ID = counter.getNewBarcode();
           metadata.put("Q_EXTERNALDB_ID", plasmaExtID + lower);
           pAliquots
-              .add(new TSVSampleBean(ID, project + "E4", project, mccSpace, "Q_BIOLOGICAL_SAMPLE",
-                  "plasma aliquot #" + j, plasmaID, (HashMap<String, Object>) metadata.clone()));
+              .add(new TSVSampleBean(ID, project + "E4", project, (HashMap<String, Object>) metadata.clone()));
         }
       }
       if (i == 3) {
@@ -410,8 +405,7 @@ public class MCCView extends VerticalLayout implements IRegistrationView, IRegis
           String ID = counter.getNewBarcode();
           metadata.put("Q_EXTERNALDB_ID", plasmaExtID + lower);
           metadata.put("Q_SAMPLE_TYPE", "SMALLMOLECULES");
-          molecules.add(new TSVSampleBean(ID, project + "E5", project, mccSpace, "Q_TEST_SAMPLE",
-              "cryovial #" + j, plasmaID, (HashMap<String, Object>) metadata.clone()));
+          molecules.add(new TSVSampleBean(ID, project + "E5", project, (HashMap<String, Object>) metadata.clone()));
         }
         metadata.remove("Q_SAMPLE_TYPE");
       }
@@ -421,16 +415,14 @@ public class MCCView extends VerticalLayout implements IRegistrationView, IRegis
       String ID = counter.getNewBarcode();
       metadata.put("Q_EXTERNALDB_ID", tumorExtBase + i);
       metadata.put("Q_PRIMARY_TISSUE", "HEPATOCELLULAR_CARCINOMA");
-      liver.add(new TSVSampleBean(ID, project + "E6", project, mccSpace, "Q_BIOLOGICAL_SAMPLE",
-          "tumor biopsy #" + i, patientID, (HashMap<String, Object>) metadata.clone()));
+      liver.add(new TSVSampleBean(ID, project + "E6", project, (HashMap<String, Object>) metadata.clone()));
     }
     String liverExtBase = extIDBase + "L";
     for (int i = 1; i < 5; i++) {
       String ID = counter.getNewBarcode();
       metadata.put("Q_EXTERNALDB_ID", liverExtBase + i);
       metadata.put("Q_PRIMARY_TISSUE", "LIVER");
-      liver.add(new TSVSampleBean(ID, project + "E6", project, mccSpace, "Q_BIOLOGICAL_SAMPLE",
-          "liver biopsy #" + i, patientID, (HashMap<String, Object>) metadata.clone()));
+      liver.add(new TSVSampleBean(ID, project + "E6", project, (HashMap<String, Object>) metadata.clone()));
     }
     List<List<ISampleBean>> dummy = new ArrayList<List<ISampleBean>>(
         Arrays.asList(patients, urine, uAliquots, plasma, pAliquots, molecules, liver));

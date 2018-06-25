@@ -431,17 +431,6 @@ public class WizardDataAggregator {
   
   
   /**
-   *  Creates Samples for Matrix 
-   */
-  public List<AOpenbisSample> prepareMatrix(){
-	  techTypeInfo = s8.getAnalyteInformation();
-	 // matrixProtocol = s8.getNminProperties();
-	  matrix = new ArrayList<AOpenbisSample>(); 
-	  
-	  return matrix;
-  }
-  
-  /**
    * Creates the list of MHC ligand extract samples prepared for ms from the input information
    * collected in the aggregator fields and wizard steps and fetches or creates the associated
    * context. These are between the test sample and ms sample layer and carry a standard barcode!
@@ -1223,7 +1212,8 @@ public class WizardDataAggregator {
     }
     for (AOpenbisSample s : samples) {
       String code = s.getCode();
-      if (isEntity(code) || SampleCodeFunctions.isQbicBarcode(code)
+      //if (isEntity(code) || SampleCodeFunctions.isQbicBarcode(code)
+      if (isEntity(code) || SampleCodeFunctions.isQbicBarcode(code) //TODO data-model read in correct then it will work 
           || SampleCodeFunctions.isMeasurementOfBarcode(code, s.getValueMap().get("SAMPLE TYPE"))) {
         Map<String, String> data = s.getValueMap();
         String row = s.getCode();
@@ -1268,7 +1258,8 @@ public class WizardDataAggregator {
   }
 
   private static boolean isEntity(String code) {
-    String pattern = "Q[A-Z0-9]{4}ENTITY-[0-9]+";
+    //String pattern = "Q[A-Z0-9]{4}ENTITY-[0-9]+";
+    String pattern = "20[0-9]{2}-[0-9]-[0-9]{4}-[0-9]{3}ENTITY-[0-9]+";
     return code.matches(pattern);
   }
 
@@ -1512,7 +1503,7 @@ public class WizardDataAggregator {
       }
     }
     RegisteredAnalyteInformation res = new RegisteredAnalyteInformation(infos.keySet(),
-        measurePeptides, shortGel, purificationMethod ,infos.keySet()); //todo hengam
+        measurePeptides, shortGel, purificationMethod ,infos.keySet()); //TODO hengam
     return res;
   }
 }

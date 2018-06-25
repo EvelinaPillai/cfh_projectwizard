@@ -281,7 +281,7 @@ public class OpenbisCreationController {
         RegisterableProject p = new RegisterableProject(tsvSampleHierarchy, description,
             informativeExperiments, isPilot);
         List<RegisterableExperiment> exps = p.getExperiments();
-        String space = p.getSpace().toUpperCase();
+        String space = p.getSpace();// hengam .toUpperCase();
         String project = p.getProjectCode();
         String desc = p.getDescription();
 
@@ -422,7 +422,7 @@ public class OpenbisCreationController {
         String space = sample.getSpace();
         String project = sample.getProject();
         String exp = sample.getExperiment();
-        ArrayList<String> parents = sample.fetchParentIDs();
+        List<String> parents = sample.getParentIDs();
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("code", sample.getCode());
         map.put("space", space);

@@ -15,54 +15,89 @@
  *******************************************************************************/
 package life.qbic.projectwizard.uicomponents;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.vaadin.data.Item;
-import com.vaadin.ui.themes.ValoTheme;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.DateField;
-import com.vaadin.ui.Notification;
 import com.vaadin.ui.Table;
 import com.vaadin.ui.TextField;
-import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
 import life.qbic.datamodel.samples.AOpenbisSample;
-import life.qbic.projectwizard.io.DBVocabularies;
-import life.qbic.projectwizard.model.MHCLigandExtractionProtocol;
 import life.qbic.portal.Styles;
 import life.qbic.portal.components.StandardTextField;
+import life.qbic.projectwizard.io.DBVocabularies;
 
 public class NminPanel extends VerticalLayout {
 
-  /**
-   * 
-   */
-  private static final long serialVersionUID = -5539202326542301786L;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5610939053224210938L;
 
-  private Map<String, String> antiBodies;
+	private Map<String, String> soildepth; // TODO do we really need it in openBIS or can we define it here because it
+											// wont change in the future
 
-  
+	private Table nminSamples;
 
+	private static final Logger logger = LogManager.getLogger(NminPanel.class);
 
+	public NminPanel(DBVocabularies vocabs, int noSamples) {
+		this.setCaption("Nmin Options");
+		this.soildepth = vocabs.getAntibodiesMap();
+		setSpacing(true);
+		this.nminSamples = new Table();
 
-  private static final Logger logger = LogManager.getLogger(LigandExtractPanel.class);
+		nminSamples.setStyleName(Styles.tableTheme);
+		nminSamples.addContainerProperty("Sample", String.class, null); // sample name
+		nminSamples.addContainerProperty("Soil depth [cm]", ComboBox.class, null);
+		nminSamples.addContainerProperty("Bulk density [kg/l]", Label.class, null); // Lagerungsdichte
 
-  public NminPanel(DBVocabularies vocabs) {
-    this.setCaption("AminoAcid for Analyze");
-  
-    setSpacing(true);
+		addComponent(nminSamples);
+	}
 
-  }
+	private ComboBox generateTableSoildepthBox() {
+		ComboBox b = new ComboBox();
+		b.setWidth("100px");
+		b.addItems(this.soildepth.keySet());
+		b.setStyleName(Styles.boxTheme);
+		return b;
+	}
 
+	private Label generateTableLabel() {
+		Label l = new Label();
+		l.setImmediate(true);
+		l.setWidth("55px");
+		return l;
+	}
+	
+	
+	public void setNminSamples(int noSamples) { //List<AOpenbisSample> extracts
+	    nminSamples.removeAllItems();
+	    //tableIdToBarcode = new HashMap<Integer, String>();
+	    int i = 0;
+	   // for (AOpenbisSample s : extracts) {
+	    for (int s=0; s<noSamples; s++) {
+	      i++;
+	      //tableIdToBarcode.put(i, s.getCode());
+
+	      List<Object> row = new ArrayList<Object>();
+
+	      //row.add(s.getQ_SECONDARY_NAME());
+	      //row.add(generateTableIntegerInput());
+	      row.add(generateTableSoildepthBox());
+	      row.add(generateTableLabel());
+
+	      nminSamples.addItem(row.toArray(new Object[row.size()]), i);
+	    }
+	    nminSamples.setPageLength(noSamples);
+	  }
 
 }
