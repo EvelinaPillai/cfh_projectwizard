@@ -284,7 +284,7 @@ public class MatrixStep implements WizardStep {
 			}
 		};
 		
-		cfhPanel = new CFHPanel(vocabs.getCfhMethodTypes(), vocabs.getPeople().keySet(), new OptionGroup(""),elementListener,aaListener, fatListener, nminListener);
+		cfhPanel = new CFHPanel(vocabs.getCfhMethodTypes(), vocabs.getPeople().keySet(), new OptionGroup(""),elementListener,aaListener, fatListener, nminListener , vocabs.getMatrixMap());
 
 		main.addComponent(cfhPanel);
 		main.addComponent(new Label("<hr />", Label.CONTENT_XHTML));
