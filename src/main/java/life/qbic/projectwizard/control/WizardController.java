@@ -273,51 +273,53 @@ public class WizardController implements IRegistrationController {
     res = space + "-";
   //TODO needed?  while (res.length() < 5 || openbis.getProjectByCode(res) != null) {
     //get latest experiment from openbis 
-    //if no project existst jet then -001
+    //if no project exists yet then -001
     List<Project> projects = openbis.getProjectsOfSpace(space);
     if(projects.isEmpty()) {
     	res= res + "001";
-    	logger.info("hengam0:  "+ res);
+    
     } 
-    else {
+    int max=0;
+  	boolean flag = false;
+  	Project lastProject=projects.get(projects.size()-1);
+  	for(Project p:projects)
+  	{
+  		int len = p.getCode().length();
+  		int lastDigit = p.getCode().charAt(len-1);
+  		if (Character.isDigit(lastDigit)&&(lastDigit>max)){
+  			{
+  				max =lastDigit;
+  				lastProject = p;
+  				flag =true;
+  				logger.info("hengam0:  "+ lastDigit);
+  			}
+  		}
+  		
+  	}
+  	
+  	// = ;
+  	if(flag) {
+    
+    	//Project lastProject=projects.get(projects.size()-1);
     	
-    	int max=0;
-    	boolean flag = false;
-    	Project lastProject=projects.get(projects.size()-1);
-    	for(Project p:projects)
-    	{
-    		int len = p.getCode().length();
-    		int lastDigit = p.getCode().charAt(len-1);
-    		if (Character.isDigit(lastDigit)&&(lastDigit>max)){
-    			{
-    				max =lastDigit;
-    				lastProject = p;
-    				flag =true;
-    				logger.info("hengam0:  "+ lastDigit);
-    			}
-    		}
-    		
-    	}
-    	
-    	// = ;
-    	if(flag)
-    	{
-    		logger.info("hengam1:  "+ lastProject.getCode().substring(1, 4));
-    		int increment = Integer.parseInt(lastProject.getCode().substring(12, 15))+1;
-    		String formatted = String.format("%03d", increment); //leading zeros, length of 3 digits eg. 001, 010...
-    		logger.info("hengam2:  "+ increment + "__"+formatted);
-    		res = res + formatted;
-    	}   
-    	else
-    	{
-    		res= res + "001";
-        	logger.info("hengam3:  "+ res);
-    	}
+    	int increment = Integer.parseInt(lastProject.getCode().substring(12, 15))+1;
+    	String formatted = String.format("%03d", increment); //leading zeros, length of 3 digits eg. 001, 010...
+
+    	res = res + formatted;
     	
     }
+  	else
+	{
+		res= res + "001";
+			
+	}
     return res;
   }
 
+  
+
+  
+  
   public static enum Steps {
     Project_Context, Entities, Entity_Conditions, Entity_Tailoring, Extraction, Extract_Conditions, Extract_Tailoring, Extract_Pooling, Test_Samples, Test_Sample_Pooling, Registration, Finish, Protein_Fractionation, Protein_Fractionation_Pooling, Peptide_Fractionation, Peptide_Fractionation_Pooling, Matrix;
   }
@@ -531,8 +533,9 @@ public class WizardController implements IRegistrationController {
           String code = project + "000";
           String sampleType = "Q_ATTACHMENT_SAMPLE";
           boolean pilot = contextStep.isPilot();
-          ISampleBean infoSample = new TSVSampleBean(code, exp, project, space, sampleType, "", "",
-              new HashMap<String, Object>());
+          ISampleBean infoSample = new TSVSampleBean(code, exp, project, space, sampleType, "", new ArrayList<String>(),
+        		  new HashMap<String, Object>());
+        	
           samples.add(new ArrayList<ISampleBean>(Arrays.asList(infoSample)));
           openbisCreator.registerProjectWithExperimentsAndSamplesBatchWise(samples, desc,
               dataAggregator.getExperimentsWithMetadata(), regStep.getProgressBar(),
@@ -995,6 +998,7 @@ public class WizardController implements IRegistrationController {
        // matrixStep.initTestStep(peopleCL, steps);
         if (event.getActivatedStep().equals(matrixStep)) {
         	 dataAggregator.prepareMatrixSamples();
+        	 matrixStep.setNminSamples(27);
           // dataAggregator.setHasFractionationExperiment(false);
 //          testPoolsSet = false;// we have to reset this in the case someone goes back from pooling
 //          List<AOpenbisSample> extracts = tailoringStep2.getSamples();
@@ -1070,11 +1074,11 @@ public class WizardController implements IRegistrationController {
               dataAggregator.createFractionationSamplesAndExperiments();
             }
             if(techStep.hasMatrix()) {
-            	dataAggregator.prepareMatrix();
+            	dataAggregator.prepareMatrixSamples();
             }
             createTSV();
             try {
-              prep.processTSV(dataAggregator.getTSV(), ExperimentalDesignType.QBIC,true);//hengam
+              prep.processTSV(dataAggregator.getTSV(), ExperimentalDesignType.QBIC,false);//hengam
             } catch (IOException | JAXBException e) {
               e.printStackTrace();
             }
@@ -1107,7 +1111,7 @@ public class WizardController implements IRegistrationController {
             }
             createTSV();
             try {
-              prep.processTSV(dataAggregator.getTSV(), ExperimentalDesignType.QBIC,true);//hengam
+              prep.processTSV(dataAggregator.getTSV(), ExperimentalDesignType.QBIC,false);//hengam
             } catch (IOException | JAXBException e) {
               e.printStackTrace();
             }

@@ -43,6 +43,7 @@ public class CFHPanel extends HorizontalLayout {
   private static final long serialVersionUID = -1578503116738309380L;
   List<String> options;
   Set<String> persons;
+  Set<String> matrices;
   List<CFHChooser> choosers;
   Button.ClickListener buttonListener;
   ValueChangeListener poolListener;
@@ -65,7 +66,7 @@ public class CFHPanel extends HorizontalLayout {
    *        inside this component from the outside
    * @param proteinListeners
    */
-  public CFHPanel(List<String> techOptions, Set<String> persons, OptionGroup conditionsSet,
+  public CFHPanel(List<String> techOptions, Set<String> persons, Set<String> matrices, OptionGroup conditionsSet,
        ValueChangeListener elementListeners, ValueChangeListener aaListener,
       ValueChangeListener fatListener, ValueChangeListener nminListener) {
     this.options = techOptions;
@@ -88,7 +89,7 @@ public class CFHPanel extends HorizontalLayout {
    
 
     choosers = new ArrayList<CFHChooser>();
-    CFHChooser c = new CFHChooser(techOptions, persons);
+    CFHChooser c = new CFHChooser(techOptions, persons, matrices);
     c.setImmediate(true);
     //c.addPoolListener(poolListener);
     //c.addRefreshPeopleListener(refreshPeopleListener);
@@ -146,7 +147,7 @@ public class CFHPanel extends HorizontalLayout {
 
   private void add() {
     choosers.get(choosers.size() - 1).hideHelpers();
-    CFHChooser c = new CFHChooser(options, persons);
+    CFHChooser c = new CFHChooser(options, persons, matrices);
     //c.addPoolListener(poolListener);
     c.addElementListener(elementListeners);
     c.addFatListener(fatListener);

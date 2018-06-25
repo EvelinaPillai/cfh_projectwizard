@@ -359,7 +359,7 @@ public class MetadataUploadView extends VerticalLayout {
       if ((SampleCodeFunctions.isQbicBarcode(word) || word.contains("ENTITY-")) && barcodeCol == -1) {
         barcodeCol = j;
         barcodeColName = header[barcodeCol];
-        projectCode = word.substring(0, 5);
+        projectCode = word.substring(0, 15);
       }
     }
     if (barcodeCol == -1) {

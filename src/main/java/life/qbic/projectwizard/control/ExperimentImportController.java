@@ -62,6 +62,7 @@ import life.qbic.expdesign.SamplePreparator;
 import life.qbic.expdesign.VocabularyValidator;
 import life.qbic.expdesign.model.ExperimentalDesignType;
 import life.qbic.expdesign.model.SampleSummaryBean;
+import life.qbic.expdesign.model.StructuredExperiment;
 import life.qbic.openbis.openbisclient.IOpenBisClient;
 import life.qbic.projectwizard.io.DBManager;
 import life.qbic.projectwizard.io.DBVocabularies;
@@ -171,7 +172,7 @@ public class ExperimentImportController implements IRegistrationController {
                   new HashSet<String>(vocabs.getLcmsMethods()));
 
               VocabularyValidator validator = new VocabularyValidator(experimentTypeVocabularies);
-              boolean readSuccess = prep.processTSV(file, getImportType());
+              boolean readSuccess = prep.processTSV(file, getImportType(), true);
               boolean vocabValid = false;
               if (readSuccess) {
                 msProperties = prep.getSpecialExperimentsOfTypeOrNull("Q_MS_MEASUREMENT");
@@ -219,7 +220,9 @@ public class ExperimentImportController implements IRegistrationController {
                     missingCategoryToValues.put("Analytes",
                         new ArrayList<String>(prep.getAnalyteSet()));
                     initMissingInfoListener(prep, missingCategoryToValues, catToVocabulary);
-                    view.initGraphPreview(prep.getSampleGraph(), prep.getIDsToSamples());
+                    StructuredExperiment nodes = prep.getSampleGraph();
+                    if (!nodes.getFactorsToSamples().keySet().isEmpty())
+                      view.initGraphPreview(nodes, prep.getIDsToSamples());
                     break;
                   // MHC Ligands that have already been measured (Filenames exist)
                   case MHC_Ligands_Finished:
@@ -509,7 +512,7 @@ public class ExperimentImportController implements IRegistrationController {
                     }
                     exp = specialExpToExpCode.get(t.getExperiment());
                     // get parent sample for code
-                    String parentExtID = t.fetchParentIDs().get(0);
+                    String parentExtID = t.getParentIDs().get(0);
                     String parentCode = extCodeToBarcode.get(parentExtID);// .getCode();
                     int msRun = 1;
                     code = "";
@@ -523,11 +526,11 @@ public class ExperimentImportController implements IRegistrationController {
                 t.setExperiment(exp);
                 t.setCode(code);
                 extCodeToBarcode.put((String) props.get("Q_EXTERNALDB_ID"), code);// t);
-                List<String> parents = t.fetchParentIDs();
-                t.setParents("");
+                List<String> parents = t.getParentIDs();
+                // t.setParents(""); maybe needed?
                 for (String parentExtID : parents) {
                   if (extCodeToBarcode.containsKey(parentExtID))
-                    t.addParent(extCodeToBarcode.get(parentExtID));// .getCode());
+                    t.addParentID(extCodeToBarcode.get(parentExtID));// .getCode());
                   else
                     logger.warn(
                         "Parent could not be translated, because no ext id to code mapping was found for ext id "
@@ -667,6 +670,11 @@ public class ExperimentImportController implements IRegistrationController {
     return res;
   }
 
+/*  public static boolean isQbicBarcode(String code) { // added by hengam
+	    //String pattern = "Q[A-X0-9]{4}[0-9]{3}[A-X0-9]{2}";
+	    String pattern = "20[0-9]{2}-[0-9]-[0-9]{4}-[0-9]{3}[0-9]{3}[A-X0-9]{2}";
+	    return code.matches(pattern);
+	  }*/
   /**
    * Fetches context information like space and project and computes first unused IDs of samples and
    * context. Also fills a map of existing secondary names and samples used later not to re-register
@@ -702,8 +710,7 @@ public class ExperimentImportController implements IRegistrationController {
       // collect existing samples by their external id
       String extID = s.getProperties().get("Q_EXTERNALDB_ID");
       if (extIDToSample.containsKey(extID))
-        logger.warn(extID
-            + " was found as a secondary name for multiple samples. This might"
+        logger.warn(extID + " was found as a secondary name for multiple samples. This might"
             + " lead to inconsistencies if new samples are to be attached to this secondary name.");
       extIDToSample.put(extID, s);
       if (SampleCodeFunctions.isQbicBarcode(code)) {
