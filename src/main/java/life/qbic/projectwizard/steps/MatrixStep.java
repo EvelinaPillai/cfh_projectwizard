@@ -43,7 +43,6 @@ import life.qbic.projectwizard.uicomponents.NminPanel;
 import life.qbic.projectwizard.uicomponents.FatPanel;
 import life.qbic.projectwizard.uicomponents.LigandExtractPanel;
 import life.qbic.projectwizard.uicomponents.MSOptionComponent;
-import life.qbic.projectwizard.uicomponents.NminOptions;
 import life.qbic.projectwizard.uicomponents.TechnologiesPanel;
 import life.qbic.portal.Styles.NotificationType;
 
