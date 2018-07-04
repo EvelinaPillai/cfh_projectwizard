@@ -34,6 +34,7 @@ import java.util.Set;
 
 import javax.xml.bind.JAXBException;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.vaadin.teemu.wizards.Wizard;
@@ -268,6 +269,9 @@ public class WizardController implements IRegistrationController {
   }
   
 
+ 
+  
+  
   private String generateCFHProjectCode(String space) {
     String res = "";
     res = space + "-";
@@ -276,36 +280,31 @@ public class WizardController implements IRegistrationController {
     //if no project exists yet then -001
     List<Project> projects = openbis.getProjectsOfSpace(space);
     if(projects.isEmpty()) {
-    	res= res + "001";
-    
+    	res= res + "001";    
     } 
-    int max=0;
+    int max=0,maxTemp=0;
   	boolean flag = false;
   	Project lastProject=projects.get(projects.size()-1);
   	for(Project p:projects)
   	{
   		int len = p.getCode().length();
-  		//String lastDigit = p.getCode().substring(len-4,len-1);
-  		int lastDigit = p.getCode().charAt(len-1);  		
-  		if (Character.isDigit(lastDigit)&&(lastDigit>max)){
-  			{
-  				max =lastDigit;
-  				lastProject = p;
-  				flag =true;
-  				logger.info("hengam0:  "+ lastDigit);
-  			}
+  		String lastDigit = p.getCode().substring(len-3);
+  		if (StringUtils.isNumeric(lastDigit)){
+  				maxTemp=Integer.parseInt(lastDigit);
+  				if(max<maxTemp)
+  				{
+  					max=maxTemp;
+  					lastProject = p;
+  	  				flag =true;
+  	  				logger.info("hengam0:  "+ lastDigit);
+  				}
+  				
   		}
-  		
   	}
-  	
-  	// = ;
+ 
   	if(flag) {
-    
-    	//Project lastProject=projects.get(projects.size()-1);
-    	
     	int increment = Integer.parseInt(lastProject.getCode().substring(12, 15))+1;
     	String formatted = String.format("%03d", increment); //leading zeros, length of 3 digits eg. 001, 010...
-
     	res = res + formatted;
     	
     }
