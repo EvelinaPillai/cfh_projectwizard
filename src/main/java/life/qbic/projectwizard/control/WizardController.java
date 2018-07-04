@@ -285,7 +285,8 @@ public class WizardController implements IRegistrationController {
   	for(Project p:projects)
   	{
   		int len = p.getCode().length();
-  		int lastDigit = p.getCode().charAt(len-1);
+  		//String lastDigit = p.getCode().substring(len-4,len-1);
+  		int lastDigit = p.getCode().charAt(len-1);  		
   		if (Character.isDigit(lastDigit)&&(lastDigit>max)){
   			{
   				max =lastDigit;

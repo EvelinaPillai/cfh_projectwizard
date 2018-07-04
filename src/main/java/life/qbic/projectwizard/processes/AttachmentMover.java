@@ -89,7 +89,7 @@ public class AttachmentMover {
           UI.getCurrent().access(ready);
           UI.getCurrent().setPollInterval(-1);
           try {
-            createMarkers(attachments);
+        	createMarkers(attachments);
           } catch (InterruptedException e) {
             e.printStackTrace();
           } catch (IOException e) {
