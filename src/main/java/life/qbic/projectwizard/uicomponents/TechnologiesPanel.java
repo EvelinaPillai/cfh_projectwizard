@@ -17,6 +17,7 @@ package life.qbic.projectwizard.uicomponents;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import com.vaadin.data.Property.ValueChangeListener;
@@ -47,8 +48,12 @@ public class TechnologiesPanel extends HorizontalLayout {
   Button.ClickListener buttonListener;
   ValueChangeListener poolListener;
   List<ValueChangeListener> proteinListeners;
+  ValueChangeListener elementListener;
+  ValueChangeListener fatListener;
+  ValueChangeListener aaListener;
+  ValueChangeListener nminListener;
   ValueChangeListener mhcLigandListener;
-  ValueChangeListener matrixListener;
+  Map<String, String> matrixMap;
   Button.ClickListener refreshPeopleListener;
   GridLayout buttonGrid;
   Button add;
@@ -66,9 +71,11 @@ public class TechnologiesPanel extends HorizontalLayout {
    */
   public TechnologiesPanel(List<String> techOptions, Set<String> persons, OptionGroup conditionsSet,
       ValueChangeListener poolListener, ArrayList<ValueChangeListener> proteinListeners,
-      ValueChangeListener mhcLigandListener, ClickListener refreshPeopleListener, ValueChangeListener matrixListener) {
+      ValueChangeListener mhcLigandListener, ClickListener refreshPeopleListener, ValueChangeListener elementListener, 
+      ValueChangeListener aaListener, ValueChangeListener fatListener, ValueChangeListener nminListener, Map<String, String> matrixMap){
     this.options = techOptions;
     this.persons = persons;
+    this.matrixMap = matrixMap;
 
     this.conditionsSet = conditionsSet;
     this.conditionsSet.addItem("set");
@@ -81,18 +88,25 @@ public class TechnologiesPanel extends HorizontalLayout {
     this.proteinListeners = proteinListeners;
     this.mhcLigandListener = mhcLigandListener;
     this.refreshPeopleListener = refreshPeopleListener;
-    this.matrixListener = matrixListener;
+    this.elementListener = elementListener;
+    this.fatListener = fatListener;
+    this.aaListener = aaListener;
+    this.nminListener = nminListener;
    
 
     choosers = new ArrayList<TechChooser>();
-    TechChooser c = new TechChooser(techOptions, persons);
+    TechChooser c = new TechChooser(techOptions, persons, matrixMap);
     c.setImmediate(true);
     c.addPoolListener(poolListener);
     c.addRefreshPeopleListener(refreshPeopleListener);
     for (ValueChangeListener l : proteinListeners)
       c.addProteinListener(l);
     c.addMHCListener(mhcLigandListener);
-    c.addMatrixListener(matrixListener);
+    c.addElementListener(elementListener);
+    c.addFatListener(fatListener);
+    c.addNminListener(nminListener);
+    c.addAAListener(aaListener);
+   
     choosers.add(c);
     addComponent(c);
     c.showHelpers();
@@ -141,13 +155,16 @@ public class TechnologiesPanel extends HorizontalLayout {
 
   private void add() {
     choosers.get(choosers.size() - 1).hideHelpers();
-    TechChooser c = new TechChooser(options, persons);
+    TechChooser c = new TechChooser(options, persons,matrixMap);
     c.addPoolListener(poolListener);
     for (ValueChangeListener l : proteinListeners)
       c.addProteinListener(l);
     c.addMHCListener(mhcLigandListener);
     c.addRefreshPeopleListener(refreshPeopleListener);
-    c.addMatrixListener(matrixListener);
+    c.addElementListener(elementListener);
+    c.addFatListener(fatListener);
+    c.addAAListener(aaListener);
+    c.addNminListener(nminListener);
     choosers.add(c);
 
     c.showHelpers();
@@ -167,9 +184,12 @@ public class TechnologiesPanel extends HorizontalLayout {
       for (ValueChangeListener l : proteinListeners)
         last.removeProteinListener(l);
       last.removeMHCListener(mhcLigandListener);
-
+      last.removeElementListener(elementListener);
+      last.removeFatListener(fatListener);
+      last.removeAAListener(aaListener);
+      last.removeNminListener(nminListener);
       last.removeRefreshPeopleListener(refreshPeopleListener);
-      last.removeMatrixlistener(matrixListener);
+
       choosers.get(size - 2).showHelpers();
     }
   }

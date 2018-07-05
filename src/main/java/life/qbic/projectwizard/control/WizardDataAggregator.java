@@ -59,7 +59,7 @@ import ch.systemsx.cisd.openbis.plugin.query.shared.api.v1.dto.QueryTableModel;
 import life.qbic.projectwizard.steps.ConditionInstanceStep;
 import life.qbic.projectwizard.steps.EntityStep;
 import life.qbic.projectwizard.steps.ExtractionStep;
-import life.qbic.projectwizard.steps.MatrixStep;
+//import life.qbic.projectwizard.steps.MatrixStep; TODO to delete
 import life.qbic.projectwizard.steps.ProjectContextStep;
 import life.qbic.projectwizard.steps.TestStep;
 import life.qbic.xml.manager.XMLParser;
@@ -79,7 +79,7 @@ public class WizardDataAggregator {
   private ExtractionStep s5;
   private ConditionInstanceStep s6;
   private TestStep s8;
-  private MatrixStep s9;
+ // private MatrixStep s9; //TODO to delete
 
   private String tsvContent;
 
@@ -153,7 +153,7 @@ public class WizardDataAggregator {
     s5 = (ExtractionStep) steps.get(Steps.Extraction);
     s6 = (ConditionInstanceStep) steps.get(Steps.Extract_Conditions);
     s8 = (TestStep) steps.get(Steps.Test_Samples);
-    s9 = (MatrixStep) steps.get(Steps.Matrix);
+    //s9 = (MatrixStep) steps.get(Steps.Matrix); //TODO to delete
     this.openbis = openbis;
     this.taxMap = taxMap;
    // this.matrixMap = matrixMap;
@@ -404,9 +404,9 @@ public class WizardDataAggregator {
   }
 
   
-  
+  // TODO will need changes
   public List<List<AOpenbisSample>> prepareMatrixSamples() {
-	    cfhTypeInfo = s9.getCFHInformation();
+	    cfhTypeInfo = s8.getAnalyteInformation();
 	    if (inheritExtracts) {
 	      prepareBasics();
 	      classChars = new HashMap<String, Character>();

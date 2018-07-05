@@ -77,12 +77,12 @@ public class ProjectInformationComponent extends VerticalLayout {
     projectBox = new CustomVisibilityComponent(prBox);
     projectBox.setStyleName(Styles.boxTheme);
     projectBox.setImmediate(true);
-    addComponent(Styles.questionize(projectBox, "QBiC 5 letter project code", "Project"));
+    addComponent(Styles.questionize(projectBox, "CFH project code", "Project"));
 
     project = new StandardTextField();
     project.setStyleName(Styles.fieldTheme);
-   // project.setMaxLength(5);
-   // project.setWidth("90px");
+    project.setMaxLength(15);
+    //project.setWidth("90px"); //TODO to delete 
     project.setEnabled(false);
     project.setValidationVisible(true);
 
@@ -96,8 +96,8 @@ public class ProjectInformationComponent extends VerticalLayout {
     CustomVisibilityComponent newProj = new CustomVisibilityComponent(proj);
 
     addComponent(Styles.questionize(newProj,
-        "Automatically create an unused QBiC project code or fill in your own. "
-            + "The code consists of 5 characters, must start with Q and not contain Y or Z. You can create a random unused code by clicking "
+        "Automatically create an unused CFH project code or fill in your own. "
+            + "The code consists of 15 characters, must follow the pattern [year]-[module]-[4digits]-[3digits]. You can create a random unused code by clicking "
             + FontAwesome.REFRESH.getHtml() + ".",
         "New Sub-Project"));
     expName = new StandardTextField("Short name");

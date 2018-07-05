@@ -358,7 +358,7 @@ public class WizardController implements IRegistrationController {
     // PoolingStep(Steps.Protein_Fractionation_Pooling);
     final MSAnalyteStep pepFracStep = new MSAnalyteStep(vocabularies, "PEPTIDES");
     // final PoolingStep afterPepFracPooling = new PoolingStep(Steps.Peptide_Fractionation_Pooling);
-    final MatrixStep matrixStep = new MatrixStep(w,vocabularies);
+    //final MatrixStep matrixStep = new MatrixStep(w,vocabularies); //TODO to delete
     
     steps = new HashMap<Steps, WizardStep>();
     steps.put(Steps.Project_Context, contextStep);
@@ -375,7 +375,7 @@ public class WizardController implements IRegistrationController {
     steps.put(Steps.Peptide_Fractionation, pepFracStep);
     // steps.put(Steps.Protein_Fractionation_Pooling, afterProtFracPooling);
     // steps.put(Steps.Peptide_Fractionation_Pooling, afterPepFracPooling);
-    steps.put(Steps.Matrix, matrixStep);
+   // steps.put(Steps.Matrix, matrixStep); //TODO to delete
     steps.put(Steps.Registration, regStep);
     steps.put(Steps.Finish, finishStep);
 
@@ -439,7 +439,7 @@ public class WizardController implements IRegistrationController {
         entStep.updatePeople(people);
         extrStep.updatePeople(people);
         techStep.updatePeople(people);
-        matrixStep.updatePeople(people);
+        //matrixStep.updatePeople(people); //TODO to delete
       }
     };
     projSelection.getPeopleReloadButton().addClickListener(peopleCL);
@@ -870,7 +870,7 @@ public class WizardController implements IRegistrationController {
     
     
     
-    matrixStep.initTestStep(peopleCL, steps);
+   // matrixStep.initTestStep(peopleCL, steps); TODO to delete
     TextField f = contextStep.getProjectCodeField();
     CompositeValidator vd = new CompositeValidator();
     //TODO change to CFH Code
@@ -996,9 +996,9 @@ public class WizardController implements IRegistrationController {
         
      // Test CFH Step
        // matrixStep.initTestStep(peopleCL, steps);
-        if (event.getActivatedStep().equals(matrixStep)) {
+      /*  if (event.getActivatedStep().equals(matrixStep)) {
         	 dataAggregator.prepareMatrixSamples();
-        	 matrixStep.setNminSamples(27);
+        	 matrixStep.setNminSamples(27); */ //TODO to delete
           // dataAggregator.setHasFractionationExperiment(false);
 //          testPoolsSet = false;// we have to reset this in the case someone goes back from pooling
 //          List<AOpenbisSample> extracts = tailoringStep2.getSamples();
@@ -1009,7 +1009,7 @@ public class WizardController implements IRegistrationController {
           //dataAggregator.setExtracts(all);
           //if (copyMode)
         	//  matrixStep.setAnalyteInputs(dataAggregator.getBaseAnalyteInformation());
-        }
+       // }
         
         // Test Pool Step
         if (event.getActivatedStep().equals(poolStep2)) {

@@ -273,7 +273,8 @@ public class UploadsPanel extends VerticalLayout {
           }
       }
       List<ISampleBean> samples = new ArrayList<ISampleBean>();
-      samples.add(new TSVSampleBean(sample, experiment, project, new HashMap<String, Object>()));
+      samples.add(new TSVSampleBean(sample, experiment, project, space, "Q_ATTACHMENT_SAMPLE", "",
+          new ArrayList<String>(), new HashMap<String, Object>()));
       openbisCreator.registerSampleBatchInETL(samples, userID);
       double timeoutS = 10.0;
       while (!openbis.sampleExists(sample))

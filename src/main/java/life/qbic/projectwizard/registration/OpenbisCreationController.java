@@ -403,6 +403,8 @@ public class OpenbisCreationController {
     // to speed up things only the first sample and its experiment is checked for existence, might
     // lead to errors
     ISampleBean first = samples.get(0);
+    String exp1 = first.getExperiment();
+   
     if (!first.getExperiment().equals(e)) {
       s = first.getSpace();
       p = first.getProject();
