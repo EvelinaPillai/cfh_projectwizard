@@ -162,7 +162,7 @@ public class FinishStep implements WizardStep {
         String host = UI.getCurrent().getPage().getLocation().getHost();
         String path =
             UI.getCurrent().getPage().getLocation().getPath().replace("qwizard", "qnavigator");
-        String url = "http://" + host + path + "#!project//" + space + "/" + proj;
+        String url = "http://" + host + ":8080" + path + "#!project//" + space + "/" + proj; //TODO think about if we change the port to 80 or not
         UI.getCurrent().getPage().setLocation(url);
       }
     });
