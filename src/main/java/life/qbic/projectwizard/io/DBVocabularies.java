@@ -42,6 +42,7 @@ public class DBVocabularies {
   private List<String> cfhMethod;
   private List<String> extractionTypes;
   private List<String> devices;
+  private List<String> soildepth;
 
   public DBVocabularies(Map<String, String> matrixMap, Map<String, String> taxMap, Map<String, String> tissueMap,
       Map<String, String> cellLinesMap, List<String> measureTypes, List<String> spaces,
@@ -49,7 +50,7 @@ public class DBVocabularies {
       Map<String, String> antibodiesWithDescriptions, Map<String, String> deviceMap,
       List<String> msProtocols, List<String> lcmsMethods, Map<String, String> chromTypes2,
       List<String> fractionationTypes, List<String> enrichmentTypes, Map<String, String> purificationMethods,List<String> cfhMethod, List<String> extractionTypes,
-      List<String> devices) {
+      List<String> devices, List<String> soildepth) {
 	this.matrixMap = matrixMap;  
     this.taxMap = taxMap;
     this.tissueMap = tissueMap;
@@ -71,6 +72,7 @@ public class DBVocabularies {
     this.extractionTypes = extractionTypes;
     this.devices = devices;
     enzymes.addAll(enzymeMap.keySet());
+    this.soildepth = soildepth;
     
   }
 
@@ -163,6 +165,10 @@ public List<String> getDevices() {
 }
 public void setExtractions(List<String> extractionTypes) {
 	this.extractionTypes = extractionTypes;
+}
+
+public List<String> getSoildepth() {
+	return soildepth;
 }
 
 }

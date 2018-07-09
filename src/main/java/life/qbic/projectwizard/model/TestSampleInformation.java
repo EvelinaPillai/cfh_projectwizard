@@ -7,14 +7,18 @@ public class TestSampleInformation {
   private int replicates;
   private String person;
   private int sampleNo;
+  private String sampleName;
+  private String matrix;
 
 
-  public TestSampleInformation(String tech, boolean pool, int reps, int sampleNo, String person) {
+  public TestSampleInformation(String tech, boolean pool, int reps, int sampleNo, String person, String sampleName, String matrix) {
     this.replicates = reps;
     this.sampleNo = sampleNo;
     this.pool = pool;
     this.person = person;
     this.technology = tech;
+    this.sampleName = sampleName;
+    this.matrix = matrix;
 
   }
 
@@ -37,6 +41,7 @@ public class TestSampleInformation {
   public int getSampleNo() {
 	  return sampleNo;
   }
+  
   @Override
   public String toString() {
     String res = technology;
@@ -46,5 +51,14 @@ public class TestSampleInformation {
     res += "\n" + person;
     return res;
   }
+
+public String getSampleName() {
+	return sampleName;
+}
+
+public String getMatrix() {
+	return matrix;
+}
+
 
 }

@@ -30,6 +30,7 @@ import com.vaadin.data.Property.ValueChangeListener;
 import com.vaadin.ui.Button.ClickListener;
 
 import life.qbic.datamodel.samples.AOpenbisSample;
+import life.qbic.datamodel.sorters.SampleSecondaryNameComparator;
 import life.qbic.portal.Styles;
 import life.qbic.projectwizard.control.WizardController.Steps;
 import life.qbic.projectwizard.io.DBVocabularies;
@@ -371,7 +372,7 @@ public class TestStep implements WizardStep {
 		elementPanel.setVisible(false);
 		AminoAcidPanel = new AminoAcidPanel(vocabs);
 		AminoAcidPanel.setVisible(false);
-		NminPanel = new NminPanel(vocabs, 1); // TODO number of samples and how we get samples from steps before
+		NminPanel = new NminPanel(vocabs,5); // TODO number of samples and how we get samples from steps before
 		NminPanel.setVisible(false);
 		FatPanel = new FatPanel(vocabs);
 		FatPanel.setVisible(false);
@@ -448,7 +449,4 @@ public class TestStep implements WizardStep {
 		techPanel.updatePeople(people);
 	}
 
-	public void setNminSamples(int noSamples) {
-		NminPanel.setNminSamples(noSamples);
-	}
 }
