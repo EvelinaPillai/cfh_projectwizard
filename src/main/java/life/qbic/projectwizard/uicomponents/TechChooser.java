@@ -165,9 +165,16 @@ public class TechChooser extends VerticalLayout {
 
   public TestSampleInformation getChosenTechInfo() {
     return new TestSampleInformation(chooser.getValue().toString(), pool.getValue(),
-        Integer.parseInt(replicates.getValue()), Integer.parseInt(sampleNo.getValue()), getPerson(), sampleName.getValue(),matrix.getValue().toString());
+        Integer.parseInt(replicates.getValue()), Integer.parseInt(sampleNo.getValue()), getPerson(), sampleName.getValue(), getMatrix());
   }
 
+
+private String getMatrix() {
+	if (matrix.getValue()!=null)
+		return matrix.getValue().toString();
+	else
+		return null;
+}
 
 public void showHelpers() {
     for (HorizontalLayout h : helpers)

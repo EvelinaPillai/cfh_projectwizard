@@ -30,7 +30,6 @@ import com.vaadin.data.Property.ValueChangeListener;
 import com.vaadin.ui.Button.ClickListener;
 
 import life.qbic.datamodel.samples.AOpenbisSample;
-import life.qbic.datamodel.sorters.SampleSecondaryNameComparator;
 import life.qbic.portal.Styles;
 import life.qbic.projectwizard.control.WizardController.Steps;
 import life.qbic.projectwizard.io.DBVocabularies;
@@ -78,6 +77,7 @@ public class TestStep implements WizardStep {
 	private boolean containsNmin = false;
 	private boolean containsFat = false;
 	private boolean containsAA = false;
+	private static String sampleName = "";
 
 	private Wizard wizard;
 
@@ -336,6 +336,7 @@ public class TestStep implements WizardStep {
 				for (TestSampleInformation i : getAnalyteInformation()) {
 					String cfh = i.getTechnology();
 					containsNmin |= cfh.equals("NMIN");
+					sampleName = i.getSampleName();
 				}
 				NminPanel.setVisible(containsNmin);
 			}
@@ -372,7 +373,8 @@ public class TestStep implements WizardStep {
 		elementPanel.setVisible(false);
 		AminoAcidPanel = new AminoAcidPanel(vocabs);
 		AminoAcidPanel.setVisible(false);
-		NminPanel = new NminPanel(vocabs,5); // TODO number of samples and how we get samples from steps before
+		
+		NminPanel = new NminPanel(vocabs, getAnalyteInformation()); 
 		NminPanel.setVisible(false);
 		FatPanel = new FatPanel(vocabs);
 		FatPanel.setVisible(false);
@@ -448,5 +450,10 @@ public class TestStep implements WizardStep {
 	public void updatePeople(Set<String> people) {
 		techPanel.updatePeople(people);
 	}
+	
+	public static String getSampleName() {
+		return sampleName;
+	}
+
 
 }
