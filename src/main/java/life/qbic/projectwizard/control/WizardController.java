@@ -304,6 +304,10 @@ public class WizardController implements IRegistrationController {
   		
   	if(flag) {
     	int increment = Integer.parseInt(lastProject.getCode().substring(12, 15))+1;
+    	if(increment>999)
+    	{
+    		
+    	}
     	String formatted = String.format("%03d", increment); //leading zeros, length of 3 digits eg. 001, 010...
     	res = res + formatted;
     	
@@ -997,8 +1001,16 @@ public class WizardController implements IRegistrationController {
      // Test CFH Step
        // matrixStep.initTestStep(peopleCL, steps);
         if (event.getActivatedStep().equals(matrixStep)) {
-        	 dataAggregator.prepareMatrixSamples();
-        	 matrixStep.setNminSamples(27);
+        	List<AOpenbisSample> extracts = tailoringStep2.getSamples();
+        	List<AOpenbisSample> allMatrix = new ArrayList<AOpenbisSample>();
+        	techStep.setTissueExtracts(extracts);
+        	allMatrix.addAll(extracts);
+        	allMatrix.addAll(dataAggregator.createPoolingSamples(poolStep1.getPools()));
+        	dataAggregator.setExtracts(allMatrix);
+        	if (copyMode)
+                techStep.setAnalyteInputs(dataAggregator.getBaseAnalyteInformation());
+        	//dataAggregator.prepareMatrixSamples();
+        	 //matrixStep.setNminSamples(27);
           // dataAggregator.setHasFractionationExperiment(false);
 //          testPoolsSet = false;// we have to reset this in the case someone goes back from pooling
 //          List<AOpenbisSample> extracts = tailoringStep2.getSamples();

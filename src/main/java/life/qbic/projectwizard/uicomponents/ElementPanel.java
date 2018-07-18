@@ -15,14 +15,19 @@
  *******************************************************************************/
 package life.qbic.projectwizard.uicomponents;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.TextField;
 import matrix.ChemElement;
 import matrix.PeriodicTable;
 import life.qbic.projectwizard.io.DBVocabularies;
+import life.qbic.projectwizard.model.MHCLigandExtractionProtocol;
 
 public class ElementPanel extends HorizontalLayout {
 
@@ -31,7 +36,8 @@ public class ElementPanel extends HorizontalLayout {
 	 */
 	private static final long serialVersionUID = 7227082472253643451L;
 
-	private ExtractionPanel elementPanel;
+	private ExtractionPanel extractionPanel;
+
 
 	public ElementPanel(DBVocabularies vocabs) {
 
@@ -39,7 +45,7 @@ public class ElementPanel extends HorizontalLayout {
 		setMargin(true);
 		this.setCaption("Elements to analyze");
 
-		elementPanel = new ExtractionPanel(vocabs.getExtractions(), vocabs.getDevices());
+		extractionPanel = new ExtractionPanel(vocabs.getExtractions(), vocabs.getDevices());
 
 		List<ChemElement> elements = new ArrayList<ChemElement>();
 		elements.add(new ChemElement("H", "Hydrogen", 1, 1, 1));
@@ -164,19 +170,19 @@ public class ElementPanel extends HorizontalLayout {
 		PeriodicTable table = new PeriodicTable(this);
 		table.setElements(elements);
 
-		addComponent(elementPanel);
+		addComponent(extractionPanel);
 
 		addComponent(table);
 	}
 
 	//TODO write isvalid() method for Input if it really only includes Chemical Elements
 	public void useSelectedElement(ChemElement element) {
-		List<TextField> list = elementPanel.getElements();
 		
-		for (int i=0; i<list.size();i++) {
-			TextField t = list.get(i);
+		
+		for (int i=0; i<extractionPanel.getElements().size();i++) {
+			TextField t = extractionPanel.getElements().get(i);
 			//t.focus();
-			if (elementPanel.status.get(i)) {
+			if (extractionPanel.status.get(i)) {
 			
 				String currentElement = t.getValue();
 				String newElemntlist = currentElement + ", " + element.getAbbreviation();
@@ -187,4 +193,27 @@ public class ElementPanel extends HorizontalLayout {
 			
 		}
 	}
-}
+	
+	
+	
+	public List<Map<String , String>> getElementProperties() {
+		List<Map<String , String>> res = new ArrayList<Map<String , String>>();
+		for (int i=0; i<extractionPanel.getElements().size();i++)
+		{
+			Map<String, String> res1 = new HashMap<String, String>(); 
+			res1.put("Q_CFH_DIGESTION" , extractionPanel.getExtractions().get(i).toString());
+			res1.put("Q_ELEMENT_DESC", extractionPanel.getElements().get(i).getValue());
+			res1.put("Q_CFH_DEVICES", extractionPanel.getDevices().get(i));
+			res.add(res1);
+			
+		}
+			        
+	    return res;	
+	}
+	
+	
+	
+	
+}	
+	
+	

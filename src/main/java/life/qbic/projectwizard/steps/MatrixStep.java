@@ -29,11 +29,9 @@ import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.data.Property.ValueChangeListener;
 import com.vaadin.ui.Button.ClickListener;
 
-import life.qbic.datamodel.samples.AOpenbisSample;
 import life.qbic.portal.Styles;
 import life.qbic.projectwizard.control.WizardController.Steps;
 import life.qbic.projectwizard.io.DBVocabularies;
-import life.qbic.projectwizard.model.MHCLigandExtractionProtocol;
 import life.qbic.projectwizard.model.RegisteredAnalyteInformation;
 import life.qbic.projectwizard.model.TestSampleInformation;
 import life.qbic.projectwizard.uicomponents.ElementPanel;
@@ -41,10 +39,7 @@ import life.qbic.projectwizard.uicomponents.AminoAcidPanel;
 import life.qbic.projectwizard.uicomponents.CFHPanel;
 import life.qbic.projectwizard.uicomponents.NminPanel;
 import life.qbic.projectwizard.uicomponents.FatPanel;
-import life.qbic.projectwizard.uicomponents.LigandExtractPanel;
-import life.qbic.projectwizard.uicomponents.MSOptionComponent;
-import life.qbic.projectwizard.uicomponents.TechnologiesPanel;
-import life.qbic.portal.Styles.NotificationType;
+
 
 import com.vaadin.ui.CheckBox;
 import com.vaadin.ui.Component;
@@ -361,7 +356,16 @@ public class MatrixStep implements WizardStep {
 	
 	
 	
-	
+	public List<Map<String,String>> getElementPanel()
+	{
+		if(containsElement)
+		{
+			return elementPanel.getElementProperties();
+		}
+		
+		return null;
+		
+	}
 	
 	
 	

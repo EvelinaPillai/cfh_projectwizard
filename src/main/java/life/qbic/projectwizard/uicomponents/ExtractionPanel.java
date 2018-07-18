@@ -93,6 +93,15 @@ public class ExtractionPanel extends VerticalLayout {
 		}
 		return res;
 	}
+	
+	public List<String> getDevices() {
+		List<String> res = new ArrayList<String>();
+		for (ExtractionChooser c : choosers) {
+			if (c.isSet())
+				res.add(c.getDevice());
+		}
+		return res;
+	}
 
 	private void add() {
 		if (choosers.size() < 4) {
