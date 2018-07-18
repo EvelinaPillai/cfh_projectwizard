@@ -301,9 +301,13 @@ public class WizardController implements IRegistrationController {
   				
   		}
   	}
- 
+  		
   	if(flag) {
     	int increment = Integer.parseInt(lastProject.getCode().substring(12, 15))+1;
+    	if(increment>999)
+    	{
+    		
+    	}
     	String formatted = String.format("%03d", increment); //leading zeros, length of 3 digits eg. 001, 010...
     	res = res + formatted;
     	
@@ -375,7 +379,7 @@ public class WizardController implements IRegistrationController {
     steps.put(Steps.Peptide_Fractionation, pepFracStep);
     // steps.put(Steps.Protein_Fractionation_Pooling, afterProtFracPooling);
     // steps.put(Steps.Peptide_Fractionation_Pooling, afterPepFracPooling);
-   // steps.put(Steps.Matrix, matrixStep); //TODO to delete
+    //steps.put(Steps.Matrix, matrixStep);
     steps.put(Steps.Registration, regStep);
     steps.put(Steps.Finish, finishStep);
 
@@ -996,9 +1000,8 @@ public class WizardController implements IRegistrationController {
         
      // Test CFH Step
        // matrixStep.initTestStep(peopleCL, steps);
-      /*  if (event.getActivatedStep().equals(matrixStep)) {
-        	 dataAggregator.prepareMatrixSamples();
-        	 matrixStep.setNminSamples(27); */ //TODO to delete
+             	//dataAggregator.prepareMatrixSamples();
+        	 //matrixStep.setNminSamples(27);
           // dataAggregator.setHasFractionationExperiment(false);
 //          testPoolsSet = false;// we have to reset this in the case someone goes back from pooling
 //          List<AOpenbisSample> extracts = tailoringStep2.getSamples();
@@ -1009,7 +1012,7 @@ public class WizardController implements IRegistrationController {
           //dataAggregator.setExtracts(all);
           //if (copyMode)
         	//  matrixStep.setAnalyteInputs(dataAggregator.getBaseAnalyteInformation());
-       // }
+        //}
         
         // Test Pool Step
         if (event.getActivatedStep().equals(poolStep2)) {

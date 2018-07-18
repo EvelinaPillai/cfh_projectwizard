@@ -67,6 +67,13 @@ public class ExtractionChooser extends VerticalLayout {
 		else
 			return null;
 	}
+	
+	public String getDevice() {
+		if (devChooser.getValue() != null)
+			return devChooser.getValue().toString();
+		else
+			return null;
+	}
 
 	public void reset() {
 		chooser.setValue(chooser.getNullSelectionItemId());

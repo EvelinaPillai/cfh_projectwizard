@@ -43,6 +43,7 @@ import life.qbic.datamodel.persons.PersonType;
 import life.qbic.datamodel.samples.AOpenbisSample;
 import life.qbic.datamodel.samples.OpenbisBiologicalEntity;
 import life.qbic.datamodel.samples.OpenbisBiologicalSample;
+import life.qbic.datamodel.samples.OpenbisCfhElementSample;
 import life.qbic.datamodel.samples.OpenbisMHCExtractSample;
 import life.qbic.datamodel.samples.OpenbisTestSample;
 import life.qbic.openbis.openbisclient.IOpenBisClient;
@@ -136,6 +137,8 @@ public class WizardDataAggregator {
   private MSExperimentModel fractionationProperties;
   private List<ExperimentType> informativeExpTypes = new ArrayList<ExperimentType>(
       Arrays.asList(ExperimentType.Q_MHC_LIGAND_EXTRACTION, ExperimentType.Q_MS_MEASUREMENT));
+  
+  private List<Map<String , String>> infos = new ArrayList<Map<String , String>>();
 
   /**
    * Creates a new WizardDataAggregator
@@ -407,6 +410,13 @@ public class WizardDataAggregator {
   // TODO will need changes
   public List<List<AOpenbisSample>> prepareMatrixSamples() {
 	    cfhTypeInfo = s8.getAnalyteInformation();
+		
+	    if( s8.hasElement())
+	    {
+	    	 infos = s8.getElementPanel();
+	    }
+	    else 
+	    	return null;
 	    if (inheritExtracts) {
 	      prepareBasics();
 	      classChars = new HashMap<String, Character>();
@@ -417,15 +427,39 @@ public class WizardDataAggregator {
 	      String person = x.getPerson();
 	      if (person != null && !person.isEmpty())
 	        personID = personMap.get(person);
-	      OpenbisExperiment exp = new OpenbisExperiment(buildExperimentName(),
-	          ExperimentType.Q_SAMPLE_PREPARATION, personID, null);// TODO add secondary name here
-	      experiments.add(exp);
+	      if(x.getTechnology() == "ELEMENT")
+	      {
+	    	  OpenbisExperiment exp = new OpenbisExperiment(buildExperimentName(),
+	    	  ExperimentType.Q_CFH_ELEMENT, personID, null);// TODO add secondary name here
+	    	  experiments.add(exp);
+	      }
+	      else if(x.getTechnology() == "NMIN")
+	      {
+	    	  
+	      }
+	      else if(x.getTechnology() == "FAT")
+	      {
+	    	  
+	      }
+	      else if(x.getTechnology() == "AMINOACID")
+	      {
+	    	  
+	      }
+	      else
+	      {
+	    	  OpenbisExperiment exp = new OpenbisExperiment(buildExperimentName(),
+	    	    	  ExperimentType.Q_SAMPLE_PREPARATION, personID, null);// TODO add secondary name here
+	    	  experiments.add(exp);
+	      }
+	      
 	    }
-	    List<List<AOpenbisSample>> cfhSortedTests = buildMatrixSamples(extracts, classChars);
+	    List<List<AOpenbisSample>> cfhSortedTests = buildMatrixSamples(extracts, classChars , infos);
 	    tests = new ArrayList<AOpenbisSample>();
 	    for (List<AOpenbisSample> group : cfhSortedTests)
 	      tests.addAll(group);
-	    
+	    for (int i = cfhSortedTests.size() - 1; i > -1; i--) {
+	    	cfhSortedTests.remove(i);
+	      }
 	    return cfhSortedTests;
 	  }
   
@@ -794,7 +828,7 @@ public class WizardDataAggregator {
             classChar = SampleCodeFunctions.incrementUppercase(classChar);
             classChars.put(secondaryName, classChar);
           }
-          incrementOrCreateBarcode();
+          //incrementOrCreateBarcode();
           techTests.add(new OpenbisTestSample(nextBarcode, spaceCode,
               experiments.get(expNum).getOpenbisName(), secondaryName, "", s.getFactors(),
               sampleType, s.getCode(), s.getQ_EXTERNALDB_ID()));// TODO
@@ -809,15 +843,15 @@ public class WizardDataAggregator {
   }
 
   
-  private List<List<AOpenbisSample>> buildMatrixSamples(List<AOpenbisSample> extracts,
-	      Map<String, Character> classChars) {
+  private List<List<AOpenbisSample>> buildMatrixSamples(List<AOpenbisSample> matrix,
+	      Map<String, Character> classChars , List<Map<String , String>> infos) {
 	    List<List<AOpenbisSample>> tests = new ArrayList<List<AOpenbisSample>>();
 	    for (int j = 0; j < cfhTypeInfo.size(); j++) {// different technologies
 	      List<AOpenbisSample> cfhTests = new ArrayList<AOpenbisSample>();
 	      int techReps = cfhTypeInfo.get(j).getReplicates();
 	      String sampleType = cfhTypeInfo.get(j).getTechnology();
 	      int expNum = experiments.size() - cfhTypeInfo.size() + j;
-	      for (AOpenbisSample s : extracts) {
+	      for (AOpenbisSample s : matrix) {
 	        for (int i = techReps; i > 0; i--) {
 	          String secondaryName = s.getQ_SECONDARY_NAME();
 	          if (classChars.containsKey(secondaryName)) { // TODO see above
@@ -827,9 +861,12 @@ public class WizardDataAggregator {
 	            classChars.put(secondaryName, classChar);
 	          }
 	          incrementOrCreateBarcode();
-	          cfhTests.add(new OpenbisTestSample(nextBarcode, spaceCode,
-	              experiments.get(expNum).getOpenbisName(), secondaryName, "", s.getFactors(),
-	              sampleType, s.getCode(), s.getQ_EXTERNALDB_ID()));// TODO
+	          
+	          
+	          
+	          cfhTests.add(new OpenbisCfhElementSample(nextBarcode, spaceCode,
+	              experiments.get(expNum).getOpenbisName(), secondaryName, "", s.getFactors(),infos.get(0).get("Q_CFH_DIGESTION")
+	              ,infos.get(0).get("Q_ELEMENT_DESC"),infos.get(0).get("Q_CFH_DEVICES"),s.getCode(), s.getQ_EXTERNALDB_ID()));// TODO
 	          // ext
 	          // db
 	          // id
@@ -1057,6 +1094,8 @@ public class WizardDataAggregator {
       eType = ExperimentType.Q_SAMPLE_EXTRACTION;
     else if (type.equals("Q_TEST_SAMPLE"))
       eType = ExperimentType.Q_SAMPLE_PREPARATION;
+    else if (type.equals("Q_CFH_ELEMENTS"))
+      eType = ExperimentType.Q_CFH_ELEMENT;
     else
       logger.error("Unexpected type: " + type);
     experiments.add(new OpenbisExperiment(newExp, eType, -1, null));// TODO secondary name?
@@ -1193,6 +1232,12 @@ public class WizardDataAggregator {
       header.add("Q_MHC_CLASS");
     }
 
+    if(infos != null) {
+    	header.add("Q_CFH_DIGESTION");
+    	header.add("Q_ELEMENT_DESC");
+    	header.add("Q_CFH_DEVICES");
+    }
+    	
     String headerLine = "Identifier";
     for (String col : header)
       headerLine += "\t" + col;

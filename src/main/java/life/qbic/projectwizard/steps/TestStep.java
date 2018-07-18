@@ -455,5 +455,16 @@ public class TestStep implements WizardStep {
 		return sampleName;
 	}
 
+	public List<Map<String,String>> getElementPanel()
+	{
+		if(containsElement)
+		{
+			return elementPanel.getElementProperties();
+		}
+		
+		return null;
+		
+	}
+	
 
 }
