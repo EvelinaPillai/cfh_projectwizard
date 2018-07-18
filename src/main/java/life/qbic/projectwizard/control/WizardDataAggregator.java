@@ -861,9 +861,7 @@ public class WizardDataAggregator {
 	            classChars.put(secondaryName, classChar);
 	          }
 	          incrementOrCreateBarcode();
-	          
-	          
-	          
+	                    
 	          cfhTests.add(new OpenbisCfhElementSample(nextBarcode, spaceCode,
 	              experiments.get(expNum).getOpenbisName(), secondaryName, "", s.getFactors(),infos.get(0).get("Q_CFH_DIGESTION")
 	              ,infos.get(0).get("Q_ELEMENT_DESC"),infos.get(0).get("Q_CFH_DEVICES"),s.getCode(), s.getQ_EXTERNALDB_ID()));// TODO
