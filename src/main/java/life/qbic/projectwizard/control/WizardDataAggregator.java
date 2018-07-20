@@ -44,6 +44,7 @@ import life.qbic.datamodel.samples.AOpenbisSample;
 import life.qbic.datamodel.samples.OpenbisBiologicalEntity;
 import life.qbic.datamodel.samples.OpenbisBiologicalSample;
 import life.qbic.datamodel.samples.OpenbisCfhElementSample;
+import life.qbic.datamodel.samples.OpenbisCfhNminSample;
 import life.qbic.datamodel.samples.OpenbisMHCExtractSample;
 import life.qbic.datamodel.samples.OpenbisTestSample;
 import life.qbic.openbis.openbisclient.IOpenBisClient;
@@ -138,7 +139,8 @@ public class WizardDataAggregator {
   private List<ExperimentType> informativeExpTypes = new ArrayList<ExperimentType>(
       Arrays.asList(ExperimentType.Q_MHC_LIGAND_EXTRACTION, ExperimentType.Q_MS_MEASUREMENT));
   
-  private List<Map<String , String>> infos = new ArrayList<Map<String , String>>();
+  private List<Map<String , String>> infoElement = new ArrayList<Map<String , String>>();
+  private List<Map<String , String>> infoNmin = new ArrayList<Map<String , String>>();
 
   /**
    * Creates a new WizardDataAggregator
@@ -408,12 +410,12 @@ public class WizardDataAggregator {
 
   
   // TODO will need changes
-  public List<List<AOpenbisSample>> prepareMatrixSamples() {
+  public List<List<AOpenbisSample>> prepareElementSamples() {
 	    cfhTypeInfo = s8.getAnalyteInformation();
 		
-	    if( s8.hasElement())
+	    if(s8.hasElement())
 	    {
-	    	 infos = s8.getElementPanel();
+	    	 infoElement = s8.getElementPanel();
 	    }
 	    else 
 	    	return null;
@@ -427,23 +429,16 @@ public class WizardDataAggregator {
 	      String person = x.getPerson();
 	      if (person != null && !person.isEmpty())
 	        personID = personMap.get(person);
+	      
+	     
 	      if(x.getTechnology() == "ELEMENT")
 	      {
-	    	  OpenbisExperiment exp = new OpenbisExperiment(buildExperimentName(),
-	    	  ExperimentType.Q_CFH_ELEMENT, personID, null);// TODO add secondary name here
-	    	  experiments.add(exp);
-	      }
-	      else if(x.getTechnology() == "NMIN")
-	      {
-	    	  
-	      }
-	      else if(x.getTechnology() == "FAT")
-	      {
-	    	  
-	      }
-	      else if(x.getTechnology() == "AMINOACID")
-	      {
-	    	  
+	    	  for(Map<String,String> infoi : infoElement)
+		      {
+	    		  OpenbisExperiment exp = new OpenbisExperiment(buildExperimentName(),
+	    		  ExperimentType.Q_CFH_ELEMENT, personID, null);// TODO add secondary name here
+	    		  experiments.add(exp);
+		      }
 	      }
 	      else
 	      {
@@ -453,7 +448,7 @@ public class WizardDataAggregator {
 	      }
 	      
 	    }
-	    List<List<AOpenbisSample>> cfhSortedTests = buildMatrixSamples(extracts, classChars , infos);
+	    List<List<AOpenbisSample>> cfhSortedTests = buildElementSamples(extracts, classChars , infoElement);
 	    tests = new ArrayList<AOpenbisSample>();
 	    for (List<AOpenbisSample> group : cfhSortedTests)
 	      tests.addAll(group);
@@ -463,7 +458,45 @@ public class WizardDataAggregator {
 	    return cfhSortedTests;
 	  }
   
-  
+  public List<List<AOpenbisSample>> prepareNminSamples() {
+	    cfhTypeInfo = s8.getAnalyteInformation();
+		
+	    if(s8.hasNmin())
+	    {
+	    	 infoNmin = s8.getNminPanel();
+	    }
+	    else 
+	    	return null;
+	    if (inheritExtracts) {
+	      prepareBasics();
+	      classChars = new HashMap<String, Character>();
+	      experiments = new ArrayList<OpenbisExperiment>();
+	    }
+	    for (TestSampleInformation x : cfhTypeInfo) {
+	      int personID = -1;
+	      String person = x.getPerson();
+	      if (person != null && !person.isEmpty())
+	        personID = personMap.get(person);
+	      
+	    
+    	  
+	   		  OpenbisExperiment exp = new OpenbisExperiment(buildExperimentName(),
+	   		  ExperimentType.Q_CFH_NMIN , personID, null);// TODO add secondary name here
+	   		  experiments.add(exp);
+	    	  
+	
+	      
+	    }
+	    List<List<AOpenbisSample>> cfhSortedTests = buildNminSamples(extracts, classChars , infoNmin);
+	    tests = new ArrayList<AOpenbisSample>();
+	    for (List<AOpenbisSample> group : cfhSortedTests)
+	      tests.addAll(group);
+	    for (int i = cfhSortedTests.size() - 1; i > -1; i--) {
+	    	cfhSortedTests.remove(i);
+	      }
+	    return cfhSortedTests;
+	  }
+
   /**
    * Creates the list of MHC ligand extract samples prepared for ms from the input information
    * collected in the aggregator fields and wizard steps and fetches or creates the associated
@@ -843,16 +876,16 @@ public class WizardDataAggregator {
   }
 
   
-  private List<List<AOpenbisSample>> buildMatrixSamples(List<AOpenbisSample> matrix,
+  private List<List<AOpenbisSample>> buildElementSamples(List<AOpenbisSample> matrix,
 	      Map<String, Character> classChars , List<Map<String , String>> infos) {
 	    List<List<AOpenbisSample>> tests = new ArrayList<List<AOpenbisSample>>();
-	    for (int j = 0; j < cfhTypeInfo.size(); j++) {// different technologies
+	    for (int j = 0; j < infos.size(); j++) {// different technologies
 	      List<AOpenbisSample> cfhTests = new ArrayList<AOpenbisSample>();
-	      int techReps = cfhTypeInfo.get(j).getReplicates();
-	      String sampleType = cfhTypeInfo.get(j).getTechnology();
-	      int expNum = experiments.size() - cfhTypeInfo.size() + j;
+	      //int techReps = infos.get(j).getReplicates();
+	      //String sampleType = infos.get(j).getTechnology();
+	      int expNum = experiments.size() - infos.size() + j;
 	      for (AOpenbisSample s : matrix) {
-	        for (int i = techReps; i > 0; i--) {
+	        //for (int i = techReps; i > 0; i--) {
 	          String secondaryName = s.getQ_SECONDARY_NAME();
 	          if (classChars.containsKey(secondaryName)) { // TODO see above
 	            classChar = classChars.get(secondaryName);
@@ -863,12 +896,12 @@ public class WizardDataAggregator {
 	          incrementOrCreateBarcode();
 	                    
 	          cfhTests.add(new OpenbisCfhElementSample(nextBarcode, spaceCode,
-	              experiments.get(expNum).getOpenbisName(), secondaryName, "", s.getFactors(),infos.get(0).get("Q_CFH_DIGESTION")
-	              ,infos.get(0).get("Q_ELEMENT_DESC"),infos.get(0).get("Q_CFH_DEVICES"),s.getCode(), s.getQ_EXTERNALDB_ID()));// TODO
+	              experiments.get(expNum).getOpenbisName(), secondaryName, "", s.getFactors(),infos.get(j).get("Q_CFH_DIGESTION")
+	              ,infos.get(j).get("Q_ELEMENT_DESC"),infos.get(j).get("Q_CFH_DEVICES"),s.getCode(), s.getQ_EXTERNALDB_ID()));// TODO
 	          // ext
 	          // db
 	          // id
-	        }
+	        //}
 	      }
 	      tests.add(cfhTests);
 	    }
@@ -876,7 +909,40 @@ public class WizardDataAggregator {
 	  }
 
   
-  
+  private List<List<AOpenbisSample>> buildNminSamples(List<AOpenbisSample> matrix,
+	      Map<String, Character> classChars , List<Map<String , String>> infos) {
+	    List<List<AOpenbisSample>> tests = new ArrayList<List<AOpenbisSample>>();
+	    //for (int j = 0; j < infos.size(); j++) {// different technologies
+	      List<AOpenbisSample> cfhTests = new ArrayList<AOpenbisSample>();
+	      //int techReps = infos.get(j).getReplicates();
+	      //String sampleType = infos.get(j).getTechnology();
+	      int expNum = experiments.size()-2 ;//hengam: it is becuase one of the experiments has no index and ends with INFO
+	      int j= 0;
+	      for (AOpenbisSample s : matrix) {
+	        //for (int i = techReps; i > 0; i--) {
+	          String secondaryName = s.getQ_SECONDARY_NAME();
+	          if (classChars.containsKey(secondaryName)) { // TODO see above
+	            classChar = classChars.get(secondaryName);
+	          } else {
+	            classChar = SampleCodeFunctions.incrementUppercase(classChar);
+	            classChars.put(secondaryName, classChar);
+	          }
+	          incrementOrCreateBarcode();
+	                    
+	          cfhTests.add(new OpenbisCfhNminSample(nextBarcode, spaceCode,
+	              experiments.get(expNum).getOpenbisName(), secondaryName, "", s.getFactors(),infos.get(j).get("Q_CFH_NMIN_DEPTH")
+	              ,infos.get(j).get("Q_CFH_NMIN_DENSITY"),"",s.getCode(), s.getQ_EXTERNALDB_ID()));// TODO
+	          j++;
+	          // ext
+	          // db
+	          // id
+	        //}
+	      }
+	      tests.add(cfhTests);
+	    //}
+	    return tests;
+	  }
+
   /**
    * parse secondary name from a list of condition permutations
    * 
@@ -1094,6 +1160,8 @@ public class WizardDataAggregator {
       eType = ExperimentType.Q_SAMPLE_PREPARATION;
     else if (type.equals("Q_CFH_ELEMENTS"))
       eType = ExperimentType.Q_CFH_ELEMENT;
+    else if (type.equals("Q_CFH_NMINS"))
+        eType = ExperimentType.Q_CFH_NMIN;
     else
       logger.error("Unexpected type: " + type);
     experiments.add(new OpenbisExperiment(newExp, eType, -1, null));// TODO secondary name?
@@ -1230,10 +1298,15 @@ public class WizardDataAggregator {
       header.add("Q_MHC_CLASS");
     }
 
-    if(infos != null) {
+    if(!infoElement.isEmpty()) {
     	header.add("Q_CFH_DIGESTION");
     	header.add("Q_ELEMENT_DESC");
     	header.add("Q_CFH_DEVICES");
+    }
+    
+    if(!infoNmin.isEmpty()) {
+    	header.add("Q_CFH_NMIN_DEPTH");
+    	header.add("Q_CFH_NMIN_DENSITY");
     }
     	
     String headerLine = "Identifier";

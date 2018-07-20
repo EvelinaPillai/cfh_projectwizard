@@ -16,20 +16,34 @@
 package life.qbic.projectwizard.uicomponents;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.vaadin.ui.Label;
+import com.vaadin.data.Item;
+import com.vaadin.data.Property;
 import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.data.Property.ValueChangeListener;
 import com.vaadin.data.util.ObjectProperty;
 import com.vaadin.data.util.converter.StringToIntegerConverter;
+import com.vaadin.server.FontAwesome;
+import com.vaadin.shared.ui.combobox.FilteringMode;
+import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.ComboBox;
+import com.vaadin.ui.Component;
+import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Table;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.Button.ClickEvent;
+import com.vaadin.ui.Button.ClickListener;
+import com.vaadin.ui.themes.ValoTheme;
 
 import life.qbic.datamodel.samples.AOpenbisSample;
 import life.qbic.portal.Styles;
@@ -103,11 +117,12 @@ public class NminPanel extends VerticalLayout {
 		depth60.setPropertyDataSource(depth60Count);
 
 		this.nminSamples = new Table();
+		nminSamples.setWidth("250px");
 
 		nminSamples.setStyleName(Styles.tableTheme);
 		nminSamples.addContainerProperty("Sample", String.class, null); // sample name
-		nminSamples.addContainerProperty("Soil depth [cm]", ComboBox.class, null);
-		nminSamples.addContainerProperty("Bulk density [kg/L]", Label.class, null); // Lagerungsdichte
+		nminSamples.addContainerProperty("Soil depth [cm]", Component.class, null);
+		//nminSamples.addContainerProperty("Bulk density [kg/L]", Label.class, null); // Lagerungsdichte
 
 		resetDepths = new Button("RESET");
 
@@ -167,12 +182,13 @@ public class NminPanel extends VerticalLayout {
 
 	}
 
-	private ComboBox generateTableSoildepthBox(String soiltype) {
+	private ComboBox generateTableSoildepthBox(Collection<String> entries, String width) {
 		ComboBox b = new ComboBox();
-		b.setWidth("100px");
-		b.addItems(this.soildepth);
+		b.addItems(entries);
+		b.setWidth(width);
+		b.setFilteringMode(FilteringMode.CONTAINS);
 		b.setStyleName(Styles.boxTheme);
-		b.setValue(soiltype);
+		//b.setValue(entries);
 		return b;
 	}
 
@@ -217,7 +233,7 @@ public class NminPanel extends VerticalLayout {
 			int nextInt = Integer.parseInt(sampleName.substring(2)) + j;
 			sampleName = sampleName.substring(0, 2) + nextInt;
 			row.add(sampleName);
-			row.add(generateTableSoildepthBox(depths));
+			
 
 			if (density) {
 				row.add(generateTableLabel("1,3kg/L"));
@@ -248,5 +264,117 @@ public class NminPanel extends VerticalLayout {
 			nminSamples.removeAllItems();
 		}
 	}
+	
+	
+	public void setNminSamples_2(List<AOpenbisSample> extracts) {
+		nminSamples.removeAllItems();
+	   // tableIdToBarcode = new HashMap<Integer, String>();
+	    int i = 0;
+	    for (AOpenbisSample s : extracts) {
+	      i++;
+	      boolean complexRow = i == 1;
+	     // tableIdToBarcode.put(i, s.getCode());
 
+	      List<Object> row = new ArrayList<Object>();
+
+	      row.add(s.getQ_SECONDARY_NAME());
+	      ComboBox soildepthBox = generateTableSoildepthBox(soildepth,"150px");
+	
+	     
+	      row.add(createComplexCellComponent(nminSamples, soildepthBox, "Soil depth [cm]", i));
+	      //row.add(soildepthBox);
+	        
+	      
+//	 
+	     // row.add(generateTableLabel("1,3kg/L"));
+	      
+	      nminSamples.addItem(row.toArray(new Object[row.size()]), i);
+		}
+		nminSamples.setPageLength(nminSamples.size());
+	  }
+	
+	 private Object createComplexCellComponent(Table t, ComboBox contentBox, String propertyName,
+		      final int rowID) {
+		    HorizontalLayout complexComponent = new HorizontalLayout();
+		    complexComponent.setWidth(contentBox.getWidth() + 10, contentBox.getWidthUnits());
+		    complexComponent.addComponent(contentBox);
+		    complexComponent.setExpandRatio(contentBox, 1);
+
+		    Button copy = new Button();
+		    Styles.iconButton(copy, FontAwesome.ARROW_CIRCLE_O_DOWN);
+		    copy.setStyleName(ValoTheme.BUTTON_BORDERLESS_COLORED);
+		    VerticalLayout vBox = new VerticalLayout();
+		    vBox.setWidth("15px");
+		    vBox.addComponent(copy);
+		    complexComponent.addComponent(vBox);
+		    complexComponent.setComponentAlignment(vBox, Alignment.BOTTOM_RIGHT);
+		    copy.addClickListener(new ClickListener() {
+
+		      @Override
+		      public void buttonClick(ClickEvent event) {
+		        ComboBox b = parseBoxRow(t, rowID, propertyName);
+		        Object selection = b.getValue();
+		        pasteSelectionToColumn(t, propertyName, selection , rowID);
+		      }
+		    });
+		    return complexComponent;
+		  }
+
+	  private ComboBox parseBoxRow(Table table, Object rowID, String propertyName) {
+	    Item item = nminSamples.getItem(rowID);
+	    Object prop = item.getItemProperty(propertyName).getValue();
+	    if (prop == null)
+	      return new ComboBox();
+	    Object component = prop;
+	    if (component instanceof ComboBox)
+	      return (ComboBox) component;
+	    else {
+	      HorizontalLayout h = (HorizontalLayout) component;
+	      return (ComboBox) h.getComponent(0);
+	    }
+	  }
+	  
+	  private void pasteSelectionToColumn(Table t, String propertyName, Object selection, int curRow) {
+		  
+		  
+		  
+		    //for (Object id : t.getItemIds()){
+		    for (int i =curRow ; i<=(t.getItemIds().size()) ; i++) {	
+		      // should always be ID = 1
+		      //Object id = t.getItem(curRow);
+		      ComboBox b = parseBoxRow(t, i, propertyName);
+		      if (selection != null )
+		    	  b.setValue(selection);
+		      }
+
+	  }
+
+
+	  
+	public List<Map<String , String>> getNminProperties() {
+			List<Map<String , String>> res = new ArrayList<Map<String , String>>();
+			 for (Object id :nminSamples.getItemIds()) {	
+			
+				Map<String, String> res1 = new HashMap<String, String>(); 
+			    Item item = nminSamples.getItem(id);
+			    Object component = item.getItemProperty("Soil depth [cm]").getValue();
+			    HorizontalLayout h = (HorizontalLayout) component;
+			    ComboBox cb = (ComboBox) h.getComponent(0);
+			    String depth =(String) cb.getValue();
+			    //String depth = parseBoxRow(nminSamples, id, "Soil depth [cm]").getValue().toString();
+				res1.put("Q_CFH_NMIN_DEPTH", depth);
+				if(depth.equals("0-30CM")) {
+					res1.put("Q_CFH_NMIN_DENSITY", "1,3");
+				}else
+					res1.put("Q_CFH_NMIN_DENSITY", "1,5");
+				res.add(res1);
+			}
+				    
+			 
+		    return res;	
+		
+		}
+			 
+			
+	  
 }

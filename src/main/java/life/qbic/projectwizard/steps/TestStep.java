@@ -389,6 +389,10 @@ public class TestStep implements WizardStep {
 	public void setTissueExtracts(List<AOpenbisSample> extracts) {
 		mhcLigandPanel.setTissueSamples(extracts);
 	}
+	
+	public void setNminExtracts(List<AOpenbisSample> extracts) {
+		NminPanel.setNminSamples_2(extracts);
+	}
 
 	public Map<String, MHCLigandExtractionProtocol> getAntibodyInfos() {
 		return mhcLigandPanel.getAntibodyInfos();
@@ -460,6 +464,17 @@ public class TestStep implements WizardStep {
 		if(containsElement)
 		{
 			return elementPanel.getElementProperties();
+		}
+		
+		return null;
+		
+	}
+	
+	public List<Map<String,String>> getNminPanel()
+	{
+		if(containsNmin)
+		{
+			return NminPanel.getNminProperties();
 		}
 		
 		return null;

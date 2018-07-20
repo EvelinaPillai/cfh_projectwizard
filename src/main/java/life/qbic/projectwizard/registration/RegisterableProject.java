@@ -27,6 +27,7 @@ public class RegisterableProject {
           put("Q_MHC_LIGAND_EXTRACT", ExperimentType.Q_MHC_LIGAND_EXTRACTION);
           put("Q_ATTACHMENT_SAMPLE", ExperimentType.Q_PROJECT_DETAILS);
           put("Q_CFH_ELEMENTS", ExperimentType.Q_CFH_ELEMENT);
+          put("Q_CFH_NMINS", ExperimentType.Q_CFH_NMIN);
         }
       };
   // these experiment types can't be flagged as "pilot experiments" (i.e. since they are

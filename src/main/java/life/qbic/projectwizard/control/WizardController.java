@@ -990,6 +990,7 @@ public class WizardController implements IRegistrationController {
           testPoolsSet = false;// we have to reset this in the case someone goes back from pooling
           List<AOpenbisSample> extracts = tailoringStep2.getSamples();
           techStep.setTissueExtracts(extracts);
+          techStep.setNminExtracts(extracts);
           List<AOpenbisSample> all = new ArrayList<AOpenbisSample>();
           all.addAll(extracts);
           all.addAll(dataAggregator.createPoolingSamples(poolStep1.getPools()));
@@ -1076,9 +1077,11 @@ public class WizardController implements IRegistrationController {
                   .setFractionationExperimentsProperties(getFractionationPropertiesFromLastStep());
               dataAggregator.createFractionationSamplesAndExperiments();
             }
-            if(techStep.hasMatrix()) {
-            	dataAggregator.prepareMatrixSamples();
+            if(techStep.hasElement()) {
+            	dataAggregator.prepareElementSamples();
             }
+            if(techStep.hasNmin())
+            	dataAggregator.prepareNminSamples();
             createTSV();
             try {
               prep.processTSV(dataAggregator.getTSV(), ExperimentalDesignType.QBIC,false);//hengam
