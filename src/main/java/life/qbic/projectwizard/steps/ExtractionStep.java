@@ -94,7 +94,7 @@ public class ExtractionStep implements WizardStep {
     main.setSpacing(true);
     Label header = new Label("Sample Extracts");
     main.addComponent(Styles.questionize(header,
-        "Extracts are individual tissue or other samples taken from organisms and used in the experiment. "
+        "Extracts are individual tissue or other samples (matrix) taken from organisms and used in the experiment. "
             + "You can input (optional) experimental variables, e.g. extraction times or treatments, that differ between different groups "
             + "of extracts.",
         "Sample Extracts"));
@@ -102,14 +102,14 @@ public class ExtractionStep implements WizardStep {
     ArrayList<String> tissues = new ArrayList<String>();
     tissues.addAll(tissueMap.keySet());
     Collections.sort(tissues);
-    tissue = new ComboBox("Tissue", tissues);
+    tissue = new ComboBox("Matrix or Tissue", tissues);
     tissue.setRequired(true);
     tissue.setStyleName(Styles.boxTheme);
     tissue.setFilteringMode(FilteringMode.CONTAINS);
     if (ProjectWizardUI.testMode)
       tissue.setValue("Blood");
     tissueNum = new OpenbisInfoTextField(
-        "How many different tissue types are there in this sample extraction?", "", "50px", "2");
+        "How many different tissue types (matrices) are there in this sample extraction?", "", "50px", "2");
     tissueNum.getInnerComponent().setVisible(false);
     tissueNum.getInnerComponent().setEnabled(false);
 
@@ -117,7 +117,7 @@ public class ExtractionStep implements WizardStep {
     expName.setStyleName(Styles.fieldTheme);
     main.addComponent(expName);
 
-    c = new ConditionsPanel(suggestions, emptyFactor, "Tissue", tissue, true, conditionsSet,
+    c = new ConditionsPanel(suggestions, emptyFactor, "Matrix or Tissue", tissue, true, conditionsSet,
         (TextField) tissueNum.getInnerComponent());
     main.addComponent(c);
 
@@ -194,10 +194,10 @@ public class ExtractionStep implements WizardStep {
     persBoxH.addComponent(reloadPeople);
 
     main.addComponent(Styles.questionize(persBoxH,
-        "Contact person responsible for tissue extraction.", "Contact Person"));
+        "Contact person responsible for matrix/tissue extraction.", "Contact Person"));
 
     extractReps = new OpenbisInfoTextField(
-        "Extracted replicates per patient/animal/plant per experimental variable.",
+        "Number of samples or extracted replicates per patient/animal/plant per experimental variable.",
         "Number of extractions per individual defined in the last step. "
             + "Technical replicates are added later!",
         "50px", "1");

@@ -1062,7 +1062,7 @@ public class WizardController implements IRegistrationController {
           if (w.getSteps().contains(steps.get(Steps.Test_Samples))) {
             boolean afterMS = w.getSteps().contains(steps.get(Steps.Protein_Fractionation));
             if (!testPoolsSet && !afterMS)
-              dataAggregator.prepareTestSamples();
+              dataAggregator.prepareTestSamples_2();
             if (techStep.hasMHCLigands())
               dataAggregator.prepareMHCExtractSamplesAndExperiments();
             List<AOpenbisSample> all = new ArrayList<AOpenbisSample>();
@@ -1077,11 +1077,11 @@ public class WizardController implements IRegistrationController {
                   .setFractionationExperimentsProperties(getFractionationPropertiesFromLastStep());
               dataAggregator.createFractionationSamplesAndExperiments();
             }
-            if(techStep.hasElement()) {
-            	dataAggregator.prepareElementSamples();
-            }
-            if(techStep.hasNmin())
-            	dataAggregator.prepareNminSamples();
+//            if(techStep.hasElement()) {
+//            	dataAggregator.prepareElementSamples();
+//            }
+//            if(techStep.hasNmin())
+//            	dataAggregator.prepareNminSamples();
             createTSV();
             try {
               prep.processTSV(dataAggregator.getTSV(), ExperimentalDesignType.QBIC,false);//hengam

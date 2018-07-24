@@ -6,19 +6,20 @@ public class TestSampleInformation {
   private boolean pool;
   private int replicates;
   private String person;
-  private int sampleNo;
-  private String sampleName;
-  private String matrix;
+//  private int sampleNo;
+//  private String sampleName;
+//  private String matrix;
 
 
-  public TestSampleInformation(String tech, boolean pool, int reps, int sampleNo, String person, String sampleName, String matrix) {
+  public TestSampleInformation(String tech, boolean pool, int reps, //, int sampleNo, 
+		  String person) {//, String sampleName, String matrix) {
     this.replicates = reps;
-    this.sampleNo = sampleNo;
+   // this.sampleNo = sampleNo;
     this.pool = pool;
     this.person = person;
     this.technology = tech;
-    this.sampleName = sampleName;
-    this.matrix = matrix;
+   // this.sampleName = sampleName;
+   // this.matrix = matrix;
 
   }
 
@@ -38,9 +39,9 @@ public class TestSampleInformation {
     return person;
   }
   
-  public int getSampleNo() {
-	  return sampleNo;
-  }
+//  public int getSampleNo() {
+//	  return sampleNo;
+//  }
   
   @Override
   public String toString() {
@@ -51,14 +52,14 @@ public class TestSampleInformation {
     res += "\n" + person;
     return res;
   }
-
-public String getSampleName() {
-	return sampleName;
-}
-
-public String getMatrix() {
-	return matrix;
-}
+//
+//public String getSampleName() {
+//	return sampleName;
+//}
+//
+//public String getMatrix() {
+//	return matrix;
+//}
 
 
 }

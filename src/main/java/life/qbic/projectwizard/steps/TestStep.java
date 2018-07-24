@@ -77,7 +77,7 @@ public class TestStep implements WizardStep {
 	private boolean containsNmin = false;
 	private boolean containsFat = false;
 	private boolean containsAA = false;
-	private static String sampleName = "";
+//	private static String sampleName = "";
 
 	private Wizard wizard;
 
@@ -336,7 +336,7 @@ public class TestStep implements WizardStep {
 				for (TestSampleInformation i : getAnalyteInformation()) {
 					String cfh = i.getTechnology();
 					containsNmin |= cfh.equals("NMIN");
-					sampleName = i.getSampleName();
+//					sampleName = i.getSampleName();
 				}
 				NminPanel.setVisible(containsNmin);
 			}
@@ -391,7 +391,7 @@ public class TestStep implements WizardStep {
 	}
 	
 	public void setNminExtracts(List<AOpenbisSample> extracts) {
-		NminPanel.setNminSamples_2(extracts);
+		NminPanel.setNminSamples(extracts);
 	}
 
 	public Map<String, MHCLigandExtractionProtocol> getAntibodyInfos() {
@@ -455,9 +455,9 @@ public class TestStep implements WizardStep {
 		techPanel.updatePeople(people);
 	}
 	
-	public static String getSampleName() {
-		return sampleName;
-	}
+//	public static String getSampleName() {
+//		return sampleName;
+//	}
 
 	public List<Map<String,String>> getElementPanel()
 	{

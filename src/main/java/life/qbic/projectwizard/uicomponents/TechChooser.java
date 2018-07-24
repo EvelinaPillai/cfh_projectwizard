@@ -40,10 +40,10 @@ public class TechChooser extends VerticalLayout {
   private static final long serialVersionUID = 7196121933289471757L;
   private ComboBox chooser;
   private OpenbisInfoTextField replicates;
-  private OpenbisInfoTextField sampleNo;
-  private OpenbisInfoTextField sampleName;
+//  private OpenbisInfoTextField sampleNo;
+//  private OpenbisInfoTextField sampleName;
   private ComboBox person;
-  private ComboBox matrix;
+ // private ComboBox matrix;
   private Button matrixRefresh;
   private Button reloadPeople;
   private CheckBox pool;
@@ -64,8 +64,8 @@ public class TechChooser extends VerticalLayout {
     chooser.setStyleName(Styles.boxTheme);
 
     replicates = new OpenbisInfoTextField("Replicates", "", "50px", "1");
-    sampleNo = new OpenbisInfoTextField("Number of Samples", "", "50px", "1");
-    sampleName = new OpenbisInfoTextField("Sample Name", "", "250px", "P_");
+//    sampleNo = new OpenbisInfoTextField("Number of Samples", "", "50px", "1");
+//    sampleName = new OpenbisInfoTextField("Sample Name", "", "250px", "P_");
     pool = new CheckBox("Pool/Multiplex Samples");
     setSpacing(true);
     helpers = new ArrayList<HorizontalLayout>();
@@ -75,12 +75,12 @@ public class TechChooser extends VerticalLayout {
     HorizontalLayout help2 = Styles.questionize(replicates.getInnerComponent(),
         "Number of prepared replicates (1 means no replicates) of this analyte", "Replicates");
     addComponent(help2);
-    HorizontalLayout help3 = Styles.questionize(sampleNo.getInnerComponent(),
-            "Number of samples", "Sample Numbers");
-    addComponent(help3);
-    HorizontalLayout help4 = Styles.questionize(sampleName.getInnerComponent(),
-                "Name of the samples", "Sample Name");
-    addComponent(help4);
+//    HorizontalLayout help3 = Styles.questionize(sampleNo.getInnerComponent(),
+//            "Number of samples", "Sample Numbers");
+//    addComponent(help3);
+//    HorizontalLayout help4 = Styles.questionize(sampleName.getInnerComponent(),
+//                "Name of the samples", "Sample Name");
+//    addComponent(help4);
     
     HorizontalLayout persBoxH = new HorizontalLayout();
     persBoxH.setCaption("Contact Person");
@@ -101,23 +101,23 @@ public class TechChooser extends VerticalLayout {
         "Select if multiple samples are pooled into a single " + "sample before measurement.",
         "Pooling");
     
-    HorizontalLayout matrixBoxH = new HorizontalLayout();
-    matrixBoxH.setCaption("Matrix");
-    matrix = new ComboBox();
-   // matrix.addItems(matrices);
-    matrix.addItems(matrixMap.values());
-    matrix.setFilteringMode(FilteringMode.CONTAINS);
-    matrix.setStyleName(Styles.boxTheme);
+//    HorizontalLayout matrixBoxH = new HorizontalLayout();
+//    matrixBoxH.setCaption("Matrix");
+//    matrix = new ComboBox();
+//   // matrix.addItems(matrices);
+//    matrix.addItems(matrixMap.values());
+//    matrix.setFilteringMode(FilteringMode.CONTAINS);
+//    matrix.setStyleName(Styles.boxTheme);
     
     
-    matrixRefresh = new Button();
-    Styles.iconButton(matrixRefresh, FontAwesome.REFRESH);
-    matrixBoxH.addComponent(matrix);
-    matrixBoxH.addComponent(matrixRefresh);
-    
-    HorizontalLayout help7 = Styles.questionize(matrixBoxH,
-        "Matrix which contains the sample", "Matrix");
-    addComponent(help7);
+//    matrixRefresh = new Button();
+//    Styles.iconButton(matrixRefresh, FontAwesome.REFRESH);
+//    matrixBoxH.addComponent(matrix);
+//    matrixBoxH.addComponent(matrixRefresh);
+//    
+//    HorizontalLayout help7 = Styles.questionize(matrixBoxH,
+//        "Matrix which contains the sample", "Matrix");
+//    addComponent(help7);
 
     chooser.addValueChangeListener(new ValueChangeListener() {
 
@@ -130,14 +130,14 @@ public class TechChooser extends VerticalLayout {
     });
 
     addComponent(help5);
-    addComponent(help7);
+  //  addComponent(help7);
     helpers.add(help1);
     helpers.add(help2);
-    helpers.add(help3);
-    helpers.add(help4);
+//    helpers.add(help3);
+//    helpers.add(help4);
     helpers.add(help5);
     helpers.add(help6);
-    helpers.add(help7);
+//    helpers.add(help7);
   }
 
   public boolean hasAnalyteInput() {
@@ -160,21 +160,21 @@ public class TechChooser extends VerticalLayout {
   }
 
   public boolean isSet() {
-    return chooser.getItemIds().contains(chooser.getValue()) && replicates.getValue() != null && sampleNo.getValue() != null;
+    return chooser.getItemIds().contains(chooser.getValue()) && replicates.getValue() != null;// && sampleNo.getValue() != null;
   }
 
   public TestSampleInformation getChosenTechInfo() {
-    return new TestSampleInformation(chooser.getValue().toString(), pool.getValue(),
-        Integer.parseInt(replicates.getValue()), Integer.parseInt(sampleNo.getValue()), getPerson(), sampleName.getValue(), getMatrix());
+    return new TestSampleInformation(chooser.getValue().toString(), pool.getValue(),  Integer.parseInt(replicates.getValue()),getPerson()); 
+    //,Integer.parseInt(sampleNo.getValue()),  sampleName.getValue(), getMatrix());
   }
 
-
-private String getMatrix() {
-	if (matrix.getValue()!=null)
-		return matrix.getValue().toString();
-	else
-		return null;
-}
+//
+//private String getMatrix() {
+//	if (matrix.getValue()!=null)
+//		return matrix.getValue().toString();
+//	else
+//		return null;
+//}
 
 public void showHelpers() {
     for (HorizontalLayout h : helpers)
