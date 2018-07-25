@@ -1685,7 +1685,7 @@ public class WizardDataAggregator {
       }
     }
     RegisteredAnalyteInformation res = new RegisteredAnalyteInformation(infos.keySet(),
-        measurePeptides, shortGel, purificationMethod ,infos.keySet()); //TODO hengam
+        measurePeptides, shortGel, purificationMethod);
     return res;
   }
 }

@@ -144,8 +144,7 @@ public class ProjectWizardUI extends QBiCPortletUI {
           openbis.getVocabCodesAndLabelsForVocab("Q_ANTIBODY");
       List<String> msProtocols = openbis.getVocabCodesForVocab("Q_MS_PROTOCOLS");
       List<String> lcmsMethods = openbis.getVocabCodesForVocab("Q_MS_LCMS_METHODS");
-      List<String> cfh_methods = openbis.getVocabCodesForVocab("Q_CFH_METHODS");
-      List<String> extractions = openbis.getVocabCodesForVocab("Q_CFH_EXTRACTIONS");
+       List<String> extractions = openbis.getVocabCodesForVocab("Q_CFH_EXTRACTIONS");
       List<String> devices = openbis.getVocabCodesForVocab("Q_CFH_DEVICES");
       List<String> soildepth = openbis.getVocabCodesForVocab("Q_CFH_SOILDEPTH");
       final List<String> spaces = openbis.getUserSpaces(userID);
@@ -157,7 +156,7 @@ public class ProjectWizardUI extends QBiCPortletUI {
       Map<String, Integer> peopleMap = dbm.fetchPeople();
       DBVocabularies vocabs = new DBVocabularies(matrixMap,taxMap, tissueMap, cellLinesMap, sampleTypes,
           spaces, peopleMap, expTypes, enzymeMap, antibodiesWithLabels, deviceMap, msProtocols,
-          lcmsMethods, chromTypes, fractionationTypes, enrichmentTypes, purificationMethods, cfh_methods, extractions, devices, soildepth);
+          lcmsMethods, chromTypes, fractionationTypes, enrichmentTypes, purificationMethods, extractions, devices, soildepth);
       // initialize the View with sample types, spaces and the dictionaries of tissues and species
       initView(dbm, vocabs, userID);
       layout.addComponent(tabs);

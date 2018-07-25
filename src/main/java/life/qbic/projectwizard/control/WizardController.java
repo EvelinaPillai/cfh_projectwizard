@@ -325,7 +325,7 @@ public class WizardController implements IRegistrationController {
   
   
   public static enum Steps {
-    Project_Context, Entities, Entity_Conditions, Entity_Tailoring, Extraction, Extract_Conditions, Extract_Tailoring, Extract_Pooling, Test_Samples, Test_Sample_Pooling, Registration, Finish, Protein_Fractionation, Protein_Fractionation_Pooling, Peptide_Fractionation, Peptide_Fractionation_Pooling, Matrix;
+    Project_Context, Entities, Entity_Conditions, Entity_Tailoring, Extraction, Extract_Conditions, Extract_Tailoring, Extract_Pooling, Test_Samples, Test_Sample_Pooling, Registration, Finish, Protein_Fractionation, Protein_Fractionation_Pooling, Peptide_Fractionation, Peptide_Fractionation_Pooling;
   }
 
   /**
@@ -417,12 +417,12 @@ public class WizardController implements IRegistrationController {
       public void buttonClick(ClickEvent event) {
         String existingProject = (String) projSelection.getProjectBox().getValue();
         if (existingProject == null || existingProject.isEmpty()) {
-        	if(contextStep.getSpaceCode() != null) {
+        	//if(contextStep.getSpaceCode() != null) {
         		projSelection.tryEnableCustomProject(generateCFHProjectCode(contextStep.getSpaceCode()));
         		contextStep.enableEmptyProjectContextOption(true);
         		contextStep.enableNewContextOption(true);
         		contextStep.makeContextVisible();
-        	}
+        	//}
         }
       }
     };
@@ -538,8 +538,7 @@ public class WizardController implements IRegistrationController {
           String sampleType = "Q_ATTACHMENT_SAMPLE";
           boolean pilot = contextStep.isPilot();
           ISampleBean infoSample = new TSVSampleBean(code, exp, project, space, sampleType, "", new ArrayList<String>(),
-        		  new HashMap<String, Object>());
-        	
+              new HashMap<String, Object>());
           samples.add(new ArrayList<ISampleBean>(Arrays.asList(infoSample)));
           openbisCreator.registerProjectWithExperimentsAndSamplesBatchWise(samples, desc,
               dataAggregator.getExperimentsWithMetadata(), regStep.getProgressBar(),
@@ -898,9 +897,6 @@ public class WizardController implements IRegistrationController {
       @Override
       public void stepSetChanged(WizardStepSetChangedEvent event) {}
 
-      
-      
-      
       /**
        * Reactions to step changes in the wizard
        */

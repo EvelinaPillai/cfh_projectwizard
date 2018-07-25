@@ -39,7 +39,6 @@ public class DBVocabularies {
   private Map<String, String> chromTypes;
   private List<String> fractionationTypes;
   private List<String> enrichmentTypes;
-  private List<String> cfhMethod;
   private List<String> extractionTypes;
   private List<String> devices;
   private List<String> soildepth;
@@ -49,7 +48,7 @@ public class DBVocabularies {
       Map<String, Integer> piMap, List<String> experimentTypes, Map<String, String> enzymeMap,
       Map<String, String> antibodiesWithDescriptions, Map<String, String> deviceMap,
       List<String> msProtocols, List<String> lcmsMethods, Map<String, String> chromTypes2,
-      List<String> fractionationTypes, List<String> enrichmentTypes, Map<String, String> purificationMethods,List<String> cfhMethod, List<String> extractionTypes,
+      List<String> fractionationTypes, List<String> enrichmentTypes, Map<String, String> purificationMethods, List<String> extractionTypes,
       List<String> devices, List<String> soildepth) {
 	this.matrixMap = matrixMap;  
     this.taxMap = taxMap;
@@ -68,7 +67,6 @@ public class DBVocabularies {
     this.enrichmentTypes = enrichmentTypes;
     this.proteinPurificationMethods = purificationMethods;
     this.enzymes = new ArrayList<String>();
-    this.cfhMethod = cfhMethod;
     this.extractionTypes = extractionTypes;
     this.devices = devices;
     enzymes.addAll(enzymeMap.keySet());
@@ -112,9 +110,6 @@ public class DBVocabularies {
     return measureTypes;
   }
   
-  public List<String> getCfhMethodTypes() {
-	    return cfhMethod;
-	  }
 
   public List<String> getSpaces() {
     return spaces;
