@@ -908,7 +908,7 @@ public class WizardDataAggregator {
       Map<String, Character> classChars) {
     List<List<AOpenbisSample>> tests = new ArrayList<List<AOpenbisSample>>();
     for (int j = 0; j < techTypeInfo.size(); j++) {// different technologies
-   if(!techTypeInfo.get(j).getTechnology().equals("NMIN")&&!techTypeInfo.get(j).getTechnology().equals("ELEMENT")) {	
+    if(!techTypeInfo.get(j).getTechnology().equals("NMIN")&&!techTypeInfo.get(j).getTechnology().equals("ELEMENT")) {	
       List<AOpenbisSample> techTests = new ArrayList<AOpenbisSample>();
       int techReps = techTypeInfo.get(j).getReplicates();
       String sampleType = techTypeInfo.get(j).getTechnology();
@@ -1312,9 +1312,9 @@ public class WizardDataAggregator {
     if (mhcExtracts != null)
       samples.addAll(mhcExtracts);
     if (nminExtracts != null)
-        samples.addAll(nminExtracts);
+      samples.addAll(nminExtracts);
     if (elementExtracts != null)
-        samples.addAll(elementExtracts);
+      samples.addAll(elementExtracts);
     List<String> rows = new ArrayList<String>();
 
     List<String> header = new ArrayList<String>(Arrays.asList("SAMPLE TYPE", "SPACE", "EXPERIMENT",

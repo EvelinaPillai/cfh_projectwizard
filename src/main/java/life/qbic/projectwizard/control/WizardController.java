@@ -1019,7 +1019,7 @@ public class WizardController implements IRegistrationController {
         if (event.getActivatedStep().equals(poolStep2)) {
           if (!testPoolsSet) {// if we come from the analyte step the pools are reset, if we come
                               // back from the next step they are not
-            poolStep2.setSamples(dataAggregator.prepareTestSamples(), Steps.Test_Sample_Pooling);
+            poolStep2.setSamples(dataAggregator.prepareTestSamples_2(), Steps.Test_Sample_Pooling);
             testPoolsSet = true;
           }
         }
@@ -1029,7 +1029,7 @@ public class WizardController implements IRegistrationController {
 
           if (!testPoolsSet) {// if pools aren't set at this point then there was no pooling
                               // selected before
-            dataAggregator.prepareTestSamples();// we reset the analyte samples in case we come from
+            dataAggregator.prepareTestSamples_2();// we reset the analyte samples in case we come from
                                                 // the next step and prepare them anew
           }
           // we forward testsamples and potential pools directly to the fractionation step to sort
