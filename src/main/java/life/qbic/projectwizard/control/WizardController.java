@@ -275,13 +275,11 @@ public class WizardController implements IRegistrationController {
   private String generateCFHProjectCode(String space) {
     String res = "";
     res = space + "-";
-  //TODO needed?  while (res.length() < 5 || openbis.getProjectByCode(res) != null) {
-    //get latest experiment from openbis 
-    //if no project exists yet then -001
     List<Project> projects = openbis.getProjectsOfSpace(space);
     if(projects.isEmpty()) {
     	res= res + "001";    
-    } 
+    }
+    else { 
     int max=0,maxTemp=0;
   	boolean flag = false;
   	Project lastProject=projects.get(projects.size()-1);
@@ -296,7 +294,6 @@ public class WizardController implements IRegistrationController {
   					max=maxTemp;
   					lastProject = p;
   	  				flag =true;
-  	  				logger.info("hengam0:  "+ lastDigit);
   				}
   				
   		}
@@ -310,13 +307,13 @@ public class WizardController implements IRegistrationController {
     	}
     	String formatted = String.format("%03d", increment); //leading zeros, length of 3 digits eg. 001, 010...
     	res = res + formatted;
-    	
     }
   	else
 	{
 		res= res + "001";
 			
-	}
+    	}
+  	}
     return res;
   }
 
