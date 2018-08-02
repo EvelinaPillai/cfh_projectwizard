@@ -141,11 +141,15 @@ public class TestStep implements WizardStep {
 	public boolean onAdvance() {
 		if (techPanel.isValid() || noMeasure.getValue()) {
 			if (containsProteins) {
-				if (msPanel.isValid()) {
-					return true;
-				} else
-					return false;
-			} else
+				return (msPanel.isValid());
+			}
+			if(containsNmin) {
+				return (NminPanel.isValid());
+			}
+			if(containsElement) {
+				return (elementPanel.isValid());
+			}
+			else
 				return true;
 		} else {
 			Styles.notification("Missing information",
@@ -480,6 +484,7 @@ public class TestStep implements WizardStep {
 		return null;
 		
 	}
+	
 	
 
 }

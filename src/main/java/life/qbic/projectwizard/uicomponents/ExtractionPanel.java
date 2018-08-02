@@ -97,7 +97,7 @@ public class ExtractionPanel extends VerticalLayout {
 	public List<String> getDevices() {
 		List<String> res = new ArrayList<String>();
 		for (ExtractionChooser c : choosers) {
-			if (c.isSet())
+			if (c.isDevSet())
 				res.add(c.getDevice());
 		}
 		return res;
@@ -141,11 +141,34 @@ public class ExtractionPanel extends VerticalLayout {
 	public List<TextField> getElements() {
 		List<TextField> res = new ArrayList<TextField>();
 		for (TextField t : elements) {
-			//if (t.isSet())
+			//if (!t.getValue().isEmpty()) {
 				res.add(t);
-						//c.getExtraction());
+				//c.getExtraction());
 		}
 		return res;
+	}
+	
+	public boolean isElementsEmpty() {
+		boolean checkEmptyTextfield = false;
+		for (TextField t : elements) {
+			 if(t.getValue().isEmpty()) {
+			  checkEmptyTextfield = true;
+			 }
+		
+		}
+		return checkEmptyTextfield;
+	
+	}
+	
+
+	public boolean isDevicesEmpty() {
+		boolean fieldcheck = false;
+		for(ExtractionChooser c : choosers){
+			if(c.getDevice() == null || c.getDevice().isEmpty()) {
+				fieldcheck = true;
+			}
+		}
+		return fieldcheck;
 	}
 
 }

@@ -15,9 +15,7 @@
  *******************************************************************************/
 package life.qbic.projectwizard.uicomponents;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,9 +24,14 @@ import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.TextField;
 import matrix.ChemElement;
 import matrix.PeriodicTable;
+import life.qbic.portal.Styles;
+import life.qbic.portal.Styles.NotificationType;
 import life.qbic.projectwizard.io.DBVocabularies;
-import life.qbic.projectwizard.model.MHCLigandExtractionProtocol;
 
+/**
+ * UI Component to put information about the Samples for Element Analysis
+ *
+ */
 public class ElementPanel extends HorizontalLayout {
 
 	/**
@@ -37,7 +40,8 @@ public class ElementPanel extends HorizontalLayout {
 	private static final long serialVersionUID = 7227082472253643451L;
 
 	private ExtractionPanel extractionPanel;
-
+	private List<ChemElement> elements = new ArrayList<ChemElement>();
+	List<String> allElements = new ArrayList<String>();
 
 	public ElementPanel(DBVocabularies vocabs) {
 
@@ -47,7 +51,6 @@ public class ElementPanel extends HorizontalLayout {
 
 		extractionPanel = new ExtractionPanel(vocabs.getExtractions(), vocabs.getDevices());
 
-		List<ChemElement> elements = new ArrayList<ChemElement>();
 		elements.add(new ChemElement("H", "Hydrogen", 1, 1, 1));
 		elements.add(new ChemElement("He", "Helium", 1, 18, 2));
 		elements.add(new ChemElement("Li", "Lithium", 2, 1, 3));
@@ -170,50 +173,94 @@ public class ElementPanel extends HorizontalLayout {
 		PeriodicTable table = new PeriodicTable(this);
 		table.setElements(elements);
 
-		addComponent(extractionPanel);
+		for (ChemElement chemEl : elements) {
+			allElements.add(chemEl.getAbbreviation());
+		}
 
+		addComponent(extractionPanel);
 		addComponent(table);
 	}
 
-	//TODO write isvalid() method for Input if it really only includes Chemical Elements
+	/**
+	 * Fills out the text field "Selected Elements" for Element Analysis Experiment.
+	 * By pressing on an element on the periodic table the text field is filled out.
+	 * 
+	 * @param element
+	 */
 	public void useSelectedElement(ChemElement element) {
-		
-		
-		for (int i=0; i<extractionPanel.getElements().size();i++) {
+
+		for (int i = 0; i < extractionPanel.getElements().size(); i++) {
 			TextField t = extractionPanel.getElements().get(i);
-			//t.focus();
 			if (extractionPanel.status.get(i)) {
-			
+
 				String currentElement = t.getValue();
-				String newElemntlist = currentElement + ", " + element.getAbbreviation();
-				//remove first comma
-				newElemntlist = newElemntlist.startsWith(",") ? newElemntlist.substring(1) : newElemntlist;
-				t.setValue(newElemntlist);
+				if (!currentElement.contains(element.getAbbreviation())) {
+					String newElemntlist = currentElement + ", " + element.getAbbreviation();
+					// remove first comma
+					newElemntlist = newElemntlist.startsWith(",") ? newElemntlist.substring(1) : newElemntlist;
+					t.setValue(newElemntlist);
+				}
 			}
-			
 		}
 	}
-	
-	
-	
-	public List<Map<String , String>> getElementProperties() {
-		List<Map<String , String>> res = new ArrayList<Map<String , String>>();
-		for (int i=0; i<extractionPanel.getElements().size();i++)
-		{
-			Map<String, String> res1 = new HashMap<String, String>(); 
-			res1.put("Q_CFH_DIGESTION" , extractionPanel.getExtractions().get(i).toString());
+
+	/**
+	 * Mapping the selected entries for digestion, machine type and selected
+	 * elements to openBIS property types this information is important for the tsv
+	 * creation
+	 * 
+	 * @return
+	 */
+	public List<Map<String, String>> getElementProperties() {
+		List<Map<String, String>> res = new ArrayList<Map<String, String>>();
+		for (int i = 0; i < extractionPanel.getElements().size(); i++) {
+
+			Map<String, String> res1 = new HashMap<String, String>();
+			if (extractionPanel.getExtractions().isEmpty()) {
+				res1.put("Q_CFH_DIGESTION", "");
+			} else {
+				res1.put("Q_CFH_DIGESTION", extractionPanel.getExtractions().get(i).toString());
+			}
 			res1.put("Q_ELEMENT_DESC", extractionPanel.getElements().get(i).getValue());
 			res1.put("Q_CFH_DEVICES", extractionPanel.getDevices().get(i));
 			res.add(res1);
-			
 		}
-			        
-	    return res;	
+		return res;
 	}
-	
-	
-	
-	
-}	
-	
-	
+
+	/**
+	 * Validation if "Machine type" and "Selected Elements" are filled out properly.
+	 * 
+	 * @return
+	 */
+	public boolean isValid() {
+		boolean fieldcheck = true;
+
+		if (extractionPanel.getExtractions().isEmpty()) {
+			extractionPanel.getExtractions().add(""); // eg. no digestion is necessary if matrix was solution
+		}
+		if (extractionPanel.isDevicesEmpty()) {
+			fieldcheck = false;
+			Styles.notification("Missing information", "Please select one measuring device for your samples.",
+					NotificationType.ERROR);
+		}
+		if (extractionPanel.isElementsEmpty()) {
+			fieldcheck = false;
+			Styles.notification("Missing information", "Please select at least one element you want to measure.",
+					NotificationType.ERROR);
+		}
+		// if someone typed something in instead of using the periodic table we check for entries
+		for (TextField t : extractionPanel.getElements()) {
+			String[] enteredText = t.getValue().split(",");
+			for (String elements : enteredText) {
+				if (!this.allElements.contains(elements.trim())) {
+					fieldcheck = false;
+					Styles.notification("Wrong information",
+							"The element you entered is not represented in the periodic table, please correct your input.",
+							NotificationType.ERROR);
+				}
+			}
+		}
+		return fieldcheck;
+	}
+}

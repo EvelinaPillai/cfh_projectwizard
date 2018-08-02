@@ -60,6 +60,10 @@ public class ExtractionChooser extends VerticalLayout {
 	public boolean isSet() {
 		return chooser.getItemIds().contains(chooser.getValue());
 	}
+	
+	public boolean isDevSet() {
+		return devChooser.getItemIds().contains(devChooser.getValue());
+	}
 
 	public String getExtraction() {
 		if (chooser.getValue() != null)

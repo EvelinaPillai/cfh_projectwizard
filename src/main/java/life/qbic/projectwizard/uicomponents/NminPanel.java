@@ -41,6 +41,7 @@ import com.vaadin.ui.themes.ValoTheme;
 
 import life.qbic.datamodel.samples.AOpenbisSample;
 import life.qbic.portal.Styles;
+import life.qbic.portal.Styles.NotificationType;
 import life.qbic.projectwizard.io.DBVocabularies;
 import life.qbic.projectwizard.model.TestSampleInformation;
 
@@ -184,6 +185,32 @@ public class NminPanel extends VerticalLayout {
 
 		return res;
 
+	}
+	
+	public boolean isValid() {
+		boolean fieldcheck = true;
+		
+		for (Object id : nminSamples.getItemIds()) {
+			Item item = nminSamples.getItem(id);
+			Object component = item.getItemProperty("Soil depth [cm]").getValue();
+			HorizontalLayout h = (HorizontalLayout) component;
+			ComboBox cb = (ComboBox) h.getComponent(0);
+			String depth = (String) cb.getValue();
+		
+			try {
+				if(depth.isEmpty()) {
+					fieldcheck= false;
+				}
+			}
+			catch(NullPointerException e) {
+				Styles.notification("Missing information",
+						"Please update depth for your samples.", NotificationType.ERROR);
+				fieldcheck= false;
+			}
+		}
+		
+		
+		return fieldcheck;
 	}
 
 }
