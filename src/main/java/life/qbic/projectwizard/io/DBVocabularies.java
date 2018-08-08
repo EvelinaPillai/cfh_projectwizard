@@ -158,9 +158,6 @@ public List<String> getExtractions() {
 public List<String> getDevices() {
 	return devices;
 }
-public void setExtractions(List<String> extractionTypes) {
-	this.extractionTypes = extractionTypes;
-}
 
 public List<String> getSoildepth() {
 	return soildepth;

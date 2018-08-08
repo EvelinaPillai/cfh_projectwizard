@@ -88,8 +88,11 @@ public class ExtractionPanel extends VerticalLayout {
 	public List<String> getExtractions() {
 		List<String> res = new ArrayList<String>();
 		for (ExtractionChooser c : choosers) {
-			if (c.isSet())
+			if (c.isSet()) {
 				res.add(c.getExtraction());
+			}else {
+				res.add("");
+			}
 		}
 		return res;
 	}

@@ -21,7 +21,6 @@ public class RegisteredAnalyteInformation {
     return analytes;
   }
 
-
   public boolean isMeasurePeptides() {
     return measurePeptides;
   }

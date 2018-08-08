@@ -237,7 +237,7 @@ public class ElementPanel extends HorizontalLayout {
 		boolean fieldcheck = true;
 
 		if (extractionPanel.getExtractions().isEmpty()) {
-			extractionPanel.getExtractions().add(""); // eg. no digestion is necessary if matrix was solution
+			extractionPanel.getExtractions().add(" "); // eg. no digestion is necessary if matrix was solution
 		}
 		if (extractionPanel.isDevicesEmpty()) {
 			fieldcheck = false;
