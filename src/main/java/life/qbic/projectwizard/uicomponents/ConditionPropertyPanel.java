@@ -127,7 +127,7 @@ public class ConditionPropertyPanel extends VerticalLayout {
     if (unitField.getValue() != null)
       unit = (life.qbic.xml.properties.Unit) unitField.getValue();
     for (String val : values.getValue().split("\n")) {
-    //  val = val.trim();
+      val = val.trim();
       if (unit != null)
         res.add(new Property(condition.toLowerCase().replace(" ", "_"), val, unit,
             PropertyType.Factor));
