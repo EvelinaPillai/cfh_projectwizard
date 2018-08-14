@@ -38,7 +38,7 @@ public class SampleCounter {
   private Set<String> knownAtypical = new HashSet<String>();
 
   public SampleCounter(List<Sample> samples) {
-    this(samples.get(0).getCode().substring(0, 15));
+    this(samples.get(0).getCode().substring(0, 15)); //or 16?
     for (Sample s : samples)
       increment(s);
   }
