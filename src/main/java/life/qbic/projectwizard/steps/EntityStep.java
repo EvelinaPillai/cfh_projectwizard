@@ -259,7 +259,9 @@ public class EntityStep implements WizardStep {
   public void updatePeople(Set<String> people) {
     String contact = getPerson();
     person.removeAllItems();
-    person.addItems(people);
+    ArrayList<String> sortedPeople = new ArrayList<String>(people);
+    Collections.sort(sortedPeople);
+    person.addItems(sortedPeople);
     if (contact != null && !contact.isEmpty())
       person.select(contact);
   }

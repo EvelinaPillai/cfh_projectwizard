@@ -440,8 +440,7 @@ public class WizardController implements IRegistrationController {
         entStep.updatePeople(people);
         extrStep.updatePeople(people);
         techStep.updatePeople(people);
-        //matrixStep.updatePeople(people); //TODO to delete
-      }
+       }
     };
     projSelection.getPeopleReloadButton().addClickListener(peopleCL);
     entStep.getPeopleReloadButton().addClickListener(peopleCL);
