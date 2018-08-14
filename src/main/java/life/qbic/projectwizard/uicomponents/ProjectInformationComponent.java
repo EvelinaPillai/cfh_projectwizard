@@ -16,10 +16,12 @@
 package life.qbic.projectwizard.uicomponents;
 
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
+import com.liferay.portal.kernel.log.Log;
 import com.vaadin.data.Property.ValueChangeListener;
 import com.vaadin.data.validator.StringLengthValidator;
 import com.vaadin.server.FontAwesome;
@@ -90,7 +92,7 @@ public class ProjectInformationComponent extends VerticalLayout {
     Styles.iconButton(reloadProjects, FontAwesome.REFRESH);
 
     HorizontalLayout proj = new HorizontalLayout();
-    proj.setCaption("New Sub-Project");
+    proj.setCaption("New Sub-Project [Neue Auftragsnummer]");
     proj.addComponent(project);
     proj.addComponent(reloadProjects);
     CustomVisibilityComponent newProj = new CustomVisibilityComponent(proj);
@@ -112,13 +114,15 @@ public class ProjectInformationComponent extends VerticalLayout {
     VerticalLayout persBox = new VerticalLayout();
 
     piBox = new ComboBox();
-    piBox.addItems(people);
+    ArrayList<String> sortedPeople = new ArrayList<String>(people);
+    Collections.sort(sortedPeople);
+    piBox.addItems(sortedPeople);
     piBox.setFilteringMode(FilteringMode.CONTAINS);
     piBox.setStyleName(Styles.boxTheme);
-    contactBox = new ComboBox("Contact Person", people);
+    contactBox = new ComboBox("Contact Person CFH", sortedPeople);
     contactBox.setFilteringMode(FilteringMode.CONTAINS);
     contactBox.setStyleName(Styles.boxTheme);
-    managerBox = new ComboBox("Project Manager", people);
+    managerBox = new ComboBox("Project Manager CFH", sortedPeople);
     managerBox.setFilteringMode(FilteringMode.CONTAINS);
     managerBox.setStyleName(Styles.boxTheme);
     persBox.addComponent(piBox);

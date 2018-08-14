@@ -247,7 +247,7 @@ public class DBManager {
         int pi_id = rs.getInt("id");
         String first = rs.getString("first_name");
         String last = rs.getString("family_name");
-        res.put(first + " " + last, pi_id);
+        res.put(last + " " + first, pi_id);
       }
       statement.close();
     } catch (SQLException e) {
@@ -255,6 +255,7 @@ public class DBManager {
     }
     logout(conn);
     return res;
+   
   }
 
   public boolean genericInsertIntoTable(String table, Map<String, Object> values) {
