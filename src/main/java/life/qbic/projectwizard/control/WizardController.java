@@ -445,6 +445,22 @@ public class WizardController implements IRegistrationController {
     projSelection.getPeopleReloadButton().addClickListener(peopleCL);
     entStep.getPeopleReloadButton().addClickListener(peopleCL);
     extrStep.getPeopleReloadButton().addClickListener(peopleCL);
+    
+    Button.ClickListener spaceCL = new Button.ClickListener() {
+
+       /**
+		 * 
+		 */
+		private static final long serialVersionUID = 2124279943999096050L;
+
+		@Override
+        public void buttonClick(ClickEvent event) {
+     		 vocabularies.setSpaces(openbis.getUserSpaces(user));
+			 List<String> spaces = vocabularies.getSpaces();
+			 projSelection.updateSpaces(spaces);
+         }
+      };
+      projSelection.getSpacesReloadButton().addClickListener(spaceCL);
 
     Button.ClickListener cl = new Button.ClickListener() {
       /**
@@ -871,7 +887,7 @@ public class WizardController implements IRegistrationController {
     CompositeValidator vd = new CompositeValidator();
     //RegexpValidator p = new RegexpValidator("Q[A-Xa-x0-9]{4}",
       //  "Project must have length of 5, start with Q and not contain Y or Z");
-    RegexpValidator p = new RegexpValidator("20[0-9][0-9]-[1-3]-[0-9]{4}-[0-9]{3}",
+    RegexpValidator p = new RegexpValidator("20[0-9][0-9]-[1-4]-[0-9]{4}-[0-9]{3}",
     		"Project must start with current year, followed by module number and contract number and finish with batch number. Eg. 2018-3-0001-001");
     vd.addValidator(p);
     vd.addValidator(new ProjectNameValidator(openbis));

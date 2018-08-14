@@ -27,8 +27,10 @@ import com.vaadin.data.validator.StringLengthValidator;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.shared.ui.combobox.FilteringMode;
 import com.vaadin.ui.AbstractSelect;
+import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.ComboBox;
+import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.TextArea;
 import com.vaadin.ui.TextField;
@@ -48,6 +50,7 @@ public class ProjectInformationComponent extends VerticalLayout {
    */
   private static final long serialVersionUID = 3467663055161160735L;
   private ComboBox spaceBox;
+  private Button reloadSpaces;
   private CustomVisibilityComponent projectBox;
   private TextField project;
   private Button reloadProjects;
@@ -66,14 +69,23 @@ public class ProjectInformationComponent extends VerticalLayout {
     setSpacing(true);
     setSizeUndefined();
 
+    reloadSpaces = new Button();
+    Styles.iconButton(reloadSpaces, FontAwesome.REFRESH);
+    
     Collections.sort(spaces);
+    
     spaceBox = new ComboBox("Project [UVB]", spaces);
     spaceBox.setStyleName(Styles.boxTheme);
     spaceBox.setNullSelectionAllowed(false);
     spaceBox.setImmediate(true);
     spaceBox.setFilteringMode(FilteringMode.CONTAINS);
-    addComponent(Styles.questionize(spaceBox, "Name of the project", "Project Name"));
-
+    GridLayout  spaceBoxH = new GridLayout(2,1);
+    spaceBoxH.addComponents(spaceBox,reloadSpaces);
+    spaceBoxH.setComponentAlignment(reloadSpaces,Alignment.BOTTOM_LEFT);
+    //CustomVisibilityComponent newSpace = new CustomVisibilityComponent(spaceBoxH);
+    addComponent(spaceBoxH);
+    addComponent(Styles.questionize(spaceBoxH, "Name of the project", "Project Name"));
+    
     ComboBox prBox = new ComboBox("Sub-Project [Auftragsnummer]");
     prBox.setStyleName(Styles.boxTheme);
     projectBox = new CustomVisibilityComponent(prBox);
@@ -84,7 +96,6 @@ public class ProjectInformationComponent extends VerticalLayout {
     project = new StandardTextField();
     project.setStyleName(Styles.fieldTheme);
     project.setMaxLength(15);
-    //project.setWidth("90px"); //TODO to delete 
     project.setEnabled(false);
     project.setValidationVisible(true);
 
@@ -322,4 +333,14 @@ public class ProjectInformationComponent extends VerticalLayout {
         getPerson(PersonType.Investigator), getPerson(PersonType.Contact),
         getPerson(PersonType.Manager));
   }
+
+public void updateSpaces(List<String> spaces) {
+	Collections.sort(spaces);
+	spaceBox.removeAllItems();
+	spaceBox.addItems(spaces);
+}
+
+public Button getSpacesReloadButton() {
+	return reloadSpaces;
+}
 }
