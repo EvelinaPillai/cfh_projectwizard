@@ -175,9 +175,11 @@ public class ProjectInformationComponent extends VerticalLayout {
     piBox.removeAllItems();
     contactBox.removeAllItems();
     managerBox.removeAllItems();
-    piBox.addItems(people);
-    contactBox.addItems(people);
-    managerBox.addItems(people);
+    ArrayList<String> sortedPeople = new ArrayList<String>(people);
+    Collections.sort(sortedPeople);
+    piBox.addItems(sortedPeople);
+    contactBox.addItems(sortedPeople);
+    managerBox.addItems(sortedPeople);
     if (pi != null && !pi.isEmpty())
       piBox.select(pi);
     if (contact != null && !contact.isEmpty())

@@ -16,6 +16,7 @@
 package life.qbic.projectwizard.uicomponents;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -59,7 +60,7 @@ public class TechChooser extends VerticalLayout {
    *        selected will disable the normal species input because there is more than one instance
    * @param nullSelectionAllowed true, if the conditions may be empty
    */
-  public TechChooser(List<String> options, Set<String> persons,Map<String, String> matrixMap) {
+  public TechChooser(List<String> options, Set<String> people, Map<String, String> matrixMap) {
     chooser = new ComboBox("Analyte", options);
     chooser.setStyleName(Styles.boxTheme);
 
@@ -85,7 +86,9 @@ public class TechChooser extends VerticalLayout {
     HorizontalLayout persBoxH = new HorizontalLayout();
     persBoxH.setCaption("Contact Person");
     person = new ComboBox();
-    person.addItems(persons);
+    ArrayList<String> sortedPeople = new ArrayList<String>(people);
+    Collections.sort(sortedPeople);
+    person.addItems(sortedPeople);
     person.setFilteringMode(FilteringMode.CONTAINS);
     person.setStyleName(Styles.boxTheme);
     

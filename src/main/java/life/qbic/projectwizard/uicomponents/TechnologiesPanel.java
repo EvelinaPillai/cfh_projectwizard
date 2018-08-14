@@ -69,12 +69,12 @@ public class TechnologiesPanel extends HorizontalLayout {
    *        inside this component from the outside
    * @param proteinListeners
    */
-  public TechnologiesPanel(List<String> techOptions, Set<String> persons, OptionGroup conditionsSet,
+  public TechnologiesPanel(List<String> techOptions, Set<String> people, OptionGroup conditionsSet,
       ValueChangeListener poolListener, ArrayList<ValueChangeListener> proteinListeners,
       ValueChangeListener mhcLigandListener, ClickListener refreshPeopleListener, ValueChangeListener elementListener, 
       ValueChangeListener aaListener, ValueChangeListener fatListener, ValueChangeListener nminListener, Map<String, String> matrixMap){
     this.options = techOptions;
-    this.persons = persons;
+    this.persons = people;
     this.matrixMap = matrixMap;
 
     this.conditionsSet = conditionsSet;
@@ -95,7 +95,7 @@ public class TechnologiesPanel extends HorizontalLayout {
    
 
     choosers = new ArrayList<TechChooser>();
-    TechChooser c = new TechChooser(techOptions, persons, matrixMap);
+    TechChooser c = new TechChooser(techOptions, people, matrixMap);
     c.setImmediate(true);
     c.addPoolListener(poolListener);
     c.addRefreshPeopleListener(refreshPeopleListener);

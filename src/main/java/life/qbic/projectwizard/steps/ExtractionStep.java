@@ -184,7 +184,9 @@ public class ExtractionStep implements WizardStep {
     HorizontalLayout persBoxH = new HorizontalLayout();
     persBoxH.setCaption("Contact Person");
     person = new ComboBox();
-    person.addItems(people);
+    ArrayList<String> sortedPeople = new ArrayList<String>(people);
+    Collections.sort(sortedPeople);
+    person.addItems(sortedPeople);
     person.setFilteringMode(FilteringMode.CONTAINS);
     person.setStyleName(Styles.boxTheme);
 
