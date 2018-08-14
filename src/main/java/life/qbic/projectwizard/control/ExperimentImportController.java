@@ -670,11 +670,6 @@ public class ExperimentImportController implements IRegistrationController {
     return res;
   }
 
-/*  public static boolean isQbicBarcode(String code) { // added by hengam
-	    //String pattern = "Q[A-X0-9]{4}[0-9]{3}[A-X0-9]{2}";
-	    String pattern = "20[0-9]{2}-[0-9]-[0-9]{4}-[0-9]{3}[0-9]{3}[A-X0-9]{2}";
-	    return code.matches(pattern);
-	  }*/
   /**
    * Fetches context information like space and project and computes first unused IDs of samples and
    * context. Also fills a map of existing secondary names and samples used later not to re-register
@@ -716,7 +711,7 @@ public class ExperimentImportController implements IRegistrationController {
       if (SampleCodeFunctions.isQbicBarcode(code)) {
         if (SampleCodeFunctions.compareSampleCodes(firstFreeBarcode, code) <= 0) {
           firstFreeBarcode = SampleCodeFunctions.incrementSampleCode(code);
-          String firstBarcode = project + "001A" + SampleCodeFunctions.checksum(project + "001A");
+          String firstBarcode = project + "-"+"001A" + SampleCodeFunctions.checksum(project + "-"+"001A");
           if (firstBarcode.equals(firstFreeBarcode))
             throw new TooManySamplesException();
         }
@@ -729,10 +724,10 @@ public class ExperimentImportController implements IRegistrationController {
   }
 
   private void incrementOrCreateBarcode(String project) throws TooManySamplesException {
-    String firstBarcode = project + "001A" + SampleCodeFunctions.checksum(project + "001A");
+    String firstBarcode = project + "-"+"001A" + SampleCodeFunctions.checksum(project + "-" + "001A");
     if (nextBarcode == null) {
       if (firstFreeBarcode.isEmpty()) {
-        String base = project + SampleCodeFunctions.createCountString(1, 3) + "A";
+        String base = project + "-" + SampleCodeFunctions.createCountString(1, 3) + "A";
         firstFreeBarcode = base + SampleCodeFunctions.checksum(base);
       }
       nextBarcode = firstFreeBarcode;

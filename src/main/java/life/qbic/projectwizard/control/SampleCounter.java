@@ -38,7 +38,7 @@ public class SampleCounter {
   private Set<String> knownAtypical = new HashSet<String>();
 
   public SampleCounter(List<Sample> samples) {
-    this(samples.get(0).getCode().substring(0, 5));
+    this(samples.get(0).getCode().substring(0, 15));
     for (Sample s : samples)
       increment(s);
   }
@@ -96,7 +96,7 @@ public class SampleCounter {
 
   public String getNewBarcode() {
     if (barcode == null) {
-      barcode = project + "001A";
+      barcode = project + "-"+ "001A";
       barcode = barcode + SampleCodeFunctions.checksum(barcode);
     }
     barcode = SampleCodeFunctions.incrementSampleCode(barcode);

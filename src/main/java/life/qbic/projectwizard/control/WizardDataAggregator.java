@@ -848,7 +848,7 @@ public class WizardDataAggregator {
     if (nextBarcode == null) {
       if (firstFreeBarcode.isEmpty()) {
         classChar = 'A';
-        String base = projectCode + SampleCodeFunctions.createCountString(1, 3) + classChar;
+        String base = projectCode + "-" + SampleCodeFunctions.createCountString(1, 3) + classChar;
         firstFreeBarcode = base + SampleCodeFunctions.checksum(base);
       }
       nextBarcode = firstFreeBarcode;

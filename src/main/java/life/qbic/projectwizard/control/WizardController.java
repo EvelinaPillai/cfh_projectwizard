@@ -867,12 +867,8 @@ public class WizardController implements IRegistrationController {
     };
     extrStep.conditionsSet().addValueChangeListener(extractConditionSetListener);
     
-    
-    
-   // matrixStep.initTestStep(peopleCL, steps); TODO to delete
     TextField f = contextStep.getProjectCodeField();
     CompositeValidator vd = new CompositeValidator();
-    //TODO change to CFH Code
     //RegexpValidator p = new RegexpValidator("Q[A-Xa-x0-9]{4}",
       //  "Project must have length of 5, start with Q and not contain Y or Z");
     RegexpValidator p = new RegexpValidator("20[0-9][0-9]-[1-3]-[0-9]{4}-[0-9]{3}",
