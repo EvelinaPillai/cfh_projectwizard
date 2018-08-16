@@ -149,6 +149,9 @@ public class TestStep implements WizardStep {
 			if(containsElement) {
 				return (elementPanel.isValid());
 			}
+			if(containsAA) {
+				return (AminoAcidPanel.isValid());
+			}
 			else
 				return true;
 		} else {
@@ -373,10 +376,11 @@ public class TestStep implements WizardStep {
 
 		main.addComponent(mhcLigandPanel);
 		
-		elementPanel = new ElementPanel(vocabs);
-		elementPanel.setVisible(false);
 		AminoAcidPanel = new AminoAcidPanel(vocabs);
 		AminoAcidPanel.setVisible(false);
+		
+		elementPanel = new ElementPanel(vocabs);
+		elementPanel.setVisible(false);
 		
 		NminPanel = new NminPanel(vocabs, getAnalyteInformation()); 
 		NminPanel.setVisible(false);
@@ -384,9 +388,9 @@ public class TestStep implements WizardStep {
 		FatPanel.setVisible(false);
 
 		main.addComponent(elementPanel);
-		main.addComponent(AminoAcidPanel);
 		main.addComponent(NminPanel);
 		main.addComponent(FatPanel);
+		main.addComponent(AminoAcidPanel);
 
 	}
 

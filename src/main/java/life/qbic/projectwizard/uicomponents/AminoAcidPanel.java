@@ -21,10 +21,17 @@ import java.util.List;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.TextField;
 
+import life.qbic.portal.Styles;
+import life.qbic.portal.Styles.NotificationType;
 import life.qbic.projectwizard.io.DBVocabularies;
 import matrix.ChemElement;
 import matrix.PeriodicTable;
 
+/**
+ * UI Component to put information about the Samples for Amino Acid Analysis
+ *
+ */
+//TODO it would make sense to make an interface for AA and Element bc two methods are identical
 public class AminoAcidPanel extends HorizontalLayout {
 	/**
 	 * 
@@ -32,12 +39,13 @@ public class AminoAcidPanel extends HorizontalLayout {
 	private static final long serialVersionUID = -9105358366778311786L;
 
 	private ExtractionPanel extractionPanel;
+	private List<String> allAAs = new ArrayList<String>();
 
 	public AminoAcidPanel(DBVocabularies vocabs) {
 
 		setSpacing(true);
 		setMargin(true);
-		this.setCaption("Elements to analyze");
+		this.setCaption("Amino acids to analyze");
 
 		// TODO different devices and maybe different extractions
 		extractionPanel = new ExtractionPanel(vocabs.getExtractions(), vocabs.getDevices());
@@ -67,28 +75,74 @@ public class AminoAcidPanel extends HorizontalLayout {
 		PeriodicTable table = new PeriodicTable(this);
 		table.setElements(elements);
 
+		for (ChemElement chemEl : elements) {
+			allAAs.add(chemEl.getAbbreviation());
+		}
+
 		addComponent(extractionPanel);
 
 		addComponent(table);
 
 	}
 
+	/**
+	 * Fills out the text field "Selected Elements" for Amino Acid Analysis
+	 * Experiment. By pressing on an amino acid on the periodic table the text field
+	 * is filled out.
+	 * 
+	 * @param element
+	 */
 	public void useSelectedElement(ChemElement element) {
-		List<TextField> list = extractionPanel.getElements();
-
-		for (int i = 0; i < list.size(); i++) {
-			TextField t = list.get(i);
-			// t.focus();
+		for (int i = 0; i < extractionPanel.getElements().size(); i++) {
+			TextField t = extractionPanel.getElements().get(i);
 			if (extractionPanel.status.get(i)) {
 
 				String currentElement = t.getValue();
-				String newElemntlist = currentElement + ", " + element.getAbbreviation();
-				// remove first comma
-				newElemntlist = newElemntlist.startsWith(",") ? newElemntlist.substring(1) : newElemntlist;
-				t.setValue(newElemntlist);
+				if (!currentElement.contains(element.getAbbreviation())) {
+					String newElemntlist = currentElement + ", " + element.getAbbreviation();
+					// remove first comma
+					newElemntlist = newElemntlist.startsWith(",") ? newElemntlist.substring(1) : newElemntlist;
+					t.setValue(newElemntlist);
+				}
 			}
-
 		}
+	}
+
+	/**
+	 * Validation if "Machine type" and "Selected Elements" are filled out properly.
+	 * 
+	 * @return
+	 */
+	public boolean isValid() {
+		boolean fieldcheck = true;
+
+		if (extractionPanel.getExtractions().isEmpty()) {
+			extractionPanel.getExtractions().add(" "); // eg. no digestion is necessary if matrix was solution
+		}
+		if (extractionPanel.isDevicesEmpty()) {
+			fieldcheck = false;
+			Styles.notification("Missing information", "Please select one measuring device for your samples.",
+					NotificationType.ERROR);
+		}
+		if (extractionPanel.isElementsEmpty()) {
+			fieldcheck = false;
+			Styles.notification("Missing information", "Please select at least one element you want to measure.",
+					NotificationType.ERROR);
+		}
+		// if someone typed something in instead of using the periodic table we check
+		// for entries
+		for (TextField t : extractionPanel.getElements()) {
+			String[] enteredText = t.getValue().split(",");
+			for (String elements : enteredText) {
+				if (!this.allAAs.contains(elements.trim())) {
+					fieldcheck = false;
+					Styles.notification("Wrong information",
+							"The element you entered is not represented in the periodic table, please correct your input.",
+							NotificationType.ERROR);
+				}
+			}
+		}
+		return fieldcheck;
 	}
 
 }

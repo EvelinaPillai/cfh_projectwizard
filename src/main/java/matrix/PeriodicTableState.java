@@ -6,13 +6,18 @@ import com.vaadin.shared.ui.JavaScriptComponentState;
 
 public class PeriodicTableState extends JavaScriptComponentState {
 
-  private List<ChemElement> elements;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7202127928887060884L;
 
-  public List<ChemElement> getElements() {
-    return elements;
-  }
+	private List<ChemElement> elements;
 
-  public void setElements(List<ChemElement> elements) {
-    this.elements = elements;
-  }
+	public List<ChemElement> getElements() {
+		return elements;
+	}
+
+	public void setElements(List<ChemElement> elements) {
+		this.elements = elements;
+	}
 }

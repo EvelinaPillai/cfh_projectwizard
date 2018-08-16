@@ -32,6 +32,7 @@ import life.qbic.projectwizard.io.DBVocabularies;
  * UI Component to put information about the Samples for Element Analysis
  *
  */
+//TODO it would make sense to make an interface for AA and Element bc two methods are identical
 public class ElementPanel extends HorizontalLayout {
 
 	/**
@@ -40,8 +41,7 @@ public class ElementPanel extends HorizontalLayout {
 	private static final long serialVersionUID = 7227082472253643451L;
 
 	private ExtractionPanel extractionPanel;
-	private List<ChemElement> elements = new ArrayList<ChemElement>();
-	List<String> allElements = new ArrayList<String>();
+	private List<String> allElements = new ArrayList<String>();
 
 	public ElementPanel(DBVocabularies vocabs) {
 
@@ -51,6 +51,7 @@ public class ElementPanel extends HorizontalLayout {
 
 		extractionPanel = new ExtractionPanel(vocabs.getExtractions(), vocabs.getDevices());
 
+		List<ChemElement> elements = new ArrayList<ChemElement>();
 		elements.add(new ChemElement("H", "Hydrogen", 1, 1, 1));
 		elements.add(new ChemElement("He", "Helium", 1, 18, 2));
 		elements.add(new ChemElement("Li", "Lithium", 2, 1, 3));
@@ -249,7 +250,8 @@ public class ElementPanel extends HorizontalLayout {
 			Styles.notification("Missing information", "Please select at least one element you want to measure.",
 					NotificationType.ERROR);
 		}
-		// if someone typed something in instead of using the periodic table we check for entries
+		// if someone typed something in instead of using the periodic table we check
+		// for entries
 		for (TextField t : extractionPanel.getElements()) {
 			String[] enteredText = t.getValue().split(",");
 			for (String elements : enteredText) {
