@@ -130,7 +130,7 @@ public class ProjectInformationComponent extends VerticalLayout {
     piBox.addItems(sortedPeople);
     piBox.setFilteringMode(FilteringMode.CONTAINS);
     piBox.setStyleName(Styles.boxTheme);
-    contactBox = new ComboBox("Contact Person CFH", sortedPeople);
+    contactBox = new ComboBox("Contact Person", sortedPeople);
     contactBox.setFilteringMode(FilteringMode.CONTAINS);
     contactBox.setStyleName(Styles.boxTheme);
     managerBox = new ComboBox("Project Manager CFH", sortedPeople);
