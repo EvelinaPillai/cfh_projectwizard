@@ -53,6 +53,7 @@ public class TechnologiesPanel extends HorizontalLayout {
   ValueChangeListener aaListener;
   ValueChangeListener nminListener;
   ValueChangeListener mhcLigandListener;
+  ValueChangeListener smallMoleculesListener;
   Map<String, String> matrixMap;
   Button.ClickListener refreshPeopleListener;
   GridLayout buttonGrid;
@@ -72,7 +73,7 @@ public class TechnologiesPanel extends HorizontalLayout {
   public TechnologiesPanel(List<String> techOptions, Set<String> people, OptionGroup conditionsSet,
       ValueChangeListener poolListener, ArrayList<ValueChangeListener> proteinListeners,
       ValueChangeListener mhcLigandListener, ClickListener refreshPeopleListener, ValueChangeListener elementListener, 
-      ValueChangeListener aaListener, ValueChangeListener fatListener, ValueChangeListener nminListener, Map<String, String> matrixMap){
+      ValueChangeListener aaListener, ValueChangeListener fatListener, ValueChangeListener nminListener, ValueChangeListener smallMoleculesListener,Map<String, String> matrixMap){
     this.options = techOptions;
     this.persons = people;
     this.matrixMap = matrixMap;
@@ -92,6 +93,7 @@ public class TechnologiesPanel extends HorizontalLayout {
     this.fatListener = fatListener;
     this.aaListener = aaListener;
     this.nminListener = nminListener;
+    this.smallMoleculesListener = smallMoleculesListener;
    
 
     choosers = new ArrayList<TechChooser>();
@@ -106,6 +108,7 @@ public class TechnologiesPanel extends HorizontalLayout {
     c.addFatListener(fatListener);
     c.addNminListener(nminListener);
     c.addAAListener(aaListener);
+    c.addSmallMoleculesListener(smallMoleculesListener);
    
     choosers.add(c);
     addComponent(c);
@@ -188,6 +191,7 @@ public class TechnologiesPanel extends HorizontalLayout {
       last.removeFatListener(fatListener);
       last.removeAAListener(aaListener);
       last.removeNminListener(nminListener);
+      last.removeSmallMoleculesListener(smallMoleculesListener);
       last.removeRefreshPeopleListener(refreshPeopleListener);
 
       choosers.get(size - 2).showHelpers();

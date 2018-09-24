@@ -142,6 +142,7 @@ public class WizardDataAggregator {
   
   private List<Map<String , String>> infoElement = new ArrayList<Map<String , String>>();
   private List<Map<String , String>> infoNmin = new ArrayList<Map<String , String>>();
+  private Map<String , Object> infoSmallMolecules;
 
   /**
    * Creates a new WizardDataAggregator
@@ -412,7 +413,7 @@ public class WizardDataAggregator {
   
   
   
-  public List<List<AOpenbisSample>> prepareTestSamples_2() {
+  public List<List<AOpenbisSample>> prepareTestSamples_2() {//TODO this is not a beautiful solution this method should be refactored
 	    techTypeInfo = s8.getAnalyteInformation();
 	    if (inheritExtracts) {
 	      prepareBasics();
@@ -452,6 +453,21 @@ public class WizardDataAggregator {
 	    	  for (List<AOpenbisSample> group : cfhSortedTests1)
 	    		    	nminExtracts.addAll(group);
 	      }
+	      else if (x.getTechnology().equals("SMALLMOLECULES")) {
+	    	  infoSmallMolecules = s8.getSmallMoleculesPanel();
+	    	  OpenbisExperiment exp = new OpenbisExperiment(buildExperimentName(),
+	    			  ExperimentType.Q_SAMPLE_PREPARATION, personID, null);// TODO add secondary name here
+	    	  experiments.add(exp);
+	    	  List<List<AOpenbisSample>> cfhSortedTests1 = buildTestSamples(extracts, classChars);
+	    	     tests = new ArrayList<AOpenbisSample>();
+	    	
+	    	  for (List<AOpenbisSample> group : cfhSortedTests1) {
+	    		  	tests.addAll(group);
+	    	  		for(AOpenbisSample s : group) {
+	    	  			s.setQ_ADDITIONAL_NOTES(infoSmallMolecules.get("Q_ADDITIONAL_NOTES").toString()); 
+	    	  		}
+	    	  }  
+	      }
 	      else {
 	    	  OpenbisExperiment exp = new OpenbisExperiment(buildExperimentName(),
 	    			  ExperimentType.Q_SAMPLE_PREPARATION, personID, null);// TODO add secondary name here
@@ -461,12 +477,14 @@ public class WizardDataAggregator {
 	      }
 
 	    List<List<AOpenbisSample>> techSortedTests = buildTestSamples(extracts, classChars);
-	    tests = new ArrayList<AOpenbisSample>();
-	    for (List<AOpenbisSample> group : techSortedTests)
-	      tests.addAll(group);
-	    for (int i = techSortedTests.size() - 1; i > -1; i--) {
-	      if (!techTypeInfo.get(i).isPooled() && !s8.hasComplexProteinPoolBeforeFractionation())
-	        techSortedTests.remove(i);
+	    if (tests.isEmpty()) {
+	    	tests = new ArrayList<AOpenbisSample>();
+	    	for (List<AOpenbisSample> group : techSortedTests)
+	    		tests.addAll(group);
+	    	for (int i = techSortedTests.size() - 1; i > -1; i--) {
+	    		if (!techTypeInfo.get(i).isPooled() && !s8.hasComplexProteinPoolBeforeFractionation())
+	    			techSortedTests.remove(i);
+	    	}
 	    }
 	        
 	   

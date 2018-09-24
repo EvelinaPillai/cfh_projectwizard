@@ -245,6 +245,12 @@ public void showHelpers() {
 public void removeNminListener(ValueChangeListener nminListener) {
 	    this.chooser.removeValueChangeListener(nminListener);
 }
+public void addSmallMoleculesListener(ValueChangeListener smallMoleculesListener) {
+	this.chooser.addValueChangeListener(smallMoleculesListener);
+}
+public void removeSmallMoleculesListener(ValueChangeListener smallMoleculesListener) {
+	this.chooser.removeValueChangeListener(smallMoleculesListener);
+}
 
 public void addElementListener(ValueChangeListener elementListener) {
   this.chooser.addValueChangeListener(elementListener);

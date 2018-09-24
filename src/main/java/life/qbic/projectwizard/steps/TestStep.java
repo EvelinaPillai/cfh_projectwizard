@@ -39,6 +39,7 @@ import life.qbic.projectwizard.model.TestSampleInformation;
 import life.qbic.projectwizard.uicomponents.ElementPanel;
 import life.qbic.projectwizard.uicomponents.AminoAcidPanel;
 import life.qbic.projectwizard.uicomponents.NminPanel;
+import life.qbic.projectwizard.uicomponents.SmallMoleculePanel;
 import life.qbic.projectwizard.uicomponents.FatPanel;
 import life.qbic.projectwizard.uicomponents.LigandExtractPanel;
 import life.qbic.projectwizard.uicomponents.MSOptionComponent;
@@ -68,6 +69,7 @@ public class TestStep implements WizardStep {
 	private AminoAcidPanel AminoAcidPanel;
 	private NminPanel NminPanel;
 	private FatPanel FatPanel;
+	private SmallMoleculePanel smallMoleculesPanel;
 	private CheckBox noMeasure;
 	private DBVocabularies vocabs;
 	private boolean containsProteins = false;
@@ -77,6 +79,8 @@ public class TestStep implements WizardStep {
 	private boolean containsNmin = false;
 	private boolean containsFat = false;
 	private boolean containsAA = false;
+	private boolean containsSmallMolecules = false;
+
 //	private static String sampleName = "";
 
 	private Wizard wizard;
@@ -244,23 +248,7 @@ public class TestStep implements WizardStep {
 			}
 		};
 
-		/*
-		 * ValueChangeListener matrixListener = new ValueChangeListener() {
-		 * 
-		 * 
-		 * private static final long serialVersionUID = -2881234670741817840L;
-		 * 
-		 * @Override public void valueChange(ValueChangeEvent event) { containsMatrix =
-		 *           false; for (TestSampleInformation i : getAnalyteInformation()) {
-		 *           String tech = i.getTechnology(); containsMatrix |=
-		 *           tech.equals("MATRIX"); } List<WizardStep> list = new
-		 *           ArrayList<WizardStep>(); if (containsMatrix) { if(containsProteins)
-		 *           { list.addAll(msPanel.getNextMSSteps(steps,0)); }
-		 *           list.add(steps.get(Steps.Matrix));
-		 *           list.add(steps.get(Steps.Registration)); replaceWizardSteps(list);
-		 *           } } };
-		 */
-
+	
 		ValueChangeListener elementListener = new ValueChangeListener() {
 
 			/**
@@ -348,11 +336,29 @@ public class TestStep implements WizardStep {
 				NminPanel.setVisible(containsNmin);
 			}
 		};
+		
+		ValueChangeListener smallMoleculesListener = new ValueChangeListener() {
+			
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 7510797241217956538L;
+			
+			@Override
+			public void valueChange(ValueChangeEvent event) {
+				containsSmallMolecules = false;
+				for (TestSampleInformation i : getAnalyteInformation()) {
+					String cfh = i.getTechnology();
+					containsSmallMolecules |= cfh.equals("SMALLMOLECULES");
+				}
+				smallMoleculesPanel.setVisible(containsSmallMolecules);
+			}
+		};
 
 		techPanel = new TechnologiesPanel(vocabs.getAnalyteTypes(), vocabs.getPeople().keySet(), new OptionGroup(""),
 				testPoolListener,
 				new ArrayList<ValueChangeListener>(Arrays.asList(outerProteinListener, proteinListener)),
-				mhcLigandListener, refreshPeopleListener, elementListener, aaListener, fatListener, nminListener,
+				mhcLigandListener, refreshPeopleListener, elementListener, aaListener, fatListener, nminListener,smallMoleculesListener,
 				vocabs.getMatrixMap());
 
 		main.addComponent(techPanel);
@@ -387,11 +393,14 @@ public class TestStep implements WizardStep {
 		FatPanel = new FatPanel(vocabs);
 		FatPanel.setVisible(false);
 
+		smallMoleculesPanel = new SmallMoleculePanel();
+		smallMoleculesPanel.setVisible(false);
+		
 		main.addComponent(elementPanel);
 		main.addComponent(NminPanel);
 		main.addComponent(FatPanel);
 		main.addComponent(AminoAcidPanel);
-
+		main.addComponent(smallMoleculesPanel);
 	}
 
 	public void setTissueExtracts(List<AOpenbisSample> extracts) {
@@ -489,6 +498,16 @@ public class TestStep implements WizardStep {
 		
 	}
 	
+	public Map<String,Object> getSmallMoleculesPanel()
+	{
+		if(containsSmallMolecules)
+		{
+			return smallMoleculesPanel.getSmallMoleculesProperties();
+		}
+		
+		return null;
+		
+	}
 	
 
 }
