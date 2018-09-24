@@ -1659,7 +1659,7 @@ public class WizardDataAggregator {
     if (infos.containsKey("PROTEINS")) {
       Sample first = infos.get("PROTEINS").get(0);
       String expID = first.getExperimentIdentifierOrNull();
-      for (Experiment e : openbis.getExperimentsOfProjectByCode(first.getCode().substring(0, 16))) { // changed from (0, 5) to (0, 16)
+      for (Experiment e : openbis.getExperimentsOfProjectByCode(first.getCode().substring(0, 15))) { // changed by CFH changed from (0, 5) to (0, 15)
         if (e.getIdentifier().equals(expID)) {
           Map<String, String> props = e.getProperties();
           if (props.containsKey("Q_MS_PURIFICATION_METHOD"))
