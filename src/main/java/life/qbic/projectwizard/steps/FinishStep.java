@@ -98,7 +98,7 @@ public class FinishStep implements WizardStep {
     summary.setContentMode(ContentMode.PREFORMATTED);
     Panel summaryPane = new Panel();
     summaryPane.setContent(summary);
-    summaryPane.setWidth("550px");
+    summaryPane.setWidth("650px");
     main.addComponent(summaryPane);
 
     downloads = new VerticalLayout();
