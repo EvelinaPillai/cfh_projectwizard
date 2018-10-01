@@ -415,6 +415,7 @@ public class WizardDataAggregator {
   
   public List<List<AOpenbisSample>> prepareTestSamples_2() {//TODO this is not a beautiful solution this method should be refactored
 	    techTypeInfo = s8.getAnalyteInformation();
+	    tests = new ArrayList<AOpenbisSample>();
 	    if (inheritExtracts) {
 	      prepareBasics();
 	      classChars = new HashMap<String, Character>();
@@ -459,7 +460,7 @@ public class WizardDataAggregator {
 	    			  ExperimentType.Q_SAMPLE_PREPARATION, personID, null);// TODO add secondary name here
 	    	  experiments.add(exp);
 	    	  List<List<AOpenbisSample>> cfhSortedTests1 = buildTestSamples(extracts, classChars);
-	    	     tests = new ArrayList<AOpenbisSample>();
+	    	    
 	    	
 	    	  for (List<AOpenbisSample> group : cfhSortedTests1) {
 	    		  	tests.addAll(group);
@@ -962,7 +963,7 @@ public class WizardDataAggregator {
 	    for (int j = 0; j < infos.size(); j++) {// different technologies
 	      List<AOpenbisSample> cfhTests = new ArrayList<AOpenbisSample>();
 	      //int techReps = infos.get(j).getReplicates();
-	      //String sampleType = infos.get(j).getTechnology();
+	      //String sampleType = techTypeInfo.get(j).getTechnology();
 	      int expNum =  experiments.size() - 1 - j;
 	      for (AOpenbisSample s : matrix) {
 	        //for (int i = techReps; i > 0; i--) {
@@ -976,7 +977,7 @@ public class WizardDataAggregator {
 	          incrementOrCreateBarcode();
 	                    
 	          cfhTests.add(new OpenbisCfhElementSample(nextBarcode, spaceCode,
-	              experiments.get(expNum).getOpenbisName(), secondaryName, "", s.getFactors(),infos.get(j).get("Q_CFH_DIGESTION")
+	              experiments.get(expNum).getOpenbisName(), secondaryName, "", s.getFactors(),"ELEMENT",infos.get(j).get("Q_CFH_DIGESTION")
 	              ,infos.get(j).get("Q_ELEMENT_DESC"),infos.get(j).get("Q_CFH_DEVICES"),s.getCode(), s.getQ_EXTERNALDB_ID()));// TODO
 	          // ext
 	          // db
@@ -1010,7 +1011,7 @@ public class WizardDataAggregator {
 	          incrementOrCreateBarcode();
 	                    
 	          cfhTests.add(new OpenbisCfhNminSample(nextBarcode, spaceCode,
-	              experiments.get(expNum).getOpenbisName(), secondaryName, "", s.getFactors(),infos.get(j).get("Q_CFH_NMIN_DEPTH")
+	              experiments.get(expNum).getOpenbisName(), secondaryName, "", s.getFactors(), "NMIN", infos.get(j).get("Q_CFH_NMIN_DEPTH")
 	              ,infos.get(j).get("Q_CFH_NMIN_DENSITY"),"",s.getCode(), s.getQ_EXTERNALDB_ID()));// TODO
 	          j++;
 	          // ext
