@@ -168,6 +168,7 @@ public class TechnologiesPanel extends HorizontalLayout {
     c.addFatListener(fatListener);
     c.addAAListener(aaListener);
     c.addNminListener(nminListener);
+    c.addSmallMoleculesListener(smallMoleculesListener);
     choosers.add(c);
 
     c.showHelpers();

@@ -203,6 +203,10 @@ public class TestStep implements WizardStep {
 	public boolean hasNmin() {
 		return containsNmin;
 	}
+	
+	public boolean hasSmallMolecule() {
+		return containsSmallMolecules;
+	}
 
 	public void initTestStep(ValueChangeListener testPoolListener, ValueChangeListener outerProteinListener,
 			ClickListener refreshPeopleListener, Map<Steps, WizardStep> steps) {
@@ -358,7 +362,7 @@ public class TestStep implements WizardStep {
 		techPanel = new TechnologiesPanel(vocabs.getAnalyteTypes(), vocabs.getPeople().keySet(), new OptionGroup(""),
 				testPoolListener,
 				new ArrayList<ValueChangeListener>(Arrays.asList(outerProteinListener, proteinListener)),
-				mhcLigandListener, refreshPeopleListener, elementListener, aaListener, fatListener, nminListener,smallMoleculesListener,
+				mhcLigandListener, refreshPeopleListener, elementListener, aaListener, fatListener, nminListener, smallMoleculesListener,
 				vocabs.getMatrixMap());
 
 		main.addComponent(techPanel);
@@ -393,7 +397,7 @@ public class TestStep implements WizardStep {
 		FatPanel = new FatPanel(vocabs);
 		FatPanel.setVisible(false);
 
-		smallMoleculesPanel = new SmallMoleculePanel();
+		smallMoleculesPanel = new SmallMoleculePanel(vocabs);
 		smallMoleculesPanel.setVisible(false);
 		
 		main.addComponent(elementPanel);
