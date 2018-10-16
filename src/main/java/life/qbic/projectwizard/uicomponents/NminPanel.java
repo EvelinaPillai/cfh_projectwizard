@@ -158,7 +158,7 @@ public class NminPanel extends VerticalLayout {
 	}
 
 	private void pasteSelectionToColumn(Table t, String propertyName, Object selection, int curRow) {
-		for (int i = curRow; i <= (t.getItemIds().size()); i++) {
+		for (int i = curRow; i <= (t.getItemIds().size()); i+=3) {
 			ComboBox b = parseBoxRow(t, i, propertyName);
 			if (selection != null)
 				b.setValue(selection);
