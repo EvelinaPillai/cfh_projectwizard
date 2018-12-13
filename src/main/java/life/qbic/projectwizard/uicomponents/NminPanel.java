@@ -33,10 +33,12 @@ import com.vaadin.ui.Button;
 import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.OptionGroup;
 import com.vaadin.ui.Table;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
+import com.vaadin.ui.CheckBox;
 import com.vaadin.ui.themes.ValoTheme;
 
 import life.qbic.datamodel.samples.AOpenbisSample;
@@ -65,7 +67,8 @@ public class NminPanel extends VerticalLayout {
 
 	private List<String> soildepth;
 	private Table nminSamples;
-
+	private OptionGroup options = new OptionGroup();
+	
 	private static final Logger logger = LogManager.getLogger(NminPanel.class);
 
 	public NminPanel(DBVocabularies vocabs, List<TestSampleInformation> list) {
@@ -73,14 +76,21 @@ public class NminPanel extends VerticalLayout {
 		this.soildepth = vocabs.getSoildepth();
 	
 		setSpacing(true);
-
+		options.addItems("nitrate","nitrate and ammonium");
+		options.setMultiSelect(false);
+		options.setRequired(true);
+		
+		
+		//TABLE setup
 		this.nminSamples = new Table();
 		nminSamples.setWidth("250px");
-
+		
 		nminSamples.setStyleName(Styles.tableTheme);
 		nminSamples.addContainerProperty("Sample", String.class, null); // sample name
 		nminSamples.addContainerProperty("Soil depth [cm]", Component.class, null);
 
+		addComponent(options);
+		//addComponent(nitrateAndAmmonium);
 		addComponent(nminSamples);
 
 	}
@@ -103,6 +113,7 @@ public class NminPanel extends VerticalLayout {
 	public void setNminSamples(List<AOpenbisSample> extracts) {
 		nminSamples.removeAllItems();
 		// tableIdToBarcode = new HashMap<Integer, String>();
+		
 		int i = 0;
 		for (AOpenbisSample s : extracts) {
 			i++;
@@ -114,6 +125,7 @@ public class NminPanel extends VerticalLayout {
 
 			nminSamples.addItem(row.toArray(new Object[row.size()]), i);
 		}
+	
 		nminSamples.setPageLength(nminSamples.size());
 	}
 
@@ -167,6 +179,8 @@ public class NminPanel extends VerticalLayout {
 
 	public List<Map<String, String>> getNminProperties() {
 		List<Map<String, String>> res = new ArrayList<Map<String, String>>();
+		String selection = options.getValue().toString();
+		
 		for (Object id : nminSamples.getItemIds()) {
 
 			Map<String, String> res1 = new HashMap<String, String>();
@@ -176,13 +190,19 @@ public class NminPanel extends VerticalLayout {
 			ComboBox cb = (ComboBox) h.getComponent(0);
 			String depth = (String) cb.getValue();
 			res1.put("Q_CFH_NMIN_DEPTH", depth);
+			
 			if (depth.equals("0-30CM")) {
 				res1.put("Q_CFH_NMIN_DENSITY", "1,3");
 			} else
 				res1.put("Q_CFH_NMIN_DENSITY", "1,5");
+			
+			if(selection.equals("nitrate")) {
+				res1.put("Q_CFH_NITRATE", "Nitrate");
+			}else {
+				res1.put("Q_CFH_NITRATE", "Nitrate and Ammonium");
+			}
 			res.add(res1);
 		}
-
 		return res;
 
 	}
@@ -208,7 +228,11 @@ public class NminPanel extends VerticalLayout {
 				fieldcheck= false;
 			}
 		}
-		
+		if(options.isEmpty()) {
+			Styles.notification("Missing information",
+					"Please select if only nitrate or also ammonium will be measured.", NotificationType.ERROR);
+			fieldcheck= false;
+		}
 		
 		return fieldcheck;
 	}

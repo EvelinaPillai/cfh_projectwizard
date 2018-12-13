@@ -110,6 +110,11 @@ public class MSAnalyteStep implements WizardStep {
       info = "Here you can select different fractionation techniques used on the peptide samples. "
           + "Mass spectrometry specific information about peptide measurements can be saved.";
     }
+    if (analyte.equals("SMALLMOLECULES")) {
+        label = "Metabolite Options";
+        info = "Here you can select different fractionation techniques used on the small molecules samples. "
+            + "Mass spectrometry specific information about small molecules measurements can be saved.";
+      }
     Label header = new Label(label);
     main.addComponent(Styles.questionize(header, info, label));
 
@@ -436,7 +441,7 @@ public class MSAnalyteStep implements WizardStep {
       row.add(cycleNumberField);
 
       List<String> processOptions = new ArrayList<String>(Arrays.asList("None", "Measure"));
-      if (analyte.equals("PROTEINS")) {
+      if (analyte.equals("PROTEINS")||analyte.equals("SMALLMOLECULES")) {
         processOptions.add("Digest");
         processOptions.add("Both");
       }
@@ -753,7 +758,9 @@ public class MSAnalyteStep implements WizardStep {
   @Override
   public String getCaption() {
     if (analyte.equals("PEPTIDES"))
-      return "Peptide Options";
+      return "Peptide Options"; 
+    if (analyte.equals("SMALLMOLECULES")) //CFH
+        return "Small Molecules Options";
     else
       return "Protein Options";
   }
@@ -838,7 +845,7 @@ public class MSAnalyteStep implements WizardStep {
     List<ExperimentModel> msExperiments = new ArrayList<ExperimentModel>();
     List<ExperimentModel> peptides = new ArrayList<ExperimentModel>();
 
-    if (analyte.equals("PROTEINS")) {
+    if (analyte.equals("PROTEINS")  || analyte.equals("SMALLMOLECULES")) { //cfh
       for (Object i : baseAnalyteSampleTable.getItemIds()) {
 
         AOpenbisSample baseAnalyte = tableIdToAnalyte.get(i);

@@ -8,35 +8,39 @@ import java.util.Map;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.vaadin.teemu.wizards.WizardStep;
 
 import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.data.Property.ValueChangeListener;
-import com.vaadin.data.validator.StringLengthValidator;
 import com.vaadin.ui.CheckBox;
 import com.vaadin.ui.ComboBox;
-import com.vaadin.ui.TextArea;
 import com.vaadin.ui.VerticalLayout;
 import life.qbic.portal.Styles;
+import life.qbic.projectwizard.control.WizardController.Steps;
 import life.qbic.projectwizard.io.DBVocabularies;
+import life.qbic.projectwizard.steps.MSAnalyteStep;
 
 /**
- * Core Facility Hohenheim (CFH) - For SmallMolecules we want to write
- * information on that analysis in a Textfield.
- *
+ * Core Facility Hohenheim (CFH) - For SmallMolecules we want the same as for Proteins
+ * but less MSOptions  
+ * 
  */
 
 public class SmallMoleculePanel extends VerticalLayout {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8294079438870201281L;
 	private CheckBox purification;
 	private ComboBox purificationMethods;
-	private TextArea moleculesInfo;
-
+	
 	private static final Logger logger = LogManager.getLogger(SmallMoleculePanel.class);
 
 	public SmallMoleculePanel(DBVocabularies vocabs) {
 
 		setSpacing(true);
-		setMargin(true);
+		
 		this.setCaption("Small Molecules Experiment Options");
 
 		purification = new CheckBox("Protein Purification");
@@ -54,43 +58,62 @@ public class SmallMoleculePanel extends VerticalLayout {
 
 		purification.addValueChangeListener(new ValueChangeListener() {
 
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = -2669873589648835159L;
+
 			@Override
 			public void valueChange(ValueChangeEvent event) {
 				purificationMethods.setVisible(purification.getValue());
 			}
 		});
-
-		//TODO not needed anymore ?
-//		this.moleculesInfo = new TextArea("Enter information on Small Molecules");
-//		moleculesInfo.setStyleName(Styles.fieldTheme);
-//		moleculesInfo.setInputPrompt("You can type in a maximum of 2000 symbols.");
-//		moleculesInfo.setWidth("100%");
-//		moleculesInfo.setHeight("110px");
-//
-//		StringLengthValidator lv = new StringLengthValidator(
-//				"Molecule Info is only allowed to contain a maximum of 2000 letters.", 0, 2000, true);
-//		moleculesInfo.addValidator(lv);
-//		moleculesInfo.setImmediate(true);
-//		moleculesInfo.setValidationVisible(true);
-//
-//		addComponent(moleculesInfo);
-
 	}
 
-	public Map<String, Object> getSmallMoleculesProperties() {
-
-		// TODO
-		Map<String, Object> res = new HashMap<String, Object>();
-		res.put("Q_ADDITIONAL_NOTES", moleculesInfo.getValue());
-
+	public List<WizardStep> getNextMSSteps(
+			Map<life.qbic.projectwizard.control.WizardController.Steps, WizardStep> steps, int register) {
+		boolean poolProteins = false; //proteinPooling.getValue(); cfh
+		boolean peps = false; //measurePeptides.getValue(); cfh
+		boolean proteins = false;
+		List<WizardStep> res = new ArrayList<WizardStep>();
+		if (poolProteins) {
+			res.add(steps.get(Steps.Test_Sample_Pooling));
+		}
+		MSAnalyteStep f1 = (MSAnalyteStep) steps.get(Steps.SmallMolecule_Fractionation);
+		res.add(f1);
+		if (peps) {
+			MSAnalyteStep f2 = (MSAnalyteStep) steps.get(Steps.Peptide_Fractionation);
+			f1.setNeedsDigestion(true);
+			res.add(f2);
+		} else {
+			f1.setNeedsDigestion(false);
+		}
+		if (register == 1)
+			res.add(steps.get(Steps.Registration));
 		return res;
+	}
 
+	public boolean usesPurification() {
+		return purification.getValue() && purificationMethods.getValue() != null;
+	}
+
+	public String getPurificationMethod() {
+		return purificationMethods.getValue().toString();
 	}
 
 	public boolean isValid() {
-		// TODO or to delete
-		return false;
-
+		return true;
 	}
 
+	public void selectProteinPurification(String option) {
+		if (option.isEmpty()) {
+			purification.setValue(false);
+			purificationMethods.setNullSelectionAllowed(true);
+			purificationMethods.setValue(purificationMethods.getNullSelectionItemId());
+			purificationMethods.setNullSelectionAllowed(false);
+		} else {
+			purification.setValue(true);
+			purificationMethods.setValue(option);
+		}
+	}
 }

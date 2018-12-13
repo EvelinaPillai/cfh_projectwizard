@@ -454,21 +454,21 @@ public class WizardDataAggregator {
 	    	  for (List<AOpenbisSample> group : cfhSortedTests1)
 	    		    	nminExtracts.addAll(group);
 	      }
-	      else if (x.getTechnology().equals("SMALLMOLECULES")) {
-	    	  infoSmallMolecules = s8.getSmallMoleculesPanel();
-	    	  OpenbisExperiment exp = new OpenbisExperiment(buildExperimentName(),
-	    			  ExperimentType.Q_SAMPLE_PREPARATION, personID, null);// TODO add secondary name here
-	    	  experiments.add(exp);
-	    	  List<List<AOpenbisSample>> cfhSortedTests1 = buildTestSamples(extracts, classChars);
-	    	    
-	    	
-	    	  for (List<AOpenbisSample> group : cfhSortedTests1) {
-	    		  	tests.addAll(group);
-	    	  		for(AOpenbisSample s : group) {
-	    	  			s.setQ_ADDITIONAL_NOTES(infoSmallMolecules.get("Q_ADDITIONAL_NOTES").toString()); 
-	    	  		}
-	    	  }  
-	      }
+//	      else if (x.getTechnology().equals("SMALLMOLECULES")) {
+//	    	  infoSmallMolecules = s8.getSmallMoleculesPanel();
+//	    	  OpenbisExperiment exp = new OpenbisExperiment(buildExperimentName(),
+//	    			  ExperimentType.Q_SAMPLE_PREPARATION, personID, null);// TODO add secondary name here
+//	    	  experiments.add(exp);
+//	    	  List<List<AOpenbisSample>> cfhSortedTests1 = buildTestSamples(extracts, classChars);
+//	    	    
+//	    	
+//	    	  for (List<AOpenbisSample> group : cfhSortedTests1) {
+//	    		  	tests.addAll(group);
+//	    	  		for(AOpenbisSample s : group) {
+//	    	  			s.setQ_ADDITIONAL_NOTES(infoSmallMolecules.get("Q_ADDITIONAL_NOTES").toString()); 
+//	    	  		}
+//	    	  }  
+//	      }
 	      else {
 	    	  OpenbisExperiment exp = new OpenbisExperiment(buildExperimentName(),
 	    			  ExperimentType.Q_SAMPLE_PREPARATION, personID, null);// TODO add secondary name here
@@ -1012,7 +1012,7 @@ public class WizardDataAggregator {
 	                    
 	          cfhTests.add(new OpenbisCfhNminSample(nextBarcode, spaceCode,
 	              experiments.get(expNum).getOpenbisName(), secondaryName, "", s.getFactors(), "NMIN", infos.get(j).get("Q_CFH_NMIN_DEPTH")
-	              ,infos.get(j).get("Q_CFH_NMIN_DENSITY"),"",s.getCode(), s.getQ_EXTERNALDB_ID()));// TODO
+	              ,infos.get(j).get("Q_CFH_NMIN_DENSITY"),infos.get(j).get("Q_CFH_NITRATE"),"",s.getCode(), s.getQ_EXTERNALDB_ID()));// TODO
 	          j++;
 	          // ext
 	          // db
@@ -1392,6 +1392,7 @@ public class WizardDataAggregator {
     if(!infoNmin.isEmpty()) {
     	header.add("Q_CFH_NMIN_DEPTH");
     	header.add("Q_CFH_NMIN_DENSITY");
+    	header.add("Q_CFH_NITRATE");
     }
     	
     String headerLine = "Identifier";

@@ -74,14 +74,11 @@ public class TestStep implements WizardStep {
 	private DBVocabularies vocabs;
 	private boolean containsProteins = false;
 	private boolean containsMHCLigands = false;
-	private boolean containsMatrix = false;
 	private boolean containsElement = false;
 	private boolean containsNmin = false;
 	private boolean containsFat = false;
 	private boolean containsAA = false;
 	private boolean containsSmallMolecules = false;
-
-//	private static String sampleName = "";
 
 	private Wizard wizard;
 
@@ -335,7 +332,6 @@ public class TestStep implements WizardStep {
 				for (TestSampleInformation i : getAnalyteInformation()) {
 					String cfh = i.getTechnology();
 					containsNmin |= cfh.equals("NMIN");
-//					sampleName = i.getSampleName();
 				}
 				NminPanel.setVisible(containsNmin);
 			}
@@ -356,6 +352,15 @@ public class TestStep implements WizardStep {
 					containsSmallMolecules |= cfh.equals("SMALLMOLECULES");
 				}
 				smallMoleculesPanel.setVisible(containsSmallMolecules);
+//				if (!containsSmallMolecules) {
+//					resetNextSteps(hasPools());
+//					wizard.addStep(steps.get(Steps.Registration));
+//				} else {
+//					replaceWizardSteps(smallMoleculesPanel.getNextMSSteps(steps, 1)); //CFH
+//				}
+				if(containsSmallMolecules) {
+					replaceWizardSteps(smallMoleculesPanel.getNextMSSteps(steps, 1)); //CFH
+				}
 			}
 		};
 
@@ -436,6 +441,10 @@ public class TestStep implements WizardStep {
 			res.put("Q_MS_PURIFICATION_METHOD", msPanel.getPurificationMethod());
 		if (msPanel.usesShortGel())
 			res.put("Q_ADDITIONAL_INFO", "Short Gel");
+		if (smallMoleculesPanel.usesPurification()) //CFH
+			res.put("Q_MS_PURIFICATION_METHOD", smallMoleculesPanel.getPurificationMethod());
+		//if (smallMoleculesPanel.usesShortGel())
+			//res.put("Q_ADDITIONAL_INFO", "Short Gel"); TODO see if needed 
 		return res;
 	}
 
@@ -455,10 +464,6 @@ public class TestStep implements WizardStep {
 		}
 	}
 
-	public boolean hasMatrix() {
-		return containsMatrix;
-	}
-
 	public boolean hasComplexProteinPoolBeforeFractionation() {
 		return msPanel.hasProteinPoolBeforeFractionation();
 	}
@@ -475,10 +480,6 @@ public class TestStep implements WizardStep {
 	public void updatePeople(Set<String> people) {
 		techPanel.updatePeople(people);
 	}
-	
-//	public static String getSampleName() {
-//		return sampleName;
-//	}
 
 	public List<Map<String,String>> getElementPanel()
 	{
@@ -499,19 +500,5 @@ public class TestStep implements WizardStep {
 		}
 		
 		return null;
-		
 	}
-	
-	public Map<String,Object> getSmallMoleculesPanel()
-	{
-		if(containsSmallMolecules)
-		{
-			return smallMoleculesPanel.getSmallMoleculesProperties();
-		}
-		
-		return null;
-		
-	}
-	
-
 }

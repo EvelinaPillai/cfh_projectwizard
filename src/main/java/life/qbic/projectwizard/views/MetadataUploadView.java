@@ -40,7 +40,6 @@ import ch.systemsx.cisd.openbis.generic.shared.api.v1.dto.Sample;
 import ch.systemsx.cisd.openbis.generic.shared.basic.dto.DataTypeCode;
 import life.qbic.datamodel.identifiers.SampleCodeFunctions;
 import life.qbic.openbis.openbisclient.IOpenBisClient;
-import life.qbic.projectwizard.control.Functions;
 import life.qbic.projectwizard.io.DBVocabularies;
 import life.qbic.projectwizard.uicomponents.UploadComponent;
 import life.qbic.portal.Styles;
@@ -122,10 +121,13 @@ public class MetadataUploadView extends VerticalLayout {
     Map<String, String> taxMap = vocabularies.getTaxMap();
     Map<String, String> matrixMap = vocabularies.getMatrixMap();
     Map<String, String> tissueMap = vocabularies.getTissueMap();
+    //changed by cfh
     Map<String,String> deviceMap = new HashMap<String,String>();
     for (String i : vocabularies.getDevices()) deviceMap.put(i,i);
     Map<String,String> extractMap = new HashMap<String,String>();
     for (String i : vocabularies.getExtractions()) extractMap.put(i,i);
+    Map<String,String> nminSoildepthMap = new HashMap<String,String>();
+    for (String i : vocabularies.getSoildepth()) nminSoildepthMap.put(i,i);
 
     propToVocabulary = new HashMap<String, Map<String, String>>();
     propToVocabulary.put("Q_NCBI_ORGANISM", taxMap);
@@ -133,6 +135,7 @@ public class MetadataUploadView extends VerticalLayout {
     propToVocabulary.put("Q_PRIMARY_TISSUE", tissueMap);
     propToVocabulary.put("Q_CFH_DEVICES",  deviceMap );
     propToVocabulary.put("Q_CFH_DIGESTION", extractMap);
+    propToVocabulary.put("Q_CFH_NMIN_DEPTH", nminSoildepthMap); // cfh check if correct openBIS code
     
 
     Map<String, String> reverseTaxMap = new HashMap<String, String>();

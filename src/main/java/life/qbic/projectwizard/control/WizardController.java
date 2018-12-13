@@ -322,7 +322,7 @@ public class WizardController implements IRegistrationController {
   
   
   public static enum Steps {
-    Project_Context, Entities, Entity_Conditions, Entity_Tailoring, Extraction, Extract_Conditions, Extract_Tailoring, Extract_Pooling, Test_Samples, Test_Sample_Pooling, Registration, Finish, Protein_Fractionation, Protein_Fractionation_Pooling, Peptide_Fractionation, Peptide_Fractionation_Pooling;
+    Project_Context, Entities, Entity_Conditions, Entity_Tailoring, Extraction, Extract_Conditions, Extract_Tailoring, Extract_Pooling, Test_Samples, Test_Sample_Pooling, Registration, Finish, Protein_Fractionation, Protein_Fractionation_Pooling, Peptide_Fractionation, Peptide_Fractionation_Pooling, SmallMolecule_Fractionation;
   }
 
   /**
@@ -359,7 +359,7 @@ public class WizardController implements IRegistrationController {
     // PoolingStep(Steps.Protein_Fractionation_Pooling);
     final MSAnalyteStep pepFracStep = new MSAnalyteStep(vocabularies, "PEPTIDES");
     // final PoolingStep afterPepFracPooling = new PoolingStep(Steps.Peptide_Fractionation_Pooling);
-    //final MatrixStep matrixStep = new MatrixStep(w,vocabularies); //TODO to delete
+    final MSAnalyteStep smallMolFracStep = new MSAnalyteStep(vocabularies, "SMALLMOLECULES"); //CFH
     
     steps = new HashMap<Steps, WizardStep>();
     steps.put(Steps.Project_Context, contextStep);
@@ -374,9 +374,9 @@ public class WizardController implements IRegistrationController {
     steps.put(Steps.Test_Sample_Pooling, poolStep2);
     steps.put(Steps.Protein_Fractionation, protFracStep);
     steps.put(Steps.Peptide_Fractionation, pepFracStep);
+    steps.put(Steps.SmallMolecule_Fractionation, smallMolFracStep); //CFH
     // steps.put(Steps.Protein_Fractionation_Pooling, afterProtFracPooling);
     // steps.put(Steps.Peptide_Fractionation_Pooling, afterPepFracPooling);
-    //steps.put(Steps.Matrix, matrixStep);
     steps.put(Steps.Registration, regStep);
     steps.put(Steps.Finish, finishStep);
 
@@ -483,7 +483,7 @@ public class WizardController implements IRegistrationController {
           String project = contextStep.getProjectCode();
           String altTitle = contextStep.getExpSecondaryName();
           List<Note> notes = new ArrayList<Note>();
-          boolean afterMS = w.getSteps().contains(steps.get(Steps.Protein_Fractionation));
+          boolean afterMS = w.getSteps().contains(steps.get(Steps.Protein_Fractionation)) || w.getSteps().contains(steps.get(Steps.SmallMolecule_Fractionation)) ; //CFH
           if (afterMS) {
             List<String> infos = new ArrayList<String>();
             String protInfo = protFracStep.getAdditionalInfo();
@@ -493,6 +493,10 @@ public class WizardController implements IRegistrationController {
             String pepInfo = pepFracStep.getAdditionalInfo();
             if (pepInfo != null && !pepInfo.isEmpty()) {
               infos.add(pepInfo);
+            }
+            String smallMolInfo = smallMolFracStep.getAdditionalInfo(); //CFH
+            if (smallMolInfo != null && !smallMolInfo.isEmpty()) {
+              infos.add(smallMolInfo);
             }
             if (!infos.isEmpty()) {
               Date now = new Date();
@@ -516,7 +520,7 @@ public class WizardController implements IRegistrationController {
           ProjectContextStep contextStep = (ProjectContextStep) steps.get(Steps.Project_Context);
           String desc = contextStep.getDescription();
           String altTitle = contextStep.getExpSecondaryName();
-          boolean afterMS = w.getSteps().contains(steps.get(Steps.Protein_Fractionation));
+          boolean afterMS = w.getSteps().contains(steps.get(Steps.Protein_Fractionation)) || w.getSteps().contains(steps.get(Steps.SmallMolecule_Fractionation)); //CFH
           // Additional information set in the protein and/or peptide step(s)
           notes = new ArrayList<Note>();
           if (afterMS) {
@@ -528,6 +532,10 @@ public class WizardController implements IRegistrationController {
             String pepInfo = pepFracStep.getAdditionalInfo();
             if (pepInfo != null && !pepInfo.isEmpty()) {
               infos.add(pepInfo);
+            }
+            String smallMolInfo = smallMolFracStep.getAdditionalInfo(); //CFH
+            if (smallMolInfo != null && !smallMolInfo.isEmpty()) {
+              infos.add(smallMolInfo);
             }
             if (!infos.isEmpty()) {
               Date now = new Date();
@@ -611,12 +619,15 @@ public class WizardController implements IRegistrationController {
           if (space.endsWith("PCT")) {
             protFracStep.filterDictionariesByPrefix("PCT", dontFilter);
             pepFracStep.filterDictionariesByPrefix("PCT", dontFilter);
+            smallMolFracStep.filterDictionariesByPrefix("PCT", dontFilter); //CFH
           } else if (space.endsWith("MPC")) {
             protFracStep.filterDictionariesByPrefix("MPC", dontFilter);
             pepFracStep.filterDictionariesByPrefix("MPC", dontFilter);
+            smallMolFracStep.filterDictionariesByPrefix("MPC", dontFilter); //CFH
           } else {
             protFracStep.filterDictionariesByPrefix("", dontFilter);
             pepFracStep.filterDictionariesByPrefix("", dontFilter);
+            smallMolFracStep.filterDictionariesByPrefix("", dontFilter); //CFH
           }
         }
       }
@@ -825,7 +836,7 @@ public class WizardController implements IRegistrationController {
     };
 
     techStep.initTestStep(testPoolListener, proteinListener, peopleCL, steps);
- //   matrixStep.initTestStep(peopleCL, steps);
+ 
 
     ValueChangeListener noMeasureListener = new ValueChangeListener() {
 
@@ -993,6 +1004,7 @@ public class WizardController implements IRegistrationController {
           // dataAggregator.setHasFractionationExperiment(false);
           testPoolsSet = false;// we have to reset this in the case someone goes back from pooling
           List<AOpenbisSample> extracts = tailoringStep2.getSamples();
+          //Collections.sort(extracts, (AOpenbisSample s1, AOpenbisSample s2) -> s1.getQ_SECONDARY_NAME().compareTo(s2.getQ_SECONDARY_NAME()));
           techStep.setTissueExtracts(extracts);
           techStep.setNminExtracts(extracts);
           List<AOpenbisSample> all = new ArrayList<AOpenbisSample>();
@@ -1002,22 +1014,6 @@ public class WizardController implements IRegistrationController {
           if (copyMode)
             techStep.setAnalyteInputs(dataAggregator.getBaseAnalyteInformation());
         }
-        
-     // Test CFH Step
-       // matrixStep.initTestStep(peopleCL, steps);
-             	//dataAggregator.prepareMatrixSamples();
-        	 //matrixStep.setNminSamples(27);
-          // dataAggregator.setHasFractionationExperiment(false);
-//          testPoolsSet = false;// we have to reset this in the case someone goes back from pooling
-//          List<AOpenbisSample> extracts = tailoringStep2.getSamples();
-          //matrixStep.setTissueExtracts(extracts);
-          //List<AOpenbisSample> all = new ArrayList<AOpenbisSample>();
-          //all.addAll(extracts);
-          //all.addAll(dataAggregator.createPoolingSamples(poolStep1.getPools()));
-          //dataAggregator.setExtracts(all);
-          //if (copyMode)
-        	//  matrixStep.setAnalyteInputs(dataAggregator.getBaseAnalyteInformation());
-        //}
         
         // Test Pool Step
         if (event.getActivatedStep().equals(poolStep2)) {
@@ -1059,12 +1055,38 @@ public class WizardController implements IRegistrationController {
           }
           pepFracStep.setAnalyteSamplesAndExperiments(protFracStep.getResults());
         }
+        
+        // Small Molecules Fractionation CFH
+        if (event.getActivatedStep().equals(smallMolFracStep)) {
+            // List<AOpenbisSample> analytes = new ArrayList<AOpenbisSample>();
+
+            if (!testPoolsSet) {// if pools aren't set at this point then there was no pooling
+                                // selected before
+              dataAggregator.prepareTestSamples_2();// we reset the analyte samples in case we come from
+                                                  // the next step and prepare them anew
+            }
+            // we forward testsamples and potential pools directly to the fractionation step to sort
+            // them out
+            // they don't get barcodes either for now, in case we need to recreate them
+            List<AOpenbisSample> smallMols =
+                filterForProperties(dataAggregator.getTests(), "Q_SAMPLE_TYPE", "SMALLMOLECULES"); 
+            Map<String, List<AOpenbisSample>> pools = poolStep2.getPools();
+            for (String pool : pools.keySet()) {
+              List<AOpenbisSample> filtered =
+                  filterForProperties(pools.get(pool), "Q_SAMPLE_TYPE", "SMALLMOLECULES"); //TODO remove that ? we will not pool ?
+              if (filtered.isEmpty())
+                pools.remove(pool);
+              else
+                pools.put(pool, filtered);
+            }
+            smallMolFracStep.setAnalyteSamples(smallMols, pools);
+          }
         // TSV and Registration Step
         if (event.getActivatedStep().equals(regStep)) {
           regStep.enableDownloads(false);
           // Test samples were filled out
           if (w.getSteps().contains(steps.get(Steps.Test_Samples))) {
-            boolean afterMS = w.getSteps().contains(steps.get(Steps.Protein_Fractionation));
+            boolean afterMS = w.getSteps().contains(steps.get(Steps.Protein_Fractionation)) || w.getSteps().contains(steps.get(Steps.SmallMolecule_Fractionation)); //cfh
             if (!testPoolsSet && !afterMS)
               dataAggregator.prepareTestSamples_2();
             if (techStep.hasMHCLigands())
@@ -1195,7 +1217,7 @@ public class WizardController implements IRegistrationController {
       private boolean containsFractionation() {
         List<Steps> relevant = new ArrayList<Steps>(
             Arrays.asList(Steps.Peptide_Fractionation, Steps.Peptide_Fractionation_Pooling,
-                Steps.Protein_Fractionation, Steps.Protein_Fractionation_Pooling));
+                Steps.Protein_Fractionation, Steps.Protein_Fractionation_Pooling, Steps.SmallMolecule_Fractionation)); //CFH
         boolean res = false;
         for (Steps s : relevant) {
           res |= w.getSteps().contains(steps.get(s));
