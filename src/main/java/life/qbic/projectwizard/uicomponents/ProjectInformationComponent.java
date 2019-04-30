@@ -110,9 +110,11 @@ public class ProjectInformationComponent extends VerticalLayout {
 
     addComponent(Styles.questionize(newProj,
         "Automatically create an unused CFH project code or fill in your own. "
-            + "The code consists of 15 characters, must follow the pattern [year]-[module]-[4digits]-[3digits]. You can create a random unused code by clicking "
+            + "The code consists of 15 characters, must follow the pattern [year]-[module]-[4digits]-[3digits]. You can create the next unused code by clicking "
             + FontAwesome.REFRESH.getHtml() + ".",
         "New Sub-Project"));
+    
+    
     expName = new StandardTextField("Short name");
     expName.setWidth("200px");
     // expName.setRequired(true);
@@ -121,16 +123,17 @@ public class ProjectInformationComponent extends VerticalLayout {
     addComponent(expName);
 
     HorizontalLayout persBoxH = new HorizontalLayout();
-    persBoxH.setCaption("Principal Investigator");
+    persBoxH.setCaption("Principal Investigator / Customer");
     VerticalLayout persBox = new VerticalLayout();
 
     piBox = new ComboBox();
     ArrayList<String> sortedPeople = new ArrayList<String>(people);
+   
     Collections.sort(sortedPeople);
     piBox.addItems(sortedPeople);
     piBox.setFilteringMode(FilteringMode.CONTAINS);
     piBox.setStyleName(Styles.boxTheme);
-    contactBox = new ComboBox("Contact Person", sortedPeople);
+    contactBox = new ComboBox("Contact Person / Customer ", sortedPeople);
     contactBox.setFilteringMode(FilteringMode.CONTAINS);
     contactBox.setStyleName(Styles.boxTheme);
     managerBox = new ComboBox("Project Manager CFH", sortedPeople);
