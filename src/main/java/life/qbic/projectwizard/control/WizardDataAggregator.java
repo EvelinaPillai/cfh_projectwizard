@@ -1675,8 +1675,31 @@ public class WizardDataAggregator {
     }
     boolean measurePeptides = false;
     boolean shortGel = false;
+    boolean precipitation = false;
+    boolean digestion= false;
+	String other = "";
+	boolean none= false;
+	boolean silver= false;
+	boolean coomassie= false;
+	boolean identification= false;
+	boolean quantification= false;
+	boolean evaluation= false;
+	String duration = "";
+	boolean molecularWeight= false;
     String purificationMethod = "";
-    if (infos.containsKey("PROTEINS")) {
+    String composition = "";
+  	
+  	//Small Molecules 
+    String substanceClass = "";
+  	String molFormulaMass = "";
+  	boolean extraction = false;
+  	String molecularWeightRange = "";
+	String polarity = "";	
+	boolean hplcMS= false;
+	String quantificationSM = "";
+	String internalStandards = "";
+  	
+	if (infos.containsKey("PROTEINS")) {
       Sample first = infos.get("PROTEINS").get(0);
       String expID = first.getExperimentIdentifierOrNull();
       for (Experiment e : openbis.getExperimentsOfProjectByCode(first.getCode().substring(0, 15))) { // changed by CFH changed from (0, 5) to (0, 15)
@@ -1686,9 +1709,58 @@ public class WizardDataAggregator {
             purificationMethod = props.get("Q_MS_PURIFICATION_METHOD");
           if (props.containsKey("Q_ADDITIONAL_INFORMATION"))
             shortGel = props.get("Q_ADDITIONAL_INFORMATION").contains("Short Gel");
+          	//CFH proteins if when result is not boolean
+          	if (props.get("Q_ADDITIONAL_INFORMATION").contains("Composition"))
+          		composition = props.get("Q_ADDITIONAL_INFORMATION");
+//			if (props.get("Q_ADDITIONAL_INFORMATION").contains("Substance Class"))
+//        		substanceClass = props.get("Q_ADDITIONAL_INFORMATION");
+//        	if (props.get("Q_ADDITIONAL_INFORMATION").contains("Molecular Formula/Mass"))
+//            	molFormulaMass = props.get("Q_ADDITIONAL_INFORMATION");
+        	digestion = props.get("Q_ADDITIONAL_INFORMATION").contains("Digestion");
+        	precipitation = props.get("Q_ADDITIONAL_INFORMATION").contains("Precipitation");
+        	if (props.get("Q_ADDITIONAL_INFORMATION").contains("Other"))
+            	other = props.get("Q_ADDITIONAL_INFORMATION");
+        	
+        	none = props.get("Q_ADDITIONAL_INFORMATION").contains("None");
+        	silver = props.get("Q_ADDITIONAL_INFORMATION").contains("Silver");
+        	coomassie = props.get("Q_ADDITIONAL_INFORMATION").contains("Coomassie");
+        	identification = props.get("Q_ADDITIONAL_INFORMATION").contains("Identification");
+        	quantification = props.get("Q_ADDITIONAL_INFORMATION").contains("Quantification");
+        	evaluation = props.get("Q_ADDITIONAL_INFORMATION").contains("Evaluation");
+        	molecularWeight = props.get("Q_ADDITIONAL_INFORMATION").contains("Molecular Weight"); 
+        	
+          	if (props.get("Q_ADDITIONAL_INFORMATION").contains("Duration"))
+          		duration = props.get("Q_ADDITIONAL_INFORMATION");          	
+
+			if (props.get("Q_ADDITIONAL_INFORMATION").contains("Composition"))
+				composition = props.get("Q_ADDITIONAL_INFORMATION");
+			if (props.get("Q_ADDITIONAL_INFORMATION").contains("Substance Class"))
+				substanceClass = props.get("Q_ADDITIONAL_INFORMATION");
+			if (props.get("Q_ADDITIONAL_INFORMATION").contains("Molecular Formula/Mass"))
+				molFormulaMass = props.get("Q_ADDITIONAL_INFORMATION");
+			extraction = props.get("Q_ADDITIONAL_INFORMATION").contains("Extraction");
+			precipitation = props.get("Q_ADDITIONAL_INFORMATION").contains("Precipitation");
+			if (props.get("Q_ADDITIONAL_INFORMATION").contains("Other"))
+				other = props.get("Q_ADDITIONAL_INFORMATION");
+			none = props.get("Q_ADDITIONAL_INFORMATION").contains("None");
+			if (props.get("Q_ADDITIONAL_INFORMATION").contains("Molecular weight range"))
+				molecularWeightRange = props.get("Q_ADDITIONAL_INFORMATION");
+			if (props.get("Q_ADDITIONAL_INFORMATION").contains("Polarity"))
+				polarity = props.get("Q_ADDITIONAL_INFORMATION");
+			molecularWeight = props.get("Q_ADDITIONAL_INFORMATION").contains("Molecular Weight");
+			hplcMS = props.get("Q_ADDITIONAL_INFORMATION").contains("HPLC-MS");
+			if (props.get("Q_ADDITIONAL_INFORMATION").contains("Quantification"))
+				quantificationSM = props.get("Q_ADDITIONAL_INFORMATION");
+			if (props.get("Q_ADDITIONAL_INFORMATION").contains("Internal Standards"))
+				internalStandards = props.get("Q_ADDITIONAL_INFORMATION");
+      	
+          	//TODO
           break;
         }
       }
+      }
+
+
       if (infos.containsKey("PEPTIDES")) {
         for (Sample s : infos.get("PEPTIDES")) {
           for (Sample p : s.getParents()) {
@@ -1703,9 +1775,17 @@ public class WizardDataAggregator {
         }
         infos.remove("PEPTIDES");
       }
+    
+	RegisteredAnalyteInformation res = null;
+    if (!infos.containsKey("PROTEINS")){
+    	res = new RegisteredAnalyteInformation(infos.keySet(),  purificationMethod,  composition,  substanceClass, molFormulaMass,
+    			 extraction,  precipitation,  other,  none,  molecularWeightRange,  polarity,  molecularWeight, 
+    			 hplcMS,   quantificationSM,  internalStandards);
+    } else {
+    	res = new RegisteredAnalyteInformation(infos.keySet(),
+        measurePeptides, shortGel, purificationMethod, composition, precipitation,  digestion,  other,  none,  silver,  coomassie,
+       identification,  quantification,  duration,  evaluation,  molecularWeight);
     }
-    RegisteredAnalyteInformation res = new RegisteredAnalyteInformation(infos.keySet(),
-        measurePeptides, shortGel, purificationMethod);
     return res;
   }
 }

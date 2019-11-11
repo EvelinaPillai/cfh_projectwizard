@@ -437,14 +437,67 @@ public class TestStep implements WizardStep {
 
 	public Map<String, Object> getProteinPreparationInformation() {
 		Map<String, Object> res = new HashMap<String, Object>();
+		//register key otherwise null in String
+		res.put("Q_ADDITIONAL_INFO", "");
 		if (msPanel.usesPurification())
 			res.put("Q_MS_PURIFICATION_METHOD", msPanel.getPurificationMethod());
 		if (msPanel.usesShortGel())
-			res.put("Q_ADDITIONAL_INFO", "Short Gel");
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Short Gel" +"\n");
+		if (msPanel.usesDigestion())
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Digestion"+"\n"); //CFH
+		if (msPanel.usesPrecipitation())
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Precipitation"+"\n"); 
+		if (msPanel.usesNone())
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "None"+"\n");
+		if (msPanel.usesCoomassie())
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Coomassie"+"\n");
+		if (msPanel.usesSilver())
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") +"Silver"+"\n");
+		if (msPanel.usesIdentification())
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Identification"+"\n");
+		if (msPanel.usesQuantification())
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Quantification"+"\n");
+		if (msPanel.usesMolecularWeight())
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Molecular Weight"+"\n");
+		if (msPanel.usesEvaluation())
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Evaluation"+"\n");
+		if (msPanel.usesDuration())
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Duration: " + msPanel.getDuration()+"\n");
+		if (msPanel.usesComposition())
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") +"Composition: " + msPanel.getComposition()+"\n");
+		if (msPanel.usesOther())
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Other: " + msPanel.getOther()+"\n");
+		
+			
 		if (smallMoleculesPanel.usesPurification()) //CFH
 			res.put("Q_MS_PURIFICATION_METHOD", smallMoleculesPanel.getPurificationMethod());
-		//if (smallMoleculesPanel.usesShortGel())
-			//res.put("Q_ADDITIONAL_INFO", "Short Gel"); TODO see if needed 
+		if (smallMoleculesPanel.usesComposition())
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") +"Composition: " + smallMoleculesPanel.getComposition()+"\n"); 
+		if (smallMoleculesPanel.usesSubstanceClass())
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Substance Class: " + smallMoleculesPanel.getSubstanceClass()+"\n");
+		if (smallMoleculesPanel.usesMolFormulaMass())
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Molecular Formula/Mass: " + smallMoleculesPanel.getMolFormulaMass()+"\n");
+		if (smallMoleculesPanel.usesExtraction())
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Extraction"+"\n");
+		if (smallMoleculesPanel.usesPrecipitation())
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Precipitation"+"\n"); //CFH
+		if (smallMoleculesPanel.usesOther())
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Other: " + smallMoleculesPanel.getOther()+"\n");
+		if (smallMoleculesPanel.usesNone())
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "None"+"\n");
+		if (smallMoleculesPanel.usesMolecularWeightRange())
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Molecular weight range: " + smallMoleculesPanel.getMolecularWeightRange()+"\n");
+		if (smallMoleculesPanel.usesPolarity())
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Polarity: " + smallMoleculesPanel.getPolarity()+"\n");
+		if (smallMoleculesPanel.usesMolecularWeight())
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Molecular Weight"+"\n");
+		if (smallMoleculesPanel.usesHplcMS())
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "HPLC-MS"+"\n");
+		if (smallMoleculesPanel.usesQuantification())
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Quantification: "+ smallMoleculesPanel.getQuantification() + "\n");
+		if (smallMoleculesPanel.usesInternalStandards())
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Internal Standards: "+ smallMoleculesPanel.getInternalStandards() + "\n");
+						
 		return res;
 	}
 
@@ -472,9 +525,38 @@ public class TestStep implements WizardStep {
 		for (String analyte : infos.getAnalytes()) {
 			techPanel.select(analyte);
 		}
+		msPanel.selectComposition(infos.getComposition());
+//		msPanel.selectSubstanceClass(infos.getSubstanceClass());
+//		msPanel.selectMolFormulaMass(infos.getMolFormulaMass());
+		msPanel.selectUsesDigestion(infos.isDigestion());
+		msPanel.selectUsesPrecipitation(infos.isPrecipitation());
+		msPanel.selectOther(infos.getOther());
+		msPanel.selectUsesNone(infos.isNone());
+		msPanel.selectUsesSilver(infos.isSilver());
+		msPanel.selectUsesCoomassie(infos.isCoomassie());
+		msPanel.selectUsesIdentification(infos.isIdentification());
+		msPanel.selectUsesQuantification(infos.isQuantification());
+		msPanel.selectDuration(infos.getDuration());
+		msPanel.selectUsesEvaluation(infos.isEvaluation());
+		msPanel.selectUsesMolecularWeight(infos.isMolecularWeight());
 		msPanel.selectMeasurePeptides(infos.isMeasurePeptides());
 		msPanel.selectUseShortGel(infos.isShortGel());
 		msPanel.selectProteinPurification(infos.getPurificationMethod());
+		
+		smallMoleculesPanel.selectComposition(infos.getComposition());
+		smallMoleculesPanel.selectSubstanceClass(infos.getSubstanceClass());
+		smallMoleculesPanel.selectMolFormulaMass(infos.getMolFormulaMass());
+		smallMoleculesPanel.selectUseExtraction(infos.isExtraction());
+		smallMoleculesPanel.selectUsePrecipitation(infos.isPrecipitation()); // see if it works as it is msPanel too
+		smallMoleculesPanel.selectOther(infos.getOther());
+		smallMoleculesPanel.selectUsesNone(infos.isNone());
+		smallMoleculesPanel.selectMolecularWeightRange(infos.getMolecularWeightRange());
+		smallMoleculesPanel.selectPolarity(infos.getPolarity());
+		smallMoleculesPanel.selectUseMolecularWeight(infos.isMolecularWeight());
+		smallMoleculesPanel.selectUseHplcMS(infos.isHplcMS());
+		smallMoleculesPanel.selectQuantification(infos.getQuantification());
+		smallMoleculesPanel.selectInternalStandards(infos.getInternaStandards());
+
 	}
 
 	public void updatePeople(Set<String> people) {

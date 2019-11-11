@@ -451,7 +451,6 @@ public class DBManager {
       e.printStackTrace();
     }
     logout(conn);
-    System.out.println(res.size());
     return res;
   }
 
