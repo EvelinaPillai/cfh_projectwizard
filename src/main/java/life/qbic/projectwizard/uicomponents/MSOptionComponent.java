@@ -26,6 +26,7 @@ import org.vaadin.teemu.wizards.WizardStep;
 
 import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.data.Property.ValueChangeListener;
+import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.ui.CheckBox;
 import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.Label;
@@ -48,8 +49,6 @@ public class MSOptionComponent extends VerticalLayout {
 
 	// CFH
 	private TextArea composition;
-//  private TextField substanceClass;
-//  private TextField molFormulaMass;
 	private Label samplePrep;
 	private CheckBox digestion;
 	private CheckBox precipitation;
@@ -63,9 +62,10 @@ public class MSOptionComponent extends VerticalLayout {
 	private Label analysis;
 	private CheckBox identification;
 	private CheckBox quantification;
-	private ComboBox duration;
+	private TextField duration;
 	private CheckBox evaluation;
 	private CheckBox molecularWeight;
+	private TextField comments;
 
 	private CheckBox proteinPooling;
 	private CheckBox shortGel;
@@ -76,66 +76,61 @@ public class MSOptionComponent extends VerticalLayout {
 	private static final Logger logger = LogManager.getLogger(MSOptionComponent.class);
 
 	public MSOptionComponent(DBVocabularies vocabs) {
-		this.setCaption("MS Experiment Options");
+		//this.setCaption("MS Experiment Options");
 		setSpacing(true);
-		// CFH Specific info required for module 1 proteins
-		composition = new TextArea("Composition (Buffer, concentration, estimated sample quantities)");
-//TODO SMALLMOLECULES ONLY?
-		// substanceClass = new TextField("Substance class");
-//    molFormulaMass = new TextField("Molecular formula/mass ");
+		
+		// CFH gel below analyte Proteins box
+		colouring = new Label("Gel Staining:");
+		silver = new CheckBox("Silver");
+		coomassie = new CheckBox("Coomassie");
 
+		addComponent(colouring);
+		addComponent(silver);
+		addComponent(coomassie);
+		// CFH Specific info required for module 1 proteins
+		composition = new TextArea("Sample Composition (Buffer, concentration, estimated sample quantities)");
 		addComponent(composition);
-		// addComponent(substanceClass);
-		// addComponent(molFormulaMass);
 
 		// sample preparation:
-		samplePrep = new Label("Sample Preparation:");
+		samplePrep = new Label("Sample Preparation (CFH):");
 		precipitation = new CheckBox("Precipitation"); // Fällung
-		digestion = new CheckBox("in solution-digestion / in gel-digestion");// in Lösung-Verdau / in Gel-Verdau
+		digestion = new CheckBox("in solution digest / in gel digest");// in Lösung-Verdau / in Gel-Verdau
+		shortGel = new CheckBox("Use Short Gel");
 		other = new TextField("Other:");
 		none = new CheckBox("None");
 
 		addComponent(samplePrep);
 		addComponent(digestion);
 		addComponent(precipitation);
-		addComponent(other);
-		addComponent(none);
-
-		// CFH gel
-		shortGel = new CheckBox("Use Short Gel");
-		colouring = new Label("Colouring:");
-		silver = new CheckBox("Silver");
-		coomassie = new CheckBox("Coomassie");
-
 		addComponent(shortGel);
-		addComponent(colouring);
-		addComponent(silver);
-		addComponent(coomassie);
+		addComponent(other);
+		addComponent(none); //TODO if none grey out others if possible
 
 		// CFH Analysis:
 		analysis = new Label("Analysis: ");
 		identification = new CheckBox("Identification");
 		quantification = new CheckBox("Quantification");
-		duration = new ComboBox("Measurement duration");
-		List<String> durations = new ArrayList<String>();
-		durations.add("1h");
-		durations.add("2h");
-		durations.add("4h");
-		duration.addItems(durations);
-		evaluation = new CheckBox("Evaluation");
+		duration = new TextField("Instrument time");
+		evaluation = new CheckBox("No data analysis");
 		molecularWeight = new CheckBox("Determination of molecular weight");
 
 		addComponent(analysis);
 		addComponent(identification);
 		addComponent(quantification);
-		addComponent(duration);
-		addComponent(evaluation);
 		addComponent(molecularWeight);
+		addComponent(evaluation);
+		addComponent(duration);
+		
+		comments = new TextField("Comments");
+		addComponent(comments);
 
+		//maybe we need in future for project with QBiC so just deactivate 
+		addComponent(new Label("<hr />",ContentMode.HTML));
+		addComponent(new Label("Optional: "));
 		proteinPooling = new CheckBox("Pool Before Protein Fractionation/Enrichment");
 		measurePeptides = new CheckBox("Measure Peptides");
 		purification = new CheckBox("Protein Purification");
-
+		
 		addComponent(purification);
 		purificationMethods = new ComboBox("Purification Method");
 		purificationMethods.setNullSelectionAllowed(false);
@@ -153,8 +148,14 @@ public class MSOptionComponent extends VerticalLayout {
 				purificationMethods.setVisible(purification.getValue());
 			}
 		});
+		
 		addComponent(proteinPooling);
 		addComponent(measurePeptides);
+		
+		//disable them for now
+		proteinPooling.setEnabled(false);
+		measurePeptides.setEnabled(false);
+		purification.setEnabled(false);
 	}
 
 	public List<WizardStep> getNextMSSteps(
@@ -227,22 +228,6 @@ public class MSOptionComponent extends VerticalLayout {
 		return composition.getValue().toString();
 	}
 
-//  public boolean usesSubstanceClass() {
-//	  return substanceClass.getValue() != null;
-//  }
-//  
-//  public String getSubstanceClass() {
-//	  return substanceClass.getValue().toString();
-//  }
-//  
-//  public boolean usesMolFormulaMass() {
-//	  return molFormulaMass.getValue() != null;
-//  }
-//  
-//  public String getMolFormulaMass() {
-//	  return molFormulaMass.getValue().toString();
-//  }
-
 	public boolean usesOther() {
 		return !other.getValue().isEmpty();
 	}
@@ -252,13 +237,21 @@ public class MSOptionComponent extends VerticalLayout {
 	}
 
 	public boolean usesDuration() {
-		return duration.getValue() != null;
+		return !duration.getValue().isEmpty();
 	}
 
 	public String getDuration() {
 		return duration.getValue().toString();
 	}
+	
+	public boolean usesComments() {
+		return !comments.getValue().isEmpty();
+	}
 
+	public String getComments() {
+		return comments.getValue().toString();
+	}
+	
 	public boolean usesPurification() {
 		return purification.getValue() && purificationMethods.getValue() != null;
 	}
@@ -297,27 +290,6 @@ public class MSOptionComponent extends VerticalLayout {
 			composition.setValue(option);
 		}
 	}
-
-//  public void selectSubstanceClass(String option) {
-//	if (option.isEmpty()) {
-//		substanceClass.setNullSettingAllowed(true);
-//		substanceClass.setValue(substanceClass.getNullRepresentation());
-//		substanceClass.setNullSettingAllowed(false);
-//	} else {
-//		substanceClass.setValue(option);
-//		}
-//  }
-//  
-//  
-//  public void selectMolFormulaMass(String option) {
-//		if (option.isEmpty()) {
-//			molFormulaMass.setNullSettingAllowed(true);
-//			molFormulaMass.setValue(molFormulaMass.getNullRepresentation());
-//			molFormulaMass.setNullSettingAllowed(false);
-//		} else {
-//			molFormulaMass.setValue(option);
-//			}
-//	  }
 
 	public void selectOther(String option) {
 		if (option.isEmpty()) {
@@ -367,12 +339,21 @@ public class MSOptionComponent extends VerticalLayout {
 
 	public void selectDuration(String option) {
 		if (option.isEmpty()) {
-			duration.setNullSelectionAllowed(true);
-			duration.setValue(duration.getNullSelectionItemId());
-			duration.setNullSelectionAllowed(false);
+			duration.setNullSettingAllowed(true);
+			duration.setValue(duration.getNullRepresentation());
+			duration.setNullSettingAllowed(false);
 		} else {
-			duration.setValue(true);
 			duration.setValue(option);
+		}
+	}
+	
+	public void selectComments(String option) {
+		if (option.isEmpty()) {
+			comments.setNullSettingAllowed(true);
+			comments.setValue(comments.getNullRepresentation());
+			comments.setNullSettingAllowed(false);
+		} else {
+			comments.setValue(option);
 		}
 	}
 

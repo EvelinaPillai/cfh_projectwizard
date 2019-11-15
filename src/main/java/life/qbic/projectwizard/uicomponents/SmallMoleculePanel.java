@@ -35,10 +35,6 @@ public class SmallMoleculePanel extends VerticalLayout {
 	 * 
 	 */
 	private static final long serialVersionUID = -8294079438870201281L;
-	private CheckBox purification;
-	private ComboBox purificationMethods;
-
-	// CFH
 	private TextArea composition;
 	private TextField substanceClass;
 	private TextField molFormulaMass;
@@ -52,9 +48,12 @@ public class SmallMoleculePanel extends VerticalLayout {
 	private TextField molecularWeightRange;
 	private ComboBox polarity;
 	private CheckBox molecularWeight;
-	private CheckBox hplcMS;
-	private ComboBox quantification;
+	private CheckBox identification;
+	private CheckBox relQuantification;
+	private CheckBox absQuantification;
+	private CheckBox evaluation;
 	private TextField internalStandards;
+	private TextField comments;
 
 	private static final Logger logger = LogManager.getLogger(SmallMoleculePanel.class);
 
@@ -62,9 +61,7 @@ public class SmallMoleculePanel extends VerticalLayout {
 
 		setSpacing(true);
 
-		this.setCaption("Small Molecules Experiment Options");
-
-		composition = new TextArea("Composition (Buffer, concentration, estimated sample quantities)");
+		composition = new TextArea("Sample Composition (Buffer, concentration, estimated sample quantities)");
 		substanceClass = new TextField("Substance class");
 		molFormulaMass = new TextField("Molecular formula/mass ");
 
@@ -86,47 +83,26 @@ public class SmallMoleculePanel extends VerticalLayout {
 		addComponent(none);
 
 		analysis = new Label("Analysis: ");
-		molecularWeightRange = new TextField("Determination of molecular weight range from ... to ");
+		molecularWeightRange = new TextField("Mass range");
 		polarity = new ComboBox("Polarity");
 		List<String> polOpts = new ArrayList<String>();
 		polOpts.add("positive");
 		polOpts.add("negative");
 		polOpts.add("both");
 		polarity.addItems(polOpts);
-		molecularWeight = new CheckBox("Determination of molecular weight");
-		hplcMS = new CheckBox("HPLC-MS");
-		quantification = new ComboBox("Quantification");
-		List<String> quantOpts = new ArrayList<String>();
-		quantOpts.add("relatively");
-		quantOpts.add("absolute");
-		quantification.addItems(quantOpts);
+		molecularWeight = new CheckBox("Molecular weight determination");
+		identification = new CheckBox("Identification");
+
+		relQuantification = new CheckBox("relative Quantification");
+		absQuantification = new CheckBox("absolute Quantification");
+		
+		evaluation = new CheckBox("No data analysis");
+		
 		internalStandards = new TextField("Internal Standards");
+		comments = new TextField("Comments");
+		addComponents(analysis, molecularWeightRange, polarity, molecularWeight, identification, relQuantification, absQuantification, evaluation, internalStandards, comments);
 
-		purification = new CheckBox("Protein Purification");
-
-		addComponent(purification);
-		purificationMethods = new ComboBox("Purification Method");
-		purificationMethods.setNullSelectionAllowed(false);
-		purificationMethods.setStyleName(Styles.boxTheme);
-		purificationMethods.setVisible(false);
-
-		List<String> methods = new ArrayList<String>(vocabs.getProteinPurificationMethodsMap().values());
-		Collections.sort(methods);
-		purificationMethods.addItems(methods);
-		addComponent(purificationMethods);
-
-		purification.addValueChangeListener(new ValueChangeListener() {
-
-			/**
-			 * 
-			 */
-			private static final long serialVersionUID = -2669873589648835159L;
-
-			@Override
-			public void valueChange(ValueChangeEvent event) {
-				purificationMethods.setVisible(purification.getValue());
-			}
-		});
+	
 	}
 
 	public List<WizardStep> getNextMSSteps(
@@ -152,28 +128,10 @@ public class SmallMoleculePanel extends VerticalLayout {
 		return res;
 	}
 
-	public boolean usesPurification() {
-		return purification.getValue() && purificationMethods.getValue() != null;
-	}
-
-	public String getPurificationMethod() {
-		return purificationMethods.getValue().toString();
-	}
+	
 
 	public boolean isValid() {
 		return true;
-	}
-
-	public void selectProteinPurification(String option) {
-		if (option.isEmpty()) {
-			purification.setValue(false);
-			purificationMethods.setNullSelectionAllowed(true);
-			purificationMethods.setValue(purificationMethods.getNullSelectionItemId());
-			purificationMethods.setNullSelectionAllowed(false);
-		} else {
-			purification.setValue(true);
-			purificationMethods.setValue(option);
-		}
 	}
 
 	public boolean usesComposition() {
@@ -252,6 +210,37 @@ public class SmallMoleculePanel extends VerticalLayout {
 		}
 	}
 
+	
+	public boolean usesEvaluation() {
+		return evaluation.getValue();
+	}
+	
+	public boolean usesIdentification() {
+		return identification.getValue();
+	}
+
+	public boolean usesRelQuantification() {
+		return relQuantification.getValue();
+	}
+	
+	public boolean usesAbsQuantification() {
+		return absQuantification.getValue();
+	}
+	
+	public void selectUsesEvaluation(boolean select) {
+		evaluation.setValue(select);
+	}
+	
+	public void selectUsesIdentification(boolean select) {
+		identification.setValue(select);
+	}
+	public void selectUsesRelQuantification(boolean select) {
+		relQuantification.setValue(select);
+	}
+	public void selectUsesAbsQuantification(boolean select) {
+		absQuantification.setValue(select);
+	}
+	
 	public boolean usesMolecularWeightRange() {
 		return !molecularWeightRange.getValue().isEmpty();
 	}
@@ -297,39 +286,20 @@ public class SmallMoleculePanel extends VerticalLayout {
 		molecularWeight.setValue(select);
 	}
 
-	public boolean usesHplcMS() {
-		return hplcMS.getValue();
-	}
-
-	public void selectUseHplcMS(boolean select) {
-		hplcMS.setValue(select);
-	}
-
-	public boolean usesQuantification() {
-		return quantification.getValue() != null;
-	}
-
-	public String getQuantification() {
-		return quantification.getValue().toString();
-	}
-
-	public void selectQuantification(String option) {
-		if (option.isEmpty()) {
-			quantification.setNullSelectionAllowed(true);
-			quantification.setValue(quantification.getNullSelectionItemId());
-			quantification.setNullSelectionAllowed(false);
-		} else {
-			quantification.setValue(true);
-			quantification.setValue(option);
-		}
-	}
-
 	public boolean usesInternalStandards() {
 		return !internalStandards.getValue().isEmpty();
 	}
 
 	public String getInternalStandards() {
 		return internalStandards.getValue().toString();
+	}
+	
+	public boolean usesComments() {
+		return !comments.getValue().isEmpty();
+	}
+
+	public String getComments() {
+		return comments.getValue().toString();
 	}
 
 	public void selectInternalStandards(String option) {
@@ -361,4 +331,15 @@ public class SmallMoleculePanel extends VerticalLayout {
 			molFormulaMass.setValue(option);
 		}
 	}
+	
+	public void selectComments(String option) {
+		if (option.isEmpty()) {
+			comments.setNullSettingAllowed(true);
+			comments.setValue(comments.getNullRepresentation());
+			comments.setNullSettingAllowed(false);
+		} else {
+			comments.setValue(option);
+		}
+	}
+
 }

@@ -18,11 +18,12 @@ public class RegisteredAnalyteInformation {
 	private boolean silver;
 	private boolean coomassie;
 
-	private boolean identification;
+	private boolean identification; //*
 	private boolean quantification; 
 	private String duration;
 	private boolean evaluation;
 	private boolean molecularWeight; //*
+	private String comments; //*
 
 
 	// SmallMolecules
@@ -31,15 +32,15 @@ public class RegisteredAnalyteInformation {
 	private boolean extraction;
 	private String molecularWeightRange;
 	private String polarity;	
-	private boolean hplcMS;
-	private String quantificationSM;
+	private boolean relQuantification;
+	private boolean absQuantification;
 	private String internalStandards;
 	
 
 	public RegisteredAnalyteInformation(Set<String> analytes, boolean measurePeptides, boolean shortGel,
 			String purification, String composition, boolean precipitation, boolean digestion, String other,
 			boolean none, boolean silver, boolean coomassie, boolean identification, boolean quantification,
-			String duration, boolean evaluation, boolean molecularWeight) {
+			String duration, boolean evaluation, boolean molecularWeight, String comments) {
 		this.analytes = analytes;
 		this.measurePeptides = measurePeptides;
 		this.shortGel = shortGel;
@@ -57,13 +58,13 @@ public class RegisteredAnalyteInformation {
 		this.duration = duration;
 		this.evaluation = evaluation;
 		this.molecularWeight = molecularWeight;
+		this.comments = comments;
 	}
 	
-	public RegisteredAnalyteInformation(Set<String> analytes, String purification, String composition, String substanceClass,String molFormulaMass,
-			boolean extraction, boolean precipitation, String other, boolean none, String molecularWeightRange, String polarity, boolean molecularWeight, 
-			boolean hplcMS,  String quantificationSM, String internalStandards) {
+	public RegisteredAnalyteInformation(Set<String> analytes, String composition, String substanceClass,String molFormulaMass,
+			boolean extraction, boolean precipitation, String other, boolean none, String molecularWeightRange, String polarity, boolean molecularWeight,  boolean identification,  
+			boolean relQuantification,  boolean absQuantification, boolean evaluation, String internalStandards, String comments) {
 		this.analytes = analytes;
-		this.purificationMethod = purification;
 		//CFH
 		this.composition = composition;
 		this.substanceClass = substanceClass;
@@ -75,9 +76,12 @@ public class RegisteredAnalyteInformation {
 		this.molecularWeightRange = molecularWeightRange;
 		this.polarity = polarity;
 		this.molecularWeight = molecularWeight;
-		this.hplcMS = hplcMS;
-		this.quantificationSM = quantificationSM;
+		this.identification = identification;
+		this.relQuantification = relQuantification;
+		this.absQuantification = absQuantification;
+		this.evaluation = evaluation;
 		this.internalStandards = internalStandards;
+		this.comments = comments;
 		
 	}
 
@@ -124,7 +128,10 @@ public class RegisteredAnalyteInformation {
 	public String getOther() {
 		return other;
 	}
-
+	
+	public String getComments() {
+		return comments;
+	}
 	public boolean isNone() {
 		return none;
 	}
@@ -165,12 +172,12 @@ public class RegisteredAnalyteInformation {
 		return polarity;
 	}
 
-	public boolean isHplcMS() {
-		return hplcMS;
+	public boolean isRelQuantification() {
+		return relQuantification;
 	}
 
-	public String getQuantification() {
-		return quantificationSM;
+	public boolean isAbsQuantification() {
+		return absQuantification;
 	}
 
 	public String getInternaStandards() {

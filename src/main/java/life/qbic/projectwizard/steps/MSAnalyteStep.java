@@ -114,6 +114,7 @@ public class MSAnalyteStep implements WizardStep {
         label = "Metabolite Options";
         info = "Here you can select different fractionation techniques used on the small molecules samples. "
             + "Mass spectrometry specific information about small molecules measurements can be saved.";
+        analyteOptions.setEnabled(false);
       }
     Label header = new Label(label);
     main.addComponent(Styles.questionize(header, info, label));
