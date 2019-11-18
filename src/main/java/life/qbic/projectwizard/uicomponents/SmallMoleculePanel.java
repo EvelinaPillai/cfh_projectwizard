@@ -109,7 +109,6 @@ public class SmallMoleculePanel extends VerticalLayout {
 			Map<life.qbic.projectwizard.control.WizardController.Steps, WizardStep> steps, int register) {
 		boolean poolProteins = false; // proteinPooling.getValue(); cfh
 		boolean peps = false; // measurePeptides.getValue(); cfh
-		boolean proteins = false;
 		List<WizardStep> res = new ArrayList<WizardStep>();
 		if (poolProteins) {
 			res.add(steps.get(Steps.Test_Sample_Pooling));

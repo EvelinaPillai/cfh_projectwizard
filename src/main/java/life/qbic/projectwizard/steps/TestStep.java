@@ -207,30 +207,33 @@ public class TestStep implements WizardStep {
 
 	public void initTestStep(ValueChangeListener testPoolListener, ValueChangeListener outerProteinListener,
 			ClickListener refreshPeopleListener, Map<Steps, WizardStep> steps) {
+		
 
 		ValueChangeListener proteinListener = new ValueChangeListener() {
 
 			/**
 			 * 
 			 */
-			private static final long serialVersionUID = -2885684670741817840L;
+			private static final long serialVersionUID = 9079241317839923580L;
 
 			@Override
-			public void valueChange(ValueChangeEvent event) {
-				containsProteins = false;
-				for (TestSampleInformation i : getAnalyteInformation()) {
-					String tech = i.getTechnology();
-					containsProteins |= tech.equals("PROTEINS");
-				}
-				msPanel.setVisible(containsProteins);
-				if (!containsProteins) {
-					resetNextSteps(hasPools());
-					wizard.addStep(steps.get(Steps.Registration));
-				} else {
-					replaceWizardSteps(msPanel.getNextMSSteps(steps, 1));
-				}
-			}
-		};
+			 public void valueChange(ValueChangeEvent event) {
+		        containsProteins = false;
+		        for (TestSampleInformation i : getAnalyteInformation()) {
+		          String tech = i.getTechnology();
+		          containsProteins |= tech.equals("PROTEINS");
+		        }
+		        
+		        msPanel.setVisible(containsProteins);
+		     	noMeasure.setEnabled(!containsProteins);
+		        if (!containsProteins) {
+		          resetNextSteps(hasPools());
+		          wizard.addStep(steps.get(Steps.Registration));
+		        } else {
+		          replaceWizardSteps(msPanel.getNextMSSteps(steps, 1));
+		        }
+		      }
+		    };
 
 		ValueChangeListener mhcLigandListener = new ValueChangeListener() {
 
@@ -352,13 +355,9 @@ public class TestStep implements WizardStep {
 					containsSmallMolecules |= cfh.equals("SMALLMOLECULES");
 				}
 				smallMoleculesPanel.setVisible(containsSmallMolecules);
-//				if (!containsSmallMolecules) {
-//					resetNextSteps(hasPools());
-//					wizard.addStep(steps.get(Steps.Registration));
-//				} else {
-//					replaceWizardSteps(smallMoleculesPanel.getNextMSSteps(steps, 1)); //CFH
-//				}
+			
 				if(containsSmallMolecules) {
+					noMeasure.setEnabled(!containsSmallMolecules);
 					replaceWizardSteps(smallMoleculesPanel.getNextMSSteps(steps, 1)); //CFH
 				}
 			}
@@ -410,6 +409,7 @@ public class TestStep implements WizardStep {
 		main.addComponent(FatPanel);
 		main.addComponent(AminoAcidPanel);
 		main.addComponent(smallMoleculesPanel);
+		
 	}
 
 	public void setTissueExtracts(List<AOpenbisSample> extracts) {

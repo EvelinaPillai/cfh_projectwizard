@@ -65,8 +65,6 @@ public class TechChooser extends VerticalLayout {
     chooser.setStyleName(Styles.boxTheme);
 
     replicates = new OpenbisInfoTextField("Replicates", "", "50px", "1");
-//    sampleNo = new OpenbisInfoTextField("Number of Samples", "", "50px", "1");
-//    sampleName = new OpenbisInfoTextField("Sample Name", "", "250px", "P_");
     pool = new CheckBox("Pool/Multiplex Samples");
     setSpacing(true);
     helpers = new ArrayList<HorizontalLayout>();
@@ -76,13 +74,7 @@ public class TechChooser extends VerticalLayout {
     HorizontalLayout help2 = Styles.questionize(replicates.getInnerComponent(),
         "Number of prepared replicates (1 means no replicates) of this analyte", "Replicates");
     addComponent(help2);
-//    HorizontalLayout help3 = Styles.questionize(sampleNo.getInnerComponent(),
-//            "Number of samples", "Sample Numbers");
-//    addComponent(help3);
-//    HorizontalLayout help4 = Styles.questionize(sampleName.getInnerComponent(),
-//                "Name of the samples", "Sample Name");
-//    addComponent(help4);
-    
+
     HorizontalLayout persBoxH = new HorizontalLayout();
     persBoxH.setCaption("Contact Person");
     person = new ComboBox();
@@ -97,50 +89,36 @@ public class TechChooser extends VerticalLayout {
     persBoxH.addComponent(person);
     persBoxH.addComponent(reloadPeople);
     
-    HorizontalLayout help5 = Styles.questionize(persBoxH,
+    HorizontalLayout help3 = Styles.questionize(persBoxH,
         "Person responsible for this part of the experiment", "Contact Person");
-    addComponent(help5);
-    HorizontalLayout help6 = Styles.questionize(pool,
+    addComponent(help3);
+    HorizontalLayout help4 = Styles.questionize(pool,
         "Select if multiple samples are pooled into a single " + "sample before measurement.",
         "Pooling");
-    
-//    HorizontalLayout matrixBoxH = new HorizontalLayout();
-//    matrixBoxH.setCaption("Matrix");
-//    matrix = new ComboBox();
-//   // matrix.addItems(matrices);
-//    matrix.addItems(matrixMap.values());
-//    matrix.setFilteringMode(FilteringMode.CONTAINS);
-//    matrix.setStyleName(Styles.boxTheme);
-    
-    
-//    matrixRefresh = new Button();
-//    Styles.iconButton(matrixRefresh, FontAwesome.REFRESH);
-//    matrixBoxH.addComponent(matrix);
-//    matrixBoxH.addComponent(matrixRefresh);
-//    
-//    HorizontalLayout help7 = Styles.questionize(matrixBoxH,
-//        "Matrix which contains the sample", "Matrix");
-//    addComponent(help7);
-
+   
     chooser.addValueChangeListener(new ValueChangeListener() {
 
       @Override
       public void valueChange(ValueChangeEvent event) {
         if (chooser.getValue() != null) {
-          help5.setVisible(!chooser.getValue().equals("PROTEINS"));
+        	if(chooser.getValue().equals("PROTEINS") || chooser.getValue().equals("SMALLMOLECULES")) {
+        		help2.setEnabled(false);	
+        		help4.setVisible(false);
+        	}else {
+        		help2.setEnabled(true);	
+        		help4.setVisible(true);
+        	}
+        	
         }
       }
     });
 
-    addComponent(help5);
-  //  addComponent(help7);
+    addComponent(help4);
     helpers.add(help1);
     helpers.add(help2);
-//    helpers.add(help3);
-//    helpers.add(help4);
-    helpers.add(help5);
-    helpers.add(help6);
-//    helpers.add(help7);
+    helpers.add(help3);
+    helpers.add(help4);
+    
   }
 
   public boolean hasAnalyteInput() {
@@ -228,17 +206,7 @@ public void showHelpers() {
     this.chooser.removeValueChangeListener(mhcLigandListener);
   }
 
-  //TODO to delete 
-//  public void addMatrixListener(ValueChangeListener matrixListener) {
-//	this.chooser.addValueChangeListener(matrixListener);
-//  }
-//    
-//  
-//  public void removeMatrixlistener(ValueChangeListener matrixListener) {
-//	this.chooser.removeValueChangeListener(matrixListener);
-//		
-//  }
-  
+ 
   public void addNminListener(ValueChangeListener nminListener) {
 	    this.chooser.addValueChangeListener(nminListener);
 }
