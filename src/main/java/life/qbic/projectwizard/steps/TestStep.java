@@ -440,71 +440,71 @@ public class TestStep implements WizardStep {
 		//register key otherwise null in String
 		res.put("Q_ADDITIONAL_INFO", "");
 		if (msPanel.usesSilver())
-			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Silver"+"\n");
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Silver"+"<br>");
 		if (msPanel.usesCoomassie())
-			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Coomassie"+"\n");
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Coomassie"+"<br>");
 		if (msPanel.usesComposition())
-			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Sample Composition: " + msPanel.getComposition()+"\n");
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Sample Composition: " + msPanel.getComposition()+"<br>");
 		if (msPanel.usesDigestion())
-			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Digestion"+"\n"); 
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Digestion"+"<br>"); 
 		if (msPanel.usesPrecipitation())
-			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Precipitation"+"\n"); 
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Precipitation"+"<br>"); 
 		if (msPanel.usesShortGel())
-			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Short Gel" +"\n");
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Short Gel" +"<br>");
 		if (msPanel.usesOther())
-			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Other: " + msPanel.getOther()+"\n");
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Other: " + msPanel.getOther()+"<br>");
 		if (msPanel.usesNone())
-			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "None"+"\n");
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "None"+"<br>");
 			
 		if (msPanel.usesIdentification())
-			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Identification"+"\n");
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Identification"+"<br>");
 		if (msPanel.usesQuantification())
-			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Quantification"+"\n");
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Quantification"+"<br>");
 		if (msPanel.usesMolecularWeight())
-			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Molecular weight determination"+"\n");
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Molecular weight determination"+"<br>");
 		if (msPanel.usesEvaluation())
-			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "No data analysis"+"\n");
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "No data analysis"+"<br>");
 		if (msPanel.usesDuration())
-			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Instrument time: " + msPanel.getDuration()+"\n");		
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Instrument time: " + msPanel.getDuration()+"<br>");		
 		if(msPanel.usesComments())
-			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Comments: " + msPanel.getComments()+"\n");
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Comments: " + msPanel.getComments()+"<br>");
 		
 		if (msPanel.usesPurification())
 			res.put("Q_MS_PURIFICATION_METHOD", msPanel.getPurificationMethod());
 		
 	
 		if (smallMoleculesPanel.usesComposition())
-			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Sample Composition: " + smallMoleculesPanel.getComposition()+"\n"); 
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Sample Composition: " + smallMoleculesPanel.getComposition()+"<br>"); 
 		if (smallMoleculesPanel.usesSubstanceClass())
-			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Substance Class: " + smallMoleculesPanel.getSubstanceClass()+"\n");
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Substance Class: " + smallMoleculesPanel.getSubstanceClass()+"<br>");
 		if (smallMoleculesPanel.usesMolFormulaMass())
-			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Molecular Formula/Mass: " + smallMoleculesPanel.getMolFormulaMass()+"\n");
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Molecular Formula/Mass: " + smallMoleculesPanel.getMolFormulaMass()+"<br>");
 		if (smallMoleculesPanel.usesExtraction())
-			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Extraction"+"\n");
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Extraction"+"<br>");
 		if (smallMoleculesPanel.usesPrecipitation())
-			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Precipitation"+"\n"); //CFH
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Precipitation"+"<br>"); //CFH
 		if (smallMoleculesPanel.usesOther())
-			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Other: " + smallMoleculesPanel.getOther()+"\n");
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Other: " + smallMoleculesPanel.getOther()+"<br>");
 		if (smallMoleculesPanel.usesNone())
-			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "None"+"\n");
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "None"+"<br>");
 		if (smallMoleculesPanel.usesMolecularWeightRange())
-			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Molecular weight range: " + smallMoleculesPanel.getMolecularWeightRange()+"\n");
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Molecular weight range: " + smallMoleculesPanel.getMolecularWeightRange()+"<br>");
 		if (smallMoleculesPanel.usesPolarity())
-			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Polarity: " + smallMoleculesPanel.getPolarity()+"\n");
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Polarity: " + smallMoleculesPanel.getPolarity()+"<br>");
 		if (smallMoleculesPanel.usesMolecularWeight())
-			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Molecular weight determination"+"\n");
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Molecular weight determination"+"<br>");
 		if (smallMoleculesPanel.usesIdentification())
-			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Identification" + "\n");
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Identification" + "<br>");
 		if (smallMoleculesPanel.usesRelQuantification())
-			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "relative Quantification" + "\n");
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "relative Quantification" + "<br>");
 		if (smallMoleculesPanel.usesAbsQuantification())
-			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "absolute Quantification" + "\n");
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "absolute Quantification" + "<br>");
 		if (smallMoleculesPanel.usesEvaluation())
-			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "No data analysis"+"\n");
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "No data analysis"+"<br>");
 		if (smallMoleculesPanel.usesInternalStandards())
-			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Internal Standards: "+ smallMoleculesPanel.getInternalStandards() + "\n");
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Internal Standards: "+ smallMoleculesPanel.getInternalStandards() + "<br>");
 		if (smallMoleculesPanel.usesComments())
-			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Comments: " + smallMoleculesPanel.getComments() + "\n");
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Comments: " + smallMoleculesPanel.getComments() + "<br>");
 	
 		return res;
 	}
