@@ -12,7 +12,8 @@ public class RegisteredAnalyteInformation {
 	// Proteins
 	private String composition; //also used for smallMolecules *
 	private boolean precipitation; //*
-	private boolean digestion;
+	private boolean digestionSolution;
+	private boolean digestionGel;
 	private String other; //*
 	private boolean none; //*
 	private boolean silver;
@@ -38,7 +39,7 @@ public class RegisteredAnalyteInformation {
 	
 
 	public RegisteredAnalyteInformation(Set<String> analytes, boolean measurePeptides, boolean shortGel,
-			String purification, String composition, boolean precipitation, boolean digestion, String other,
+			String purification, String composition, boolean precipitation, boolean digestionSolution, boolean digestionGel, String other,
 			boolean none, boolean silver, boolean coomassie, boolean identification, boolean quantification,
 			String duration, boolean evaluation, boolean molecularWeight, String comments) {
 		this.analytes = analytes;
@@ -48,7 +49,8 @@ public class RegisteredAnalyteInformation {
 		//CFH
 		this.composition = composition;
 		this.precipitation = precipitation;
-		this.digestion = digestion;
+		this.digestionSolution = digestionSolution;
+		this.digestionGel = digestionGel;
 		this.other = other;
 		this.none = none;
 		this.silver = silver;
@@ -121,8 +123,8 @@ public class RegisteredAnalyteInformation {
 		return molFormulaMass;
 	}
 
-	public boolean isDigestion() {
-		return digestion;
+	public boolean isDigestionSolution() {
+		return digestionSolution;
 	}
 
 	public String getOther() {
@@ -182,5 +184,9 @@ public class RegisteredAnalyteInformation {
 
 	public String getInternaStandards() {
 		return internalStandards;
+	}
+
+	public boolean isDigestionGel() {
+		return digestionGel;
 	}
 }

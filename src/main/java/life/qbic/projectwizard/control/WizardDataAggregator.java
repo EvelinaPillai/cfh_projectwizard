@@ -1081,7 +1081,7 @@ public class WizardDataAggregator {
       for (Property f : factors) {
         String name = f.getValue() + f.getUnit();
         factorMap.put(name, f);
-      }
+      }      
       res.add(new OpenbisBiologicalEntity(code, spaceCode, exp, p.get("Q_SECONDARY_NAME"),
           p.get("Q_ADDITIONAL_INFO"), factors, p.get("Q_NCBI_ORGANISM"),
           p.get("Q_ORGANISM_DETAILED"), p.get("Q_EXTERNALDB_ID")));//, p.get("Q_MATRIX")));
@@ -1338,7 +1338,7 @@ public class WizardDataAggregator {
 
     List<String> header = new ArrayList<String>(Arrays.asList("SAMPLE TYPE", "SPACE", "EXPERIMENT",
         "Q_SECONDARY_NAME", "PARENT", "Q_PRIMARY_TISSUE", "Q_TISSUE_DETAILED", "Q_ADDITIONAL_INFO",
-        "Q_NCBI_ORGANISM", "Q_SAMPLE_TYPE", "Q_EXTERNALDB_ID"));
+        "Q_NCBI_ORGANISM", "Q_ORGANISM_DETAILED",  "Q_SAMPLE_TYPE", "Q_EXTERNALDB_ID"));
     // TODO current assumption: tests should have more or an equal number of xml entries than
     // ancestors, because they inherit their entries
     int factorRowSize = 0;
@@ -1676,7 +1676,8 @@ public class WizardDataAggregator {
     boolean measurePeptides = false;
     boolean shortGel = false;
     boolean precipitation = false;
-    boolean digestion= false;
+    boolean digestionSolution= false;
+    boolean digestionGel= false;
 	String other = "";
 	boolean none= false;
 	boolean silver= false;
@@ -1715,7 +1716,8 @@ public class WizardDataAggregator {
           	//CFH proteins if when result is not boolean
           	if (props.get("Q_ADDITIONAL_INFORMATION").contains("Composition"))
           		composition = props.get("Q_ADDITIONAL_INFORMATION");
-        	digestion = props.get("Q_ADDITIONAL_INFORMATION").contains("Digestion");
+        	digestionSolution = props.get("Q_ADDITIONAL_INFORMATION").contains("in solution digestion");
+        	digestionGel = props.get("Q_ADDITIONAL_INFORMATION").contains("in gel digestion");
         	precipitation = props.get("Q_ADDITIONAL_INFORMATION").contains("Precipitation");
         	shortGel = props.get("Q_ADDITIONAL_INFORMATION").contains("Short Gel");
         	if (props.get("Q_ADDITIONAL_INFORMATION").contains("Other"))
@@ -1777,7 +1779,7 @@ public class WizardDataAggregator {
     				 relQuantification,   absQuantification,  evaluation,  internalStandards,  comments);
     } else {
     	res = new RegisteredAnalyteInformation(infos.keySet(),
-        measurePeptides, shortGel, purificationMethod, composition, precipitation,  digestion,  other,  none,  silver,  coomassie,
+        measurePeptides, shortGel, purificationMethod, composition, precipitation,  digestionSolution, digestionGel,  other,  none,  silver,  coomassie,
        identification,  quantification,  duration,  evaluation,  molecularWeight, comments);
     }
     return res;

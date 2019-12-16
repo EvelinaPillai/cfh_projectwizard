@@ -396,7 +396,7 @@ public class MSAnalyteStep implements WizardStep {
   }
 
   public String getAdditionalInfo() {
-    return additionalInfo.getValue();
+    return additionalInfo.getValue().toString();
   }
 
   public boolean hasRun() {

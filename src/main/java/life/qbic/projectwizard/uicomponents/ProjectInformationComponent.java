@@ -115,7 +115,7 @@ public class ProjectInformationComponent extends VerticalLayout {
         "New Sub-Project"));
     
     
-    expName = new StandardTextField("Short name");
+    expName = new StandardTextField("Short name (e.g. Institution Number)");
     expName.setWidth("200px");
     // expName.setRequired(true);
     expName.setVisible(false);

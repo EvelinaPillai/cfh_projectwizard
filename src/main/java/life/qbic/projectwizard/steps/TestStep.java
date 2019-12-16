@@ -445,8 +445,10 @@ public class TestStep implements WizardStep {
 			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Coomassie"+"<br>");
 		if (msPanel.usesComposition())
 			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Sample Composition: " + msPanel.getComposition()+"<br>");
-		if (msPanel.usesDigestion())
-			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Digestion"+"<br>"); 
+		if (msPanel.usesDigestionSolution())
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "in solution digestion"+"<br>"); 
+		if (msPanel.usesDigestionGel())
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "in gel digestion"+"<br>"); 
 		if (msPanel.usesPrecipitation())
 			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Precipitation"+"<br>"); 
 		if (msPanel.usesShortGel())
@@ -537,7 +539,8 @@ public class TestStep implements WizardStep {
 		msPanel.selectUsesCoomassie(infos.isCoomassie());
 		
 		msPanel.selectComposition(infos.getComposition());
-		msPanel.selectUsesDigestion(infos.isDigestion());
+		msPanel.selectUsesDigestionSolution(infos.isDigestionSolution());
+		msPanel.selectUsesDigestionGel(infos.isDigestionGel());
 		msPanel.selectUsesPrecipitation(infos.isPrecipitation());
 		msPanel.selectUseShortGel(infos.isShortGel());
 		msPanel.selectOther(infos.getOther());

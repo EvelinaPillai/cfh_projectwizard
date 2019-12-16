@@ -50,7 +50,8 @@ public class MSOptionComponent extends VerticalLayout {
 	// CFH
 	private TextArea composition;
 	private Label samplePrep;
-	private CheckBox digestion;
+	private CheckBox digestionSolution;
+	private CheckBox digestionGel;
 	private CheckBox precipitation;
 	private TextField other;
 	private CheckBox none;
@@ -94,13 +95,15 @@ public class MSOptionComponent extends VerticalLayout {
 		// sample preparation:
 		samplePrep = new Label("Sample Preparation (CFH):");
 		precipitation = new CheckBox("Precipitation"); // Fällung
-		digestion = new CheckBox("in solution digest / in gel digest");// in Lösung-Verdau / in Gel-Verdau
+		digestionSolution = new CheckBox("in solution digest");// in Lösung-Verdau 
+		digestionGel = new CheckBox("in gel digest");// in Gel-Verdau
 		shortGel = new CheckBox("Use Short Gel");
 		other = new TextField("Other:");
 		none = new CheckBox("None");
 
 		addComponent(samplePrep);
-		addComponent(digestion);
+		addComponent(digestionSolution);
+		addComponent(digestionGel);
 		addComponent(precipitation);
 		addComponent(shortGel);
 		addComponent(other);
@@ -180,8 +183,11 @@ public class MSOptionComponent extends VerticalLayout {
 		return res;
 	}
 
-	public boolean usesDigestion() {
-		return digestion.getValue();
+	public boolean usesDigestionSolution() {
+		return digestionSolution.getValue();
+	}
+	public boolean usesDigestionGel() {
+		return digestionGel.getValue();
 	}
 
 	public boolean usesPrecipitation() {
@@ -305,8 +311,12 @@ public class MSOptionComponent extends VerticalLayout {
 		precipitation.setValue(select);
 	}
 
-	public void selectUsesDigestion(boolean select) {
-		digestion.setValue(select);
+	public void selectUsesDigestionSolution(boolean select) {
+		digestionSolution.setValue(select);
+	}
+	
+	public void selectUsesDigestionGel(boolean select) {
+		digestionGel.setValue(select);
 	}
 
 	public void selectUsesNone(boolean select) {
