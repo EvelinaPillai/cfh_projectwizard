@@ -1007,6 +1007,7 @@ public class WizardController implements IRegistrationController {
           //Collections.sort(extracts, (AOpenbisSample s1, AOpenbisSample s2) -> s1.getQ_SECONDARY_NAME().compareTo(s2.getQ_SECONDARY_NAME()));
           techStep.setTissueExtracts(extracts);
           techStep.setNminExtracts(extracts);
+          // DAS IST NOCH FALSCH IRGENDWIE techStep.setNMRExtracts(extracts);
           List<AOpenbisSample> all = new ArrayList<AOpenbisSample>();
           all.addAll(extracts);
           all.addAll(dataAggregator.createPoolingSamples(poolStep1.getPools()));
@@ -1103,11 +1104,6 @@ public class WizardController implements IRegistrationController {
                   .setFractionationExperimentsProperties(getFractionationPropertiesFromLastStep());
               dataAggregator.createFractionationSamplesAndExperiments();
             }
-//            if(techStep.hasElement()) {
-//            	dataAggregator.prepareElementSamples();
-//            }
-//            if(techStep.hasNmin())
-//            	dataAggregator.prepareNminSamples();
             createTSV();
             try {
               prep.processTSV(dataAggregator.getTSV(), ExperimentalDesignType.QBIC,false);//hengam

@@ -39,6 +39,7 @@ import life.qbic.projectwizard.model.TestSampleInformation;
 import life.qbic.projectwizard.uicomponents.ElementPanel;
 import life.qbic.projectwizard.uicomponents.AminoAcidPanel;
 import life.qbic.projectwizard.uicomponents.NminPanel;
+import life.qbic.projectwizard.uicomponents.NMRPanel;
 import life.qbic.projectwizard.uicomponents.SmallMoleculePanel;
 import life.qbic.projectwizard.uicomponents.FatPanel;
 import life.qbic.projectwizard.uicomponents.LigandExtractPanel;
@@ -68,6 +69,7 @@ public class TestStep implements WizardStep {
 	private ElementPanel elementPanel;
 	private AminoAcidPanel AminoAcidPanel;
 	private NminPanel NminPanel;
+	private NMRPanel NMRPanel;
 	private FatPanel FatPanel;
 	private SmallMoleculePanel smallMoleculesPanel;
 	private CheckBox noMeasure;
@@ -76,6 +78,7 @@ public class TestStep implements WizardStep {
 	private boolean containsMHCLigands = false;
 	private boolean containsElement = false;
 	private boolean containsNmin = false;
+	private boolean containsNMR = false;
 	private boolean containsFat = false;
 	private boolean containsAA = false;
 	private boolean containsSmallMolecules = false;
@@ -147,6 +150,9 @@ public class TestStep implements WizardStep {
 			if(containsNmin) {
 				return (NminPanel.isValid());
 			}
+			if(containsNMR) {
+				return (NMRPanel.isValid());
+			}
 			if(containsElement) {
 				return (elementPanel.isValid());
 			}
@@ -199,6 +205,10 @@ public class TestStep implements WizardStep {
 
 	public boolean hasNmin() {
 		return containsNmin;
+	}
+	
+	public boolean hasNMR() {
+		return containsNMR;
 	}
 	
 	public boolean hasSmallMolecule() {
@@ -340,6 +350,20 @@ public class TestStep implements WizardStep {
 			}
 		};
 		
+		ValueChangeListener nmrListener = new ValueChangeListener() {
+			
+			@Override
+			public void valueChange(ValueChangeEvent event) {
+				containsNMR = false;
+				for (TestSampleInformation i: getAnalyteInformation()) {
+					String cfh = i.getTechnology();
+					containsNMR |= cfh.equals("NMR");
+				}
+				NMRPanel.setVisible(containsNMR);
+				
+			}
+		};
+		
 		ValueChangeListener smallMoleculesListener = new ValueChangeListener() {
 			
 			/**
@@ -366,7 +390,7 @@ public class TestStep implements WizardStep {
 		techPanel = new TechnologiesPanel(vocabs.getAnalyteTypes(), vocabs.getPeople().keySet(), new OptionGroup(""),
 				testPoolListener,
 				new ArrayList<ValueChangeListener>(Arrays.asList(outerProteinListener, proteinListener)),
-				mhcLigandListener, refreshPeopleListener, elementListener, aaListener, fatListener, nminListener, smallMoleculesListener,
+				mhcLigandListener, refreshPeopleListener, elementListener, aaListener, fatListener, nminListener, nmrListener, smallMoleculesListener,
 				vocabs.getMatrixMap());
 
 		main.addComponent(techPanel);
@@ -398,6 +422,10 @@ public class TestStep implements WizardStep {
 		
 		NminPanel = new NminPanel(vocabs, getAnalyteInformation()); 
 		NminPanel.setVisible(false);
+		
+		NMRPanel = new NMRPanel();
+		NMRPanel.setVisible(false);
+		
 		FatPanel = new FatPanel(vocabs);
 		FatPanel.setVisible(false);
 
@@ -406,6 +434,7 @@ public class TestStep implements WizardStep {
 		
 		main.addComponent(elementPanel);
 		main.addComponent(NminPanel);
+		main.addComponent(NMRPanel);
 		main.addComponent(FatPanel);
 		main.addComponent(AminoAcidPanel);
 		main.addComponent(smallMoleculesPanel);
@@ -418,6 +447,14 @@ public class TestStep implements WizardStep {
 	
 	public void setNminExtracts(List<AOpenbisSample> extracts) {
 		NminPanel.setNminSamples(extracts);
+	}
+	
+	public Map<String, Object> getNMRInformation() {
+		Map<String, Object> res = new HashMap<String, Object>();
+		if (NMRPanel.usesDescription())
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Sample Description: " + NMRPanel.getDescription()+"<br>");
+		return res;
+		
 	}
 
 	public Map<String, MHCLigandExtractionProtocol> getAntibodyInfos() {
@@ -597,6 +634,16 @@ public class TestStep implements WizardStep {
 		if(containsNmin)
 		{
 			return NminPanel.getNminProperties();
+		}
+		
+		return null;
+	}
+	
+	public String getNMRPanel()
+	{
+		if(containsNMR)
+		{
+			return NMRPanel.getDescription();
 		}
 		
 		return null;

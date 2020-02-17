@@ -44,6 +44,7 @@ import life.qbic.datamodel.samples.AOpenbisSample;
 import life.qbic.datamodel.samples.OpenbisBiologicalEntity;
 import life.qbic.datamodel.samples.OpenbisBiologicalSample;
 import life.qbic.datamodel.samples.OpenbisCfhElementSample;
+import life.qbic.datamodel.samples.OpenbisCfhNMRSample;
 import life.qbic.datamodel.samples.OpenbisCfhNminSample;
 import life.qbic.datamodel.samples.OpenbisMHCExtractSample;
 import life.qbic.datamodel.samples.OpenbisTestSample;
@@ -129,6 +130,7 @@ public class WizardDataAggregator {
   private List<AOpenbisSample> msSamples;
   private List<AOpenbisSample> mhcExtracts;
   private List<AOpenbisSample> nminExtracts;
+  private List<AOpenbisSample> nmrExtracts;
   private List<AOpenbisSample> elementExtracts;
   private Map<String, Character> classChars;
   private static final Logger logger = LogManager.getLogger(WizardDataAggregator.class);
@@ -142,6 +144,7 @@ public class WizardDataAggregator {
   
   private List<Map<String , String>> infoElement = new ArrayList<Map<String , String>>();
   private List<Map<String , String>> infoNmin = new ArrayList<Map<String , String>>();
+  private String infoNMR = "";
   private Map<String , Object> infoSmallMolecules;
 
   /**
@@ -454,6 +457,17 @@ public class WizardDataAggregator {
 	    	  for (List<AOpenbisSample> group : cfhSortedTests1)
 	    		    	nminExtracts.addAll(group);
 	      }
+	      else if(x.getTechnology().equals("NMR")) {
+	    	  infoNMR = s8.getNMRPanel();
+	    	  OpenbisExperiment exp = new OpenbisExperiment(buildExperimentName(),
+	    	   		  ExperimentType.Q_CFH_NMR , personID, null);// TODO add secondary name here
+	    	   		  experiments.add(exp);
+	    	  List<List<AOpenbisSample>> cfhSortedTests2 = buildNMRSamples(extracts, classChars , infoNMR);
+	    	     //tests = new ArrayList<AOpenbisSample>();
+	    	  nmrExtracts = new ArrayList<AOpenbisSample>();
+	    	  for (List<AOpenbisSample> group : cfhSortedTests2)
+	    		    	nmrExtracts.addAll(group);
+	      }
 //	      else if (x.getTechnology().equals("SMALLMOLECULES")) {
 //	    	  infoSmallMolecules = s8.getSmallMoleculesPanel();
 //	    	  OpenbisExperiment exp = new OpenbisExperiment(buildExperimentName(),
@@ -570,6 +584,41 @@ public class WizardDataAggregator {
 	    nminExtracts = new ArrayList<AOpenbisSample>();
 	    for (List<AOpenbisSample> group : cfhSortedTests)
 	    	nminExtracts.addAll(group);
+	    for (int i = cfhSortedTests.size() - 1; i > -1; i--) {
+	    	cfhSortedTests.remove(i);
+	      }
+	    return cfhSortedTests;
+	  }
+  
+  
+  public List<List<AOpenbisSample>> prepareNMRSamples() {
+	    cfhTypeInfo = s8.getAnalyteInformation();
+	    if(s8.hasNMR())
+	    {
+	    	 infoNMR = s8.getNMRPanel();
+	    }
+	    else 
+	    	return null;
+	    if (inheritExtracts) {
+	      prepareBasics();
+	      classChars = new HashMap<String, Character>();
+	      experiments = new ArrayList<OpenbisExperiment>();
+	    }
+	    for (TestSampleInformation x : cfhTypeInfo) {
+	      int personID = -1;
+	      String person = x.getPerson();
+	      if (person != null && !person.isEmpty())
+	        personID = personMap.get(person);
+	      
+	    	  OpenbisExperiment exp = new OpenbisExperiment(buildExperimentName(),
+	   		  ExperimentType.Q_CFH_NMR , personID, null);// TODO add secondary name here
+	   		  experiments.add(exp);
+
+	    }
+	    List<List<AOpenbisSample>> cfhSortedTests = buildNMRSamples(extracts, classChars , infoNMR);
+	    nmrExtracts = new ArrayList<AOpenbisSample>();
+	    for (List<AOpenbisSample> group : cfhSortedTests)
+	    	nmrExtracts.addAll(group);
 	    for (int i = cfhSortedTests.size() - 1; i > -1; i--) {
 	    	cfhSortedTests.remove(i);
 	      }
@@ -927,7 +976,7 @@ public class WizardDataAggregator {
       Map<String, Character> classChars) {
     List<List<AOpenbisSample>> tests = new ArrayList<List<AOpenbisSample>>();
     for (int j = 0; j < techTypeInfo.size(); j++) {// different technologies
-    if(!techTypeInfo.get(j).getTechnology().equals("NMIN")&&!techTypeInfo.get(j).getTechnology().equals("ELEMENT")) {	
+    if(!techTypeInfo.get(j).getTechnology().equals("NMIN")&&!techTypeInfo.get(j).getTechnology().equals("ELEMENT")&&!techTypeInfo.get(j).getTechnology().equals("NMR")) {	
       List<AOpenbisSample> techTests = new ArrayList<AOpenbisSample>();
       int techReps = techTypeInfo.get(j).getReplicates();
       String sampleType = techTypeInfo.get(j).getTechnology();
@@ -989,6 +1038,40 @@ public class WizardDataAggregator {
 	    return tests;
 	  }
 
+  
+  
+  private List<List<AOpenbisSample>> buildNMRSamples(List<AOpenbisSample> matrix,
+	      Map<String, Character> classChars , String infoNMR) {
+	  	  List<List<AOpenbisSample>> tests = new ArrayList<List<AOpenbisSample>>();
+	    //for (int j = 0; j < infos.size(); j++) {// different technologies
+	      List<AOpenbisSample> cfhTests = new ArrayList<AOpenbisSample>();
+	      //int techReps = infos.get(j).getReplicates();
+	      //String sampleType = infos.get(j).getTechnology();
+	      int expNum = experiments.size()-1;//hengam: it is becuase one of the experiments has no index and ends with INFO
+	      int j= 0;
+	      for (AOpenbisSample s : matrix) {
+	        //for (int i = techReps; i > 0; i--) {
+	          String secondaryName = s.getQ_SECONDARY_NAME();
+	          if (classChars.containsKey(secondaryName)) { // TODO see above
+	            classChar = classChars.get(secondaryName);
+	          } else {
+	            classChar = SampleCodeFunctions.incrementUppercase(classChar);
+	            classChars.put(secondaryName, classChar);
+	          }
+	          incrementOrCreateBarcode();
+	                    
+	          cfhTests.add(new OpenbisCfhNMRSample(nextBarcode, spaceCode,
+	              experiments.get(expNum).getOpenbisName(), secondaryName, infoNMR, s.getFactors(),"NMR", s.getCode(), s.getQ_EXTERNALDB_ID()));// TODO
+	          j++;
+	          // ext
+	          // db
+	          // id
+	        //}
+	      }
+	      tests.add(cfhTests);
+	    //}
+	    return tests;
+	  }
   
   private List<List<AOpenbisSample>> buildNminSamples(List<AOpenbisSample> matrix,
 	      Map<String, Character> classChars , List<Map<String , String>> infos) {
@@ -1243,6 +1326,8 @@ public class WizardDataAggregator {
       eType = ExperimentType.Q_CFH_ELEMENT;
     else if (type.equals("Q_CFH_NMINS"))
         eType = ExperimentType.Q_CFH_NMIN;
+    else if (type.equals("Q_CFH_NMR_RUN"))
+    	eType = ExperimentType.Q_CFH_NMR;
     else
       logger.error("Unexpected type: " + type);
     experiments.add(new OpenbisExperiment(newExp, eType, -1, null));// TODO secondary name?
@@ -1334,6 +1419,8 @@ public class WizardDataAggregator {
       samples.addAll(nminExtracts);
     if (elementExtracts != null)
       samples.addAll(elementExtracts);
+    if (nmrExtracts != null)
+      samples.addAll(nmrExtracts);
     List<String> rows = new ArrayList<String>();
 
     List<String> header = new ArrayList<String>(Arrays.asList("SAMPLE TYPE", "SPACE", "EXPERIMENT",

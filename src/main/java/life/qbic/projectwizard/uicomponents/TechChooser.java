@@ -207,42 +207,54 @@ public void showHelpers() {
   }
 
  
-  public void addNminListener(ValueChangeListener nminListener) {
-	    this.chooser.addValueChangeListener(nminListener);
-}
-public void removeNminListener(ValueChangeListener nminListener) {
-	    this.chooser.removeValueChangeListener(nminListener);
-}
-public void addSmallMoleculesListener(ValueChangeListener smallMoleculesListener) {
-	this.chooser.addValueChangeListener(smallMoleculesListener);
-}
-public void removeSmallMoleculesListener(ValueChangeListener smallMoleculesListener) {
-	this.chooser.removeValueChangeListener(smallMoleculesListener);
-}
+	public void addNminListener(ValueChangeListener nminListener) {
+		this.chooser.addValueChangeListener(nminListener);
+	}
 
-public void addElementListener(ValueChangeListener elementListener) {
-  this.chooser.addValueChangeListener(elementListener);
-}
+	public void removeNminListener(ValueChangeListener nminListener) {
+		this.chooser.removeValueChangeListener(nminListener);
+	}
 
-public void removeElementListener(ValueChangeListener elementListener) {	
-	  this.chooser.removeValueChangeListener(elementListener);
-}
+	public void addSmallMoleculesListener(ValueChangeListener smallMoleculesListener) {
+		this.chooser.addValueChangeListener(smallMoleculesListener);
+	}
 
-public void addFatListener(ValueChangeListener fatListener) {
-  this.chooser.addValueChangeListener(fatListener);
-}
+	public void removeSmallMoleculesListener(ValueChangeListener smallMoleculesListener) {
+		this.chooser.removeValueChangeListener(smallMoleculesListener);
+	}
 
-public void removeFatListener(ValueChangeListener fatListener) {
-  this.chooser.removeValueChangeListener(fatListener);
-}
+	public void addElementListener(ValueChangeListener elementListener) {
+		this.chooser.addValueChangeListener(elementListener);
+	}
 
-public void addAAListener(ValueChangeListener aaListener) {
-	  this.chooser.addValueChangeListener(aaListener);
-}
+	public void removeElementListener(ValueChangeListener elementListener) {
+		this.chooser.removeValueChangeListener(elementListener);
+	}
 
-public void removeAAListener(ValueChangeListener aaListener) {	
-	  this.chooser.removeValueChangeListener(aaListener);
-}
+	public void addFatListener(ValueChangeListener fatListener) {
+		this.chooser.addValueChangeListener(fatListener);
+	}
+
+	public void removeFatListener(ValueChangeListener fatListener) {
+		this.chooser.removeValueChangeListener(fatListener);
+	}
+
+	public void addAAListener(ValueChangeListener aaListener) {
+		this.chooser.addValueChangeListener(aaListener);
+	}
+
+	public void removeAAListener(ValueChangeListener aaListener) {
+		this.chooser.removeValueChangeListener(aaListener);
+	}
+	
+	public void addNMRListener(ValueChangeListener nmrListener) {
+		this.chooser.addValueChangeListener(nmrListener);
+	}
+
+	public void removeNMRListener(ValueChangeListener nmrListener) {
+		this.chooser.removeValueChangeListener(nmrListener);
+	}
+
   public void setValue(String analyte) {
     chooser.setValue(analyte);
   }
