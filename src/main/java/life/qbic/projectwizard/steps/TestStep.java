@@ -423,7 +423,7 @@ public class TestStep implements WizardStep {
 		NminPanel = new NminPanel(vocabs, getAnalyteInformation()); 
 		NminPanel.setVisible(false);
 		
-		NMRPanel = new NMRPanel();
+		NMRPanel = new NMRPanel(vocabs, getAnalyteInformation() );
 		NMRPanel.setVisible(false);
 		
 		FatPanel = new FatPanel(vocabs);
@@ -448,10 +448,13 @@ public class TestStep implements WizardStep {
 	public void setNminExtracts(List<AOpenbisSample> extracts) {
 		NminPanel.setNminSamples(extracts);
 	}
-	
+	public void setNMRExtracts(List<AOpenbisSample> extracts) {
+		NMRPanel.setNmrSamples(extracts);
+	}
 	public Map<String, Object> getNMRInformation() {
+		
 		Map<String, Object> res = new HashMap<String, Object>();
-		if (NMRPanel.usesDescription())
+		
 			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Sample Description: " + NMRPanel.getDescription()+"<br>");
 		return res;
 		
@@ -618,34 +621,24 @@ public class TestStep implements WizardStep {
 		techPanel.updatePeople(people);
 	}
 
-	public List<Map<String,String>> getElementPanel()
-	{
-		if(containsElement)
-		{
+	public List<Map<String, String>> getElementPanel() {
+		if (containsElement) {
 			return elementPanel.getElementProperties();
 		}
-		
 		return null;
-		
 	}
-	
-	public List<Map<String,String>> getNminPanel()
-	{
-		if(containsNmin)
-		{
+
+	public List<Map<String, String>> getNminPanel() {
+		if (containsNmin) {
 			return NminPanel.getNminProperties();
 		}
-		
 		return null;
 	}
-	
-	public String getNMRPanel()
-	{
-		if(containsNMR)
-		{
-			return NMRPanel.getDescription();
+
+	public List<Map<String, String>> getNMRPanel() {
+		if (containsNMR) {
+			return NMRPanel.getNMRProperties();
 		}
-		
 		return null;
 	}
 }

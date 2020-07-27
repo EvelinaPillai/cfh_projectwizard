@@ -144,7 +144,7 @@ public class WizardDataAggregator {
   
   private List<Map<String , String>> infoElement = new ArrayList<Map<String , String>>();
   private List<Map<String , String>> infoNmin = new ArrayList<Map<String , String>>();
-  private String infoNMR = "";
+  private List<Map<String, String>> infoNMR = new ArrayList<Map<String , String>>();;
   private Map<String , Object> infoSmallMolecules;
 
   /**
@@ -1041,7 +1041,7 @@ public class WizardDataAggregator {
   
   
   private List<List<AOpenbisSample>> buildNMRSamples(List<AOpenbisSample> matrix,
-	      Map<String, Character> classChars , String infoNMR) {
+	      Map<String, Character> classChars , List<Map<String, String>> infos) {
 	  	  List<List<AOpenbisSample>> tests = new ArrayList<List<AOpenbisSample>>();
 	    //for (int j = 0; j < infos.size(); j++) {// different technologies
 	      List<AOpenbisSample> cfhTests = new ArrayList<AOpenbisSample>();
@@ -1060,8 +1060,15 @@ public class WizardDataAggregator {
 	          }
 	          incrementOrCreateBarcode();
 	                    
-	          cfhTests.add(new OpenbisCfhNMRSample(nextBarcode, spaceCode,
-	              experiments.get(expNum).getOpenbisName(), secondaryName, infoNMR, s.getFactors(),"NMR", s.getCode(), s.getQ_EXTERNALDB_ID()));// TODO
+			cfhTests.add(new OpenbisCfhNMRSample(nextBarcode, spaceCode, experiments.get(expNum).getOpenbisName(),
+					secondaryName,infos.get(j).get("Q_ADDITIONAL_INFO"), s.getFactors(), "NMR", infos.get(j).get("NMR_EXP_TYPES"),
+					infos.get(j).get("NMR_EXP_DESC"), infos.get(j).get("NMR_SOLVENT"), infos.get(j).get("NMR_SOLVENT_DETAILS"), infos.get(j).get("NMR_CONCENTRATION"),
+					infos.get(j).get("NMR_VOLUME"), infos.get(j).get("NMR_PH"), infos.get(j).get("NMR_BUFFER"),
+					infos.get(j).get("NMR_DATE"), infos.get(j).get("NMR_STORAGE"), infos.get(j).get("NMR_STORAGE_DETAILS"), infos.get(j).get("NMR_QUANTITATION"),
+					infos.get(j).get("NMR_SAMPLE_DESC"), infos.get(j).get("NMR_SPECTROMETER"), infos.get(j).get("NMR_PROBE"), infos.get(j).get("NMR_PROBE_DETAILS"),
+					infos.get(j).get("NMR_TEMPERATURE"),  s.getCode(), s.getQ_EXTERNALDB_ID()));// TODO
+	
+	        
 	          j++;
 	          // ext
 	          // db
@@ -1080,7 +1087,7 @@ public class WizardDataAggregator {
 	      List<AOpenbisSample> cfhTests = new ArrayList<AOpenbisSample>();
 	      //int techReps = infos.get(j).getReplicates();
 	      //String sampleType = infos.get(j).getTechnology();
-	      int expNum = experiments.size()-1;//hengam: it is becuase one of the experiments has no index and ends with INFO
+	      int expNum = experiments.size()-1;//hengam: it is because one of the experiments has no index and ends with INFO
 	      int j= 0;
 	      for (AOpenbisSample s : matrix) {
 	        //for (int i = techReps; i > 0; i--) {
@@ -1480,6 +1487,26 @@ public class WizardDataAggregator {
     	header.add("Q_CFH_NMIN_DEPTH");
     	header.add("Q_CFH_NMIN_DENSITY");
     	header.add("Q_CFH_NITRATE");
+    }
+    
+    if(!infoNMR.isEmpty()) {
+    	header.add("NMR_EXP_TYPES");
+		header.add("NMR_EXP_DESC");
+		header.add("NMR_SOLVENT");
+		header.add("NMR_CONCENTRATION");
+		header.add("NMR_VOLUME");
+		header.add("NMR_PH"); 
+		header.add("NMR_BUFFER");
+		header.add("NMR_DATE");
+		header.add("NMR_STORAGE");
+		header.add("NMR_QUANTITATION");
+		header.add("NMR_SAMPLE_DESC");
+		header.add("NMR_SPECTROMETER");
+		header.add("NMR_PROBE");
+		header.add("NMR_TEMPERATURE");
+		header.add("NMR_PROBE_DETAILS");
+		header.add("NMR_STORAGE_DETAILS");
+		header.add("NMR_SOLVENT_DETAILS");
     }
     	
     String headerLine = "Identifier";

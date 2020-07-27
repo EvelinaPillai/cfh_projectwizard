@@ -594,7 +594,7 @@ public class MSAnalyteStep implements WizardStep {
     VerticalLayout layout = new VerticalLayout();
     layout.setSpacing(true);
     layout.setMargin(true);
-    EnzymePanel pan = new EnzymePanel(vocabs.getEnzymes());
+    EnzymePanel pan = new EnzymePanel(vocabs.getEnzymes(), "Digestion Enzymes");
     Button ok = new Button("Okay.");
     ok.addClickListener(new ClickListener() {
 

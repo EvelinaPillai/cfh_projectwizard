@@ -20,7 +20,7 @@ public class EnzymePanel extends VerticalLayout {
   private Button remove;
   private Button.ClickListener buttonListener;
 
-  public EnzymePanel(List<String> enzymes) {
+  public EnzymePanel(List<String> enzymes, String caption) {
     this.enzymes = enzymes;
     add = new Button();
     remove = new Button();
@@ -32,7 +32,7 @@ public class EnzymePanel extends VerticalLayout {
     EnzymeChooser c = new EnzymeChooser(enzymes);
     choosers.add(c);
 
-    setCaption("Digestion Enzymes");
+    setCaption(caption);
     addComponent(c);
     buttonGrid = new GridLayout(2, 1);
     buttonGrid.setSpacing(true);

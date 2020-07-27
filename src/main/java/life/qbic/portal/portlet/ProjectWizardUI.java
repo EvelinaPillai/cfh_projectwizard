@@ -54,7 +54,7 @@ import life.qbic.projectwizard.views.MetadataUploadView;
 public class ProjectWizardUI extends QBiCPortletUI {
 
   public static boolean testMode = false;// TODO
-  public static boolean development = true;
+  public static boolean development = false;
   public static String MSLabelingMethods;
   public static String tmpFolder;
 
@@ -147,6 +147,13 @@ public class ProjectWizardUI extends QBiCPortletUI {
        List<String> extractions = openbis.getVocabCodesForVocab("Q_CFH_EXTRACTIONS");
       List<String> devices = openbis.getVocabCodesForVocab("Q_CFH_DEVICES");
       List<String> soildepth = openbis.getVocabCodesForVocab("Q_CFH_SOILDEPTH");
+      List<String> nmrTypes = openbis.getVocabCodesForVocab("Q_CFH_NMR_EXP_TYPES");
+      List<String> solvents = openbis.getVocabCodesForVocab("Q_CFH_NMR_SOLVENT");
+      List<String> storage = openbis.getVocabCodesForVocab("Q_CFH_NMR_STORAGE");
+      List<String> quantitation = openbis.getVocabCodesForVocab("Q_CFH_NMR_QUANTITATION");
+      List<String> probes = openbis.getVocabCodesForVocab("Q_CFH_NMR_PROBE");
+      List<String> spectrometers = openbis.getVocabCodesForVocab("Q_CFH_NMR_SPECTROMETER");
+      
       final List<String> spaces = openbis.getUserSpaces(userID);
       isAdmin = openbis.isUserAdmin(userID);
       // stuff from mysql database
@@ -156,7 +163,8 @@ public class ProjectWizardUI extends QBiCPortletUI {
       Map<String, Integer> peopleMap = dbm.fetchPeople();
       DBVocabularies vocabs = new DBVocabularies(matrixMap,taxMap, tissueMap, cellLinesMap, sampleTypes,
           spaces, peopleMap, expTypes, enzymeMap, antibodiesWithLabels, deviceMap, msProtocols,
-          lcmsMethods, chromTypes, fractionationTypes, enrichmentTypes, purificationMethods, extractions, devices, soildepth);
+          lcmsMethods, chromTypes, fractionationTypes, enrichmentTypes, purificationMethods, extractions, devices, soildepth, nmrTypes, 
+          solvents, storage, quantitation, probes, spectrometers);
       // initialize the View with sample types, spaces and the dictionaries of tissues and species
       initView(dbm, vocabs, userID);
       layout.addComponent(tabs);

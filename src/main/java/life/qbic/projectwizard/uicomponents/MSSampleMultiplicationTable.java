@@ -380,7 +380,7 @@ public class MSSampleMultiplicationTable extends VerticalLayout {
     VerticalLayout layout = new VerticalLayout();
     layout.setSpacing(true);
     layout.setMargin(true);
-    EnzymePanel pan = new EnzymePanel(enzymes);
+    EnzymePanel pan = new EnzymePanel(enzymes, "Digestion Enzymes");
     Button ok = new Button("Okay.");
     ok.addClickListener(new ClickListener() {
 
