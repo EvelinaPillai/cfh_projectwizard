@@ -337,7 +337,7 @@ public class ExperimentImportController implements IRegistrationController {
           String[] splt = line.split("\t");
           if (extIDPos < 0) {
             extIDPos = Arrays.asList(splt).indexOf("Analyte ID");// TODO generalize?
-            builder.append("QBiC Code\t" + line + "\n");
+            builder.append("CFH Code\t" + line + "\n");
           } else {
             String extID = splt[extIDPos];
             String code = extCodeToBarcode.get(extID);// .getCode();
@@ -361,7 +361,7 @@ public class ExperimentImportController implements IRegistrationController {
           String[] splt = line.split("\t");
           if (filePos < 0) {
             filePos = Arrays.asList(splt).indexOf("Filename");// TODO generalize?
-            builder.append("QBiC Code\t" + line + "\n");
+            builder.append("CFH Code\t" + line + "\n");
           } else {
             String file = splt[filePos];
             String code = fileNameToBarcode.get(file);

@@ -374,7 +374,7 @@ public class MetadataUploadView extends VerticalLayout {
     }
     if (barcodeCol == -1) {
       error =
-          "No barcode column found. Make sure one column contains QBiC Barcodes to map your information to existing samples!";
+          "No barcode column found. Make sure one column contains CFH Barcodes to map your information to existing samples!";
       Styles.notification("File Incomplete", error, NotificationType.ERROR);
       return false;
     }
@@ -798,7 +798,7 @@ public class MetadataUploadView extends VerticalLayout {
         layout.addComponent(tf);
         String overwriteInfo =
             "In order to keep your data safe, you are not allowed to overwrite existing information by default. "
-                + "You can either remove the columns in question (choose 'ignore column') or contact QBiC.";
+                + "You can either remove the columns in question (choose 'ignore column') or contact CFH.";
         if (overWriteAllowed)
           overwriteInfo = "You can either remove the columns in question (choose 'ignore column') "
               + "before sending it to the Database or overwrite the metadata.";

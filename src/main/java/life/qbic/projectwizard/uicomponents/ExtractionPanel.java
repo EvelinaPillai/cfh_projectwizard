@@ -11,6 +11,7 @@ import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Button.ClickEvent;
+import com.vaadin.ui.CheckBox;
 
 import life.qbic.portal.Styles;
 
@@ -25,6 +26,7 @@ public class ExtractionPanel extends VerticalLayout {
 	private List<String> devices;
 	private List<ExtractionChooser> choosers;
 	private List<TextField> elements;
+	private List<CheckBox> grinding;
 	private GridLayout buttonGrid;
 	private Button add;
 	private Button remove;
@@ -49,13 +51,18 @@ public class ExtractionPanel extends VerticalLayout {
 		// TODO set values for the TextFields
 		TextField element = new TextField("Selected Elements");
 		elements.add(element);
-
+		
+		grinding = new ArrayList<CheckBox>();
+		CheckBox grind = new CheckBox("Grinding and Homogenizing");
+		grinding.add(grind);
+		
 		//when creating the textfield it status is true
 		status = new ArrayList<Boolean>();
 		status.add(true);
 
 		addComponent(c);
 		addComponent(element);
+		addComponent(grind);
 
 		buttonGrid = new GridLayout(2, 1);
 		buttonGrid.setSpacing(true);
@@ -105,18 +112,29 @@ public class ExtractionPanel extends VerticalLayout {
 		}
 		return res;
 	}
+	
+	public List<CheckBox> getGrinding() {
+		List<CheckBox> res = new ArrayList<CheckBox>();
+		for (CheckBox c : grinding) {
+			res.add(c);
+		}
+		return res;
+	}
 
 	private void add() {
 		if (choosers.size() < 4) {
 			ExtractionChooser c = new ExtractionChooser(extractions, devices);
 			TextField selectedElements = new TextField("Selected Elements");
+			CheckBox grind = new CheckBox("Grinding and Homogenizing");
 			choosers.add(c);
 			elements.add(selectedElements);
+			grinding.add(grind);
 			Collections.replaceAll(status, true, false);
 			status.add(true);
 			removeComponent(buttonGrid);
 			addComponent(c);
 			addComponent(selectedElements);
+			addComponent(grind);
 			addComponent(buttonGrid);
 		}
 	}
@@ -127,12 +145,15 @@ public class ExtractionPanel extends VerticalLayout {
 			ExtractionChooser last = choosers.get(size - 1);
 			//TODO check if really needed
 			TextField lastEle = elements.get(size - 1);
+			CheckBox lastGrind = grinding.get(size - 1);
 			last.reset();
 			removeComponent(last);
 			removeComponent(lastEle);
+			removeComponent(lastGrind);
 			choosers.remove(last);
 			elements.remove(lastEle);
 			devices.remove(last);
+			grinding.remove(lastGrind);
 		}
 	}
 
@@ -173,5 +194,5 @@ public class ExtractionPanel extends VerticalLayout {
 		}
 		return fieldcheck;
 	}
-
+	
 }

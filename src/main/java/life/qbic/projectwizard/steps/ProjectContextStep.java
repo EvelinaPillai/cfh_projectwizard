@@ -121,7 +121,7 @@ public class ProjectContextStep implements WizardStep {
     grid.addComponent(projectInfoComponent, 0, 0);
     Component context = Styles.questionize(projectContext,
         "If this experiment's organisms or "
-            + "tissue extracts are already registered at QBiC from an earlier experiment, you can chose the second "
+            + "tissue extracts are already registered at CFH from an earlier experiment, you can chose the second "
             + "option (new tissue extracts from old organism) or the third (new measurements from old tissue extracts). "
             + "You can also create a preliminary sub-project and add samples later or "
             + "download existing sample information by choosing the last option.",

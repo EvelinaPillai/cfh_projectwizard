@@ -477,7 +477,7 @@ public class WizardController implements IRegistrationController {
           registerProjectOnly(desc, altTitle, user, regStep);
           w.addStep(steps.get(Steps.Finish));
         }
-        if (src.equals("Send Project to QBiC")) {
+        if (src.equals("Send Project to CFH")) {
           String tsv = dataAggregator.getTSVContent();
           String space = contextStep.getSpaceCode();
           String project = contextStep.getProjectCode();
@@ -512,7 +512,7 @@ public class WizardController implements IRegistrationController {
           }
           sendInquiry(space, project, altTitle, tsv, user, notes);
           Styles.notification("Project inquiry sent.",
-              "Your Project inquiry was successfully sent to QBiC. We will contact you.",
+              "Your Project inquiry was successfully sent to CFH. We will contact you.",
               NotificationType.SUCCESS);
         }
         if (src.equals("Register All Samples")) {
@@ -1204,7 +1204,7 @@ public class WizardController implements IRegistrationController {
                   + lastInput.toString());
           logger.error("Wizard likely stopped working before registration. User was " + user);
           Styles.notification("Error",
-              "Sorry, something went wrong. Please notify a QBiC contact person.",
+              "Sorry, something went wrong. Please notify a CFH contact person.",
               NotificationType.ERROR);
           return null;
         }

@@ -1027,7 +1027,7 @@ public class WizardDataAggregator {
 	                    
 	          cfhTests.add(new OpenbisCfhElementSample(nextBarcode, spaceCode,
 	              experiments.get(expNum).getOpenbisName(), secondaryName, "", s.getFactors(),"ELEMENT",infos.get(j).get("Q_CFH_DIGESTION")
-	              ,infos.get(j).get("Q_ELEMENT_DESC"),infos.get(j).get("Q_CFH_DEVICES"),s.getCode(), s.getQ_EXTERNALDB_ID()));// TODO
+	              ,infos.get(j).get("Q_ELEMENT_DESC"),infos.get(j).get("Q_CFH_DEVICES"),infos.get(j).get("Q_CFH_GRINDING"),s.getCode(), s.getQ_EXTERNALDB_ID()));// TODO
 	          // ext
 	          // db
 	          // id
@@ -1481,6 +1481,7 @@ public class WizardDataAggregator {
     	header.add("Q_CFH_DIGESTION");
     	header.add("Q_ELEMENT_DESC");
     	header.add("Q_CFH_DEVICES");
+    	header.add("Q_CFH_GRINDING");
     }
     
     if(!infoNmin.isEmpty()) {
@@ -1550,7 +1551,7 @@ public class WizardDataAggregator {
         rows.add(row);
       } else {
         logger.warn(
-            code + " will be ignored, it is not a valid QBiC barcode registerable by the wizard.");
+            code + " will be ignored, it is not a valid CFH barcode registerable by the wizard.");
       }
     }
     result += headerLine + "\n";

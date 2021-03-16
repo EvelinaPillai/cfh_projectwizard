@@ -70,7 +70,7 @@ public class SummaryRegisterStep implements WizardStep, IRegistrationView {
       + "and I agree to pay all charges upon receival of the "
       + "invoice. This submission is binding.";
   private final String freeOption = "I understand that this experimental design draft will "
-      + "now be submitted for QBiC review. I thereby request "
+      + "now be submitted for CFH review. I thereby request "
       + "a consultancy meeting. There are no costs associated " + "with this submission.";
 
   public SummaryRegisterStep() {
@@ -192,7 +192,7 @@ public class SummaryRegisterStep implements WizardStep, IRegistrationView {
         if (optionGroup.getValue().equals(1))
           register.setCaption("Register All Samples");
         if (optionGroup.getValue().equals(2))
-          register.setCaption("Send Project to QBiC");
+          register.setCaption("Send Project to CFH");
       }
     }
   }

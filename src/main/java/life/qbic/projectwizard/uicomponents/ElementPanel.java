@@ -224,6 +224,7 @@ public class ElementPanel extends HorizontalLayout {
 			}
 			res1.put("Q_ELEMENT_DESC", extractionPanel.getElements().get(i).getValue());
 			res1.put("Q_CFH_DEVICES", extractionPanel.getDevices().get(i));
+			res1.put("Q_CFH_GRINDING", extractionPanel.getGrinding().get(i).getValue().toString());
 			res.add(res1);
 		}
 		return res;
