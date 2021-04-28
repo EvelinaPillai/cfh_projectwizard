@@ -17,6 +17,7 @@ package life.qbic.projectwizard.steps;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -65,6 +66,7 @@ public class TestStep implements WizardStep {
 	private VerticalLayout main;
 	private TechnologiesPanel techPanel;
 	private MSOptionComponent msPanel;
+	private MSOptionComponent peptidePanel;
 	private LigandExtractPanel mhcLigandPanel;
 	private ElementPanel elementPanel;
 	private AminoAcidPanel AminoAcidPanel;
@@ -82,6 +84,7 @@ public class TestStep implements WizardStep {
 	private boolean containsFat = false;
 	private boolean containsAA = false;
 	private boolean containsSmallMolecules = false;
+	private boolean containsPeptides = false;
 
 	private Wizard wizard;
 
@@ -146,6 +149,9 @@ public class TestStep implements WizardStep {
 		if (techPanel.isValid() || noMeasure.getValue()) {
 			if (containsProteins) {
 				return (msPanel.isValid());
+			}
+			if (containsPeptides) {
+				return (peptidePanel.isValid());
 			}
 			if(containsNmin) {
 				return (NminPanel.isValid());
@@ -215,6 +221,10 @@ public class TestStep implements WizardStep {
 		return containsSmallMolecules;
 	}
 
+	public boolean hasPeptides() {
+		return containsPeptides;
+	}
+	
 	public void initTestStep(ValueChangeListener testPoolListener, ValueChangeListener outerProteinListener,
 			ClickListener refreshPeopleListener, Map<Steps, WizardStep> steps) {
 		
@@ -387,10 +397,33 @@ public class TestStep implements WizardStep {
 			}
 		};
 
+		ValueChangeListener peptideListener = new ValueChangeListener() {
+
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = -4610963627546345848L;
+
+			@Override
+			 public void valueChange(ValueChangeEvent event) {
+		        containsPeptides = false;
+		        for (TestSampleInformation i : getAnalyteInformation()) {
+		          String tech = i.getTechnology();
+		          containsPeptides |= tech.equals("PEPTIDES");
+		        }
+		        
+		        peptidePanel.setVisible(containsPeptides);
+		     
+		      }
+		    };
+
+		Collections.sort(vocabs.getAnalyteTypes());
+		
 		techPanel = new TechnologiesPanel(vocabs.getAnalyteTypes(), vocabs.getPeople().keySet(), new OptionGroup(""),
 				testPoolListener,
 				new ArrayList<ValueChangeListener>(Arrays.asList(outerProteinListener, proteinListener)),
 				mhcLigandListener, refreshPeopleListener, elementListener, aaListener, fatListener, nminListener, nmrListener, smallMoleculesListener,
+				peptideListener,
 				vocabs.getMatrixMap());
 
 		main.addComponent(techPanel);
@@ -432,12 +465,16 @@ public class TestStep implements WizardStep {
 		smallMoleculesPanel = new SmallMoleculePanel(vocabs);
 		smallMoleculesPanel.setVisible(false);
 		
+		peptidePanel = new MSOptionComponent(vocabs);
+		peptidePanel.setVisible(false);
+		
 		main.addComponent(elementPanel);
 		main.addComponent(NminPanel);
 		main.addComponent(NMRPanel);
 		main.addComponent(FatPanel);
 		main.addComponent(AminoAcidPanel);
 		main.addComponent(smallMoleculesPanel);
+		main.addComponent(peptidePanel);
 		
 	}
 
@@ -548,6 +585,41 @@ public class TestStep implements WizardStep {
 		if (smallMoleculesPanel.usesComments())
 			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Comments: " + smallMoleculesPanel.getComments() + "<br>");
 	
+		if (peptidePanel.usesSilver())
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Silver"+"<br>");
+		if (peptidePanel.usesCoomassie())
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Coomassie"+"<br>");
+		if (peptidePanel.usesComposition())
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Sample Composition: " + peptidePanel.getComposition()+"<br>");
+		if (peptidePanel.usesDigestionSolution())
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "in solution digestion"+"<br>"); 
+		if (peptidePanel.usesDigestionGel())
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "in gel digestion"+"<br>"); 
+		if (peptidePanel.usesPrecipitation())
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Precipitation"+"<br>"); 
+		if (peptidePanel.usesShortGel())
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Short Gel" +"<br>");
+		if (peptidePanel.usesOther())
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Other: " + peptidePanel.getOther()+"<br>");
+		if (peptidePanel.usesNone())
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "None"+"<br>");
+			
+		if (peptidePanel.usesIdentification())
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Identification"+"<br>");
+		if (peptidePanel.usesQuantification())
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Quantification"+"<br>");
+		if (peptidePanel.usesMolecularWeight())
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Molecular weight determination"+"<br>");
+		if (peptidePanel.usesEvaluation())
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "No data analysis"+"<br>");
+		if (peptidePanel.usesDuration())
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Instrument time: " + peptidePanel.getDuration()+"<br>");		
+		if (peptidePanel.usesComments())
+			res.put("Q_ADDITIONAL_INFO", res.get("Q_ADDITIONAL_INFO") + "Comments: " + peptidePanel.getComments()+"<br>");
+		
+		if (peptidePanel.usesPurification())
+			res.put("Q_MS_PURIFICATION_METHOD", peptidePanel.getPurificationMethod());
+		
 		return res;
 	}
 
@@ -613,6 +685,28 @@ public class TestStep implements WizardStep {
 		smallMoleculesPanel.selectUsesEvaluation(infos.isEvaluation());
 		smallMoleculesPanel.selectInternalStandards(infos.getInternaStandards());
 		smallMoleculesPanel.selectComments(infos.getComments());
+		
+		peptidePanel.selectUsesSilver(infos.isSilver());
+		peptidePanel.selectUsesCoomassie(infos.isCoomassie());
+		
+		peptidePanel.selectComposition(infos.getComposition());
+		peptidePanel.selectUsesDigestionSolution(infos.isDigestionSolution());
+		peptidePanel.selectUsesDigestionGel(infos.isDigestionGel());
+		peptidePanel.selectUsesPrecipitation(infos.isPrecipitation());
+		peptidePanel.selectUseShortGel(infos.isShortGel());
+		peptidePanel.selectOther(infos.getOther());
+		peptidePanel.selectUsesNone(infos.isNone());
+		
+		peptidePanel.selectUsesIdentification(infos.isIdentification());
+		peptidePanel.selectUsesQuantification(infos.isQuantification());
+		peptidePanel.selectUsesMolecularWeight(infos.isMolecularWeight());
+		peptidePanel.selectUsesEvaluation(infos.isEvaluation());
+		peptidePanel.selectDuration(infos.getDuration());
+		peptidePanel.selectComments(infos.getComments());		
+		
+		//optional from QBiC
+		peptidePanel.selectMeasurePeptides(infos.isMeasurePeptides());
+		peptidePanel.selectProteinPurification(infos.getPurificationMethod());
 		
 
 	}

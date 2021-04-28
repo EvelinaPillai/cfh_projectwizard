@@ -35,6 +35,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.vaadin.teemu.wizards.WizardStep;
 
+import com.liferay.portal.kernel.log.Log;
+
 import life.qbic.datamodel.experiments.ExperimentModel;
 import life.qbic.datamodel.experiments.ExperimentType;
 import life.qbic.datamodel.experiments.OpenbisExperiment;
@@ -69,405 +71,401 @@ import life.qbic.xml.manager.XMLParser;
 import life.qbic.xml.properties.Property;
 
 /**
- * Aggregates the data from the wizard needed to create the experimental setup in the form of TSVs
+ * Aggregates the data from the wizard needed to create the experimental setup
+ * in the form of TSVs
  * 
  * @author Andreas Friedrich
  * 
  */
 public class WizardDataAggregator {
 
-  private ProjectContextStep s1;
-  private EntityStep s2;
-  private ConditionInstanceStep s3;
-  private ExtractionStep s5;
-  private ConditionInstanceStep s6;
-  private TestStep s8;
- // private MatrixStep s9; //TODO to delete
+	private ProjectContextStep s1;
+	private EntityStep s2;
+	private ConditionInstanceStep s3;
+	private ExtractionStep s5;
+	private ConditionInstanceStep s6;
+	private TestStep s8;
+	// private MatrixStep s9; //TODO to delete
 
-  private String tsvContent;
+	private String tsvContent;
 
-  private IOpenBisClient openbis;
-  private XMLParser xmlParser = new XMLParser();
-  private Map<String, String> taxMap;
-  //private Map<String, String> matrixMap;
-  private Map<String, String> tissueMap;
-  private Map<String, Property> factorMap;
-  private Map<String, Integer> personMap;
-  private int firstFreeExperimentID;
-  private int firstFreeEntityID;
-  private Map<String, Sample> existingSamples;
-  private Map<String, String> oldCodesToNewCodes;
-  private String nextBarcode;
-  private String firstFreeBarcode;
-  private char classChar = 'X';
+	private IOpenBisClient openbis;
+	private XMLParser xmlParser = new XMLParser();
+	private Map<String, String> taxMap;
+	// private Map<String, String> matrixMap;
+	private Map<String, String> tissueMap;
+	private Map<String, Property> factorMap;
+	private Map<String, Integer> personMap;
+	private int firstFreeExperimentID;
+	private int firstFreeEntityID;
+	private Map<String, Sample> existingSamples;
+	private Map<String, String> oldCodesToNewCodes;
+	private String nextBarcode;
+	private String firstFreeBarcode;
+	private char classChar = 'X';
 
-  // mandatory openBIS fields
-  private String spaceCode;
-  private String projectCode;
-  private List<OpenbisExperiment> experiments;
-  private String species;
-  private String speciesInfo;
-  //private String matrix;
-  private String tissue;
-  private String specialTissue;
-  private List<TestSampleInformation> techTypeInfo = new ArrayList<TestSampleInformation>();
-  private List<TestSampleInformation> cfhTypeInfo = new ArrayList<TestSampleInformation>();
-  // info needed to create samples
-  private int bioReps;
-  private int extractReps;
+	// mandatory openBIS fields
+	private String spaceCode;
+	private String projectCode;
+	private List<OpenbisExperiment> experiments;
+	private String species;
+	private String speciesInfo;
+	// private String matrix;
+	private String tissue;
+	private String specialTissue;
+	private List<TestSampleInformation> techTypeInfo = new ArrayList<TestSampleInformation>();
+	private List<TestSampleInformation> cfhTypeInfo = new ArrayList<TestSampleInformation>();
+	// info needed to create samples
+	private int bioReps;
+	private int extractReps;
 
-  private List<List<String>> bioFactors;
-  private List<List<String>> extractFactors;
-  private boolean inheritEntities;
-  private boolean inheritExtracts;
+	private List<List<String>> bioFactors;
+	private List<List<String>> extractFactors;
+	private boolean inheritEntities;
+	private boolean inheritExtracts;
 
-  private List<Sample> openbisEntities;
-  private List<AOpenbisSample> entities = new ArrayList<AOpenbisSample>();
-  private List<AOpenbisSample> extracts;
-  private List<AOpenbisSample> tests;
-  private List<AOpenbisSample> extractPools;
-  private List<AOpenbisSample> testPools;
-  private List<AOpenbisSample> msSamples;
-  private List<AOpenbisSample> mhcExtracts;
-  private List<AOpenbisSample> nminExtracts;
-  private List<AOpenbisSample> nmrExtracts;
-  private List<AOpenbisSample> elementExtracts;
-  private Map<String, Character> classChars;
-  private static final Logger logger = LogManager.getLogger(WizardDataAggregator.class);
-  private ArrayList<Sample> samples;
+	private List<Sample> openbisEntities;
+	private List<AOpenbisSample> entities = new ArrayList<AOpenbisSample>();
+	private List<AOpenbisSample> extracts;
+	private List<AOpenbisSample> tests;
+	private List<AOpenbisSample> extractPools;
+	private List<AOpenbisSample> testPools;
+	private List<AOpenbisSample> msSamples;
+	private List<AOpenbisSample> mhcExtracts;
+	private List<AOpenbisSample> nminExtracts;
+	private List<AOpenbisSample> nmrExtracts;
+	private List<AOpenbisSample> elementExtracts;
+	private Map<String, Character> classChars;
+	private static final Logger logger = LogManager.getLogger(WizardDataAggregator.class);
+	private ArrayList<Sample> samples;
 
-  private Map<String, Object> matrixProtocol;
-  private Map<String, Map<String, Object>> mhcExperimentProtocols;
-  private MSExperimentModel fractionationProperties;
-  private List<ExperimentType> informativeExpTypes = new ArrayList<ExperimentType>(
-      Arrays.asList(ExperimentType.Q_MHC_LIGAND_EXTRACTION, ExperimentType.Q_MS_MEASUREMENT));
-  
-  private List<Map<String , String>> infoElement = new ArrayList<Map<String , String>>();
-  private List<Map<String , String>> infoNmin = new ArrayList<Map<String , String>>();
-  private List<Map<String, String>> infoNMR = new ArrayList<Map<String , String>>();;
-  private Map<String , Object> infoSmallMolecules;
+	private Map<String, Object> matrixProtocol;
+	private Map<String, Map<String, Object>> mhcExperimentProtocols;
+	private MSExperimentModel fractionationProperties;
+	private List<ExperimentType> informativeExpTypes = new ArrayList<ExperimentType>(
+			Arrays.asList(ExperimentType.Q_MHC_LIGAND_EXTRACTION, ExperimentType.Q_MS_MEASUREMENT));
 
-  /**
-   * Creates a new WizardDataAggregator
-   * 
-   * @param steps the steps of the Wizard to extract the data from
-   * @param openbis openBIS client connection to query for existing context
-   * @param taxMap mapping between taxonomy IDs and species names
-   * @param tissueMap mapping of tissue names and labels
-   */
-  public WizardDataAggregator(Map<Steps, WizardStep> steps, IOpenBisClient openbis,
-      Map<String, String> taxMap, Map<String, String> tissueMap, Map<String, Integer> personMap) {
-    s1 = (ProjectContextStep) steps.get(Steps.Project_Context);
-    s2 = (EntityStep) steps.get(Steps.Entities);
-    s3 = (ConditionInstanceStep) steps.get(Steps.Entity_Conditions);
-    s5 = (ExtractionStep) steps.get(Steps.Extraction);
-    s6 = (ConditionInstanceStep) steps.get(Steps.Extract_Conditions);
-    s8 = (TestStep) steps.get(Steps.Test_Samples);
-    //s9 = (MatrixStep) steps.get(Steps.Matrix); //TODO to delete
-    this.openbis = openbis;
-    this.taxMap = taxMap;
-   // this.matrixMap = matrixMap;
-    this.personMap = personMap;
-    this.tissueMap = tissueMap;
-  }
+	private List<Map<String, String>> infoElement = new ArrayList<Map<String, String>>();
+	private List<Map<String, String>> infoNmin = new ArrayList<Map<String, String>>();
+	private List<Map<String, String>> infoNMR = new ArrayList<Map<String, String>>();
+	private Map<String, Object> infoPeptides = new HashMap<String, Object>();
+	private Map<String, Object> infoSmallMolecules;
 
-  public String getProjectCode() {
-    return projectCode;
-  }
+	/**
+	 * Creates a new WizardDataAggregator
+	 * 
+	 * @param steps     the steps of the Wizard to extract the data from
+	 * @param openbis   openBIS client connection to query for existing context
+	 * @param taxMap    mapping between taxonomy IDs and species names
+	 * @param tissueMap mapping of tissue names and labels
+	 */
+	public WizardDataAggregator(Map<Steps, WizardStep> steps, IOpenBisClient openbis, Map<String, String> taxMap,
+			Map<String, String> tissueMap, Map<String, Integer> personMap) {
+		s1 = (ProjectContextStep) steps.get(Steps.Project_Context);
+		s2 = (EntityStep) steps.get(Steps.Entities);
+		s3 = (ConditionInstanceStep) steps.get(Steps.Entity_Conditions);
+		s5 = (ExtractionStep) steps.get(Steps.Extraction);
+		s6 = (ConditionInstanceStep) steps.get(Steps.Extract_Conditions);
+		s8 = (TestStep) steps.get(Steps.Test_Samples);
+		// s9 = (MatrixStep) steps.get(Steps.Matrix); //TODO to delete
+		this.openbis = openbis;
+		this.taxMap = taxMap;
+		// this.matrixMap = matrixMap;
+		this.personMap = personMap;
+		this.tissueMap = tissueMap;
+	}
 
-  /**
-   * Fetches context information like space and project and computes first unused IDs of samples and
-   * context.
-   */
-  private void prepareBasics() {
-    firstFreeExperimentID = 1;
-    firstFreeEntityID = 1;
-    firstFreeBarcode = "";// TODO cleanup where not needed
-    existingSamples = new HashMap<String, Sample>();
-    spaceCode = s1.getSpaceCode();
-    projectCode = s1.getProjectCode().toUpperCase();
+	public String getProjectCode() {
+		return projectCode;
+	}
 
-    samples = new ArrayList<Sample>();
-    if (openbis.projectExists(spaceCode, projectCode)) {
-      samples.addAll(openbis.getSamplesWithParentsAndChildrenOfProjectBySearchService(
-          "/" + spaceCode + "/" + projectCode));
-    }
+	/**
+	 * Fetches context information like space and project and computes first unused
+	 * IDs of samples and context.
+	 */
+	private void prepareBasics() {
+		firstFreeExperimentID = 1;
+		firstFreeEntityID = 1;
+		firstFreeBarcode = "";// TODO cleanup where not needed
+		existingSamples = new HashMap<String, Sample>();
+		spaceCode = s1.getSpaceCode();
+		projectCode = s1.getProjectCode().toUpperCase();
 
-    if (!s1.fetchTSVModeSet()) {
-      for (Experiment e : openbis.getExperimentsOfProjectByCode(projectCode)) {
-        String code = e.getCode();
-        String[] split = code.split(projectCode + "E");
-        if (code.startsWith(projectCode + "E") && split.length > 1) {
-          int num = 0;
-          try {
-            num = Integer.parseInt(split[1]);
-          } catch (Exception e2) {
-          }
-          if (firstFreeExperimentID <= num)
-            firstFreeExperimentID = num + 1;
-        }
-      }
+		samples = new ArrayList<Sample>();
+		if (openbis.projectExists(spaceCode, projectCode)) {
+			samples.addAll(openbis
+					.getSamplesWithParentsAndChildrenOfProjectBySearchService("/" + spaceCode + "/" + projectCode));
+		}
 
-      for (Sample s : samples) {
-        String code = s.getCode();
-        existingSamples.put(code, s);
-        if (SampleCodeFunctions.isQbicBarcode(code)) {
-          if (SampleCodeFunctions.compareSampleCodes(firstFreeBarcode, code) <= 0) {
-            firstFreeBarcode = SampleCodeFunctions.incrementSampleCode(code);
-          }
-        } else if (s.getSampleTypeCode().equals(("Q_BIOLOGICAL_ENTITY"))) {
-          int num = Integer.parseInt(s.getCode().split("-")[1]);
-          if (num >= firstFreeEntityID)
-            firstFreeEntityID = num + 1;
-        }
-      }
-    }
-  }
+		if (!s1.fetchTSVModeSet()) {
+			for (Experiment e : openbis.getExperimentsOfProjectByCode(projectCode)) {
+				String code = e.getCode();
+				String[] split = code.split(projectCode + "E");
+				if (code.startsWith(projectCode + "E") && split.length > 1) {
+					int num = 0;
+					try {
+						num = Integer.parseInt(split[1]);
+					} catch (Exception e2) {
+					}
+					if (firstFreeExperimentID <= num)
+						firstFreeExperimentID = num + 1;
+				}
+			}
 
-  /**
-   * Creates the list of biological entities from the input information collected in the aggregator
-   * fields and wizard steps and fetches or creates the associated context
-   * 
-   * @param map
-   * 
-   * @return
-   * @throws JAXBException
-   */
-  public List<AOpenbisSample> prepareEntities(Map<Object, Integer> map, boolean copy)
-      throws JAXBException {
-    prepareBasics();
-    this.factorMap = new HashMap<String, Property>();
-    experiments = new ArrayList<OpenbisExperiment>();
-    species = s2.getSpecies();
-    speciesInfo = s2.getSpecialSpecies();
-    bioReps = s2.getBioRepAmount();
-    //matrix = s2.getMatrices();
+			for (Sample s : samples) {
+				String code = s.getCode();
+				existingSamples.put(code, s);
+				if (SampleCodeFunctions.isQbicBarcode(code)) {
+					if (SampleCodeFunctions.compareSampleCodes(firstFreeBarcode, code) <= 0) {
+						firstFreeBarcode = SampleCodeFunctions.incrementSampleCode(code);
+					}
+				} else if (s.getSampleTypeCode().equals(("Q_BIOLOGICAL_ENTITY"))) {
+					int num = Integer.parseInt(s.getCode().split("-")[1]);
+					if (num >= firstFreeEntityID)
+						firstFreeEntityID = num + 1;
+				}
+			}
+		}
+	}
 
-    // entities are not created new, but parsed from registered ones
-    if (inheritEntities) {
-      openbisEntities = openbis.getSamplesofExperiment(s1.getExperiment().getID());
-      entities = parseEntities(openbisEntities, copy);
-      // create new entities and an associated experiment from collected inputs
-    } else {
-      int personID = -1;
-      String person = s2.getPerson();
-      Map<String, Object> props = new HashMap<String, Object>();
-      if (!s2.getExpNameField().getValue().isEmpty())
-        props.put("Q_SECONDARY_NAME", s2.getExpNameField().getValue());
-      if (person != null && !person.isEmpty())
-        personID = personMap.get(person);
-      experiments.add(new OpenbisExperiment(buildExperimentName(),
-          ExperimentType.Q_EXPERIMENTAL_DESIGN, personID, props));
+	/**
+	 * Creates the list of biological entities from the input information collected
+	 * in the aggregator fields and wizard steps and fetches or creates the
+	 * associated context
+	 * 
+	 * @param map
+	 * 
+	 * @return
+	 * @throws JAXBException
+	 */
+	public List<AOpenbisSample> prepareEntities(Map<Object, Integer> map, boolean copy) throws JAXBException {
+		prepareBasics();
+		this.factorMap = new HashMap<String, Property>();
+		experiments = new ArrayList<OpenbisExperiment>();
+		species = s2.getSpecies();
+		speciesInfo = s2.getSpecialSpecies();
+		bioReps = s2.getBioRepAmount();
+		// matrix = s2.getMatrices();
 
-      List<List<Property>> valueLists = s3.getFactors();
-      bioFactors = createFactorInfo(valueLists);
+		// entities are not created new, but parsed from registered ones
+		if (inheritEntities) {
+			openbisEntities = openbis.getSamplesofExperiment(s1.getExperiment().getID());
+			entities = parseEntities(openbisEntities, copy);
+			// create new entities and an associated experiment from collected inputs
+		} else {
+			int personID = -1;
+			String person = s2.getPerson();
+			Map<String, Object> props = new HashMap<String, Object>();
+			if (!s2.getExpNameField().getValue().isEmpty())
+				props.put("Q_SECONDARY_NAME", s2.getExpNameField().getValue());
+			if (person != null && !person.isEmpty())
+				personID = personMap.get(person);
+			experiments.add(new OpenbisExperiment(buildExperimentName(), ExperimentType.Q_EXPERIMENTAL_DESIGN, personID,
+					props));
 
-      entities = buildEntities(map);
-    }
-    return entities;
-  }
+			List<List<Property>> valueLists = s3.getFactors();
+			bioFactors = createFactorInfo(valueLists);
 
-  /**
-   * Creates the list of biological extracts from the input information collected in the aggregator
-   * fields and wizard steps and fetches or creates the associated context
-   * 
-   * @param map
-   * @param copyMode
-   * 
-   * @return
-   * @throws JAXBException
-   */
-  public List<AOpenbisSample> prepareExtracts(Map<Object, Integer> map, boolean copyMode)
-      throws JAXBException {
-    // extracts are not created new, but parsed from registered ones
-    if (inheritExtracts) {
-      if (copyMode) {
-        // child experiment of entities
-        String expID = existingSamples.get(openbisEntities.get(0).getCode()).getChildren().get(0)
-            .getExperimentIdentifierOrNull();
-        List<Sample> samples = openbis.getSamplesofExperiment(expID);
-        Map<Sample, List<String>> parentMap = getParentMap(samples);
-        List<AOpenbisSample> oldExtracts = parseExtracts(samples, parentMap);
-        Set<String> entityCodes = new HashSet<String>();
-        for (AOpenbisSample e : entities)
-          entityCodes.add(e.getCode());
-        extracts = new ArrayList<AOpenbisSample>();
-        for (AOpenbisSample s : oldExtracts) {
-          boolean orphan = true;
-          String parentString = s.getParent();
-          for (String p : parentString.split(" ")) {
-            String newP = oldCodesToNewCodes.get(p);
-            if (entityCodes.contains(newP)) {
-              orphan = false;
-              parentString = parentString.replace(p, newP);
-            } else {
-              parentString = parentString.replace(p, " ");
-            }
-          }
-          if (!orphan) {
-            incrementOrCreateBarcode();
-            String newCode = nextBarcode;
-            oldCodesToNewCodes.put(s.getCode(), newCode);
-            s.setCode(newCode);
-            s.setParent(parentString);
-            extracts.add(s);
-          }
-        }
-      } else {
-        prepareBasics();
-        this.factorMap = new HashMap<String, Property>();
-        experiments = new ArrayList<OpenbisExperiment>();
+			entities = buildEntities(map);
+		}
+		return entities;
+	}
 
-        List<Sample> samples = openbis.getSamplesofExperiment(s1.getExperiment().getID());
-        extracts = parseExtracts(samples, getParentMap(samples));
-      }
-      // create new entities and an associated experiment from collected inputs
-    } else {
-      tissue = s5.getTissue();
-      specialTissue = s5.getCellLine();
-      if ("Other".equals(tissue))
-        specialTissue = s5.getSpecialTissue();
-      extractReps = s5.getExtractRepAmount();
-      int personID = -1;
-      String person = s5.getPerson();
-      if (person != null && !person.isEmpty())
-        personID = personMap.get(person);
-      Map<String, Object> props = new HashMap<String, Object>();
-      if (!s5.getExpNameField().getValue().isEmpty())
-        props.put("Q_SECONDARY_NAME", s5.getExpNameField().getValue());
-      experiments.add(new OpenbisExperiment(buildExperimentName(),
-          ExperimentType.Q_SAMPLE_EXTRACTION, personID, props));
-      List<List<Property>> valueLists = s6.getFactors();
-      extractFactors = createFactorInfo(valueLists);
-      // keep track of id letters for different conditions
-      classChars = new HashMap<String, Character>();
-      extracts = buildExtracts(entities, classChars, map);
-    }
-    return extracts;
-  }
+	/**
+	 * Creates the list of biological extracts from the input information collected
+	 * in the aggregator fields and wizard steps and fetches or creates the
+	 * associated context
+	 * 
+	 * @param map
+	 * @param copyMode
+	 * 
+	 * @return
+	 * @throws JAXBException
+	 */
+	public List<AOpenbisSample> prepareExtracts(Map<Object, Integer> map, boolean copyMode) throws JAXBException {
+		// extracts are not created new, but parsed from registered ones
+		if (inheritExtracts) {
+			if (copyMode) {
+				// child experiment of entities
+				String expID = existingSamples.get(openbisEntities.get(0).getCode()).getChildren().get(0)
+						.getExperimentIdentifierOrNull();
+				List<Sample> samples = openbis.getSamplesofExperiment(expID);
+				Map<Sample, List<String>> parentMap = getParentMap(samples);
+				List<AOpenbisSample> oldExtracts = parseExtracts(samples, parentMap);
+				Set<String> entityCodes = new HashSet<String>();
+				for (AOpenbisSample e : entities)
+					entityCodes.add(e.getCode());
+				extracts = new ArrayList<AOpenbisSample>();
+				for (AOpenbisSample s : oldExtracts) {
+					boolean orphan = true;
+					String parentString = s.getParent();
+					for (String p : parentString.split(" ")) {
+						String newP = oldCodesToNewCodes.get(p);
+						if (entityCodes.contains(newP)) {
+							orphan = false;
+							parentString = parentString.replace(p, newP);
+						} else {
+							parentString = parentString.replace(p, " ");
+						}
+					}
+					if (!orphan) {
+						incrementOrCreateBarcode();
+						String newCode = nextBarcode;
+						oldCodesToNewCodes.put(s.getCode(), newCode);
+						s.setCode(newCode);
+						s.setParent(parentString);
+						extracts.add(s);
+					}
+				}
+			} else {
+				prepareBasics();
+				this.factorMap = new HashMap<String, Property>();
+				experiments = new ArrayList<OpenbisExperiment>();
 
+				List<Sample> samples = openbis.getSamplesofExperiment(s1.getExperiment().getID());
+				extracts = parseExtracts(samples, getParentMap(samples));
+			}
+			// create new entities and an associated experiment from collected inputs
+		} else {
+			tissue = s5.getTissue();
+			specialTissue = s5.getCellLine();
+			if ("Other".equals(tissue))
+				specialTissue = s5.getSpecialTissue();
+			extractReps = s5.getExtractRepAmount();
+			int personID = -1;
+			String person = s5.getPerson();
+			if (person != null && !person.isEmpty())
+				personID = personMap.get(person);
+			Map<String, Object> props = new HashMap<String, Object>();
+			if (!s5.getExpNameField().getValue().isEmpty())
+				props.put("Q_SECONDARY_NAME", s5.getExpNameField().getValue());
+			experiments.add(
+					new OpenbisExperiment(buildExperimentName(), ExperimentType.Q_SAMPLE_EXTRACTION, personID, props));
+			List<List<Property>> valueLists = s6.getFactors();
+			extractFactors = createFactorInfo(valueLists);
+			// keep track of id letters for different conditions
+			classChars = new HashMap<String, Character>();
+			extracts = buildExtracts(entities, classChars, map);
+		}
+		return extracts;
+	}
 
-  // TODO move this to openbisclient and remove from here and barcodecontroller
-  protected Map<Sample, List<String>> getParentMap(List<Sample> samples) {
-    List<String> codes = new ArrayList<String>();
-    for (Sample s : samples) {
-      codes.add(s.getCode());
-    }
-    Map<String, Object> params = new HashMap<String, Object>();
-    params.put("codes", codes);
-    QueryTableModel resTable = openbis.getAggregationService("get-parentmap", params);
-    Map<String, List<String>> parentMap = new HashMap<String, List<String>>();
+	// TODO move this to openbisclient and remove from here and barcodecontroller
+	protected Map<Sample, List<String>> getParentMap(List<Sample> samples) {
+		List<String> codes = new ArrayList<String>();
+		for (Sample s : samples) {
+			codes.add(s.getCode());
+		}
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("codes", codes);
+		QueryTableModel resTable = openbis.getAggregationService("get-parentmap", params);
+		Map<String, List<String>> parentMap = new HashMap<String, List<String>>();
 
-    for (Serializable[] ss : resTable.getRows()) {
-      String code = (String) ss[0];
-      String parent = (String) ss[1];
-      if (parentMap.containsKey(code)) {
-        List<String> parents = parentMap.get(code);
-        parents.add(parent);
-        parentMap.put(code, parents);
-      } else {
-        parentMap.put(code, new ArrayList<String>(Arrays.asList(parent)));
-      }
-    }
-    Map<Sample, List<String>> res = new HashMap<Sample, List<String>>();
-    for (Sample s : samples) {
-      List<String> prnts = parentMap.get(s.getCode());
-      if (prnts == null)
-        prnts = new ArrayList<String>();
-      res.put(s, prnts);
-    }
-    return res;
-  }
+		for (Serializable[] ss : resTable.getRows()) {
+			String code = (String) ss[0];
+			String parent = (String) ss[1];
+			if (parentMap.containsKey(code)) {
+				List<String> parents = parentMap.get(code);
+				parents.add(parent);
+				parentMap.put(code, parents);
+			} else {
+				parentMap.put(code, new ArrayList<String>(Arrays.asList(parent)));
+			}
+		}
+		Map<Sample, List<String>> res = new HashMap<Sample, List<String>>();
+		for (Sample s : samples) {
+			List<String> prnts = parentMap.get(s.getCode());
+			if (prnts == null)
+				prnts = new ArrayList<String>();
+			res.put(s, prnts);
+		}
+		return res;
+	}
 
+	/**
+	 * Creates the list of samples prepared for testing from the input information
+	 * collected in the aggregator fields and wizard steps and fetches or creates
+	 * the associated context
+	 * 
+	 * @return
+	 */
+	public List<List<AOpenbisSample>> prepareTestSamples() {
+		techTypeInfo = s8.getAnalyteInformation();
+		if (inheritExtracts) {
+			prepareBasics();
+			classChars = new HashMap<String, Character>();
+			experiments = new ArrayList<OpenbisExperiment>();
+		}
+		for (TestSampleInformation x : techTypeInfo) {
+			int personID = -1;
+			String person = x.getPerson();
+			if (person != null && !person.isEmpty())
+				personID = personMap.get(person);
+			OpenbisExperiment exp = new OpenbisExperiment(buildExperimentName(), ExperimentType.Q_SAMPLE_PREPARATION,
+					personID, null);// TODO add secondary name here
+			experiments.add(exp);
+		}
+		List<List<AOpenbisSample>> techSortedTests = buildTestSamples(extracts, classChars);
+		tests = new ArrayList<AOpenbisSample>();
+		for (List<AOpenbisSample> group : techSortedTests)
+			tests.addAll(group);
+		for (int i = techSortedTests.size() - 1; i > -1; i--) {
+			if (!techTypeInfo.get(i).isPooled() && !s8.hasComplexProteinPoolBeforeFractionation())
+				techSortedTests.remove(i);
+		}
+		return techSortedTests;
+	}
 
-  /**
-   * Creates the list of samples prepared for testing from the input information collected in the
-   * aggregator fields and wizard steps and fetches or creates the associated context
-   * 
-   * @return
-   */
-  public List<List<AOpenbisSample>> prepareTestSamples() {
-    techTypeInfo = s8.getAnalyteInformation();
-    if (inheritExtracts) {
-      prepareBasics();
-      classChars = new HashMap<String, Character>();
-      experiments = new ArrayList<OpenbisExperiment>();
-    }
-    for (TestSampleInformation x : techTypeInfo) {
-      int personID = -1;
-      String person = x.getPerson();
-      if (person != null && !person.isEmpty())
-        personID = personMap.get(person);
-      OpenbisExperiment exp = new OpenbisExperiment(buildExperimentName(),
-          ExperimentType.Q_SAMPLE_PREPARATION, personID, null);// TODO add secondary name here
-      experiments.add(exp);
-    }
-    List<List<AOpenbisSample>> techSortedTests = buildTestSamples(extracts, classChars);
-    tests = new ArrayList<AOpenbisSample>();
-    for (List<AOpenbisSample> group : techSortedTests)
-      tests.addAll(group);
-    for (int i = techSortedTests.size() - 1; i > -1; i--) {
-      if (!techTypeInfo.get(i).isPooled() && !s8.hasComplexProteinPoolBeforeFractionation())
-        techSortedTests.remove(i);
-    }
-    return techSortedTests;
-  }
+	public List<List<AOpenbisSample>> prepareTestSamples_2() {// TODO this is not a beautiful solution this method
+																// should be refactored
+		techTypeInfo = s8.getAnalyteInformation();
+		tests = new ArrayList<AOpenbisSample>();
+		if (inheritExtracts) {
+			prepareBasics();
+			classChars = new HashMap<String, Character>();
+			experiments = new ArrayList<OpenbisExperiment>();
+		}
 
-  
-  
-  
-  public List<List<AOpenbisSample>> prepareTestSamples_2() {//TODO this is not a beautiful solution this method should be refactored
-	    techTypeInfo = s8.getAnalyteInformation();
-	    tests = new ArrayList<AOpenbisSample>();
-	    if (inheritExtracts) {
-	      prepareBasics();
-	      classChars = new HashMap<String, Character>();
-	      experiments = new ArrayList<OpenbisExperiment>();
-	    }
-		  
-	    for (TestSampleInformation x : techTypeInfo) {
-	      int personID = -1;
-	      String person = x.getPerson();
-	      if (person != null && !person.isEmpty())
-	        personID = personMap.get(person);
-	      
-	      if(x.getTechnology().equals("ELEMENT")) {
-	    	  infoElement = s8.getElementPanel();
-	    	  for(Map<String,String> infoi : infoElement)
-		      {
-	    		  OpenbisExperiment exp = new OpenbisExperiment(buildExperimentName(),
-	    		  ExperimentType.Q_CFH_ELEMENT, personID, null);// TODO add secondary name here
-	    		  experiments.add(exp);
-		      }
-	    	  List<List<AOpenbisSample>> cfhSortedTests = buildElementSamples(extracts, classChars , infoElement);
-	  	    //tests = new ArrayList<AOpenbisSample>();
-	  	    elementExtracts = new ArrayList<AOpenbisSample>();
-	  	    for (List<AOpenbisSample> group : cfhSortedTests)
-	  	    	elementExtracts.addAll(group);
-	  	   
-	      }
-	      else if(x.getTechnology().equals("NMIN")) {
-	    	  infoNmin = s8.getNminPanel();
-	    	  OpenbisExperiment exp = new OpenbisExperiment(buildExperimentName(),
-	    	   		  ExperimentType.Q_CFH_NMIN , personID, null);// TODO add secondary name here
-	    	   		  experiments.add(exp);
-	    	  List<List<AOpenbisSample>> cfhSortedTests1 = buildNminSamples(extracts, classChars , infoNmin);
-	    	     //tests = new ArrayList<AOpenbisSample>();
-	    	  nminExtracts = new ArrayList<AOpenbisSample>();
-	    	  for (List<AOpenbisSample> group : cfhSortedTests1)
-	    		    	nminExtracts.addAll(group);
-	      }
-	      else if(x.getTechnology().equals("NMR")) {
-	    	  infoNMR = s8.getNMRPanel();
-	    	  OpenbisExperiment exp = new OpenbisExperiment(buildExperimentName(),
-	    	   		  ExperimentType.Q_CFH_NMR , personID, null);// TODO add secondary name here
-	    	   		  experiments.add(exp);
-	    	  List<List<AOpenbisSample>> cfhSortedTests2 = buildNMRSamples(extracts, classChars , infoNMR);
-	    	     //tests = new ArrayList<AOpenbisSample>();
-	    	  nmrExtracts = new ArrayList<AOpenbisSample>();
-	    	  for (List<AOpenbisSample> group : cfhSortedTests2)
-	    		    	nmrExtracts.addAll(group);
-	      }
+		for (TestSampleInformation x : techTypeInfo) {
+			int personID = -1;
+			String person = x.getPerson();
+			if (person != null && !person.isEmpty())
+				personID = personMap.get(person);
+
+			if (x.getTechnology().equals("ELEMENT")) {
+				infoElement = s8.getElementPanel();
+				for (Map<String, String> infoi : infoElement) {
+					OpenbisExperiment exp = new OpenbisExperiment(buildExperimentName(), ExperimentType.Q_CFH_ELEMENT,
+							personID, null);// TODO add secondary name here
+					experiments.add(exp);
+				}
+				List<List<AOpenbisSample>> cfhSortedTests = buildElementSamples(extracts, classChars, infoElement);
+				// tests = new ArrayList<AOpenbisSample>();
+				elementExtracts = new ArrayList<AOpenbisSample>();
+				for (List<AOpenbisSample> group : cfhSortedTests)
+					elementExtracts.addAll(group);
+
+			} else if (x.getTechnology().equals("NMIN")) {
+				infoNmin = s8.getNminPanel();
+				OpenbisExperiment exp = new OpenbisExperiment(buildExperimentName(), ExperimentType.Q_CFH_NMIN,
+						personID, null);// TODO add secondary name here
+				experiments.add(exp);
+				List<List<AOpenbisSample>> cfhSortedTests1 = buildNminSamples(extracts, classChars, infoNmin);
+				// tests = new ArrayList<AOpenbisSample>();
+				nminExtracts = new ArrayList<AOpenbisSample>();
+				for (List<AOpenbisSample> group : cfhSortedTests1)
+					nminExtracts.addAll(group);
+			} else if (x.getTechnology().equals("NMR")) {
+				infoNMR = s8.getNMRPanel();
+				OpenbisExperiment exp = new OpenbisExperiment(buildExperimentName(), ExperimentType.Q_CFH_NMR, personID,
+						null);// TODO add secondary name here
+				experiments.add(exp);
+				List<List<AOpenbisSample>> cfhSortedTests2 = buildNMRSamples(extracts, classChars, infoNMR);
+				// tests = new ArrayList<AOpenbisSample>();
+				nmrExtracts = new ArrayList<AOpenbisSample>();
+				for (List<AOpenbisSample> group : cfhSortedTests2)
+					nmrExtracts.addAll(group);
+			}
 //	      else if (x.getTechnology().equals("SMALLMOLECULES")) {
 //	    	  infoSmallMolecules = s8.getSmallMoleculesPanel();
 //	    	  OpenbisExperiment exp = new OpenbisExperiment(buildExperimentName(),
@@ -483,1420 +481,1421 @@ public class WizardDataAggregator {
 //	    	  		}
 //	    	  }  
 //	      }
-	      else {
-	    	  OpenbisExperiment exp = new OpenbisExperiment(buildExperimentName(),
-	    			  ExperimentType.Q_SAMPLE_PREPARATION, personID, null);// TODO add secondary name here
-	    	  experiments.add(exp);
-	    
-	  	    }
-	      }
+			else if (x.getTechnology().equals("PEPTIDES")) {
+				infoPeptides = s8.getProteinPreparationInformation();
+				OpenbisExperiment exp = new OpenbisExperiment(buildExperimentName(),
+						ExperimentType.Q_SAMPLE_PREPARATION, personID, infoPeptides);// TODO add secondary name here
+				experiments.add(exp);
+			} else {
 
-	    List<List<AOpenbisSample>> techSortedTests = buildTestSamples(extracts, classChars);
-	    if (tests.isEmpty()) {
-	    	tests = new ArrayList<AOpenbisSample>();
-	    	for (List<AOpenbisSample> group : techSortedTests)
-	    		tests.addAll(group);
-	    	for (int i = techSortedTests.size() - 1; i > -1; i--) {
-	    		if (!techTypeInfo.get(i).isPooled() && !s8.hasComplexProteinPoolBeforeFractionation())
-	    			techSortedTests.remove(i);
-	    	}
-	    }
-	        
-	   
-	    
-	    return techSortedTests;
-	  }
+				OpenbisExperiment exp = new OpenbisExperiment(buildExperimentName(),
+						ExperimentType.Q_SAMPLE_PREPARATION, personID, null);// TODO add secondary name here
+				experiments.add(exp);
 
-  // TODO will need changes
-  public List<List<AOpenbisSample>> prepareElementSamples() {
-	    cfhTypeInfo = s8.getAnalyteInformation();
-		
-	    if(s8.hasElement())
-	    {
-	    	 infoElement = s8.getElementPanel();
-	    }
-	    else 
-	    	return null;
-	    if (inheritExtracts) {
-	      prepareBasics();
-	      classChars = new HashMap<String, Character>();
-	      experiments = new ArrayList<OpenbisExperiment>();
-	    }
-	    for (TestSampleInformation x : cfhTypeInfo) {
-	      int personID = -1;
-	      String person = x.getPerson();
-	      if (person != null && !person.isEmpty())
-	        personID = personMap.get(person);
-	      
-	     
-	    
-	    	  for(Map<String,String> infoi : infoElement)
-		      {
-	    		  OpenbisExperiment exp = new OpenbisExperiment(buildExperimentName(),
-	    		  ExperimentType.Q_CFH_ELEMENT, personID, null);// TODO add secondary name here
-	    		  experiments.add(exp);
-		      }
-	     
-	      
-	    }
-	    List<List<AOpenbisSample>> cfhSortedTests = buildElementSamples(extracts, classChars , infoElement);
-	    //tests = new ArrayList<AOpenbisSample>();
-	    elementExtracts = new ArrayList<AOpenbisSample>();
-	    for (List<AOpenbisSample> group : cfhSortedTests)
-	    	elementExtracts.addAll(group);
-	    for (int i = cfhSortedTests.size() - 1; i > -1; i--) {
-	    	cfhSortedTests.remove(i);
-	      }
-	    return cfhSortedTests;
-	  }
-  
-  public List<List<AOpenbisSample>> prepareNminSamples() {
-	    cfhTypeInfo = s8.getAnalyteInformation();
+			}
+		}
+
+		List<List<AOpenbisSample>> techSortedTests = buildTestSamples(extracts, classChars);
+		if (tests.isEmpty()) {
+			tests = new ArrayList<AOpenbisSample>();
+			for (List<AOpenbisSample> group : techSortedTests)
+				tests.addAll(group);
+			for (int i = techSortedTests.size() - 1; i > -1; i--) {
+				if (!techTypeInfo.get(i).isPooled() && !s8.hasComplexProteinPoolBeforeFractionation())
+					techSortedTests.remove(i);
+			}
+		}
+
+		return techSortedTests;
+	}
+
+	// TODO will need changes
+	public List<List<AOpenbisSample>> prepareElementSamples() {
+		cfhTypeInfo = s8.getAnalyteInformation();
+
+		if (s8.hasElement()) {
+			infoElement = s8.getElementPanel();
+		} else
+			return null;
+		if (inheritExtracts) {
+			prepareBasics();
+			classChars = new HashMap<String, Character>();
+			experiments = new ArrayList<OpenbisExperiment>();
+		}
+		for (TestSampleInformation x : cfhTypeInfo) {
+			int personID = -1;
+			String person = x.getPerson();
+			if (person != null && !person.isEmpty())
+				personID = personMap.get(person);
+
+			for (Map<String, String> infoi : infoElement) {
+				OpenbisExperiment exp = new OpenbisExperiment(buildExperimentName(), ExperimentType.Q_CFH_ELEMENT,
+						personID, null);// TODO add secondary name here
+				experiments.add(exp);
+			}
+
+		}
+		List<List<AOpenbisSample>> cfhSortedTests = buildElementSamples(extracts, classChars, infoElement);
+		// tests = new ArrayList<AOpenbisSample>();
+		elementExtracts = new ArrayList<AOpenbisSample>();
+		for (List<AOpenbisSample> group : cfhSortedTests)
+			elementExtracts.addAll(group);
+		for (int i = cfhSortedTests.size() - 1; i > -1; i--) {
+			cfhSortedTests.remove(i);
+		}
+		return cfhSortedTests;
+	}
+
+	public List<List<AOpenbisSample>> prepareNminSamples() {
+		cfhTypeInfo = s8.getAnalyteInformation();
 //	    nminExtracts = new ArrayList<AOpenbisSample>();
 //		
-	    if(s8.hasNmin())
-	    {
-	    	 infoNmin = s8.getNminPanel();
-	    }
-	    else 
-	    	return null;
-	    if (inheritExtracts) {
-	      prepareBasics();
-	      classChars = new HashMap<String, Character>();
-	      experiments = new ArrayList<OpenbisExperiment>();
-	    }
-	    for (TestSampleInformation x : cfhTypeInfo) {
-	      int personID = -1;
-	      String person = x.getPerson();
-	      if (person != null && !person.isEmpty())
-	        personID = personMap.get(person);
-	      
-	    
-    	  
-	   		  OpenbisExperiment exp = new OpenbisExperiment(buildExperimentName(),
-	   		  ExperimentType.Q_CFH_NMIN , personID, null);// TODO add secondary name here
-	   		  experiments.add(exp);
+		if (s8.hasNmin()) {
+			infoNmin = s8.getNminPanel();
+		} else
+			return null;
+		if (inheritExtracts) {
+			prepareBasics();
+			classChars = new HashMap<String, Character>();
+			experiments = new ArrayList<OpenbisExperiment>();
+		}
+		for (TestSampleInformation x : cfhTypeInfo) {
+			int personID = -1;
+			String person = x.getPerson();
+			if (person != null && !person.isEmpty())
+				personID = personMap.get(person);
 
-	
-	    }
-	    List<List<AOpenbisSample>> cfhSortedTests = buildNminSamples(extracts, classChars , infoNmin);
-	    tests = new ArrayList<AOpenbisSample>();
-	    nminExtracts = new ArrayList<AOpenbisSample>();
-	    for (List<AOpenbisSample> group : cfhSortedTests)
-	    	nminExtracts.addAll(group);
-	    for (int i = cfhSortedTests.size() - 1; i > -1; i--) {
-	    	cfhSortedTests.remove(i);
-	      }
-	    return cfhSortedTests;
-	  }
-  
-  
-  public List<List<AOpenbisSample>> prepareNMRSamples() {
-	    cfhTypeInfo = s8.getAnalyteInformation();
-	    if(s8.hasNMR())
-	    {
-	    	 infoNMR = s8.getNMRPanel();
-	    }
-	    else 
-	    	return null;
-	    if (inheritExtracts) {
-	      prepareBasics();
-	      classChars = new HashMap<String, Character>();
-	      experiments = new ArrayList<OpenbisExperiment>();
-	    }
-	    for (TestSampleInformation x : cfhTypeInfo) {
-	      int personID = -1;
-	      String person = x.getPerson();
-	      if (person != null && !person.isEmpty())
-	        personID = personMap.get(person);
-	      
-	    	  OpenbisExperiment exp = new OpenbisExperiment(buildExperimentName(),
-	   		  ExperimentType.Q_CFH_NMR , personID, null);// TODO add secondary name here
-	   		  experiments.add(exp);
+			OpenbisExperiment exp = new OpenbisExperiment(buildExperimentName(), ExperimentType.Q_CFH_NMIN, personID,
+					null);// TODO add secondary name here
+			experiments.add(exp);
 
-	    }
-	    List<List<AOpenbisSample>> cfhSortedTests = buildNMRSamples(extracts, classChars , infoNMR);
-	    nmrExtracts = new ArrayList<AOpenbisSample>();
-	    for (List<AOpenbisSample> group : cfhSortedTests)
-	    	nmrExtracts.addAll(group);
-	    for (int i = cfhSortedTests.size() - 1; i > -1; i--) {
-	    	cfhSortedTests.remove(i);
-	      }
-	    return cfhSortedTests;
-	  }
+		}
+		List<List<AOpenbisSample>> cfhSortedTests = buildNminSamples(extracts, classChars, infoNmin);
+		tests = new ArrayList<AOpenbisSample>();
+		nminExtracts = new ArrayList<AOpenbisSample>();
+		for (List<AOpenbisSample> group : cfhSortedTests)
+			nminExtracts.addAll(group);
+		for (int i = cfhSortedTests.size() - 1; i > -1; i--) {
+			cfhSortedTests.remove(i);
+		}
+		return cfhSortedTests;
+	}
 
-  /**
-   * Creates the list of MHC ligand extract samples prepared for ms from the input information
-   * collected in the aggregator fields and wizard steps and fetches or creates the associated
-   * context. These are between the test sample and ms sample layer and carry a standard barcode!
-   * 
-   * @return
-   */
-  public List<AOpenbisSample> prepareMHCExtractSamplesAndExperiments() {
-    mhcExperimentProtocols = s8.getMHCLigandExtractProperties();
-    Map<String, MHCLigandExtractionProtocol> antibodyInfos = s8.getAntibodyInfos();
+	public List<List<AOpenbisSample>> prepareNMRSamples() {
+		cfhTypeInfo = s8.getAnalyteInformation();
+		if (s8.hasNMR()) {
+			infoNMR = s8.getNMRPanel();
+		} else
+			return null;
+		if (inheritExtracts) {
+			prepareBasics();
+			classChars = new HashMap<String, Character>();
+			experiments = new ArrayList<OpenbisExperiment>();
+		}
+		for (TestSampleInformation x : cfhTypeInfo) {
+			int personID = -1;
+			String person = x.getPerson();
+			if (person != null && !person.isEmpty())
+				personID = personMap.get(person);
 
-    mhcExtracts = new ArrayList<AOpenbisSample>();
+			OpenbisExperiment exp = new OpenbisExperiment(buildExperimentName(), ExperimentType.Q_CFH_NMR, personID,
+					null);// TODO add secondary name here
+			experiments.add(exp);
 
-    for (String derivedFrom : mhcExperimentProtocols.keySet()) {
-      String expCode = buildExperimentName();
-      Map<String, Object> currentProtocol = mhcExperimentProtocols.get(derivedFrom);
-      // currentProtocol.put("Code", expCode); //TODO shouldn't be needed
-      experiments.add(
-          new OpenbisExperiment(expCode, ExperimentType.Q_MHC_LIGAND_EXTRACTION, currentProtocol));
+		}
+		List<List<AOpenbisSample>> cfhSortedTests = buildNMRSamples(extracts, classChars, infoNMR);
+		nmrExtracts = new ArrayList<AOpenbisSample>();
+		for (List<AOpenbisSample> group : cfhSortedTests)
+			nmrExtracts.addAll(group);
+		for (int i = cfhSortedTests.size() - 1; i > -1; i--) {
+			cfhSortedTests.remove(i);
+		}
+		return cfhSortedTests;
+	}
 
-      List<AOpenbisSample> extracts =
-          buildMHCExtractSamples(tests, classChars, derivedFrom, antibodyInfos.get(derivedFrom));
-      mhcExtracts.addAll(extracts);
-    }
+	/**
+	 * Creates the list of MHC ligand extract samples prepared for ms from the input
+	 * information collected in the aggregator fields and wizard steps and fetches
+	 * or creates the associated context. These are between the test sample and ms
+	 * sample layer and carry a standard barcode!
+	 * 
+	 * @return
+	 */
+	public List<AOpenbisSample> prepareMHCExtractSamplesAndExperiments() {
+		mhcExperimentProtocols = s8.getMHCLigandExtractProperties();
+		Map<String, MHCLigandExtractionProtocol> antibodyInfos = s8.getAntibodyInfos();
 
-    return mhcExtracts;
-  }
+		mhcExtracts = new ArrayList<AOpenbisSample>();
 
-  // public Map<String, Map<String, Object>> getMHCLigandExtractProperties() {
-  // return mhcExperimentProtocols;
-  // }
+		for (String derivedFrom : mhcExperimentProtocols.keySet()) {
+			String expCode = buildExperimentName();
+			Map<String, Object> currentProtocol = mhcExperimentProtocols.get(derivedFrom);
+			// currentProtocol.put("Code", expCode); //TODO shouldn't be needed
+			experiments.add(new OpenbisExperiment(expCode, ExperimentType.Q_MHC_LIGAND_EXTRACTION, currentProtocol));
 
-  /**
-   * Build and return a list of all possible MHC ligand extracts, using existing test samples and
-   * the number of antibody columns used in the experiment.
-   * 
-   * @param tests prepared ligands (test samples) these MHC ligand extracts will be prepared from
-   *        (and attached to)
-   * @param classChars Filled map of different class letters used for the tests
-   * @return List of lists of AOpenbisSamples containing MHC ligand extract samples
-   */
-  private List<AOpenbisSample> buildMHCExtractSamples(List<AOpenbisSample> tests,
-      Map<String, Character> classChars, String tissueCode, MHCLigandExtractionProtocol protocol) {
-    List<AOpenbisSample> mhcExtracts = new ArrayList<AOpenbisSample>();
-    int expNum = experiments.size() - 1;
-    for (AOpenbisSample s : tests) {
-      String type = s.getValueMap().get("Q_SAMPLE_TYPE");
-      if (type.equals("CELL_LYSATE")) {
-        if (s.getParent().equals(tissueCode)) {
-          String secondaryName = s.getQ_SECONDARY_NAME();
-          for (String antibody : protocol.getAntibodies()) {
-            String[] mhcClasses = protocol.getMHCClass(antibody);
-            for (String mhcClass : mhcClasses) {
-              if (classChars.containsKey(secondaryName)) { // TODO see other sample creation
-                classChar = classChars.get(secondaryName);
-              } else {
-                classChar = SampleCodeFunctions.incrementUppercase(classChar);
-                classChars.put(secondaryName, classChar);
-              }
-              incrementOrCreateBarcode();
-              mhcExtracts.add(new OpenbisMHCExtractSample(nextBarcode, spaceCode,
-                  experiments.get(expNum).getOpenbisName(), secondaryName, "", s.getFactors(),
-                  antibody, mhcClass, s.getCode(), s.getQ_EXTERNALDB_ID()));
-            }
-          }
-        }
-      }
-    }
-    return mhcExtracts;
-  }
+			List<AOpenbisSample> extracts = buildMHCExtractSamples(tests, classChars, derivedFrom,
+					antibodyInfos.get(derivedFrom));
+			mhcExtracts.addAll(extracts);
+		}
 
-  /**
-   * Set the list of biological entities (e.g. after filtering it) used in further steps
-   * 
-   * @param entities
-   */
-  public void setEntities(List<AOpenbisSample> entities) {
-    this.entities = entities;
-  }
+		return mhcExtracts;
+	}
 
-  /**
-   * Set the list of sample extracts (e.g. after filtering it) used in further steps
-   * 
-   * @param extracts
-   */
-  public void setExtracts(List<AOpenbisSample> extracts) {
-    this.extracts = extracts;
-  }
+	// public Map<String, Map<String, Object>> getMHCLigandExtractProperties() {
+	// return mhcExperimentProtocols;
+	// }
 
-  /**
-   * Set the list of test samples
-   * 
-   * @param tests
-   */
-  public void setTests(List<AOpenbisSample> tests) {
-    this.tests = tests;
-  }
+	/**
+	 * Build and return a list of all possible MHC ligand extracts, using existing
+	 * test samples and the number of antibody columns used in the experiment.
+	 * 
+	 * @param tests      prepared ligands (test samples) these MHC ligand extracts
+	 *                   will be prepared from (and attached to)
+	 * @param classChars Filled map of different class letters used for the tests
+	 * @return List of lists of AOpenbisSamples containing MHC ligand extract
+	 *         samples
+	 */
+	private List<AOpenbisSample> buildMHCExtractSamples(List<AOpenbisSample> tests, Map<String, Character> classChars,
+			String tissueCode, MHCLigandExtractionProtocol protocol) {
+		List<AOpenbisSample> mhcExtracts = new ArrayList<AOpenbisSample>();
+		int expNum = experiments.size() - 1;
+		for (AOpenbisSample s : tests) {
+			String type = s.getValueMap().get("Q_SAMPLE_TYPE");
+			if (type.equals("CELL_LYSATE")) {
+				if (s.getParent().equals(tissueCode)) {
+					String secondaryName = s.getQ_SECONDARY_NAME();
+					for (String antibody : protocol.getAntibodies()) {
+						String[] mhcClasses = protocol.getMHCClass(antibody);
+						for (String mhcClass : mhcClasses) {
+							if (classChars.containsKey(secondaryName)) { // TODO see other sample creation
+								classChar = classChars.get(secondaryName);
+							} else {
+								classChar = SampleCodeFunctions.incrementUppercase(classChar);
+								classChars.put(secondaryName, classChar);
+							}
+							incrementOrCreateBarcode();
+							mhcExtracts.add(new OpenbisMHCExtractSample(nextBarcode, spaceCode,
+									experiments.get(expNum).getOpenbisName(), secondaryName, "", s.getFactors(),
+									antibody, mhcClass, s.getCode(), s.getQ_EXTERNALDB_ID()));
+						}
+					}
+				}
+			}
+		}
+		return mhcExtracts;
+	}
 
-  /**
-   * Collects conditions as Strings in a list of their instance lists. Also puts the conditions
-   * (factors) in a HashMap for later lookup, using value and unit as a key
-   * 
-   * @param factors List of a list of condition instances (one list per condition)
-   * @return List of a list of condition instances (one list per condition) as Strings
-   */
-  private List<List<String>> createFactorInfo(List<List<Property>> factors) {
-    List<List<String>> res = new ArrayList<List<String>>();
-    for (List<Property> instances : factors) {
-      List<String> factorValues = new ArrayList<String>();
-      for (Property f : instances) {
-        String name = f.getValue();
-        if (f.hasUnit())
-          name = name + " " + f.getUnit().getValue();
-        factorValues.add(name);
-        factorMap.put(name, f);
-      }
-      res.add(factorValues);
-    }
-    return res;
-  }
+	/**
+	 * Set the list of biological entities (e.g. after filtering it) used in further
+	 * steps
+	 * 
+	 * @param entities
+	 */
+	public void setEntities(List<AOpenbisSample> entities) {
+		this.entities = entities;
+	}
 
-  /**
-   * Builds an experiment name from the current unused id and increments the id
-   * 
-   * @return
-   */
-  private String buildExperimentName() {
-    firstFreeExperimentID++;
-    return projectCode + "E" + (firstFreeExperimentID - 1);
-  }
+	/**
+	 * Set the list of sample extracts (e.g. after filtering it) used in further
+	 * steps
+	 * 
+	 * @param extracts
+	 */
+	public void setExtracts(List<AOpenbisSample> extracts) {
+		this.extracts = extracts;
+	}
 
-  /**
-   * Generates all permutations of a list of experiment conditions
-   * 
-   * @param lists Instance lists of different conditions
-   * @return List of all possible permutations of the input conditions
-   */
-  public List<String> generatePermutations(List<List<String>> lists) {
-    List<String> res = new ArrayList<String>();
-    generatePermutationsHelper(lists, res, 0, "");
-    return res;
-  }
+	/**
+	 * Set the list of test samples
+	 * 
+	 * @param tests
+	 */
+	public void setTests(List<AOpenbisSample> tests) {
+		this.tests = tests;
+	}
 
-  /**
-   * recursive helper
-   */
-  private void generatePermutationsHelper(List<List<String>> lists, List<String> result, int depth,
-      String current) {
-    String separator = "###";
-    if (depth == lists.size()) {
-      result.add(current);
-      return;
-    }
-    for (int i = 0; i < lists.get(depth).size(); ++i) {
-      if (current.equals(""))
-        separator = "";
-      generatePermutationsHelper(lists, result, depth + 1,
-          current + separator + lists.get(depth).get(i));
-    }
-  }
+	/**
+	 * Collects conditions as Strings in a list of their instance lists. Also puts
+	 * the conditions (factors) in a HashMap for later lookup, using value and unit
+	 * as a key
+	 * 
+	 * @param factors List of a list of condition instances (one list per condition)
+	 * @return List of a list of condition instances (one list per condition) as
+	 *         Strings
+	 */
+	private List<List<String>> createFactorInfo(List<List<Property>> factors) {
+		List<List<String>> res = new ArrayList<List<String>>();
+		for (List<Property> instances : factors) {
+			List<String> factorValues = new ArrayList<String>();
+			for (Property f : instances) {
+				String name = f.getValue();
+				if (f.hasUnit())
+					name = name + " " + f.getUnit().getValue();
+				factorValues.add(name);
+				factorMap.put(name, f);
+			}
+			res.add(factorValues);
+		}
+		return res;
+	}
 
-  /**
-   * Build and return a list of all possible biological entities given their conditions, keep track
-   * of conditions in a HashMap for later
-   * 
-   * @param map
-   * 
-   * @return List of AOpenbisSamples containing entity samples
-   */
-  private List<AOpenbisSample> buildEntities(Map<Object, Integer> map) {
-    List<AOpenbisSample> entities = new ArrayList<AOpenbisSample>();
-    List<List<String>> factorLists = new ArrayList<List<String>>();
-    factorLists.addAll(bioFactors);
-    List<String> permutations = generatePermutations(factorLists);
-    List<List<String>> permLists = new ArrayList<List<String>>();
-    for (String concat : permutations) {
-      permLists.add(new ArrayList<String>(Arrays.asList(concat.split("###"))));
-    }
-    int entityNum = firstFreeEntityID;
-    int defBioReps = bioReps;
-    int permID = 0;
-    for (List<String> secondaryNameList : permLists) {
-      permID++;
-      String secondaryName = nameListToSecondaryName(secondaryNameList);
-      if (map.containsKey(permID))
-        defBioReps = map.get(permID);
-      for (int i = defBioReps; i > 0; i--) {
-        List<Property> factors = new ArrayList<Property>();
-        for (String name : secondaryNameList) {
-          if (factorMap.containsKey(name))
-            factors.add(factorMap.get(name));
-        }
-        if (s2.speciesIsFactor()) {
-          for (String factor : secondaryNameList) {
-            if (taxMap.containsKey(factor))
-              species = factor;
-          }
-        }
-        String taxID = taxMap.get(species);
-        entities.add(new OpenbisBiologicalEntity(projectCode + "ENTITY-" + entityNum, spaceCode,
-            experiments.get(0).getOpenbisName(), secondaryName, "", factors, taxID, speciesInfo,
-            ""));
-        entityNum++;
-      }
-    }
-    return entities;
-  }
+	/**
+	 * Builds an experiment name from the current unused id and increments the id
+	 * 
+	 * @return
+	 */
+	private String buildExperimentName() {
+		firstFreeExperimentID++;
+		return projectCode + "E" + (firstFreeExperimentID - 1);
+	}
 
-  /**
-   * Build and return a list of all possible biological extracts given their conditions, using
-   * existing entities. Keep track of condition in a HashMap for later
-   * 
-   * @param entities Existing (or prepared) biological entity samples these extracts will be
-   *        attached to
-   * @param classChars Empty map of different class letters used for the identifiers, to keep track
-   *        of for test samples
-   * @param map
-   * @return List of AOpenbisSamples containing extract samples
-   */
-  private List<AOpenbisSample> buildExtracts(List<AOpenbisSample> entities,
-      Map<String, Character> classChars, Map<Object, Integer> map) {
-    int expNum = experiments.size() - techTypeInfo.size() - 1;
-    List<AOpenbisSample> extracts = new ArrayList<AOpenbisSample>();
-    int permID = 0;
-    Map<String, TissueInfo> specialTissueInfos = s6.getSpecialTissueMap();
-    for (AOpenbisSample e : entities) {
-      List<List<String>> factorLists = new ArrayList<List<String>>();
-      String secName = e.getQ_SECONDARY_NAME();
-      if (secName == null)
-        secName = "";
-      factorLists.add(new ArrayList<String>(Arrays.asList(secName)));
+	/**
+	 * Generates all permutations of a list of experiment conditions
+	 * 
+	 * @param lists Instance lists of different conditions
+	 * @return List of all possible permutations of the input conditions
+	 */
+	public List<String> generatePermutations(List<List<String>> lists) {
+		List<String> res = new ArrayList<String>();
+		generatePermutationsHelper(lists, res, 0, "");
+		return res;
+	}
 
-      factorLists.addAll(extractFactors);
-      List<String> permutations = generatePermutations(factorLists);
-      List<List<String>> permLists = new ArrayList<List<String>>();
-      for (String concat : permutations) {
-        permLists.add(new ArrayList<String>(Arrays.asList(concat.split("###"))));
-      }
-      for (List<String> secondaryNameList : permLists) {
-        permID++;
-        List<Property> factors = new ArrayList<Property>();
-        factors.addAll(e.getFactors());
-        for (String name : secondaryNameList)
-          for (String element : name.split(";")) {
-            element = element.trim();
-            if (factorMap.containsKey(element)) {
-              if (!factors.contains(factorMap.get(element)))
-                factors.add(factorMap.get(element));
-            }
-          }
-        String secondaryName = nameListToSecondaryName(secondaryNameList);
-        int defExtrReps = extractReps;
-        if (map.containsKey(permID))
-          defExtrReps = map.get(permID);
-        for (int i = defExtrReps; i > 0; i--) {
-          String tissueCode = "";
-          if (s5.isTissueFactor()) {
-            for (String factorInstance : secondaryNameList) {
-              if (specialTissueInfos.containsKey(factorInstance)) {
-                TissueInfo info = specialTissueInfos.get(factorInstance);
-                tissue = info.getPrimary();
-                specialTissue = info.getSpecific();
-              }
-            }
-          }
-          tissueCode = tissueMap.get(tissue);
-          if (classChars.containsKey(secondaryName)) { // TODO does this seem right to you?
-            classChar = classChars.get(secondaryName);
-          } else {
-            classChar = SampleCodeFunctions.incrementUppercase(classChar);
-            classChars.put(secondaryName, classChar);
-          }
-          List<Property> curFactors = new ArrayList<Property>(factors);
-          incrementOrCreateBarcode();
-          extracts.add(new OpenbisBiologicalSample(nextBarcode, spaceCode,
-              experiments.get(expNum).getOpenbisName(), secondaryName, "", curFactors, tissueCode,
-              specialTissue, e.getCode(), e.getQ_EXTERNALDB_ID())); // TODO
-          // ext
-          // db
-          // id
-        }
-      }
-    }
-    return extracts;
+	/**
+	 * recursive helper
+	 */
+	private void generatePermutationsHelper(List<List<String>> lists, List<String> result, int depth, String current) {
+		String separator = "###";
+		if (depth == lists.size()) {
+			result.add(current);
+			return;
+		}
+		for (int i = 0; i < lists.get(depth).size(); ++i) {
+			if (current.equals(""))
+				separator = "";
+			generatePermutationsHelper(lists, result, depth + 1, current + separator + lists.get(depth).get(i));
+		}
+	}
 
-  }
+	/**
+	 * Build and return a list of all possible biological entities given their
+	 * conditions, keep track of conditions in a HashMap for later
+	 * 
+	 * @param map
+	 * 
+	 * @return List of AOpenbisSamples containing entity samples
+	 */
+	private List<AOpenbisSample> buildEntities(Map<Object, Integer> map) {
+		List<AOpenbisSample> entities = new ArrayList<AOpenbisSample>();
+		List<List<String>> factorLists = new ArrayList<List<String>>();
+		factorLists.addAll(bioFactors);
+		List<String> permutations = generatePermutations(factorLists);
+		List<List<String>> permLists = new ArrayList<List<String>>();
+		for (String concat : permutations) {
+			permLists.add(new ArrayList<String>(Arrays.asList(concat.split("###"))));
+		}
+		int entityNum = firstFreeEntityID;
+		int defBioReps = bioReps;
+		int permID = 0;
+		for (List<String> secondaryNameList : permLists) {
+			permID++;
+			String secondaryName = nameListToSecondaryName(secondaryNameList);
+			if (map.containsKey(permID))
+				defBioReps = map.get(permID);
+			for (int i = defBioReps; i > 0; i--) {
+				List<Property> factors = new ArrayList<Property>();
+				for (String name : secondaryNameList) {
+					if (factorMap.containsKey(name))
+						factors.add(factorMap.get(name));
+				}
+				if (s2.speciesIsFactor()) {
+					for (String factor : secondaryNameList) {
+						if (taxMap.containsKey(factor))
+							species = factor;
+					}
+				}
+				String taxID = taxMap.get(species);
+				entities.add(new OpenbisBiologicalEntity(projectCode + "ENTITY-" + entityNum, spaceCode,
+						experiments.get(0).getOpenbisName(), secondaryName, "", factors, taxID, speciesInfo, ""));
+				entityNum++;
+			}
+		}
+		return entities;
+	}
 
-  private void incrementOrCreateBarcode() {
-    if (nextBarcode == null) {
-      if (firstFreeBarcode.isEmpty()) {
-        classChar = 'A';
-        String base = projectCode + "-" + SampleCodeFunctions.createCountString(1, 3) + classChar;
-        firstFreeBarcode = base + SampleCodeFunctions.checksum(base);
-      }
-      nextBarcode = firstFreeBarcode;
-    } else {
-      nextBarcode = SampleCodeFunctions.incrementSampleCode(nextBarcode);
-    }
-  }
+	/**
+	 * Build and return a list of all possible biological extracts given their
+	 * conditions, using existing entities. Keep track of condition in a HashMap for
+	 * later
+	 * 
+	 * @param entities   Existing (or prepared) biological entity samples these
+	 *                   extracts will be attached to
+	 * @param classChars Empty map of different class letters used for the
+	 *                   identifiers, to keep track of for test samples
+	 * @param map
+	 * @return List of AOpenbisSamples containing extract samples
+	 */
+	private List<AOpenbisSample> buildExtracts(List<AOpenbisSample> entities, Map<String, Character> classChars,
+			Map<Object, Integer> map) {
+		int expNum = experiments.size() - techTypeInfo.size() - 1;
+		List<AOpenbisSample> extracts = new ArrayList<AOpenbisSample>();
+		int permID = 0;
+		Map<String, TissueInfo> specialTissueInfos = s6.getSpecialTissueMap();
+		for (AOpenbisSample e : entities) {
+			List<List<String>> factorLists = new ArrayList<List<String>>();
+			String secName = e.getQ_SECONDARY_NAME();
+			if (secName == null)
+				secName = "";
+			factorLists.add(new ArrayList<String>(Arrays.asList(secName)));
 
-  public List<AOpenbisSample> getTestPools() {
-    return testPools;
-  }
+			factorLists.addAll(extractFactors);
+			List<String> permutations = generatePermutations(factorLists);
+			List<List<String>> permLists = new ArrayList<List<String>>();
+			for (String concat : permutations) {
+				permLists.add(new ArrayList<String>(Arrays.asList(concat.split("###"))));
+			}
+			for (List<String> secondaryNameList : permLists) {
+				permID++;
+				List<Property> factors = new ArrayList<Property>();
+				factors.addAll(e.getFactors());
+				for (String name : secondaryNameList)
+					for (String element : name.split(";")) {
+						element = element.trim();
+						if (factorMap.containsKey(element)) {
+							if (!factors.contains(factorMap.get(element)))
+								factors.add(factorMap.get(element));
+						}
+					}
+				String secondaryName = nameListToSecondaryName(secondaryNameList);
+				int defExtrReps = extractReps;
+				if (map.containsKey(permID))
+					defExtrReps = map.get(permID);
+				for (int i = defExtrReps; i > 0; i--) {
+					String tissueCode = "";
+					if (s5.isTissueFactor()) {
+						for (String factorInstance : secondaryNameList) {
+							if (specialTissueInfos.containsKey(factorInstance)) {
+								TissueInfo info = specialTissueInfos.get(factorInstance);
+								tissue = info.getPrimary();
+								specialTissue = info.getSpecific();
+							}
+						}
+					}
+					tissueCode = tissueMap.get(tissue);
+					if (classChars.containsKey(secondaryName)) { // TODO does this seem right to you?
+						classChar = classChars.get(secondaryName);
+					} else {
+						classChar = SampleCodeFunctions.incrementUppercase(classChar);
+						classChars.put(secondaryName, classChar);
+					}
+					List<Property> curFactors = new ArrayList<Property>(factors);
+					incrementOrCreateBarcode();
+					extracts.add(new OpenbisBiologicalSample(nextBarcode, spaceCode,
+							experiments.get(expNum).getOpenbisName(), secondaryName, "", curFactors, tissueCode,
+							specialTissue, e.getCode(), e.getQ_EXTERNALDB_ID())); // TODO
+					// ext
+					// db
+					// id
+				}
+			}
+		}
+		return extracts;
 
-  public List<AOpenbisSample> createPoolingSamples(Map<String, List<AOpenbisSample>> pools) {
-    if (pools.size() > 0) {
-      AOpenbisSample dummy = pools.values().iterator().next().get(0);
-      boolean extracts = dummy instanceof OpenbisBiologicalSample;
-      if (extracts)
-        extractPools = new ArrayList<AOpenbisSample>();
-      else
-        testPools = new ArrayList<AOpenbisSample>();
-      String exp = dummy.getValueMap().get("EXPERIMENT");
-      List<Property> factors = new ArrayList<Property>();
-      for (String secName : pools.keySet()) {
-        incrementOrCreateBarcode();
-        String parents = "";
-        for (AOpenbisSample s : pools.get(secName)) {
-          parents += s.getCode() + " ";
-        }
-        parents = parents.trim();
-        if (extracts) {
-          extractPools.add(new OpenbisBiologicalSample(nextBarcode, spaceCode, exp, secName, "",
-              factors, "Other", "", parents, "")); // TODO ext db id
-        } else {
-          String type = dummy.getValueMap().get("Q_SAMPLE_TYPE");
-          testPools.add(new OpenbisTestSample(nextBarcode, spaceCode, exp, secName, "", factors,
-              type, parents, "")); // TODO ext db id
-        }
-      }
-      if (extracts)
-        return extractPools;
-      else
-        return testPools;
-    }
-    return new ArrayList<AOpenbisSample>();
-  }
+	}
 
-  /**
-   * Build and return a list of all possible sample preparations (test samples), using existing
-   * extracts.
-   * 
-   * @param extracts Existing (or prepared) sample extracts these test samples will be attached to
-   * @param classChars Filled map of different class letters used for the extracts
-   * @return List of lists of AOpenbisSamples containing test samples, sorted by different
-   *         technology types
-   */
-  private List<List<AOpenbisSample>> buildTestSamples(List<AOpenbisSample> extracts,
-      Map<String, Character> classChars) {
-    List<List<AOpenbisSample>> tests = new ArrayList<List<AOpenbisSample>>();
-    for (int j = 0; j < techTypeInfo.size(); j++) {// different technologies
-    if(!techTypeInfo.get(j).getTechnology().equals("NMIN")&&!techTypeInfo.get(j).getTechnology().equals("ELEMENT")&&!techTypeInfo.get(j).getTechnology().equals("NMR")) {	
-      List<AOpenbisSample> techTests = new ArrayList<AOpenbisSample>();
-      int techReps = techTypeInfo.get(j).getReplicates();
-      String sampleType = techTypeInfo.get(j).getTechnology();
-      int expNum = experiments.size() - techTypeInfo.size() + j;
-      for (AOpenbisSample s : extracts) {
-        for (int i = techReps; i > 0; i--) {
-          String secondaryName = s.getQ_SECONDARY_NAME();
-          if (classChars.containsKey(secondaryName)) { // TODO see above
-            classChar = classChars.get(secondaryName);
-          } else {
-            classChar = SampleCodeFunctions.incrementUppercase(classChar);
-            classChars.put(secondaryName, classChar);
-          }
-          incrementOrCreateBarcode();
-          techTests.add(new OpenbisTestSample(nextBarcode, spaceCode,
-              experiments.get(expNum).getOpenbisName(), secondaryName, "", s.getFactors(),
-              sampleType, s.getCode(), s.getQ_EXTERNALDB_ID()));// TODO
-          // ext
-          // db
-          // id
-        }
-      }
-      tests.add(techTests);
-    }
-   }
-    return tests;
-  }
+	private void incrementOrCreateBarcode() {
+		if (nextBarcode == null) {
+			if (firstFreeBarcode.isEmpty()) {
+				classChar = 'A';
+				String base = projectCode + "-" + SampleCodeFunctions.createCountString(1, 3) + classChar;
+				firstFreeBarcode = base + SampleCodeFunctions.checksum(base);
+			}
+			nextBarcode = firstFreeBarcode;
+		} else {
+			nextBarcode = SampleCodeFunctions.incrementSampleCode(nextBarcode);
+		}
+	}
 
-  
-  private List<List<AOpenbisSample>> buildElementSamples(List<AOpenbisSample> matrix,
-	      Map<String, Character> classChars , List<Map<String , String>> infos) {
-	    List<List<AOpenbisSample>> tests = new ArrayList<List<AOpenbisSample>>();
-	    for (int j = 0; j < infos.size(); j++) {// different technologies
-	      List<AOpenbisSample> cfhTests = new ArrayList<AOpenbisSample>();
-	      //int techReps = infos.get(j).getReplicates();
-	      //String sampleType = techTypeInfo.get(j).getTechnology();
-	      int expNum =  experiments.size() - 1 - j;
-	      for (AOpenbisSample s : matrix) {
-	        //for (int i = techReps; i > 0; i--) {
-	          String secondaryName = s.getQ_SECONDARY_NAME();
-	          if (classChars.containsKey(secondaryName)) { // TODO see above
-	            classChar = classChars.get(secondaryName);
-	          } else {
-	            classChar = SampleCodeFunctions.incrementUppercase(classChar);
-	            classChars.put(secondaryName, classChar);
-	          }
-	          incrementOrCreateBarcode();
-	                    
-	          cfhTests.add(new OpenbisCfhElementSample(nextBarcode, spaceCode,
-	              experiments.get(expNum).getOpenbisName(), secondaryName, "", s.getFactors(),"ELEMENT",infos.get(j).get("Q_CFH_DIGESTION")
-	              ,infos.get(j).get("Q_ELEMENT_DESC"),infos.get(j).get("Q_CFH_DEVICES"),infos.get(j).get("Q_CFH_GRINDING"),s.getCode(), s.getQ_EXTERNALDB_ID()));// TODO
-	          // ext
-	          // db
-	          // id
-	        //}
-	      }
-	      tests.add(cfhTests);
-	    }
-	    return tests;
-	  }
+	public List<AOpenbisSample> getTestPools() {
+		return testPools;
+	}
 
-  
-  
-  private List<List<AOpenbisSample>> buildNMRSamples(List<AOpenbisSample> matrix,
-	      Map<String, Character> classChars , List<Map<String, String>> infos) {
-	  	  List<List<AOpenbisSample>> tests = new ArrayList<List<AOpenbisSample>>();
-	    //for (int j = 0; j < infos.size(); j++) {// different technologies
-	      List<AOpenbisSample> cfhTests = new ArrayList<AOpenbisSample>();
-	      //int techReps = infos.get(j).getReplicates();
-	      //String sampleType = infos.get(j).getTechnology();
-	      int expNum = experiments.size()-1;//hengam: it is becuase one of the experiments has no index and ends with INFO
-	      int j= 0;
-	      for (AOpenbisSample s : matrix) {
-	        //for (int i = techReps; i > 0; i--) {
-	          String secondaryName = s.getQ_SECONDARY_NAME();
-	          if (classChars.containsKey(secondaryName)) { // TODO see above
-	            classChar = classChars.get(secondaryName);
-	          } else {
-	            classChar = SampleCodeFunctions.incrementUppercase(classChar);
-	            classChars.put(secondaryName, classChar);
-	          }
-	          incrementOrCreateBarcode();
-	                    
+	public List<AOpenbisSample> createPoolingSamples(Map<String, List<AOpenbisSample>> pools) {
+		if (pools.size() > 0) {
+			AOpenbisSample dummy = pools.values().iterator().next().get(0);
+			boolean extracts = dummy instanceof OpenbisBiologicalSample;
+			if (extracts)
+				extractPools = new ArrayList<AOpenbisSample>();
+			else
+				testPools = new ArrayList<AOpenbisSample>();
+			String exp = dummy.getValueMap().get("EXPERIMENT");
+			List<Property> factors = new ArrayList<Property>();
+			for (String secName : pools.keySet()) {
+				incrementOrCreateBarcode();
+				String parents = "";
+				for (AOpenbisSample s : pools.get(secName)) {
+					parents += s.getCode() + " ";
+				}
+				parents = parents.trim();
+				if (extracts) {
+					extractPools.add(new OpenbisBiologicalSample(nextBarcode, spaceCode, exp, secName, "", factors,
+							"Other", "", parents, "")); // TODO ext db id
+				} else {
+					String type = dummy.getValueMap().get("Q_SAMPLE_TYPE");
+					testPools.add(new OpenbisTestSample(nextBarcode, spaceCode, exp, secName, "", factors, type,
+							parents, "")); // TODO ext db id
+				}
+			}
+			if (extracts)
+				return extractPools;
+			else
+				return testPools;
+		}
+		return new ArrayList<AOpenbisSample>();
+	}
+
+	/**
+	 * Build and return a list of all possible sample preparations (test samples),
+	 * using existing extracts.
+	 * 
+	 * @param extracts   Existing (or prepared) sample extracts these test samples
+	 *                   will be attached to
+	 * @param classChars Filled map of different class letters used for the extracts
+	 * @return List of lists of AOpenbisSamples containing test samples, sorted by
+	 *         different technology types
+	 */
+	private List<List<AOpenbisSample>> buildTestSamples(List<AOpenbisSample> extracts,
+			Map<String, Character> classChars) {
+		List<List<AOpenbisSample>> tests = new ArrayList<List<AOpenbisSample>>();
+		for (int j = 0; j < techTypeInfo.size(); j++) {// different technologies
+			if (!techTypeInfo.get(j).getTechnology().equals("NMIN")
+					&& !techTypeInfo.get(j).getTechnology().equals("ELEMENT")
+					&& !techTypeInfo.get(j).getTechnology().equals("NMR")) {
+				List<AOpenbisSample> techTests = new ArrayList<AOpenbisSample>();
+				int techReps = techTypeInfo.get(j).getReplicates();
+				String sampleType = techTypeInfo.get(j).getTechnology();
+				int expNum = experiments.size() - techTypeInfo.size() + j;
+				for (AOpenbisSample s : extracts) {
+					for (int i = techReps; i > 0; i--) {
+						String secondaryName = s.getQ_SECONDARY_NAME();
+						if (classChars.containsKey(secondaryName)) { // TODO see above
+							classChar = classChars.get(secondaryName);
+						} else {
+							classChar = SampleCodeFunctions.incrementUppercase(classChar);
+							classChars.put(secondaryName, classChar);
+						}
+						incrementOrCreateBarcode();
+						techTests.add(new OpenbisTestSample(nextBarcode, spaceCode,
+								experiments.get(expNum).getOpenbisName(), secondaryName, "", s.getFactors(), sampleType,
+								s.getCode(), s.getQ_EXTERNALDB_ID()));// TODO
+						// ext
+						// db
+						// id
+					}
+				}
+				tests.add(techTests);
+			}
+		}
+		return tests;
+	}
+
+	private List<List<AOpenbisSample>> buildElementSamples(List<AOpenbisSample> matrix,
+			Map<String, Character> classChars, List<Map<String, String>> infos) {
+		List<List<AOpenbisSample>> tests = new ArrayList<List<AOpenbisSample>>();
+		for (int j = 0; j < infos.size(); j++) {// different technologies
+			List<AOpenbisSample> cfhTests = new ArrayList<AOpenbisSample>();
+			// int techReps = infos.get(j).getReplicates();
+			// String sampleType = techTypeInfo.get(j).getTechnology();
+			int expNum = experiments.size() - 1 - j;
+			for (AOpenbisSample s : matrix) {
+				// for (int i = techReps; i > 0; i--) {
+				String secondaryName = s.getQ_SECONDARY_NAME();
+				if (classChars.containsKey(secondaryName)) { // TODO see above
+					classChar = classChars.get(secondaryName);
+				} else {
+					classChar = SampleCodeFunctions.incrementUppercase(classChar);
+					classChars.put(secondaryName, classChar);
+				}
+				incrementOrCreateBarcode();
+
+				cfhTests.add(
+						new OpenbisCfhElementSample(nextBarcode, spaceCode, experiments.get(expNum).getOpenbisName(),
+								secondaryName, "", s.getFactors(), "ELEMENT", infos.get(j).get("Q_CFH_DIGESTION"),
+								infos.get(j).get("Q_ELEMENT_DESC"), infos.get(j).get("Q_CFH_DEVICES"),
+								infos.get(j).get("Q_CFH_GRINDING"), s.getCode(), s.getQ_EXTERNALDB_ID()));// TODO
+				// ext
+				// db
+				// id
+				// }
+			}
+			tests.add(cfhTests);
+		}
+		return tests;
+	}
+
+	private List<List<AOpenbisSample>> buildNMRSamples(List<AOpenbisSample> matrix, Map<String, Character> classChars,
+			List<Map<String, String>> infos) {
+		List<List<AOpenbisSample>> tests = new ArrayList<List<AOpenbisSample>>();
+		// for (int j = 0; j < infos.size(); j++) {// different technologies
+		List<AOpenbisSample> cfhTests = new ArrayList<AOpenbisSample>();
+		// int techReps = infos.get(j).getReplicates();
+		// String sampleType = infos.get(j).getTechnology();
+		int expNum = experiments.size() - 1;// hengam: it is becuase one of the experiments has no index and ends with
+											// INFO
+		int j = 0;
+		for (AOpenbisSample s : matrix) {
+			// for (int i = techReps; i > 0; i--) {
+			String secondaryName = s.getQ_SECONDARY_NAME();
+			if (classChars.containsKey(secondaryName)) { // TODO see above
+				classChar = classChars.get(secondaryName);
+			} else {
+				classChar = SampleCodeFunctions.incrementUppercase(classChar);
+				classChars.put(secondaryName, classChar);
+			}
+			incrementOrCreateBarcode();
+
 			cfhTests.add(new OpenbisCfhNMRSample(nextBarcode, spaceCode, experiments.get(expNum).getOpenbisName(),
-					secondaryName,infos.get(j).get("Q_ADDITIONAL_INFO"), s.getFactors(), "NMR", infos.get(j).get("NMR_EXP_TYPES"),
-					infos.get(j).get("NMR_EXP_DESC"), infos.get(j).get("NMR_SOLVENT"), infos.get(j).get("NMR_SOLVENT_DETAILS"), infos.get(j).get("NMR_CONCENTRATION"),
-					infos.get(j).get("NMR_VOLUME"), infos.get(j).get("NMR_PH"), infos.get(j).get("NMR_BUFFER"),
-					infos.get(j).get("NMR_DATE"), infos.get(j).get("NMR_STORAGE"), infos.get(j).get("NMR_STORAGE_DETAILS"), infos.get(j).get("NMR_QUANTITATION"),
-					infos.get(j).get("NMR_SAMPLE_DESC"), infos.get(j).get("NMR_SPECTROMETER"), infos.get(j).get("NMR_PROBE"), infos.get(j).get("NMR_PROBE_DETAILS"),
-					infos.get(j).get("NMR_TEMPERATURE"),  s.getCode(), s.getQ_EXTERNALDB_ID()));// TODO
-	
-	        
-	          j++;
-	          // ext
-	          // db
-	          // id
-	        //}
-	      }
-	      tests.add(cfhTests);
-	    //}
-	    return tests;
-	  }
-  
-  private List<List<AOpenbisSample>> buildNminSamples(List<AOpenbisSample> matrix,
-	      Map<String, Character> classChars , List<Map<String , String>> infos) {
-	  	  List<List<AOpenbisSample>> tests = new ArrayList<List<AOpenbisSample>>();
-	    //for (int j = 0; j < infos.size(); j++) {// different technologies
-	      List<AOpenbisSample> cfhTests = new ArrayList<AOpenbisSample>();
-	      //int techReps = infos.get(j).getReplicates();
-	      //String sampleType = infos.get(j).getTechnology();
-	      int expNum = experiments.size()-1;//hengam: it is because one of the experiments has no index and ends with INFO
-	      int j= 0;
-	      for (AOpenbisSample s : matrix) {
-	        //for (int i = techReps; i > 0; i--) {
-	          String secondaryName = s.getQ_SECONDARY_NAME();
-	          if (classChars.containsKey(secondaryName)) { // TODO see above
-	            classChar = classChars.get(secondaryName);
-	          } else {
-	            classChar = SampleCodeFunctions.incrementUppercase(classChar);
-	            classChars.put(secondaryName, classChar);
-	          }
-	          incrementOrCreateBarcode();
-	                    
-	          cfhTests.add(new OpenbisCfhNminSample(nextBarcode, spaceCode,
-	              experiments.get(expNum).getOpenbisName(), secondaryName, "", s.getFactors(), "NMIN", infos.get(j).get("Q_CFH_NMIN_DEPTH")
-	              ,infos.get(j).get("Q_CFH_NMIN_DENSITY"),infos.get(j).get("Q_CFH_NITRATE"),"",s.getCode(), s.getQ_EXTERNALDB_ID()));// TODO
-	          j++;
-	          // ext
-	          // db
-	          // id
-	        //}
-	      }
-	      tests.add(cfhTests);
-	    //}
-	    return tests;
-	  }
+					secondaryName, infos.get(j).get("Q_ADDITIONAL_INFO"), s.getFactors(), "NMR",
+					infos.get(j).get("NMR_EXP_TYPES"), infos.get(j).get("NMR_EXP_DESC"),
+					infos.get(j).get("NMR_SOLVENT"), infos.get(j).get("NMR_SOLVENT_DETAILS"),
+					infos.get(j).get("NMR_CONCENTRATION"), infos.get(j).get("NMR_VOLUME"), infos.get(j).get("NMR_PH"),
+					infos.get(j).get("NMR_BUFFER"), infos.get(j).get("NMR_DATE"), infos.get(j).get("NMR_STORAGE"),
+					infos.get(j).get("NMR_STORAGE_DETAILS"), infos.get(j).get("NMR_QUANTITATION"),
+					infos.get(j).get("NMR_SAMPLE_DESC"), infos.get(j).get("NMR_SPECTROMETER"),
+					infos.get(j).get("NMR_PROBE"), infos.get(j).get("NMR_PROBE_DETAILS"),
+					infos.get(j).get("NMR_TEMPERATURE"), s.getCode(), s.getQ_EXTERNALDB_ID()));// TODO
 
-  /**
-   * parse secondary name from a list of condition permutations
-   * 
-   * @param secondaryNameList
-   * @return
-   */
-  private String nameListToSecondaryName(List<String> secondaryNameList) {
-    String res = secondaryNameList.toString().replace(", ", " ; ");
-    return res.substring(1, res.length() - 1);
-  }
+			j++;
+			// ext
+			// db
+			// id
+			// }
+		}
+		tests.add(cfhTests);
+		// }
+		return tests;
+	}
 
-  /**
-   * set flag denoting the inheritance from entities existing in the system
-   * 
-   * @param inherit
-   */
-  public void setInheritEntities(boolean inherit) {
-    this.inheritEntities = inherit;
-  }
+	private List<List<AOpenbisSample>> buildNminSamples(List<AOpenbisSample> matrix, Map<String, Character> classChars,
+			List<Map<String, String>> infos) {
+		List<List<AOpenbisSample>> tests = new ArrayList<List<AOpenbisSample>>();
+		// for (int j = 0; j < infos.size(); j++) {// different technologies
+		List<AOpenbisSample> cfhTests = new ArrayList<AOpenbisSample>();
+		// int techReps = infos.get(j).getReplicates();
+		// String sampleType = infos.get(j).getTechnology();
+		int expNum = experiments.size() - 1;// hengam: it is because one of the experiments has no index and ends with
+											// INFO
+		int j = 0;
+		for (AOpenbisSample s : matrix) {
+			// for (int i = techReps; i > 0; i--) {
+			String secondaryName = s.getQ_SECONDARY_NAME();
+			if (classChars.containsKey(secondaryName)) { // TODO see above
+				classChar = classChars.get(secondaryName);
+			} else {
+				classChar = SampleCodeFunctions.incrementUppercase(classChar);
+				classChars.put(secondaryName, classChar);
+			}
+			incrementOrCreateBarcode();
 
-  /**
-   * set flag denoting the inheritance from extracts existing in the system
-   * 
-   * @param inherit
-   */
-  public void setInheritExtracts(boolean inherit) {
-    this.inheritExtracts = inherit;
-  }
+			cfhTests.add(new OpenbisCfhNminSample(nextBarcode, spaceCode, experiments.get(expNum).getOpenbisName(),
+					secondaryName, "", s.getFactors(), "NMIN", infos.get(j).get("Q_CFH_NMIN_DEPTH"),
+					infos.get(j).get("Q_CFH_NMIN_DENSITY"), infos.get(j).get("Q_CFH_NITRATE"), "", s.getCode(),
+					s.getQ_EXTERNALDB_ID()));// TODO
+			j++;
+			// ext
+			// db
+			// id
+			// }
+		}
+		tests.add(cfhTests);
+		// }
+		return tests;
+	}
 
-  /**
-   * Parse existing entities from the system. They are assumed to be of the same experiment!
-   * 
-   * @param entities List of biological entities in the form of openBIS Samples
-   * @param copy specifies if the samples should be copied (get a new barcode after) parsing
-   * @return List of AOpenbisSamples containing entities
-   * @throws JAXBException
-   */
-  private List<AOpenbisSample> parseEntities(List<Sample> entities, boolean copy)
-      throws JAXBException {
-    oldCodesToNewCodes = new HashMap<String, String>();
-    List<AOpenbisSample> res = new ArrayList<AOpenbisSample>();
-    String[] eSplit = entities.get(0).getExperimentIdentifierOrNull().split("/");
-    String exp = eSplit[eSplit.length - 1];
-    int entityNum = firstFreeEntityID;
-    for (Sample s : entities) {
-      String code = s.getCode();
-      if (copy) {
-        code = projectCode + "ENTITY-" + entityNum;
-        oldCodesToNewCodes.put(s.getCode(), code);
-        entityNum++;
-      }
-      Map<String, String> p = s.getProperties();
-      List<Property> factors =
-          xmlParser.getExpFactors(xmlParser.parseXMLString(p.get("Q_PROPERTIES")));
-      for (Property f : factors) {
-        String name = f.getValue() + f.getUnit();
-        factorMap.put(name, f);
-      }      
-      res.add(new OpenbisBiologicalEntity(code, spaceCode, exp, p.get("Q_SECONDARY_NAME"),
-          p.get("Q_ADDITIONAL_INFO"), factors, p.get("Q_NCBI_ORGANISM"),
-          p.get("Q_ORGANISM_DETAILED"), p.get("Q_EXTERNALDB_ID")));//, p.get("Q_MATRIX")));
-    }
-    return res;
-  }
+	/**
+	 * parse secondary name from a list of condition permutations
+	 * 
+	 * @param secondaryNameList
+	 * @return
+	 */
+	private String nameListToSecondaryName(List<String> secondaryNameList) {
+		String res = secondaryNameList.toString().replace(", ", " ; ");
+		return res.substring(1, res.length() - 1);
+	}
 
-  /**
-   * Parse existing extracts from the system. They are assumed to be of the same experiment!
-   * 
-   * @param parentMap
-   * 
-   * @param entities List of biological extracts in the form of openBIS Samples
-   * @return List of AOpenbisSamples containing extracts
-   * @throws JAXBException
-   */
-  private List<AOpenbisSample> parseExtracts(List<Sample> extracts,
-      Map<Sample, List<String>> childParentsMap) throws JAXBException {
-    List<AOpenbisSample> res = new ArrayList<AOpenbisSample>();
-    String[] eSplit = extracts.get(0).getExperimentIdentifierOrNull().split("/");
-    String exp = eSplit[eSplit.length - 1];
-    for (Sample s : extracts) {
-      String code = s.getCode();
-      Map<String, String> p = s.getProperties();
-      List<Property> factors =
-          xmlParser.getExpFactors(xmlParser.parseXMLString(p.get("Q_PROPERTIES")));
-      for (Property f : factors) {
-        String name = f.getValue() + f.getUnit();
-        factorMap.put(name, f);
-      }
-      res.add(new OpenbisBiologicalSample(code, spaceCode, exp, p.get("Q_SECONDARY_NAME"),
-          p.get("Q_ADDITIONAL_INFO"), factors, p.get("Q_PRIMARY_TISSUE"),
-          p.get("Q_TISSUE_DETAILED"), parseParents(s, childParentsMap), p.get("Q_EXTERNALDB_ID")));
-    }
-    return res;
-  }
+	/**
+	 * set flag denoting the inheritance from entities existing in the system
+	 * 
+	 * @param inherit
+	 */
+	public void setInheritEntities(boolean inherit) {
+		this.inheritEntities = inherit;
+	}
 
-  /**
-   * Parse existing test samples from the system
-   * 
-   * @param tests List of test samples in the form of openBIS Samples
-   * @param parentMap
-   * @return List of AOpenbisSamples containing test samples
-   * @throws JAXBException
-   */
-  private List<AOpenbisSample> parseTestSamples(List<Sample> tests,
-      Map<Sample, List<String>> childToParentsMap) throws JAXBException {
-    List<AOpenbisSample> res = new ArrayList<AOpenbisSample>();
-    for (Sample s : tests) {
-      String code = s.getCode();
-      String[] eSplit = s.getExperimentIdentifierOrNull().split("/");
-      Map<String, String> p = s.getProperties();
-      List<Property> factors =
-          xmlParser.getExpFactors(xmlParser.parseXMLString(p.get("Q_PROPERTIES")));
-      for (Property f : factors) {
-        String name = f.getValue() + f.getUnit();
-        factorMap.put(name, f);
-      }
-      res.add(new OpenbisTestSample(code, spaceCode, eSplit[eSplit.length - 1],
-          p.get("Q_SECONDARY_NAME"), p.get("Q_ADDITIONAL_INFO"), factors, p.get("Q_SAMPLE_TYPE"),
-          parseParents(s, childToParentsMap), p.get("Q_EXTERNALDB_ID")));
-    }
-    return res;
-  }
+	/**
+	 * set flag denoting the inheritance from extracts existing in the system
+	 * 
+	 * @param inherit
+	 */
+	public void setInheritExtracts(boolean inherit) {
+		this.inheritExtracts = inherit;
+	}
 
-  /**
-   * Get the parents of a sample give its code and return them space delimited so they can be added
-   * to a tsv
-   * 
-   * @param parentMap
-   * 
-   * @param code
-   * @return
-   */
-  private String parseParents(Sample sample, Map<Sample, List<String>> childParentsMap) {
-    if (childParentsMap != null && childParentsMap.containsKey(sample))
-      return StringUtils.join(childParentsMap.get(sample), " ");
-    else {
-      List<String> codes = new ArrayList<String>();
-      for (Sample s : sample.getParents())
-        codes.add(s.getCode());
-      return StringUtils.join(codes, " ");
-    }
-  }
+	/**
+	 * Parse existing entities from the system. They are assumed to be of the same
+	 * experiment!
+	 * 
+	 * @param entities List of biological entities in the form of openBIS Samples
+	 * @param copy     specifies if the samples should be copied (get a new barcode
+	 *                 after) parsing
+	 * @return List of AOpenbisSamples containing entities
+	 * @throws JAXBException
+	 */
+	private List<AOpenbisSample> parseEntities(List<Sample> entities, boolean copy) throws JAXBException {
+		oldCodesToNewCodes = new HashMap<String, String>();
+		List<AOpenbisSample> res = new ArrayList<AOpenbisSample>();
+		String[] eSplit = entities.get(0).getExperimentIdentifierOrNull().split("/");
+		String exp = eSplit[eSplit.length - 1];
+		int entityNum = firstFreeEntityID;
+		for (Sample s : entities) {
+			String code = s.getCode();
+			if (copy) {
+				code = projectCode + "ENTITY-" + entityNum;
+				oldCodesToNewCodes.put(s.getCode(), code);
+				entityNum++;
+			}
+			Map<String, String> p = s.getProperties();
+			List<Property> factors = xmlParser.getExpFactors(xmlParser.parseXMLString(p.get("Q_PROPERTIES")));
+			for (Property f : factors) {
+				String name = f.getValue() + f.getUnit();
+				factorMap.put(name, f);
+			}
+			res.add(new OpenbisBiologicalEntity(code, spaceCode, exp, p.get("Q_SECONDARY_NAME"),
+					p.get("Q_ADDITIONAL_INFO"), factors, p.get("Q_NCBI_ORGANISM"), p.get("Q_ORGANISM_DETAILED"),
+					p.get("Q_EXTERNALDB_ID")));// , p.get("Q_MATRIX")));
+		}
+		return res;
+	}
 
-  // /**
-  // * Copy existing context and their samples from the information set in the wizard and the
-  // * wizard steps. After this function a tsv with the copied context can be created
-  // *
-  // * @throws JAXBException
-  // */
-  // public void copyExperiment() throws JAXBException {
-  // prepareBasics();
-  // factorMap = new HashMap<String, Factor>();
-  // context = new ArrayList<OpenbisExperiment>();
-  //
-  // ExperimentBean exp = s1.getExperimentName();
-  // String type = exp.getExperiment_type();
-  //
-  // List<Sample> openbisEntities = new ArrayList<Sample>();
-  // List<Sample> openbisExtracts = new ArrayList<Sample>();
-  // List<Sample> openbisTests = new ArrayList<Sample>();
-  //
-  // List<Sample> originals = openbis.getSamplesofExperiment(exp.getID());
-  // Map<String, String> copies = new HashMap<String, String>();
-  //
-  // if (type.equals(ExperimentType.Q_EXPERIMENTAL_DESIGN.toString())) {
-  //
-  // openbisEntities = originals;
-  // openbisExtracts = getLowerSamples(openbisEntities);
-  // openbisTests = getLowerSamples(openbisExtracts);
-  //
-  // entities = copySamples(parseEntities(openbisEntities), copies);
-  // extracts = copySamples(parseExtracts(openbisExtracts), copies);
-  // tests = copySamples(parseTestSamples(openbisTests), copies);
-  // } else if (type.equals(ExperimentType.Q_SAMPLE_EXTRACTION.toString())) {
-  //
-  // openbisExtracts = originals;
-  // openbisEntities = getUpperSamples(openbisExtracts);
-  // openbisTests = getLowerSamples(openbisExtracts);
-  //
-  // entities = parseEntities(openbisEntities);
-  //
-  // extracts = copySamples(parseExtracts(openbisExtracts), copies);
-  // tests = copySamples(parseTestSamples(openbisTests), copies);
-  //
-  // } else if (type.equals(ExperimentType.Q_SAMPLE_PREPARATION.toString())) {
-  //
-  // openbisTests = originals;
-  // openbisExtracts = getUpperSamples(openbisTests);
-  // openbisEntities = getUpperSamples(openbisExtracts);
-  //
-  // entities = parseEntities(openbisEntities);
-  // extracts = parseExtracts(openbisExtracts);
-  //
-  // tests = copySamples(parseTestSamples(openbisTests), copies);
-  // }
-  // }
+	/**
+	 * Parse existing extracts from the system. They are assumed to be of the same
+	 * experiment!
+	 * 
+	 * @param parentMap
+	 * 
+	 * @param entities  List of biological extracts in the form of openBIS Samples
+	 * @return List of AOpenbisSamples containing extracts
+	 * @throws JAXBException
+	 */
+	private List<AOpenbisSample> parseExtracts(List<Sample> extracts, Map<Sample, List<String>> childParentsMap)
+			throws JAXBException {
+		List<AOpenbisSample> res = new ArrayList<AOpenbisSample>();
+		String[] eSplit = extracts.get(0).getExperimentIdentifierOrNull().split("/");
+		String exp = eSplit[eSplit.length - 1];
+		for (Sample s : extracts) {
+			String code = s.getCode();
+			Map<String, String> p = s.getProperties();
+			List<Property> factors = xmlParser.getExpFactors(xmlParser.parseXMLString(p.get("Q_PROPERTIES")));
+			for (Property f : factors) {
+				String name = f.getValue() + f.getUnit();
+				factorMap.put(name, f);
+			}
+			res.add(new OpenbisBiologicalSample(code, spaceCode, exp, p.get("Q_SECONDARY_NAME"),
+					p.get("Q_ADDITIONAL_INFO"), factors, p.get("Q_PRIMARY_TISSUE"), p.get("Q_TISSUE_DETAILED"),
+					parseParents(s, childParentsMap), p.get("Q_EXTERNALDB_ID")));
+		}
+		return res;
+	}
 
-  /**
-   * Copy a list of samples, used by the copy context function
-   * 
-   * @param samples
-   * @param copies
-   * @return
-   */
-  private List<AOpenbisSample> copySamples(List<AOpenbisSample> samples,
-      Map<String, String> copies) {
-    String newExp = buildExperimentName();
-    String type = samples.get(0).getValueMap().get("SAMPLE TYPE");
-    ExperimentType eType = ExperimentType.Q_EXPERIMENTAL_DESIGN;
-    if (type.equals("Q_BIOLOGICAL_ENTITY"))
-      eType = ExperimentType.Q_EXPERIMENTAL_DESIGN;
-    else if (type.equals("Q_BIOLOGICAL_SAMPLE"))
-      eType = ExperimentType.Q_SAMPLE_EXTRACTION;
-    else if (type.equals("Q_TEST_SAMPLE"))
-      eType = ExperimentType.Q_SAMPLE_PREPARATION;
-    else if (type.equals("Q_CFH_ELEMENTS"))
-      eType = ExperimentType.Q_CFH_ELEMENT;
-    else if (type.equals("Q_CFH_NMINS"))
-        eType = ExperimentType.Q_CFH_NMIN;
-    else if (type.equals("Q_CFH_NMR_RUN"))
-    	eType = ExperimentType.Q_CFH_NMR;
-    else
-      logger.error("Unexpected type: " + type);
-    experiments.add(new OpenbisExperiment(newExp, eType, -1, null));// TODO secondary name?
+	/**
+	 * Parse existing test samples from the system
+	 * 
+	 * @param tests     List of test samples in the form of openBIS Samples
+	 * @param parentMap
+	 * @return List of AOpenbisSamples containing test samples
+	 * @throws JAXBException
+	 */
+	private List<AOpenbisSample> parseTestSamples(List<Sample> tests, Map<Sample, List<String>> childToParentsMap)
+			throws JAXBException {
+		List<AOpenbisSample> res = new ArrayList<AOpenbisSample>();
+		for (Sample s : tests) {
+			String code = s.getCode();
+			String[] eSplit = s.getExperimentIdentifierOrNull().split("/");
+			Map<String, String> p = s.getProperties();
+			List<Property> factors = xmlParser.getExpFactors(xmlParser.parseXMLString(p.get("Q_PROPERTIES")));
+			for (Property f : factors) {
+				String name = f.getValue() + f.getUnit();
+				factorMap.put(name, f);
+			}
+			res.add(new OpenbisTestSample(code, spaceCode, eSplit[eSplit.length - 1], p.get("Q_SECONDARY_NAME"),
+					p.get("Q_ADDITIONAL_INFO"), factors, p.get("Q_SAMPLE_TYPE"), parseParents(s, childToParentsMap),
+					p.get("Q_EXTERNALDB_ID")));
+		}
+		return res;
+	}
 
-    for (AOpenbisSample s : samples) {
-      s.setExperiment(newExp);
-      String code = s.getCode();
-      String newCode = code;
-      if (s instanceof OpenbisBiologicalEntity) {
-        newCode = projectCode + "ENTITY-" + firstFreeEntityID;
-        firstFreeEntityID++;
-      } else {
-        if (nextBarcode == null) {
-          // classChar = 'A';
-          // nextBarcode =
-          // projectCode + Functions.createCountString(firstFreeBarcodeID, 3) + classChar;
-          // nextBarcode = nextBarcode + Functions.checksum(nextBarcode);
-          nextBarcode = firstFreeBarcode;
-        } else {
-          nextBarcode = SampleCodeFunctions.incrementSampleCode(nextBarcode);
-        }
-        newCode = nextBarcode;
-      }
-      copies.put(code, newCode);
-      s.setCode(newCode);
-      String p = s.getParent();
-      // change parent if parent was copied
-      if (p != null && p.length() > 0)
-        if (copies.containsKey(p))
-          s.setParent(copies.get(p));
-    }
-    return samples;
-  }
+	/**
+	 * Get the parents of a sample give its code and return them space delimited so
+	 * they can be added to a tsv
+	 * 
+	 * @param parentMap
+	 * 
+	 * @param code
+	 * @return
+	 */
+	private String parseParents(Sample sample, Map<Sample, List<String>> childParentsMap) {
+		if (childParentsMap != null && childParentsMap.containsKey(sample))
+			return StringUtils.join(childParentsMap.get(sample), " ");
+		else {
+			List<String> codes = new ArrayList<String>();
+			for (Sample s : sample.getParents())
+				codes.add(s.getCode());
+			return StringUtils.join(codes, " ");
+		}
+	}
 
-  /**
-   * Gets all samples that are one level higher in the sample hierarchy of an attached experiment
-   * than a given list of samples
-   * 
-   * @param originals
-   * @return
-   */
-  private List<Sample> getUpperSamples(List<Sample> originals) {
-    for (Sample s : originals) {
-      List<Sample> parents = openbis.getParentsBySearchService(s.getCode());
-      if (parents.size() > 0) {
-        return openbis.getSamplesofExperiment(parents.get(0).getExperimentIdentifierOrNull());
-      }
-    }
-    return null;
-  }
+	// /**
+	// * Copy existing context and their samples from the information set in the
+	// wizard and the
+	// * wizard steps. After this function a tsv with the copied context can be
+	// created
+	// *
+	// * @throws JAXBException
+	// */
+	// public void copyExperiment() throws JAXBException {
+	// prepareBasics();
+	// factorMap = new HashMap<String, Factor>();
+	// context = new ArrayList<OpenbisExperiment>();
+	//
+	// ExperimentBean exp = s1.getExperimentName();
+	// String type = exp.getExperiment_type();
+	//
+	// List<Sample> openbisEntities = new ArrayList<Sample>();
+	// List<Sample> openbisExtracts = new ArrayList<Sample>();
+	// List<Sample> openbisTests = new ArrayList<Sample>();
+	//
+	// List<Sample> originals = openbis.getSamplesofExperiment(exp.getID());
+	// Map<String, String> copies = new HashMap<String, String>();
+	//
+	// if (type.equals(ExperimentType.Q_EXPERIMENTAL_DESIGN.toString())) {
+	//
+	// openbisEntities = originals;
+	// openbisExtracts = getLowerSamples(openbisEntities);
+	// openbisTests = getLowerSamples(openbisExtracts);
+	//
+	// entities = copySamples(parseEntities(openbisEntities), copies);
+	// extracts = copySamples(parseExtracts(openbisExtracts), copies);
+	// tests = copySamples(parseTestSamples(openbisTests), copies);
+	// } else if (type.equals(ExperimentType.Q_SAMPLE_EXTRACTION.toString())) {
+	//
+	// openbisExtracts = originals;
+	// openbisEntities = getUpperSamples(openbisExtracts);
+	// openbisTests = getLowerSamples(openbisExtracts);
+	//
+	// entities = parseEntities(openbisEntities);
+	//
+	// extracts = copySamples(parseExtracts(openbisExtracts), copies);
+	// tests = copySamples(parseTestSamples(openbisTests), copies);
+	//
+	// } else if (type.equals(ExperimentType.Q_SAMPLE_PREPARATION.toString())) {
+	//
+	// openbisTests = originals;
+	// openbisExtracts = getUpperSamples(openbisTests);
+	// openbisEntities = getUpperSamples(openbisExtracts);
+	//
+	// entities = parseEntities(openbisEntities);
+	// extracts = parseExtracts(openbisExtracts);
+	//
+	// tests = copySamples(parseTestSamples(openbisTests), copies);
+	// }
+	// }
 
-  /**
-   * Gets all samples that are one level lower in the sample hierarchy of an attached experiment
-   * than a given list of samples
-   * 
-   * @param originals
-   * @return
-   */
-  private List<Sample> getLowerSamples(List<Sample> originals) {
-    for (Sample s : originals) {
-      List<Sample> children = openbis.getChildrenSamples(s);
-      if (children.size() > 0) {
-        return openbis.getSamplesofExperiment(children.get(0).getExperimentIdentifierOrNull());
-      }
-    }
-    return null;
-  }
+	/**
+	 * Copy a list of samples, used by the copy context function
+	 * 
+	 * @param samples
+	 * @param copies
+	 * @return
+	 */
+	private List<AOpenbisSample> copySamples(List<AOpenbisSample> samples, Map<String, String> copies) {
+		String newExp = buildExperimentName();
+		String type = samples.get(0).getValueMap().get("SAMPLE TYPE");
+		ExperimentType eType = ExperimentType.Q_EXPERIMENTAL_DESIGN;
+		if (type.equals("Q_BIOLOGICAL_ENTITY"))
+			eType = ExperimentType.Q_EXPERIMENTAL_DESIGN;
+		else if (type.equals("Q_BIOLOGICAL_SAMPLE"))
+			eType = ExperimentType.Q_SAMPLE_EXTRACTION;
+		else if (type.equals("Q_TEST_SAMPLE"))
+			eType = ExperimentType.Q_SAMPLE_PREPARATION;
+		else if (type.equals("Q_CFH_ELEMENTS"))
+			eType = ExperimentType.Q_CFH_ELEMENT;
+		else if (type.equals("Q_CFH_NMINS"))
+			eType = ExperimentType.Q_CFH_NMIN;
+		else if (type.equals("Q_CFH_NMR_RUN"))
+			eType = ExperimentType.Q_CFH_NMR;
+		else
+			logger.error("Unexpected type: " + type);
+		experiments.add(new OpenbisExperiment(newExp, eType, -1, null));// TODO secondary name?
 
-  /**
-   * Creates a tab separated values file of the context created by the wizard, given that samples
-   * have been prepared in the aggregator class
-   * 
-   * @return
-   * @throws FileNotFoundException
-   * @throws UnsupportedEncodingException
-   */
-  public String createTSV() throws FileNotFoundException, UnsupportedEncodingException {
-    List<AOpenbisSample> samples = new ArrayList<AOpenbisSample>();
-    samples.addAll(entities);
-    samples.addAll(extracts);
-    samples.addAll(tests);
-    if (testPools != null)
-      samples.addAll(testPools);
-    if (msSamples != null)
-      samples.addAll(msSamples);// TODO test
-    if (mhcExtracts != null)
-      samples.addAll(mhcExtracts);
-    if (nminExtracts != null)
-      samples.addAll(nminExtracts);
-    if (elementExtracts != null)
-      samples.addAll(elementExtracts);
-    if (nmrExtracts != null)
-      samples.addAll(nmrExtracts);
-    List<String> rows = new ArrayList<String>();
+		for (AOpenbisSample s : samples) {
+			s.setExperiment(newExp);
+			String code = s.getCode();
+			String newCode = code;
+			if (s instanceof OpenbisBiologicalEntity) {
+				newCode = projectCode + "ENTITY-" + firstFreeEntityID;
+				firstFreeEntityID++;
+			} else {
+				if (nextBarcode == null) {
+					// classChar = 'A';
+					// nextBarcode =
+					// projectCode + Functions.createCountString(firstFreeBarcodeID, 3) + classChar;
+					// nextBarcode = nextBarcode + Functions.checksum(nextBarcode);
+					nextBarcode = firstFreeBarcode;
+				} else {
+					nextBarcode = SampleCodeFunctions.incrementSampleCode(nextBarcode);
+				}
+				newCode = nextBarcode;
+			}
+			copies.put(code, newCode);
+			s.setCode(newCode);
+			String p = s.getParent();
+			// change parent if parent was copied
+			if (p != null && p.length() > 0)
+				if (copies.containsKey(p))
+					s.setParent(copies.get(p));
+		}
+		return samples;
+	}
 
-    List<String> header = new ArrayList<String>(Arrays.asList("SAMPLE TYPE", "SPACE", "EXPERIMENT",
-        "Q_SECONDARY_NAME", "PARENT", "Q_PRIMARY_TISSUE", "Q_TISSUE_DETAILED", "Q_ADDITIONAL_INFO",
-        "Q_NCBI_ORGANISM", "Q_ORGANISM_DETAILED",  "Q_SAMPLE_TYPE", "Q_EXTERNALDB_ID"));
-    // TODO current assumption: tests should have more or an equal number of xml entries than
-    // ancestors, because they inherit their entries
-    int factorRowSize = 0;
-    AOpenbisSample a = samples.get(0);
-    for (AOpenbisSample b : samples) {
-      if (factorRowSize < b.getFactors().size()) {
-        factorRowSize = b.getFactors().size();
-        a = b;
-      }
-    }
-    String description = s1.getDescription();
-    String secondaryName = s1.getExpSecondaryName();
-    String investigator = s1.getPerson(PersonType.Investigator);
-    String contact = s1.getPerson(PersonType.Contact);
-    String manager = s1.getPerson(PersonType.Manager);
+	/**
+	 * Gets all samples that are one level higher in the sample hierarchy of an
+	 * attached experiment than a given list of samples
+	 * 
+	 * @param originals
+	 * @return
+	 */
+	private List<Sample> getUpperSamples(List<Sample> originals) {
+		for (Sample s : originals) {
+			List<Sample> parents = openbis.getParentsBySearchService(s.getCode());
+			if (parents.size() > 0) {
+				return openbis.getSamplesofExperiment(parents.get(0).getExperimentIdentifierOrNull());
+			}
+		}
+		return null;
+	}
 
-    String result = "";
-    description = description.replace("\n", "\n#");
-    secondaryName = secondaryName.replace("\n", " - ");
-    result += "#PROJECT_DESCRIPTION=" + description + "\n";
-    result += "#ALTERNATIVE_NAME=" + secondaryName + "\n";
-    if (s1.isPilot())
-      result += "#PILOT PROJECT\n";
-    result += "#INVESTIGATOR=" + investigator + "\n";
-    result += "#CONTACT=" + contact + "\n";
-    result += "#MANAGER=" + manager + "\n";
+	/**
+	 * Gets all samples that are one level lower in the sample hierarchy of an
+	 * attached experiment than a given list of samples
+	 * 
+	 * @param originals
+	 * @return
+	 */
+	private List<Sample> getLowerSamples(List<Sample> originals) {
+		for (Sample s : originals) {
+			List<Sample> children = openbis.getChildrenSamples(s);
+			if (children.size() > 0) {
+				return openbis.getSamplesofExperiment(children.get(0).getExperimentIdentifierOrNull());
+			}
+		}
+		return null;
+	}
 
-    // TODO reuse this in the refactored version, it's not stupid
-    if (experiments != null) {
-      for (OpenbisExperiment e : experiments) {
-        if (informativeExpTypes.contains(e.getType()) || e.containsProperties()) {
-          result += e.getPropertiesString() + "\n";
-        }
-      }
-    }
-    // Map<String, Object> msProps = s8.getProteinMSExperimentProperties(); TODO might need this for
-    // non-fractionation experiments
-    // if (msProps != null)
-    // result += addExperimentInfoLine(msProps, "Q_MS_MEASUREMENT") + "\n";
-    if (mhcExperimentProtocols != null) {
-      header.add("Q_ANTIBODY");
-      header.add("Q_MHC_CLASS");
-    }
+	/**
+	 * Creates a tab separated values file of the context created by the wizard,
+	 * given that samples have been prepared in the aggregator class
+	 * 
+	 * @return
+	 * @throws FileNotFoundException
+	 * @throws UnsupportedEncodingException
+	 */
+	public String createTSV() throws FileNotFoundException, UnsupportedEncodingException {
+		List<AOpenbisSample> samples = new ArrayList<AOpenbisSample>();
+		samples.addAll(entities);
+		samples.addAll(extracts);
+		samples.addAll(tests);
+		if (testPools != null)
+			samples.addAll(testPools);
+		if (msSamples != null)
+			samples.addAll(msSamples);// TODO test
+		if (mhcExtracts != null)
+			samples.addAll(mhcExtracts);
+		if (nminExtracts != null)
+			samples.addAll(nminExtracts);
+		if (elementExtracts != null)
+			samples.addAll(elementExtracts);
+		if (nmrExtracts != null)
+			samples.addAll(nmrExtracts);
+		List<String> rows = new ArrayList<String>();
 
-    if(!infoElement.isEmpty()) {
-    	header.add("Q_CFH_DIGESTION");
-    	header.add("Q_ELEMENT_DESC");
-    	header.add("Q_CFH_DEVICES");
-    	header.add("Q_CFH_GRINDING");
-    }
-    
-    if(!infoNmin.isEmpty()) {
-    	header.add("Q_CFH_NMIN_DEPTH");
-    	header.add("Q_CFH_NMIN_DENSITY");
-    	header.add("Q_CFH_NITRATE");
-    }
-    
-    if(!infoNMR.isEmpty()) {
-    	header.add("NMR_EXP_TYPES");
-		header.add("NMR_EXP_DESC");
-		header.add("NMR_SOLVENT");
-		header.add("NMR_CONCENTRATION");
-		header.add("NMR_VOLUME");
-		header.add("NMR_PH"); 
-		header.add("NMR_BUFFER");
-		header.add("NMR_DATE");
-		header.add("NMR_STORAGE");
-		header.add("NMR_QUANTITATION");
-		header.add("NMR_SAMPLE_DESC");
-		header.add("NMR_SPECTROMETER");
-		header.add("NMR_PROBE");
-		header.add("NMR_TEMPERATURE");
-		header.add("NMR_PROBE_DETAILS");
-		header.add("NMR_STORAGE_DETAILS");
-		header.add("NMR_SOLVENT_DETAILS");
-    }
-    	
-    String headerLine = "Identifier";
-    for (String col : header)
-      headerLine += "\t" + col;
+		List<String> header = new ArrayList<String>(Arrays.asList("SAMPLE TYPE", "SPACE", "EXPERIMENT",
+				"Q_SECONDARY_NAME", "PARENT", "Q_PRIMARY_TISSUE", "Q_TISSUE_DETAILED", "Q_ADDITIONAL_INFO",
+				"Q_NCBI_ORGANISM", "Q_ORGANISM_DETAILED", "Q_SAMPLE_TYPE", "Q_EXTERNALDB_ID"));
+		// TODO current assumption: tests should have more or an equal number of xml
+		// entries than
+		// ancestors, because they inherit their entries
+		int factorRowSize = 0;
+		AOpenbisSample a = samples.get(0);
+		for (AOpenbisSample b : samples) {
+			if (factorRowSize < b.getFactors().size()) {
+				factorRowSize = b.getFactors().size();
+				a = b;
+			}
+		}
+		String description = s1.getDescription();
+		String secondaryName = s1.getExpSecondaryName();
+		String investigator = s1.getPerson(PersonType.Investigator);
+		String contact = s1.getPerson(PersonType.Contact);
+		String manager = s1.getPerson(PersonType.Manager);
 
-    for (Property f : a.getFactors()) {
-      String label = f.getLabel();
-      switch (f.getType()) {
-        case Factor:
-          headerLine += "\tCondition: " + label;
-          break;
-        case Property:
-          headerLine += "\tProperty: " + label;
-          break;
-        default:
-          break;
-      }
-    }
-    for (AOpenbisSample s : samples) {
-      String code = s.getCode();
-      //if (isEntity(code) || SampleCodeFunctions.isQbicBarcode(code)
-      if (isEntity(code) || SampleCodeFunctions.isQbicBarcode(code) //TODO data-model read in correct then it will work 
-          || SampleCodeFunctions.isMeasurementOfBarcode(code, s.getValueMap().get("SAMPLE TYPE"))) {
-        Map<String, String> data = s.getValueMap();
-        String row = s.getCode();
-        List<String> factors = s.getFactorStringsWithoutLabel();
-        for (String col : header) {
-          String val = "";
-          if (data.containsKey(col))
-            val = data.get(col);
-          if (val == null)
-            val = "";
-          row += "\t" + val;
-        }
-        for (int i = 0; i < factors.size(); i++)
-          row += "\t" + factors.get(i);
-        for (int i = factors.size(); i < factorRowSize; i++) {
-          row += "\t";
-        }
-        rows.add(row);
-      } else {
-        logger.warn(
-            code + " will be ignored, it is not a valid CFH barcode registerable by the wizard.");
-      }
-    }
-    result += headerLine + "\n";
-    for (String line : rows) {
-      result += line + "\n";
-    }
-    this.tsvContent = result;
-    return result;
-  }
+		String result = "";
+		description = description.replace("\n", "\n#");
+		secondaryName = secondaryName.replace("\n", " - ");
+		result += "#PROJECT_DESCRIPTION=" + description + "\n";
+		result += "#ALTERNATIVE_NAME=" + secondaryName + "\n";
+		if (s1.isPilot())
+			result += "#PILOT PROJECT\n";
+		result += "#INVESTIGATOR=" + investigator + "\n";
+		result += "#CONTACT=" + contact + "\n";
+		result += "#MANAGER=" + manager + "\n";
 
-  // TODO should be parsed from the tsv?
-  public List<OpenbisExperiment> getExperimentsWithMetadata() {
-    List<OpenbisExperiment> res = new ArrayList<OpenbisExperiment>();
-    for (OpenbisExperiment e : experiments) {
-      if (informativeExpTypes.contains(e.getType()) || e.containsProperties()) {
+		// TODO reuse this in the refactored version, it's not stupid
+		if (experiments != null) {
+			for (OpenbisExperiment e : experiments) {
+				if (informativeExpTypes.contains(e.getType()) || e.containsProperties()) {
+					result += e.getPropertiesString() + "\n";
+				}
+			}
+		}
+		// Map<String, Object> msProps = s8.getProteinMSExperimentProperties(); TODO
+		// might need this for
+		// non-fractionation experiments
+		// if (msProps != null)
+		// result += addExperimentInfoLine(msProps, "Q_MS_MEASUREMENT") + "\n";
+		if (mhcExperimentProtocols != null) {
+			header.add("Q_ANTIBODY");
+			header.add("Q_MHC_CLASS");
+		}
 
-        res.add(e);
-      }
-    }
-    return res;
-  }
+		if (!infoElement.isEmpty()) {
+			header.add("Q_CFH_DIGESTION");
+			header.add("Q_ELEMENT_DESC");
+			header.add("Q_CFH_DEVICES");
+			header.add("Q_CFH_GRINDING");
+		}
 
-  private static boolean isEntity(String code) {
-    //String pattern = "Q[A-Z0-9]{4}ENTITY-[0-9]+";
-    String pattern = "20[0-9]{2}-[0-9]-[0-9]{4}-[0-9]{3}ENTITY-[0-9]+";
-    return code.matches(pattern);
-  }
+		if (!infoNmin.isEmpty()) {
+			header.add("Q_CFH_NMIN_DEPTH");
+			header.add("Q_CFH_NMIN_DENSITY");
+			header.add("Q_CFH_NITRATE");
+		}
 
-  public File getTSV() throws FileNotFoundException, UnsupportedEncodingException {
-    String file = ProjectWizardUI.tmpFolder + "tmp_" + getTSVName() + ".tsv";
-    PrintWriter writer = new PrintWriter(file, "UTF-8");
-    for (String line : tsvContent.split("\n")) {
-      writer.println(line);
-    }
-    writer.close();
-    return new File(file);
-  }
+		if (!infoNMR.isEmpty()) {
+			header.add("NMR_EXP_TYPES");
+			header.add("NMR_EXP_DESC");
+			header.add("NMR_SOLVENT");
+			header.add("NMR_CONCENTRATION");
+			header.add("NMR_VOLUME");
+			header.add("NMR_PH");
+			header.add("NMR_BUFFER");
+			header.add("NMR_DATE");
+			header.add("NMR_STORAGE");
+			header.add("NMR_QUANTITATION");
+			header.add("NMR_SAMPLE_DESC");
+			header.add("NMR_SPECTROMETER");
+			header.add("NMR_PROBE");
+			header.add("NMR_TEMPERATURE");
+			header.add("NMR_PROBE_DETAILS");
+			header.add("NMR_STORAGE_DETAILS");
+			header.add("NMR_SOLVENT_DETAILS");
+		}
 
-  public String getTSVName() {
-    return spaceCode + "_" + projectCode;
-  }
+		String headerLine = "Identifier";
+		for (String col : header)
+			headerLine += "\t" + col;
 
-  public String getTSVContent() {
-    return tsvContent;
-  }
+		for (Property f : a.getFactors()) {
+			String label = f.getLabel();
+			switch (f.getType()) {
+			case Factor:
+				headerLine += "\tCondition: " + label;
+				break;
+			case Property:
+				headerLine += "\tProperty: " + label;
+				break;
+			default:
+				break;
+			}
+		}
+		for (AOpenbisSample s : samples) {
+			String code = s.getCode();
+			// if (isEntity(code) || SampleCodeFunctions.isQbicBarcode(code)
+			if (isEntity(code) || SampleCodeFunctions.isQbicBarcode(code) // TODO data-model read in correct then it
+																			// will work
+					|| SampleCodeFunctions.isMeasurementOfBarcode(code, s.getValueMap().get("SAMPLE TYPE"))) {
+				Map<String, String> data = s.getValueMap();
+				String row = s.getCode();
+				List<String> factors = s.getFactorStringsWithoutLabel();
+				for (String col : header) {
+					String val = "";
+					if (data.containsKey(col))
+						val = data.get(col);
+					if (val == null)
+						val = "";
+					row += "\t" + val;
+				}
+				for (int i = 0; i < factors.size(); i++)
+					row += "\t" + factors.get(i);
+				for (int i = factors.size(); i < factorRowSize; i++) {
+					row += "\t";
+				}
+				rows.add(row);
+			} else {
+				logger.warn(code + " will be ignored, it is not a valid CFH barcode registerable by the wizard.");
+			}
+		}
+		result += headerLine + "\n";
+		for (String line : rows) {
+			result += line + "\n";
+		}
+		this.tsvContent = result;
+		return result;
+	}
 
-  public List<AOpenbisSample> getEntities() {
-    return entities;
-  }
+	// TODO should be parsed from the tsv?
+	public List<OpenbisExperiment> getExperimentsWithMetadata() {
+		List<OpenbisExperiment> res = new ArrayList<OpenbisExperiment>();
+		for (OpenbisExperiment e : experiments) {
+			if (informativeExpTypes.contains(e.getType()) || e.containsProperties()) {
 
-  public void parseAll() throws JAXBException {
-    prepareBasics();
-    factorMap = new HashMap<String, Property>();
+				res.add(e);
+			}
+		}
+		return res;
+	}
 
-    List<Sample> openbisEntities = new ArrayList<Sample>();
-    List<Sample> openbisExtracts = new ArrayList<Sample>();
-    List<Sample> openbisTests = new ArrayList<Sample>();
+	private static boolean isEntity(String code) {
+		// String pattern = "Q[A-Z0-9]{4}ENTITY-[0-9]+";
+		String pattern = "20[0-9]{2}-[0-9]-[0-9]{4}-[0-9]{3}ENTITY-[0-9]+";
+		return code.matches(pattern);
+	}
 
-    List<Sample> allSamples =
-        openbis.getSamplesWithParentsAndChildrenOfProjectBySearchService(projectCode);
-    for (Sample sa : allSamples) {
-      String type = sa.getSampleTypeCode();
-      switch (type) {
-        case "Q_BIOLOGICAL_ENTITY":
-          openbisEntities.add(sa);
-          break;
-        case "Q_BIOLOGICAL_SAMPLE":
-          openbisExtracts.add(sa);
-          break;
-        case "Q_TEST_SAMPLE":
-          openbisTests.add(sa);
-          break;
-        default:
-          break;
-      }
-    }
-    entities = parseEntities(openbisEntities, false);
-    extracts = parseExtracts(openbisExtracts, null);
-    tests = parseTestSamples(openbisTests, null);
-  }
+	public File getTSV() throws FileNotFoundException, UnsupportedEncodingException {
+		String file = ProjectWizardUI.tmpFolder + "tmp_" + getTSVName() + ".tsv";
+		PrintWriter writer = new PrintWriter(file, "UTF-8");
+		for (String line : tsvContent.split("\n")) {
+			writer.println(line);
+		}
+		writer.close();
+		return new File(file);
+	}
 
-  public List<AOpenbisSample> getTests() {
-    return tests;
-  }
+	public String getTSVName() {
+		return spaceCode + "_" + projectCode;
+	}
 
-  public void resetExtracts() {
-    extracts = new ArrayList<AOpenbisSample>();
-  }
+	public String getTSVContent() {
+		return tsvContent;
+	}
 
-  public List<OpenbisExperiment> getExperiments() {
-    return experiments;
-  }
+	public List<AOpenbisSample> getEntities() {
+		return entities;
+	}
 
-  // public void setHasFractionationExperiment(boolean b) {
-  // this.hasFractionationExperiment = b;
-  // }
+	public void parseAll() throws JAXBException {
+		prepareBasics();
+		factorMap = new HashMap<String, Property>();
 
-  public void setFractionationExperimentsProperties(
-      MSExperimentModel fractionationPropertiesFromLastStep) {
-    this.fractionationProperties = fractionationPropertiesFromLastStep;
-  }
+		List<Sample> openbisEntities = new ArrayList<Sample>();
+		List<Sample> openbisExtracts = new ArrayList<Sample>();
+		List<Sample> openbisTests = new ArrayList<Sample>();
 
-  /**
-   * creates fractionation samples (proteins and or peptides) as well as samples for the attached
-   * Mass Spectrometry runs should be called before creating the project spreadsheet (tsv)
-   */
-  public void createFractionationSamplesAndExperiments() {
-    List<AOpenbisSample> res = new ArrayList<AOpenbisSample>();
+		List<Sample> allSamples = openbis.getSamplesWithParentsAndChildrenOfProjectBySearchService(projectCode);
+		for (Sample sa : allSamples) {
+			String type = sa.getSampleTypeCode();
+			switch (type) {
+			case "Q_BIOLOGICAL_ENTITY":
+				openbisEntities.add(sa);
+				break;
+			case "Q_BIOLOGICAL_SAMPLE":
+				openbisExtracts.add(sa);
+				break;
+			case "Q_TEST_SAMPLE":
+				openbisTests.add(sa);
+				break;
+			default:
+				break;
+			}
+		}
+		entities = parseEntities(openbisEntities, false);
+		extracts = parseExtracts(openbisExtracts, null);
+		tests = parseTestSamples(openbisTests, null);
+	}
 
-    ExperimentModel exp = fractionationProperties.getBaseAnalytes();
-    Map<String, Object> proteinPrepProps = s8.getProteinPreparationInformation();
-    if (proteinPrepProps != null) {
-      for (String key : proteinPrepProps.keySet()) {
-        exp.addProperty(key, proteinPrepProps.get(key));
-      }
-    }
-    String eName = buildExperimentName();
-    experiments.add(
-        new OpenbisExperiment(eName, ExperimentType.Q_SAMPLE_PREPARATION, exp.getProperties()));
-    for (AOpenbisSample s : exp.getSamples()) {
-      s.setExperiment(eName);
-      s.setSpace(spaceCode);
-      s.setSampleType("Q_TEST_SAMPLE");
-      String parents = "";
-      if (s.getParents() == null)
-        parents = s.getParent();
-      else {
-        for (AOpenbisSample p : s.getParents()) {
-          parents += p.getCode() + " ";
-        }
-        parents = parents.trim();
+	public List<AOpenbisSample> getTests() {
+		return tests;
+	}
 
-      }
-      s.setParent(parents);
-      if (s.getCode() == null) {
-        incrementOrCreateBarcode();
-        s.setCode(nextBarcode);
-      }
-      this.testPools = new ArrayList<AOpenbisSample>();
-      if (!tests.contains(s))
-        this.testPools.add(s);
-    }
+	public void resetExtracts() {
+		extracts = new ArrayList<AOpenbisSample>();
+	}
 
-    for (List<ExperimentModel> fe : fractionationProperties.getAnalytes()) {
-      for (ExperimentModel e : fe) {
-        String expName = buildExperimentName();
-        experiments.add(
-            new OpenbisExperiment(expName, ExperimentType.Q_SAMPLE_PREPARATION, e.getProperties()));
-        for (AOpenbisSample s : e.getSamples()) {
-          s.setExperiment(expName);
-          s.setSpace(spaceCode);
-          s.setSampleType("Q_TEST_SAMPLE");
-          String parents = "";
-          for (AOpenbisSample p : s.getParents()) {
-            parents += p.getCode() + " ";
-          }
-          parents = parents.trim();
-          s.setParent(parents);
-          if (s.getCode() == null) {
-            incrementOrCreateBarcode();
-            s.setCode(nextBarcode);
-          }
-        }
-        res.addAll(e.getSamples());
-      }
-    }
-    for (ExperimentModel e : fractionationProperties.getPeptideExperiments()) {
-      String expName = buildExperimentName();
-      experiments.add(
-          new OpenbisExperiment(expName, ExperimentType.Q_SAMPLE_PREPARATION, e.getProperties()));
-      for (AOpenbisSample s : e.getSamples()) {
-        s.setExperiment(expName);
-        s.setSpace(spaceCode);
-        s.setSampleType("Q_TEST_SAMPLE");
-        String parents = "";
-        if (s.getParents() == null)
-          parents = s.getParent();
-        else {
-          for (AOpenbisSample p : s.getParents()) {
-            parents += p.getCode() + " ";
-          }
-          parents = parents.trim();
-        }
-        s.setParent(parents);
-        if (s.getCode() == null) {
-          incrementOrCreateBarcode();
-          s.setCode(nextBarcode);
-        }
-      }
-      res.addAll(e.getSamples());
-    }
-    for (List<ExperimentModel> fe : fractionationProperties.getMSRuns()) {
-      for (ExperimentModel e : fe) {
-        String expName = buildExperimentName();
-        experiments.add(
-            new OpenbisExperiment(expName, ExperimentType.Q_MS_MEASUREMENT, e.getProperties()));
-        for (AOpenbisSample s : e.getSamples()) {
-          s.setExperiment(expName);
-          s.setSpace(spaceCode);
-          s.setSampleType("Q_MS_RUN");
-          String parents = "";
-          for (AOpenbisSample p : s.getParents()) {
-            parents += p.getCode() + " ";
-          }
-          parents = parents.trim();
-          s.setParent(parents);
-          if (parents.startsWith("MS")) {// wash runs
-            if (s.getCode() == null) {
-              incrementOrCreateBarcode();
-              s.setCode(nextBarcode);
-            }
-          } else {
-            s.setCode("MS" + parents);
-          }
-        }
-        res.addAll(e.getSamples());
-      }
-    }
-    msSamples = res;
-  }
+	public List<OpenbisExperiment> getExperiments() {
+		return experiments;
+	}
 
-  public RegisteredAnalyteInformation getBaseAnalyteInformation() {
-    // TODO replicates?
-    Map<String, List<Sample>> infos = new HashMap<String, List<Sample>>();
-    for (Sample s : existingSamples.values()) {
-      String type = s.getSampleTypeCode();
-      if (type.equals("Q_TEST_SAMPLE")) {
-        Map<String, String> props = s.getProperties();
-        String analyte = props.get("Q_SAMPLE_TYPE");
-        if (infos.containsKey(analyte)) {
-          infos.get(analyte).add(s);
-        } else {
-          infos.put(analyte, new ArrayList<Sample>(Arrays.asList(s)));
-        }
-      }
-    }
-    boolean measurePeptides = false;
-    boolean shortGel = false;
-    boolean precipitation = false;
-    boolean digestionSolution= false;
-    boolean digestionGel= false;
-	String other = "";
-	boolean none= false;
-	boolean silver= false;
-	boolean coomassie= false;
-	boolean identification= false;
-	boolean quantification= false;
-	boolean evaluation= false;
-	String duration = "";
-	String comments = "";
-	boolean molecularWeight= false;
-    String purificationMethod = "";
-    String composition = "";
-  	
-  	//Small Molecules 
-    String substanceClass = "";
-  	String molFormulaMass = "";
-  	boolean extraction = false;
-  	String molecularWeightRange = "";
-	String polarity = "";	
-	boolean relQuantification = false;
-	boolean absQuantification = false;
-	String internalStandards = "";
-  	
-	if (infos.containsKey("PROTEINS")) {
-      Sample first = infos.get("PROTEINS").get(0);
-      String expID = first.getExperimentIdentifierOrNull();
-      for (Experiment e : openbis.getExperimentsOfProjectByCode(first.getCode().substring(0, 15))) { // changed by CFH changed from (0, 5) to (0, 15)
-        if (e.getIdentifier().equals(expID)) {
-          Map<String, String> props = e.getProperties();
-          if (props.containsKey("Q_MS_PURIFICATION_METHOD"))
-        	  purificationMethod = props.get("Q_MS_PURIFICATION_METHOD");
-          if (props.containsKey("Q_ADDITIONAL_INFORMATION"))
-        	silver = props.get("Q_ADDITIONAL_INFORMATION").contains("Silver");
-      		coomassie = props.get("Q_ADDITIONAL_INFORMATION").contains("Coomassie");
-            
-          	//CFH proteins if when result is not boolean
-          	if (props.get("Q_ADDITIONAL_INFORMATION").contains("Composition"))
-          		composition = props.get("Q_ADDITIONAL_INFORMATION");
-        	digestionSolution = props.get("Q_ADDITIONAL_INFORMATION").contains("in solution digestion");
-        	digestionGel = props.get("Q_ADDITIONAL_INFORMATION").contains("in gel digestion");
-        	precipitation = props.get("Q_ADDITIONAL_INFORMATION").contains("Precipitation");
-        	shortGel = props.get("Q_ADDITIONAL_INFORMATION").contains("Short Gel");
-        	if (props.get("Q_ADDITIONAL_INFORMATION").contains("Other"))
-            	other = props.get("Q_ADDITIONAL_INFORMATION");
-        	none = props.get("Q_ADDITIONAL_INFORMATION").contains("None");
-        	
-        	identification = props.get("Q_ADDITIONAL_INFORMATION").contains("Identification");
-        	quantification = props.get("Q_ADDITIONAL_INFORMATION").contains("Quantification");
-        	molecularWeight = props.get("Q_ADDITIONAL_INFORMATION").contains("Molecular Weight");
-        	evaluation = props.get("Q_ADDITIONAL_INFORMATION").contains("No data analysis");
-        	
-          	if (props.get("Q_ADDITIONAL_INFORMATION").contains("Instrument time"))
-          		duration = props.get("Q_ADDITIONAL_INFORMATION");       
-        	if (props.get("Q_ADDITIONAL_INFORMATION").contains("Comments"))
-          		duration = props.get("Q_ADDITIONAL_INFORMATION"); 
+	// public void setHasFractionationExperiment(boolean b) {
+	// this.hasFractionationExperiment = b;
+	// }
 
-        	//small molecules
-			if (props.get("Q_ADDITIONAL_INFORMATION").contains("Substance Class"))
-				substanceClass = props.get("Q_ADDITIONAL_INFORMATION");
-			if (props.get("Q_ADDITIONAL_INFORMATION").contains("Molecular Formula/Mass"))
-				molFormulaMass = props.get("Q_ADDITIONAL_INFORMATION");
-			extraction = props.get("Q_ADDITIONAL_INFORMATION").contains("Extraction");
-			if (props.get("Q_ADDITIONAL_INFORMATION").contains("Molecular weight range"))
-				molecularWeightRange = props.get("Q_ADDITIONAL_INFORMATION");
-			if (props.get("Q_ADDITIONAL_INFORMATION").contains("Polarity"))
-				polarity = props.get("Q_ADDITIONAL_INFORMATION");
-        	relQuantification = props.get("Q_ADDITIONAL_INFORMATION").contains("relative Quantification");
-        	absQuantification = props.get("Q_ADDITIONAL_INFORMATION").contains("absolute Quantification");
-			if (props.get("Q_ADDITIONAL_INFORMATION").contains("Internal Standards"))
-				internalStandards = props.get("Q_ADDITIONAL_INFORMATION");
-			
-      	
-          	//TODO
-          break;
-        }
-      }
-      }
+	public void setFractionationExperimentsProperties(MSExperimentModel fractionationPropertiesFromLastStep) {
+		this.fractionationProperties = fractionationPropertiesFromLastStep;
+	}
 
+	/**
+	 * creates fractionation samples (proteins and or peptides) as well as samples
+	 * for the attached Mass Spectrometry runs should be called before creating the
+	 * project spreadsheet (tsv)
+	 */
+	public void createFractionationSamplesAndExperiments() {
+		List<AOpenbisSample> res = new ArrayList<AOpenbisSample>();
 
-      if (infos.containsKey("PEPTIDES")) {
-        for (Sample s : infos.get("PEPTIDES")) {
-          for (Sample p : s.getParents()) {
-            if (p.getSampleTypeCode().equals("Q_TEST_SAMPLE")
-                && p.getProperties().get("Q_SAMPLE_TYPE").equals("PROTEINS")) {
-              measurePeptides = true;
-              break;
-            }
-          }
-          if (measurePeptides)
-            break;
-        }
-        infos.remove("PEPTIDES");
-      }
-    
-	RegisteredAnalyteInformation res = null;
-    if (!infos.containsKey("PROTEINS")){
-    	res = new RegisteredAnalyteInformation(infos.keySet(),  composition,  substanceClass, molFormulaMass,
-    			 extraction,  precipitation,  other,  none,  molecularWeightRange,  polarity,  molecularWeight, identification,  
-    				 relQuantification,   absQuantification,  evaluation,  internalStandards,  comments);
-    } else {
-    	res = new RegisteredAnalyteInformation(infos.keySet(),
-        measurePeptides, shortGel, purificationMethod, composition, precipitation,  digestionSolution, digestionGel,  other,  none,  silver,  coomassie,
-       identification,  quantification,  duration,  evaluation,  molecularWeight, comments);
-    }
-    return res;
-  }
+		ExperimentModel exp = fractionationProperties.getBaseAnalytes();
+		Map<String, Object> proteinPrepProps = s8.getProteinPreparationInformation();
+		if (proteinPrepProps != null) {
+			for (String key : proteinPrepProps.keySet()) {
+				exp.addProperty(key, proteinPrepProps.get(key));
+			}
+		}
+		String eName = buildExperimentName();
+		experiments.add(new OpenbisExperiment(eName, ExperimentType.Q_SAMPLE_PREPARATION, exp.getProperties()));
+		for (AOpenbisSample s : exp.getSamples()) {
+			s.setExperiment(eName);
+			s.setSpace(spaceCode);
+			s.setSampleType("Q_TEST_SAMPLE");
+			String parents = "";
+			if (s.getParents() == null)
+				parents = s.getParent();
+			else {
+				for (AOpenbisSample p : s.getParents()) {
+					parents += p.getCode() + " ";
+				}
+				parents = parents.trim();
+
+			}
+			s.setParent(parents);
+			if (s.getCode() == null) {
+				incrementOrCreateBarcode();
+				s.setCode(nextBarcode);
+			}
+			this.testPools = new ArrayList<AOpenbisSample>();
+			if (!tests.contains(s))
+				this.testPools.add(s);
+		}
+
+		for (List<ExperimentModel> fe : fractionationProperties.getAnalytes()) {
+			for (ExperimentModel e : fe) {
+				String expName = buildExperimentName();
+				experiments.add(new OpenbisExperiment(expName, ExperimentType.Q_SAMPLE_PREPARATION, e.getProperties()));
+				for (AOpenbisSample s : e.getSamples()) {
+					s.setExperiment(expName);
+					s.setSpace(spaceCode);
+					s.setSampleType("Q_TEST_SAMPLE");
+					String parents = "";
+					for (AOpenbisSample p : s.getParents()) {
+						parents += p.getCode() + " ";
+					}
+					parents = parents.trim();
+					s.setParent(parents);
+					if (s.getCode() == null) {
+						incrementOrCreateBarcode();
+						s.setCode(nextBarcode);
+					}
+				}
+				res.addAll(e.getSamples());
+			}
+		}
+		for (ExperimentModel e : fractionationProperties.getPeptideExperiments()) {
+			String expName = buildExperimentName();
+			experiments.add(new OpenbisExperiment(expName, ExperimentType.Q_SAMPLE_PREPARATION, e.getProperties()));
+			for (AOpenbisSample s : e.getSamples()) {
+				s.setExperiment(expName);
+				s.setSpace(spaceCode);
+				s.setSampleType("Q_TEST_SAMPLE");
+				String parents = "";
+				if (s.getParents() == null)
+					parents = s.getParent();
+				else {
+					for (AOpenbisSample p : s.getParents()) {
+						parents += p.getCode() + " ";
+					}
+					parents = parents.trim();
+				}
+				s.setParent(parents);
+				if (s.getCode() == null) {
+					incrementOrCreateBarcode();
+					s.setCode(nextBarcode);
+				}
+			}
+			res.addAll(e.getSamples());
+		}
+		for (List<ExperimentModel> fe : fractionationProperties.getMSRuns()) {
+			for (ExperimentModel e : fe) {
+				String expName = buildExperimentName();
+				experiments.add(new OpenbisExperiment(expName, ExperimentType.Q_MS_MEASUREMENT, e.getProperties()));
+				for (AOpenbisSample s : e.getSamples()) {
+					s.setExperiment(expName);
+					s.setSpace(spaceCode);
+					s.setSampleType("Q_MS_RUN");
+					String parents = "";
+					for (AOpenbisSample p : s.getParents()) {
+						parents += p.getCode() + " ";
+					}
+					parents = parents.trim();
+					s.setParent(parents);
+					if (parents.startsWith("MS")) {// wash runs
+						if (s.getCode() == null) {
+							incrementOrCreateBarcode();
+							s.setCode(nextBarcode);
+						}
+					} else {
+						s.setCode("MS" + parents);
+					}
+				}
+				res.addAll(e.getSamples());
+			}
+		}
+		msSamples = res;
+	}
+
+	public RegisteredAnalyteInformation getBaseAnalyteInformation() {
+		// TODO replicates?
+		Map<String, List<Sample>> infos = new HashMap<String, List<Sample>>();
+		for (Sample s : existingSamples.values()) {
+			String type = s.getSampleTypeCode();
+			if (type.equals("Q_TEST_SAMPLE")) {
+				Map<String, String> props = s.getProperties();
+				String analyte = props.get("Q_SAMPLE_TYPE");
+				if (infos.containsKey(analyte)) {
+					infos.get(analyte).add(s);
+				} else {
+					infos.put(analyte, new ArrayList<Sample>(Arrays.asList(s)));
+				}
+			}
+		}
+
+		boolean measurePeptides = false;
+		boolean shortGel = false;
+		boolean precipitation = false;
+		boolean digestionSolution = false;
+		boolean digestionGel = false;
+		String other = "";
+		boolean none = false;
+		boolean silver = false;
+		boolean coomassie = false;
+		boolean identification = false;
+		boolean quantification = false;
+		boolean evaluation = false;
+		String duration = "";
+		String comments = "";
+		boolean molecularWeight = false;
+		String purificationMethod = "";
+		String composition = "";
+
+		// Small Molecules
+		String substanceClass = "";
+		String molFormulaMass = "";
+		boolean extraction = false;
+		String molecularWeightRange = "";
+		String polarity = "";
+		boolean relQuantification = false;
+		boolean absQuantification = false;
+		String internalStandards = "";
+
+		if (infos.containsKey("PROTEINS")) {
+			Sample first = infos.get("PROTEINS").get(0);
+			String expID = first.getExperimentIdentifierOrNull();
+			for (Experiment e : openbis.getExperimentsOfProjectByCode(first.getCode().substring(0, 15))) { // changed by
+																											// CFH
+																											// changed
+																											// from (0,
+																											// 5) to (0,
+																											// 15)
+				if (e.getIdentifier().equals(expID)) {
+					Map<String, String> props = e.getProperties();
+					if (props.containsKey("Q_MS_PURIFICATION_METHOD"))
+						purificationMethod = props.get("Q_MS_PURIFICATION_METHOD");
+					if (props.containsKey("Q_ADDITIONAL_INFORMATION"))
+						silver = props.get("Q_ADDITIONAL_INFORMATION").contains("Silver");
+					coomassie = props.get("Q_ADDITIONAL_INFORMATION").contains("Coomassie");
+
+					// CFH proteins if when result is not boolean
+					if (props.get("Q_ADDITIONAL_INFORMATION").contains("Composition"))
+						composition = props.get("Q_ADDITIONAL_INFORMATION");
+					digestionSolution = props.get("Q_ADDITIONAL_INFORMATION").contains("in solution digestion");
+					digestionGel = props.get("Q_ADDITIONAL_INFORMATION").contains("in gel digestion");
+					precipitation = props.get("Q_ADDITIONAL_INFORMATION").contains("Precipitation");
+					shortGel = props.get("Q_ADDITIONAL_INFORMATION").contains("Short Gel");
+					if (props.get("Q_ADDITIONAL_INFORMATION").contains("Other"))
+						other = props.get("Q_ADDITIONAL_INFORMATION");
+					none = props.get("Q_ADDITIONAL_INFORMATION").contains("None");
+
+					identification = props.get("Q_ADDITIONAL_INFORMATION").contains("Identification");
+					quantification = props.get("Q_ADDITIONAL_INFORMATION").contains("Quantification");
+					molecularWeight = props.get("Q_ADDITIONAL_INFORMATION").contains("Molecular Weight");
+					evaluation = props.get("Q_ADDITIONAL_INFORMATION").contains("No data analysis");
+
+					if (props.get("Q_ADDITIONAL_INFORMATION").contains("Instrument time"))
+						duration = props.get("Q_ADDITIONAL_INFORMATION");
+					if (props.get("Q_ADDITIONAL_INFORMATION").contains("Comments"))
+						duration = props.get("Q_ADDITIONAL_INFORMATION");
+
+					// small molecules
+					if (props.get("Q_ADDITIONAL_INFORMATION").contains("Substance Class"))
+						substanceClass = props.get("Q_ADDITIONAL_INFORMATION");
+					if (props.get("Q_ADDITIONAL_INFORMATION").contains("Molecular Formula/Mass"))
+						molFormulaMass = props.get("Q_ADDITIONAL_INFORMATION");
+					extraction = props.get("Q_ADDITIONAL_INFORMATION").contains("Extraction");
+					if (props.get("Q_ADDITIONAL_INFORMATION").contains("Molecular weight range"))
+						molecularWeightRange = props.get("Q_ADDITIONAL_INFORMATION");
+					if (props.get("Q_ADDITIONAL_INFORMATION").contains("Polarity"))
+						polarity = props.get("Q_ADDITIONAL_INFORMATION");
+					relQuantification = props.get("Q_ADDITIONAL_INFORMATION").contains("relative Quantification");
+					absQuantification = props.get("Q_ADDITIONAL_INFORMATION").contains("absolute Quantification");
+					if (props.get("Q_ADDITIONAL_INFORMATION").contains("Internal Standards"))
+						internalStandards = props.get("Q_ADDITIONAL_INFORMATION");
+
+					// TODO
+					break;
+				}
+			}
+		}
+
+		if (infos.containsKey("PEPTIDES")) {
+			for (Sample s : infos.get("PEPTIDES")) {
+				for (Sample p : s.getParents()) {
+					if (p.getSampleTypeCode().equals("Q_TEST_SAMPLE")
+							&& p.getProperties().get("Q_SAMPLE_TYPE").equals("PROTEINS")) {
+						measurePeptides = true;
+						break;
+					}
+				}
+				if (measurePeptides)
+					break;
+			}
+			infos.remove("PEPTIDES");
+		}
+
+		RegisteredAnalyteInformation res = null;
+		if (!infos.containsKey("PROTEINS")) {
+			res = new RegisteredAnalyteInformation(infos.keySet(), composition, substanceClass, molFormulaMass,
+					extraction, precipitation, other, none, molecularWeightRange, polarity, molecularWeight,
+					identification, relQuantification, absQuantification, evaluation, internalStandards, comments);
+		} else {
+			res = new RegisteredAnalyteInformation(infos.keySet(), measurePeptides, shortGel, purificationMethod,
+					composition, precipitation, digestionSolution, digestionGel, other, none, silver, coomassie,
+					identification, quantification, duration, evaluation, molecularWeight, comments);
+		}
+		return res;
+	}
 }

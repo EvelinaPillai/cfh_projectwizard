@@ -55,6 +55,7 @@ public class TechnologiesPanel extends HorizontalLayout {
   ValueChangeListener nmrListener;
   ValueChangeListener mhcLigandListener;
   ValueChangeListener smallMoleculesListener;
+  ValueChangeListener peptideListener;
   Map<String, String> matrixMap;
   Button.ClickListener refreshPeopleListener;
   GridLayout buttonGrid;
@@ -62,6 +63,7 @@ public class TechnologiesPanel extends HorizontalLayout {
   Button remove;
 
   OptionGroup conditionsSet;
+
 
   /**
    * Create a new Conditions Panel component to select experimental conditions
@@ -74,7 +76,8 @@ public class TechnologiesPanel extends HorizontalLayout {
   public TechnologiesPanel(List<String> techOptions, Set<String> people, OptionGroup conditionsSet,
       ValueChangeListener poolListener, ArrayList<ValueChangeListener> proteinListeners,
       ValueChangeListener mhcLigandListener, ClickListener refreshPeopleListener, ValueChangeListener elementListener, 
-      ValueChangeListener aaListener, ValueChangeListener fatListener, ValueChangeListener nminListener, ValueChangeListener nmrListener, ValueChangeListener smallMoleculesListener,Map<String, String> matrixMap){
+      ValueChangeListener aaListener, ValueChangeListener fatListener, ValueChangeListener nminListener, ValueChangeListener nmrListener, ValueChangeListener smallMoleculesListener,
+      ValueChangeListener peptideListener, Map<String, String> matrixMap){
     this.options = techOptions;
     this.persons = people;
     this.matrixMap = matrixMap;
@@ -96,6 +99,7 @@ public class TechnologiesPanel extends HorizontalLayout {
     this.nminListener = nminListener;
     this.nmrListener = nmrListener;
     this.smallMoleculesListener = smallMoleculesListener;
+    this.peptideListener = peptideListener;
    
 
     choosers = new ArrayList<TechChooser>();
@@ -112,6 +116,7 @@ public class TechnologiesPanel extends HorizontalLayout {
     c.addNMRListener(nmrListener);
     c.addAAListener(aaListener);
     c.addSmallMoleculesListener(smallMoleculesListener);
+    c.addPeptideListener(peptideListener);
    
     choosers.add(c);
     addComponent(c);
@@ -173,6 +178,7 @@ public class TechnologiesPanel extends HorizontalLayout {
     c.addNminListener(nminListener);
     c.addNMRListener(nmrListener);
     c.addSmallMoleculesListener(smallMoleculesListener);
+    c.addPeptideListener(peptideListener);
     choosers.add(c);
 
     c.showHelpers();
@@ -198,6 +204,7 @@ public class TechnologiesPanel extends HorizontalLayout {
       last.removeNminListener(nminListener);
       last.removeNMRListener(nmrListener);
       last.removeSmallMoleculesListener(smallMoleculesListener);
+      last.removePeptideListener(peptideListener);
       last.removeRefreshPeopleListener(refreshPeopleListener);
 
       choosers.get(size - 2).showHelpers();

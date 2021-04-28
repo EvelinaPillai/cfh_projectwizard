@@ -223,6 +223,14 @@ public void showHelpers() {
 		this.chooser.removeValueChangeListener(smallMoleculesListener);
 	}
 
+	public void addPeptideListener(ValueChangeListener peptideListener) {
+		this.chooser.addValueChangeListener(peptideListener);
+	}
+
+	public void removePeptideListener(ValueChangeListener peptideListener) {
+		this.chooser.removeValueChangeListener(peptideListener);
+	}
+
 	public void addElementListener(ValueChangeListener elementListener) {
 		this.chooser.addValueChangeListener(elementListener);
 	}
